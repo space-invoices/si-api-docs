@@ -418,6 +418,35 @@ html, body {
       padding: 10px;
     }
 
+    tr em:before, strong:before {
+      content: '\a';
+      white-space: pre;
+    }
+
+    tr td:first-child {
+      font-weight: bold;
+      text-align: right;
+
+      em, strong {
+        font-weight: normal;
+        text-transform: uppercase;
+        font-style: normal;
+        font-size: 11px;
+      }
+
+      strong {
+        color: orange;
+      }
+
+      em {
+        color: grey;
+
+        em {
+          color: #333;
+        }
+      }
+    }
+
     tr:last-child {
       border-bottom: 1px solid #ccc;
     }
