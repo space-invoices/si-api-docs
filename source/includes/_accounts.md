@@ -4,8 +4,8 @@
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts" \
-  -d username='name@example.com' \
-  -d password='supersecret'
+  -d username="name@example.com" \
+  -d password="supersecret"
 ```
 
 > Returns:
@@ -28,14 +28,14 @@ This is the entry point to start using the API. Once an account is created it ca
 ### Request arguments
 
 Parameter | Description
---------- | -----------
+---------: | -----------
 username **required** | Unique email address.
 password **required** | Password, 8 character minimum, at least one capital letter and one symbol.
 
 ### Response arguments
 
 Parameter | Description
---------- | -----------
+---------: | -----------
 id | Unique id of model instance.
 username | Provided username.
 
@@ -43,8 +43,8 @@ username | Provided username.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts/login" \
-  -d username='name@example.com' \
-  -d password='supersecret'
+  -d username="name@example.com" \
+  -d password="supersecret"
 ```
 
 > Returns:
@@ -65,13 +65,13 @@ This endpoint authenticates an account and returns an access token that can be u
 ### Request arguments
 
 Parameter | Description
---------- | -----------
+---------: | -----------
 username **required** | Chosen email.
 password **required** | Chosen password.
 
 ### Response arguments
 
 Parameter | Description
---------- | -----------
+---------: | -----------
 id | Generated access token.
 userId | Id of authenticated account.

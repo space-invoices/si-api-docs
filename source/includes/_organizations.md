@@ -4,8 +4,8 @@
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations" \
-  -d name='The Space store ltd' \
-  -d country='USA'
+  -d name="The Space store ltd" \
+  -d country="USA"
 ```
 
 > Returns:
@@ -15,9 +15,9 @@ curl "https://api.spaceinvoices.com/v1/organizations" \
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "name": "The Space store ltd",
   "country": "USA",
-  "_defaults": {
-    ...
-  }
+  "_defaults": [{
+    # See Defaults for details
+  }]
 }
 ```
 
@@ -36,7 +36,7 @@ An organization holds a reference to most of the information that is created thr
 ### Request arguments
 
 Parameter | Description
---------- | -----------
+---------: | -----------
 name **required** | Name of organization.
 country **required** | County of organization. _The country parameter is used to apply some smart defaults to the organization being created including tax rates and default texts (both may be effected by taxSubject property in some cases)._
 taxSubject _default is *false*_ | Specify if the organization is subject to tax. _Property effects creation of tax rates and default texts._
@@ -44,8 +44,8 @@ taxSubject _default is *false*_ | Specify if the organization is subject to tax.
 ### Response arguments
 
 Parameter | Description
---------- | -----------
+---------: | -----------
 id | Unique id of model instance
 name | Provided name
 country | Provided country
-_defaults | Array of objects. Each object contains an organization's default setting.
+_defaults | Array of objects. Each object contains an organization"s default setting.
