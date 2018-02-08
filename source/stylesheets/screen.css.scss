@@ -386,8 +386,14 @@ html, body {
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
+  h5, h6 {
     font-size: 10px;
+  }
+
+  h4 {
+    color: #666;
+    font-size: 13px;
+    text-transform: uppercase;
   }
 
   hr {
@@ -444,6 +450,13 @@ html, body {
         em {
           color: #333;
         }
+      }
+
+      code {
+        background: none;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: normal;
       }
     }
 

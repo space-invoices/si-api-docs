@@ -1,10 +1,12 @@
 # Accounts
 
+Accounts represent users that can login and access different organizations based on access right.
+
 ## Signup / Create New Account
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/accounts" \
-  -d username="name@example.com" \
+curl "https://api.spaceinvoices.com/api/v1/accounts" \
+  -d email="name@example.com" \
   -d password="supersecret"
 ```
 
@@ -13,7 +15,7 @@ curl "https://api.spaceinvoices.com/v1/accounts" \
 ```json
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
-  "username": "someone@example.com"
+  "email": "someone@example.com"
 }
 ```
 
@@ -23,27 +25,29 @@ This is the entry point to start using the API. Once an account is created it ca
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/v1/accounts`
+`POST https://api.spaceinvoices.com/api/v1/accounts`
 
-### Request arguments
+#### Attributes
 
-Parameter | Description
----------: | -----------
-username **required** | Unique email address.
-password **required** | Password, 8 character minimum, at least one capital letter and one symbol.
+|      |     |
+| ---: | --- |
+| email **required** | Unique email address. |
+| password **required** | Password, 8 character minimum, at least one capital letter and one symbol. |
 
-### Response arguments
+### HTTP Response
 
-Parameter | Description
----------: | -----------
-id | Unique id of model instance.
-username | Provided username.
+#### Attributes
+
+|      |     |
+| ---: | --- |
+| id | Unique ID of model instance. |
+| email | Provided username. |
 
 ## Login
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/accounts/login" \
-  -d username="name@example.com" \
+curl "https://api.spaceinvoices.com/api/v1/accounts/login" \
+  -d email="name@example.com" \
   -d password="supersecret"
 ```
 
@@ -60,18 +64,20 @@ This endpoint authenticates an account and returns an access token that can be u
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/v1/accounts/login`
+`POST https://api.spaceinvoices.com/api/v1/accounts/login`
 
-### Request arguments
+#### Attributes
 
-Parameter | Description
----------: | -----------
-username **required** | Chosen email.
-password **required** | Chosen password.
+|      |     |
+| ---: | --- |
+| email **required** | Chosen email. |
+| password **required** | Chosen password. |
 
-### Response arguments
+### HTTP Response
 
-Parameter | Description
----------: | -----------
-id | Generated access token.
-userId | Id of authenticated account.
+#### Attributes
+
+|      |     |
+| ---: | --- |
+| id | Generated access token. |
+| userId | ID of authenticated user account. |
