@@ -224,6 +224,9 @@
                   <li>
                     <a href="#welcome-to-space-invoices-api" class="toc-h2 toc-link" data-title="welcome-to-space-invoices-api">Welcome to Space Invoices API</a>
                   </li>
+                  <li>
+                    <a href="#getting-help" class="toc-h2 toc-link" data-title="getting-help">Getting help</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -262,6 +265,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://space-invoices-public.slack.com'>Join our Slack community</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -270,13 +274,15 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1><h2 id='welcome-to-space-invoices-api'>Welcome to Space Invoices API</h2>
 <p>Space Invoices is a developer oriented invoicing API. You can use it to create and manage invoices and other types of documents, it also allows you to manage any data related to those documents.</p>
-<h3 id='visit-our-website-at-spaceinvoices-com'>Visit our website at <a href="https://spaceinvoices.com">spaceinvoices.com</a></h3><h3 id='about'>About</h3>
+<h2 id='getting-help'>Getting help</h2><h3 id='join-our-slack-community-space-invoaders'>Join our Slack community <a href="https://space-invoices-public.slack.com">Space Invoaders</a>.</h3><h3 id='visit-our-website-at-spaceinvoices-com'>Visit our website at <a href="https://spaceinvoices.com">spaceinvoices.com</a></h3><h3 id='about'>About</h3>
 <p>We have language binding in Shell for now, other languages will be added soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<aside class="warning"><strong>This documentation is a work in progress.</strong></aside>
+<aside class="warning"><strong>NOTE: This documentation is a work in progress.</strong></aside>
 
-<p>Some parts are missing or might change in the near future while we finalise all the aspects of this document and the product. Check back regularly for updates or sign up for our newsletter on our <a href="https://spaceinvoices.com">website</a></p>
-<h1 id='accounts'>Accounts</h1><h2 id='signup-create-new-account'>Signup / Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts"</span> <span class="se">\</span>
+<p>While the API is fully operational parts of this documentation are still missing or might change in the near future while we finalise all the aspects of this document and the product. Check back regularly for updates or sign up for our newsletter on our <a href="https://spaceinvoices.com">website</a>.</p>
+<h1 id='accounts'>Accounts</h1>
+<p>Accounts represent users that can login and access different organizations based on access right.</p>
+<h2 id='signup-create-new-account'>Signup / Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
@@ -292,12 +298,12 @@
 
 <p>This is the entry point to start using the API. Once an account is created it can be used to login and make authenticated calls.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/v1/accounts</code></p>
-<h3 id='request-arguments'>Request arguments</h3>
+<p><code>POST https://api.spaceinvoices.com/api/v1/accounts</code></p>
+<h4 id='attributes'>Attributes</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -309,23 +315,23 @@
 <td>Password, 8 character minimum, at least one capital letter and one symbol.</td>
 </tr>
 </tbody></table>
-<h3 id='http-response'>HTTP Response</h3><h3 id='response-arguments'>Response arguments</h3>
+<h3 id='http-response'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique id of model instance.</td>
+<td>Unique ID of model instance.</td>
 </tr>
 <tr>
 <td style="text-align: right">email</td>
 <td>Provided username.</td>
 </tr>
 </tbody></table>
-<h2 id='login'>Login</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/login"</span> <span class="se">\</span>
+<h2 id='login'>Login</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts/login"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
@@ -339,12 +345,12 @@
 </span></code></pre>
 <p>This endpoint authenticates an account and returns an access token that can be used in consecutive calls to the API.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/v1/accounts/login</code></p>
-<h3 id='request-arguments-2'>Request arguments</h3>
+<p><code>POST https://api.spaceinvoices.com/api/v1/accounts/login</code></p>
+<h4 id='attributes-3'>Attributes</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -356,11 +362,11 @@
 <td>Chosen password.</td>
 </tr>
 </tbody></table>
-<h3 id='http-response-2'>HTTP Response</h3><h3 id='response-arguments-2'>Response arguments</h3>
+<h3 id='http-response-2'>HTTP Response</h3><h4 id='attributes-4'>Attributes</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -369,7 +375,7 @@
 </tr>
 <tr>
 <td style="text-align: right">userId</td>
-<td>Id of authenticated account.</td>
+<td>ID of authenticated user account.</td>
 </tr>
 </tbody></table>
 <h1 id='authentication'>Authentication</h1>
@@ -384,16 +390,17 @@ curl <span class="s2">"api_endpoint_here"</span>
 <p>Make sure to replace <code>TOKEN</code> with your authorization token.</p>
 </blockquote>
 
-<p>Space Invoices uses authorization tokens to allow access to the API. A token can be aquired by loging in using account&quot;s username and password. See Accounts/<a href="#login">Login</a> section for detailed instructions.</p>
+<p>Space Invoices uses authorization tokens to allow access to the API. A token can be aquired by loging in using an account&#39;s username and password. See Accounts &gt; <a href="#login">Login</a> section for detailed instructions.</p>
 
-<p>The API key has to be included in all API requests to the server in a header that looks like the following:</p>
+<p>The API key has to be included in all API requests to the server in a header like this:</p>
 
 <p><code>Authorization: TOKEN</code></p>
 
 <aside class="notice">You must replace <code>TOKEN</code> with your obtained token.</aside>
-<h1 id='organizations'>Organizations</h1><h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations"</span> <span class="se">\</span>
+<h1 id='organizations'>Organizations</h1><h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"The Space store ltd"</span> <span class="se">\</span>
-  -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span>
+  -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
+  -d <span class="nv">IBAN</span><span class="o">=</span><span class="s2">"US56 2900 0000 0000 000"</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -402,8 +409,9 @@ curl <span class="s2">"api_endpoint_here"</span>
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Space store ltd"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"IBAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US56 2900 0000 0000 000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_defaults"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="err">#</span><span class="w"> </span><span class="err">See</span><span class="w"> </span><span class="err">Defaults</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">details</span><span class="w">
+    </span><span class="err">#</span><span class="w"> </span><span class="err">See</span><span class="w"> </span><span class="err">Defaults</span><span class="w"> </span><span class="err">section</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">details</span><span class="w">
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -415,12 +423,12 @@ curl <span class="s2">"api_endpoint_here"</span>
 
 <p>An organization holds a reference to most of the information that is created through the API.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/v1/organizations</code></p>
-<h3 id='request-arguments'>Request arguments</h3>
+<p><code>POST https://api.spaceinvoices.com/api/v1/organizations</code></p>
+<h4 id='arguments'>Arguments</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -429,23 +437,23 @@ curl <span class="s2">"api_endpoint_here"</span>
 </tr>
 <tr>
 <td style="text-align: right">country <strong>required</strong></td>
-<td>County of organization. <em>The country parameter is used to apply some smart defaults to the organization being created including tax rates and default texts (both may be effected by taxSubject property in some cases).</em></td>
+<td>County of organization. <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases).</em></td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
-<td>Specify if the organization is subject to tax. <em>Property effects creation of tax rates and default texts.</em></td>
+<td>Specify if the organization is subject to tax. <em>Property effects creation of default tax rates and texts.</em></td>
 </tr>
 </tbody></table>
-<h3 id='response-arguments'>Response arguments</h3>
+<h4 id='arguments-2'>Arguments</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique id of model instance</td>
+<td>Unique ID of model instance</td>
 </tr>
 <tr>
 <td style="text-align: right">name</td>
@@ -457,45 +465,74 @@ curl <span class="s2">"api_endpoint_here"</span>
 </tr>
 <tr>
 <td style="text-align: right">_defaults</td>
-<td>Array of objects. Each object contains an organization&quot;s default setting.</td>
+<td>Array of objects. <em>Collection of organization&#39;s default settings. See Defaults section for details</em></td>
 </tr>
 </tbody></table>
 <h1 id='documents'>Documents</h1>
 <p>Documents are the most complex part of Space Invoices, they are the core of our service. </p>
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
-<h2 id='create-new-document-minimum-data'>Create New Document - Minimum data</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/documents"</span> <span class="se">\</span>
+<h2 id='create-new-document-minimum-data'>Create New Document - Minimum data</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
-  -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d _documentItems[0][name]<span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
-  -d _documentItems[0][quantity]<span class="o">=</span>1 <span class="se">\</span>
+  -d _documentItems[0][quantity]<span class="o">=</span>2 <span class="se">\</span>
   -d _documentItems[0][unit]<span class="o">=</span><span class="s2">"Item"</span> <span class="se">\</span>
-  -d _documentItems[0][price]<span class="o">=</span><span class="s2">"100"</span> <span class="se">\</span>
+  -d _documentItems[0][price]<span class="o">=</span><span class="s2">"1000"</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"draft"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sentEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-00001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateService"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateDue"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-02-31</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_documentIssuer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-
-  </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Space store ltd"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_documentItems"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space suit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalWithTax"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_documenItemTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for your business.</span><span class="se">\n</span><span class="s2">
+    Please transfer the money to bank account [IBAN] open at [bank]"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[company name]"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[company name] | [IBAN]"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"documentTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalWithTax"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalPaid"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paidInFull"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="err">T</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mf">11.999</span><span class="err">Z</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new document for given organization.</p>
+
+<p><em>This example shows the process of creating an <code>invoice</code> providing minimum data.</em></p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/v1/organizations/:id/documents</code></p>
-<h3 id='query-parameters'>Query parameters</h3>
+<p><code>POST https://api.spaceinvoices.com/api/v1/organizations/:id/documents</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -503,48 +540,132 @@ curl <span class="s2">"api_endpoint_here"</span>
 <td>ID of organization.</td>
 </tr>
 </tbody></table>
-<h3 id='request-arguments'>Request arguments</h3>
+<h4 id='attributes'>Attributes</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">name <strong>required</strong></td>
-<td>Name of organization.</td>
+<td style="text-align: right">_documentClient</td>
+<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided</em></td>
 </tr>
 <tr>
-<td style="text-align: right">country <strong>required</strong></td>
-<td>County of organization. <em>The country parameter is used to apply some smart defaults to the organization being created including tax rates and default texts (both may be effected by taxSubject property in some cases).</em></td>
+<td style="text-align: right"><code>_documentClient.</code>name</td>
+<td>Name of client.</td>
 </tr>
 <tr>
-<td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
-<td>Specify if the organization is subject to tax. <em>Property effects creation of tax rates and default texts.</em></td>
+<td style="text-align: right">_documentItems</td>
+<td>Collection of objects containing document line items.</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>_documentItems.</code>name</td>
+<td>Name of item.</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>_documentItems.</code>quantity</td>
+<td>Number, quantity of items.</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>_documentItems.</code>unit</td>
+<td>Unit of measurement for item ie. &#39;Item/Service/Meter/etc.&#39;</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>_documentItems.</code>price</td>
+<td>Number, price per single item.</td>
 </tr>
 </tbody></table>
-<h3 id='http-response'>HTTP Response</h3>
+<h3 id='http-response'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
 <table><thead>
 <tr>
-<th style="text-align: right">Parameter</th>
-<th>Description</th>
+<th style="text-align: right"></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique id of model instance.</td>
+<td>Unique ID of model instance.</td>
 </tr>
 <tr>
-<td style="text-align: right">name</td>
-<td>Provided name.</td>
+<td style="text-align: right">organizationId</td>
+<td>ID of related organization.</td>
 </tr>
 <tr>
-<td style="text-align: right">country</td>
-<td>Provided country.</td>
+<td style="text-align: right">draft</td>
+<td>Boolean, is invoice a draft. <em>Only present if document type is invoice.</em></td>
 </tr>
 <tr>
-<td style="text-align: right">_defaults</td>
-<td>Collection of dictionaries. <em>Each object contains an organization&quot;s default setting.</em></td>
+<td style="text-align: right">canceled</td>
+<td>Boolean, is invoice canceled. <em>Only present if document type is invoice.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">sentEmail</td>
+<td>Boolean, has document been ever sent by email.</td>
+</tr>
+<tr>
+<td style="text-align: right">_documentItems.total</td>
+<td>Number, total price of document item including quantity and discount. <em>Excludes taxes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">_documentItems.totalWithTax</td>
+<td>Number, total price of document item including quantity, discount and taxes.</td>
+</tr>
+<tr>
+<td style="text-align: right">_documentItems.totalDiscount</td>
+<td>Number, total discount of document item including quantity.</td>
+</tr>
+<tr>
+<td style="text-align: right">_documentItems._documentItemTaxes</td>
+<td>Array of objects containing all taxes applied to the document item.</td>
+</tr>
+<tr>
+<td style="text-align: right">note</td>
+<td>Text note for document. <em>May contain shortcode notations which get parsed to data on PDF or when parseForDisplay flag is provided.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">signature</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">footer</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">documentTaxes</td>
+<td>Array of objects containing all unique taxes applied to document.</td>
+</tr>
+<tr>
+<td style="text-align: right">documentTaxes.</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">total</td>
+<td>Number, document total including all item totals, excluding taxes.</td>
+</tr>
+<tr>
+<td style="text-align: right">totalDiscount</td>
+<td>Number, total value of all discounts applied to document.</td>
+</tr>
+<tr>
+<td style="text-align: right">totalWithTax</td>
+<td>Number, document total of all items including taxes.</td>
+</tr>
+<tr>
+<td style="text-align: right">totalPaid</td>
+<td>Number, total amount of payments logged for invoice. _Only present if type is invoice.</td>
+</tr>
+<tr>
+<td style="text-align: right">paidInFull</td>
+<td>Boolean, if document&#39;s logged payments amount to at least it&#39;s totalWithTax amount or more.</td>
+</tr>
+<tr>
+<td style="text-align: right">_comments</td>
+<td>Array of objects containing user comments on document.</td>
+</tr>
+<tr>
+<td style="text-align: right">createAt</td>
+<td>Timestamp of model instance creation.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
