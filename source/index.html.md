@@ -25,13 +25,15 @@ search: true
 
 Space Invoices is a developer oriented invoicing API. You can use it to create and manage invoices and other types of documents, it also allows you to manage any data related to those documents.
 
-## Getting help
-
-### Join our Slack community [Space Invoaders](https://space-invoices-public.slack.com).
-
 ### Visit our website at [spaceinvoices.com](https://spaceinvoices.com)
 
-### About
+## Getting help
+
+We're here to help in case you get stuck or want to make a request for functionalities. We also encourage our community to help each other that's why we've created a community Slack channel and conveniently called it Space Invaders :), hope to talk to you there!
+
+### Join our Slack community [Space Invaders](https://slackin-hbfgjbcseo.now.sh).
+
+## About
 
 We have language binding in Shell for now, other languages will be added soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 

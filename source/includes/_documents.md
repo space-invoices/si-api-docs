@@ -49,7 +49,7 @@ curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents" \
     Please transfer the money to bank account [IBAN] open at [bank]",
   "signature": "[company name]",
   "footer": "[company name] | [IBAN]",
-  "documentTaxes": [],
+  "_documentTaxes": [],
   "total": 2000,
   "totalDiscount": 0,
   "totalWithTax": 2000,
@@ -97,15 +97,16 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | draft | Boolean, is invoice a draft. _Only present if document type is invoice._ |
 | canceled | Boolean, is invoice canceled. _Only present if document type is invoice._ |
 | sentEmail | Boolean, has document been ever sent by email. |
-| _documentItems.total | Number, total price of document item including quantity and discount. _Excludes taxes._ |
-| _documentItems.totalWithTax | Number, total price of document item including quantity, discount and taxes. |
-| _documentItems.totalDiscount | Number, total discount of document item including quantity. |
-| _documentItems._documentItemTaxes | Array of objects containing all taxes applied to the document item. |
-| note | Text note for document. _May contain shortcode notations which get parsed to data on PDF or when parseForDisplay flag is provided._ |
+| _documentItems | Array of objects containing document items. |
+| `_documentItems.`total | Number, total price of document item including quantity and discount. _Excludes taxes._ |
+| `_documentItems.`totalWithTax | Number, total price of document item including quantity, discount and taxes. |
+| `_documentItems.`totalDiscount | Number, total discount of document item including quantity. |
+| `_documentItems.`_documentItemTaxes | Array of objects containing all taxes applied to the document item. |
+| note | Text note for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
 | signature |  |
 | footer |  |
-| documentTaxes | Array of objects containing all unique taxes applied to document. |
-| documentTaxes. |  |
+| _documentTaxes | Array of objects containing all unique taxes applied to document. |
+| `_documentTaxes.` |  |
 | total | Number, document total including all item totals, excluding taxes. |
 | totalDiscount | Number, total value of all discounts applied to document. |
 | totalWithTax | Number, document total of all items including taxes. |
