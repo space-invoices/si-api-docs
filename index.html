@@ -236,10 +236,10 @@
             <a href="#accounts" class="toc-h1 toc-link" data-title="accounts">Accounts</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#signup-create-new-account" class="toc-h2 toc-link" data-title="signup-create-new-account">Signup / Create New Account</a>
+                    <a href="#authenticate" class="toc-h2 toc-link" data-title="authenticate">Authenticate</a>
                   </li>
                   <li>
-                    <a href="#login" class="toc-h2 toc-link" data-title="login">Login</a>
+                    <a href="#create-new-account" class="toc-h2 toc-link" data-title="create-new-account">Create New Account</a>
                   </li>
               </ul>
           </li>
@@ -258,7 +258,7 @@
             <a href="#documents" class="toc-h1 toc-link" data-title="documents">Documents</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-new-document-minimum-data" class="toc-h2 toc-link" data-title="create-new-document-minimum-data">Create New Document - Minimum data</a>
+                    <a href="#create-new-document" class="toc-h2 toc-link" data-title="create-new-document">Create New Document</a>
                   </li>
                   <li>
                     <a href="#list-documents" class="toc-h2 toc-link" data-title="list-documents">List documents</a>
@@ -299,56 +299,7 @@
 <p>While the API is fully operational parts of this documentation are still missing or might change in the near future while we finalise all the aspects of this document and the product. Check back regularly for updates or sign up for our newsletter on our <a href="https://spaceinvoices.com">website</a>.</p>
 <h1 id='accounts'>Accounts</h1>
 <p>Accounts represent users that can login and access different organizations based on access right.</p>
-<h2 id='signup-create-new-account'>Signup / Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts"</span> <span class="se">\</span>
-  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
-  -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
-</code></pre>
-<blockquote>
-<p>Returns:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"someone@example.com"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint creates a new account.</p>
-
-<p>This is the entry point to start using the API. Once an account is created it can be used to login and make authenticated calls.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/api/v1/accounts</code></p>
-<h4 id='attributes'>Attributes</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">email <strong>required</strong></td>
-<td>Unique email address.</td>
-</tr>
-<tr>
-<td style="text-align: right">password <strong>required</strong></td>
-<td>Password, 8 character minimum, at least one capital letter and one symbol.</td>
-</tr>
-</tbody></table>
-<h3 id='http-response'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id</td>
-<td>Unique ID of model instance.</td>
-</tr>
-<tr>
-<td style="text-align: right">email</td>
-<td>Provided username.</td>
-</tr>
-</tbody></table>
-<h2 id='login'>Login</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts/login"</span> <span class="se">\</span>
+<h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts/login"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
@@ -361,9 +312,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint authenticates an account and returns an access token that can be used in consecutive calls to the API.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/api/v1/accounts/login</code></p>
-<h4 id='attributes-3'>Attributes</h4>
+<h4 id='attributes'>Attributes</h4>
 <table><thead>
 <tr>
 <th style="text-align: right"></th>
@@ -379,7 +330,7 @@
 <td>Chosen password.</td>
 </tr>
 </tbody></table>
-<h3 id='http-response-2'>HTTP Response</h3><h4 id='attributes-4'>Attributes</h4>
+<h3 id='http-response'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
 <table><thead>
 <tr>
 <th style="text-align: right"></th>
@@ -395,52 +346,163 @@
 <td>ID of authenticated user account.</td>
 </tr>
 </tbody></table>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>TOKEN</code> with your authorization token.</p>
-</blockquote>
-
-<p>Space Invoices uses authorization tokens to allow access to the API. A token can be aquired by loging in using an account&#39;s username and password. See Accounts &gt; <a href="#login">Login</a> section for detailed instructions.</p>
-
-<p>The API key has to be included in all API requests to the server in a header like this:</p>
-
-<p><code>Authorization: TOKEN</code></p>
-
-<aside class="notice">You must replace <code>TOKEN</code> with your obtained token.</aside>
-<h1 id='organizations'>Organizations</h1><h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations"</span> <span class="se">\</span>
-  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"The Space store ltd"</span> <span class="se">\</span>
-  -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
-  -d <span class="nv">IBAN</span><span class="o">=</span><span class="s2">"US56 2900 0000 0000 000"</span>
+<h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts"</span> <span class="se">\</span>
+  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
+  -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Space store ltd"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"IBAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US56 2900 0000 0000 000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"_defaults"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="err">#</span><span class="w"> </span><span class="err">See</span><span class="w"> </span><span class="err">Defaults</span><span class="w"> </span><span class="err">section</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">details</span><span class="w">
-  </span><span class="p">}]</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"someone@example.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint creates a new organization.</p>
+<p>This endpoint creates a new account.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.spaceinvoices.com/api/v1/accounts</code></p>
+<h4 id='attributes-3'>Attributes</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">email <strong>required</strong></td>
+<td>Unique email address.</td>
+</tr>
+<tr>
+<td style="text-align: right">password <strong>required</strong></td>
+<td>Password, 8 character minimum, at least one capital letter and one symbol.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-2'>HTTP Response</h3><h4 id='attributes-4'>Attributes</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>Unique ID of model instance.</td>
+</tr>
+<tr>
+<td style="text-align: right">email</td>
+<td>Provided username.</td>
+</tr>
+</tbody></table>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code>TOKEN</code> with your authorization token.</p>
+</blockquote>
 
+<p>Space Invoices uses authorization tokens to allow access to the API. A token can be aquired from the developer dashboard <a href="#">Mission Control</a>.</p>
+
+<p>The API key has to be included in all API requests to the server in a header like this:</p>
+
+<p><code>Authorization: TOKEN</code></p>
+
+<aside class="notice">You must replace <code>TOKEN</code> with your obtained token.</aside>
+<h1 id='organizations'>Organizations</h1>
 <p>Any given account can have multiple organizations either by creating them or by being given access to them from other account holders.</p>
 
 <p>This is especially useful when there is a need to manage multiple organizations as they are created for users that might signup to a certain product.</p>
 
 <p>An organization holds a reference to most of the information that is created through the API.</p>
+<h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations"</span> <span class="se">\</span>
+  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
+  -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
+  -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
+  -d <span class="nv">zip</span><span class="o">=</span><span class="s2">"CA 90250"</span> <span class="se">\</span>
+  -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
+  -d <span class="nv">IBAN</span><span class="o">=</span><span class="s2">"123454321 123454321"</span> <span class="se">\</span>
+  -d <span class="nv">bank</span><span class="o">=</span><span class="s2">"Bank Of America"</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"IBAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123454321 123454321"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Of Amerika"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_defaults"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image_logo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image_signature"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice_note"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"estimate_note"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">
+        Please transfer the money to bank account [IBAN] open at [bank]."</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"advance_note"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for your payment."</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[organization name]"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"footer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email_reminder"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dear customer,</span><span class="se">\n\n</span><span class="s2">this is a friendly reminder that the invoice [document number] is due on [document due].</span><span class="se">\n\n</span><span class="s2">Thank you and best regards,</span><span class="se">\n</span><span class="s2">[organization name]"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email_document"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currencyId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color_main"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0082c9"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice_dueDays"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice_dueDays"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"supportPin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"space-invoices"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new organization.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/api/v1/organizations</code></p>
+<p><code>POST https://api.spaceinvoices.com/api/v1/accounts/:id/organizations</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of account.</td>
+</tr>
+</tbody></table>
 <h4 id='arguments'>Arguments</h4>
 <table><thead>
 <tr>
@@ -450,18 +512,58 @@ curl <span class="s2">"api_endpoint_here"</span>
 </thead><tbody>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of organization.</td>
+<td>Name of company or other type of organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Street or similar address.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City name.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / post code.</td>
 </tr>
 <tr>
 <td style="text-align: right">country <strong>required</strong></td>
-<td>County of organization. <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases).</em></td>
+<td>ISO 3166 county. <a href="https://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a> <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases).</em></td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
 <td>Specify if the organization is subject to tax. <em>Property effects creation of default tax rates and texts.</em></td>
 </tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String VAT / GST / etc. tax identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String registration or similar identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">IBAN</td>
+<td>Bank account number.</td>
+</tr>
+<tr>
+<td style="text-align: right">website</td>
+<td>Website address.</td>
+</tr>
+<tr>
+<td style="text-align: right">locale <em>default is <em>en</em></em></td>
+<td>ISO 639-1 locale code. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> <em>Effects language of default texts and system messages.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">brand <em>default is <em>space-invocies</em></em></td>
+<td>Brand source identification for internal use.</td>
+</tr>
 </tbody></table>
-<h4 id='arguments-2'>Arguments</h4>
+<h3 id='http-response'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
 <table><thead>
 <tr>
 <th style="text-align: right"></th>
@@ -473,23 +575,35 @@ curl <span class="s2">"api_endpoint_here"</span>
 <td>Unique ID of model instance</td>
 </tr>
 <tr>
-<td style="text-align: right">name</td>
-<td>Provided name</td>
-</tr>
-<tr>
-<td style="text-align: right">country</td>
-<td>Provided country</td>
-</tr>
-<tr>
 <td style="text-align: right">_defaults</td>
-<td>Array of objects. <em>Collection of organization&#39;s default settings. See Defaults section for details</em></td>
+<td>Array of objects. <em>Collection of organization&#39;s default settings.</em> <em>Can be used for custom settings.</em> <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Unique (to orgnization) name of setting.</td>
+</tr>
+<tr>
+<td style="text-align: right">value</td>
+<td>Value of setting.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">active</td>
+<td>Boolean indicator if organization is active (enabled).</td>
+</tr>
+<tr>
+<td style="text-align: right">supportPin</td>
+<td>5 digit number used to match organization requesting support.</td>
 </tr>
 </tbody></table>
 <h1 id='documents'>Documents</h1>
 <p>Documents are the most complex part of Space Invoices, they are the core of our service. </p>
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
-<h2 id='create-new-document-minimum-data'>Create New Document - Minimum data</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents"</span> <span class="se">\</span>
+<h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
   -d _documentItems[0][name]<span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
   -d _documentItems[0][quantity]<span class="o">=</span>2 <span class="se">\</span>
@@ -512,7 +626,13 @@ curl <span class="s2">"api_endpoint_here"</span>
   </span><span class="s2">"dateDue"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-02-31</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_documentIssuer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Space store ltd"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"IBAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123454321 123454321"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Of Amerika"</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"_documentItems"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
@@ -526,8 +646,9 @@ curl <span class="s2">"api_endpoint_here"</span>
     </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"_documenItemTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for your business.</span><span class="se">\n</span><span class="s2">
-    Please transfer the money to bank account [IBAN] open at [bank]"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">
+    Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">
+    Thank you for your business."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[company name]"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[company name] | [IBAN]"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_documentTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
