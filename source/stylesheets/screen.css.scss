@@ -437,7 +437,10 @@ html, body {
 
         a {
           font-weight: normal;
-          display: block;
+
+          &[href^="#expand"] {
+            display: block;
+          }
         }
       }
 
@@ -466,6 +469,7 @@ html, body {
 
           em {
             color: #333;
+            text-transform: none;
           }
         }
 
@@ -516,9 +520,13 @@ html, body {
     @extend %code-font;
   }
 
-  pre>code {
-    background-color: transparent;
-    padding: 0;
+  pre {
+    white-space: pre-wrap;
+  
+    &>code {
+      background-color: transparent;
+      padding: 0;
+    }
   }
 
   aside {
