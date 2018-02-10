@@ -260,6 +260,18 @@
                   <li>
                     <a href="#create-new-document-minimum-data" class="toc-h2 toc-link" data-title="create-new-document-minimum-data">Create New Document - Minimum data</a>
                   </li>
+                  <li>
+                    <a href="#list-documents" class="toc-h2 toc-link" data-title="list-documents">List documents</a>
+                  </li>
+                  <li>
+                    <a href="#get-document-by-id" class="toc-h2 toc-link" data-title="get-document-by-id">Get Document by ID</a>
+                  </li>
+                  <li>
+                    <a href="#edit-document" class="toc-h2 toc-link" data-title="edit-document">Edit document</a>
+                  </li>
+                  <li>
+                    <a href="#delete-document" class="toc-h2 toc-link" data-title="delete-document">Delete document</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -268,7 +280,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://space-invoices-public.slack.com'>Join our Slack community</a></li>
+            <li><a href='https://slackin-hbfgjbcseo.now.sh'>Join our Slack community</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -554,31 +566,39 @@ curl <span class="s2">"api_endpoint_here"</span>
 </thead><tbody>
 <tr>
 <td style="text-align: right">_documentClient</td>
-<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided</em></td>
+<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentClient.</code>name</td>
+<td style="text-align: right">name <strong>required</strong></td>
 <td>Name of client.</td>
 </tr>
 <tr>
-<td style="text-align: right">_documentItems</td>
-<td>Collection of objects containing document line items.</td>
+<td style="text-align: right"><a href="#"></a></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>name</td>
+<td style="text-align: right">_documentItems</td>
+<td>Collection of objects containing document line items. <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">name <strong>required</strong></td>
 <td>Name of item.</td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>quantity</td>
+<td style="text-align: right">quantity</td>
 <td>Number, quantity of items.</td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>unit</td>
-<td>Unit of measurement for item ie. &#39;Item/Service/Meter/etc.&#39;</td>
+<td style="text-align: right">unit</td>
+<td>Unit of measurement for item ie. Item / Service / Meter / etc.</td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>price</td>
+<td style="text-align: right">price</td>
 <td>Number, price per single item.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#"></a></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
@@ -610,23 +630,27 @@ curl <span class="s2">"api_endpoint_here"</span>
 </tr>
 <tr>
 <td style="text-align: right">_documentItems</td>
-<td>Array of objects containing document items.</td>
+<td>Array of objects containing document items. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>total</td>
+<td style="text-align: right">total</td>
 <td>Number, total price of document item including quantity and discount. <em>Excludes taxes.</em></td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>totalWithTax</td>
+<td style="text-align: right">totalWithTax</td>
 <td>Number, total price of document item including quantity, discount and taxes.</td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>totalDiscount</td>
+<td style="text-align: right">totalDiscount</td>
 <td>Number, total discount of document item including quantity.</td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentItems.</code>_documentItemTaxes</td>
-<td>Array of objects containing all taxes applied to the document item.</td>
+<td style="text-align: right">_documentItemTaxes</td>
+<td>Array of tax IDs applied to the document item.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#"></a></td>
+<td></td>
 </tr>
 <tr>
 <td style="text-align: right">note</td>
@@ -634,18 +658,26 @@ curl <span class="s2">"api_endpoint_here"</span>
 </tr>
 <tr>
 <td style="text-align: right">signature</td>
-<td></td>
+<td>Text signature for document. <em>May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">footer</td>
-<td></td>
+<td>Text footer for document. <em>May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_documentTaxes</td>
-<td>Array of objects containing all unique taxes applied to document.</td>
+<td>Array of objects containing all unique taxes applied to document. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
-<td style="text-align: right"><code>_documentTaxes.</code></td>
+<td style="text-align: right">tax</td>
+<td>Tax rate.</td>
+</tr>
+<tr>
+<td style="text-align: right">totalTax</td>
+<td>Total value for this tax rate.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#"></a></td>
 <td></td>
 </tr>
 <tr>
@@ -677,6 +709,14 @@ curl <span class="s2">"api_endpoint_here"</span>
 <td>Timestamp of model instance creation.</td>
 </tr>
 </tbody></table>
+<h2 id='list-documents'>List documents</h2>
+<!-- TODO: List documents -->
+<h2 id='get-document-by-id'>Get Document by ID</h2>
+<!-- TODO: Get document by id -->
+<h2 id='edit-document'>Edit document</h2>
+<!-- TODO: Edit document -->
+<h2 id='delete-document'>Delete document</h2>
+<!-- TODO: Delete document -->
 <h1 id='errors'>Errors</h1>
 <p>Space Invoices API uses the following error codes:</p>
 
