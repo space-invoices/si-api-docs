@@ -24,7 +24,7 @@ curl "https://api.spaceinvoices.com/api/v1/organizations" \
 ```json
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
-  "name": "The Space store ltd",
+  "name": "Space Exploration Technologies corp",
   "address": "Rocket Road",
   "city": "Hawthorne",
   "zip": "CA 90250",
@@ -40,10 +40,11 @@ curl "https://api.spaceinvoices.com/api/v1/organizations" \
       "value": ""
     }, {
       "name": "invoice_note",
-      "value": "When paying please use reference number [document number]."
+      "value": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
     }, {
       "name": "estimate_note",
-      "value": "When paying please use reference number [document number]."
+      "value": "When paying please use reference number [document number].\n
+        Please transfer the money to bank account [IBAN] open at [bank]."
     }, {
       "name": "advance_note",
       "value": "Thank you for your payment."
@@ -55,7 +56,7 @@ curl "https://api.spaceinvoices.com/api/v1/organizations" \
       "value": "[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"
     }, {
       "name": "email_reminder",
-      "value": "Dear customer,this is a friendly reminder that the invoice [document number] is due on [document due].Thank you and best regards,[organization name]"
+      "value": "Dear customer,\n\nthis is a friendly reminder that the invoice [document number] is due on [document due].\n\nThank you and best regards,\n[organization name]"
     }, {
       "name": "email_document",
       "value": ""
@@ -72,7 +73,11 @@ curl "https://api.spaceinvoices.com/api/v1/organizations" \
       "name": "invoice_dueDays",
       "value": "30"
     }
-  ]
+  ],
+  "locale": "en",
+  "active": true,
+  "supportPin": "12345",
+  "brand": "space-invoices"
 }
 ```
 
@@ -80,7 +85,13 @@ This endpoint creates a new organization.
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/api/v1/organizations`
+`POST https://api.spaceinvoices.com/api/v1/accounts/:id/organizations`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of account. |
 
 #### Arguments
 
@@ -107,7 +118,7 @@ This endpoint creates a new organization.
 |      |     |
 | ---: | --- |
 | id | Unique ID of model instance |
-| _defaults | Array of objects. _Collection of organization's default settings. Can be used for custom organization settings._ [toggle definition](#expand) |
+| _defaults | Array of objects. _Collection of organization's default settings._ _Can be used for custom settings._ [toggle definition](#expand) |
 | name | Unique (to orgnization) name of setting. |
 | value | Value of setting. |
 | [](#) | |

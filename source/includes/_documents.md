@@ -4,7 +4,7 @@ Documents are the most complex part of Space Invoices, they are the core of our 
 
 We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.
 
-## Create New Document - Minimum data
+## Create New Document
 
 ```shell
 curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents" \
@@ -31,7 +31,13 @@ curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents" \
   "dateDue": 2018-02-31,
   "currencyId": "USD",
   "_documentIssuer": {
-    "name": "The Space store ltd"
+    "name": "Space Exploration Techologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "IBAN": "123454321 123454321",
+    "bank": "Bank Of Amerika",
   },
   "_documentItems": [{
     "id": "5a3683ea12d5a67dd0ef2f4e",
@@ -45,8 +51,9 @@ curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents" \
     "totalDiscount": 0,
     "_documenItemTaxes": []
   }],
-  "note": "Thank you for your business.\n
-    Please transfer the money to bank account [IBAN] open at [bank]",
+  "note": "When paying please use reference number [document number].\n
+    Please transfer the money to bank account [IBAN] open at [bank].\n\n
+    Thank you for your business.",
   "signature": "[company name]",
   "footer": "[company name] | [IBAN]",
   "_documentTaxes": [],
