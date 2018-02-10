@@ -78,13 +78,15 @@ _This example shows the process of creating an `invoice` providing minimum data.
 
 |      |     |
 | ---: | --- |
-| _documentClient | Object containting client data. _Property is optional if `clientId` is provided_ |
-| `_documentClient.`name | Name of client. |
-| _documentItems | Collection of objects containing document line items. |
-| `_documentItems.`name | Name of item. |
-| `_documentItems.`quantity | Number, quantity of items. |
-| `_documentItems.`unit | Unit of measurement for item ie. 'Item/Service/Meter/etc.' |
-| `_documentItems.`price | Number, price per single item. |
+| _documentClient | Object containting client data. _Property is optional if `clientId` is provided_ [toggle definition](#expand) |
+| name **required** | Name of client. |
+| [](#) | |
+| _documentItems | Collection of objects containing document line items. [toggle definition](#expand) |
+| name **required** | Name of item. |
+| quantity | Number, quantity of items. |
+| unit | Unit of measurement for item ie. Item / Service / Meter / etc. |
+| price | Number, price per single item. |
+| [](#) | |
 
 ### HTTP Response
 
@@ -97,16 +99,19 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | draft | Boolean, is invoice a draft. _Only present if document type is invoice._ |
 | canceled | Boolean, is invoice canceled. _Only present if document type is invoice._ |
 | sentEmail | Boolean, has document been ever sent by email. |
-| _documentItems | Array of objects containing document items. |
-| `_documentItems.`total | Number, total price of document item including quantity and discount. _Excludes taxes._ |
-| `_documentItems.`totalWithTax | Number, total price of document item including quantity, discount and taxes. |
-| `_documentItems.`totalDiscount | Number, total discount of document item including quantity. |
-| `_documentItems.`_documentItemTaxes | Array of objects containing all taxes applied to the document item. |
+| _documentItems | Array of objects containing document items. [toggle definition](#expand) |
+| total | Number, total price of document item including quantity and discount. _Excludes taxes._ |
+| totalWithTax | Number, total price of document item including quantity, discount and taxes. |
+| totalDiscount | Number, total discount of document item including quantity. |
+| _documentItemTaxes | Array of tax IDs applied to the document item. |
+| [](#) | |
 | note | Text note for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
-| signature |  |
-| footer |  |
-| _documentTaxes | Array of objects containing all unique taxes applied to document. |
-| `_documentTaxes.` |  |
+| signature | Text signature for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
+| footer | Text footer for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
+| _documentTaxes | Array of objects containing all unique taxes applied to document. [toggle definition](#expand) |
+| tax | Tax rate. |
+| totalTax | Total value for this tax rate. |
+| [](#) | |
 | total | Number, document total including all item totals, excluding taxes. |
 | totalDiscount | Number, total value of all discounts applied to document. |
 | totalWithTax | Number, document total of all items including taxes. |
@@ -114,3 +119,15 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | paidInFull | Boolean, if document's logged payments amount to at least it's totalWithTax amount or more. |
 | _comments | Array of objects containing user comments on document. |
 | createAt | Timestamp of model instance creation. |
+
+## List documents
+<!-- TODO: List documents -->
+
+## Get Document by ID
+<!-- TODO: Get document by id -->
+
+## Edit document
+<!-- TODO: Edit document -->
+
+## Delete document
+<!-- TODO: Delete document -->

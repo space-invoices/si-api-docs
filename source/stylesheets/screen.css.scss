@@ -405,10 +405,12 @@ html, body {
   table {
     margin-bottom: 1em;
     overflow: auto;
-    th,td {
+
+    th, td {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
+
       code {
         white-space: nowrap;
       }
@@ -420,56 +422,72 @@ html, body {
       vertical-align: bottom;
     }
 
-    td {
-      padding: 10px;
-    }
-
-    tr em:before, strong:before {
-      content: '\a';
-      white-space: pre;
-    }
-
-    tr td:first-child {
-      font-weight: bold;
-      // text-align: right;
-
-      em, strong {
-        font-weight: normal;
-        text-transform: uppercase;
-        font-style: normal;
-        font-size: 11px;
+    tr {
+      &.nested > td {
+        background: #333 !important;
+        color: white;
       }
 
-      strong {
-        color: orange;
+      &.empty {
+        display: none;
       }
 
-      em {
-        color: grey;
+      td {
+        padding: 10px;
 
-        em {
-          color: #333;
+        a {
+          font-weight: normal;
+          display: block;
         }
       }
 
-      code {
-        background: none;
-        font-size: 12px;
-        font-style: italic;
-        font-weight: normal;
+      em:before,
+      strong:before {
+        content: '\a';
+        white-space: pre;
       }
-    }
 
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
-    }
+      td:first-child {
+        font-weight: bold;
 
-    tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
-    }
+        em, strong {
+          font-weight: normal;
+          text-transform: uppercase;
+          font-style: normal;
+          font-size: 11px;
+        }
 
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+        strong {
+          color: orange;
+        }
+
+        em {
+          color: grey;
+
+          em {
+            color: #333;
+          }
+        }
+
+        code {
+          background: none;
+          font-size: 12px;
+          font-style: italic;
+          font-weight: normal;
+        }
+      }
+      
+      &:last-child {
+        border-bottom: 1px solid #ccc;
+      }
+  
+      &:nth-child(odd)>td {
+        background-color: lighten($main-bg,4.2%);
+      }
+  
+      &:nth-child(even)>td {
+        background-color: lighten($main-bg,2.4%);
+      }
     }
   }
 
