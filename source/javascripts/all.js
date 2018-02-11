@@ -30,8 +30,14 @@ $(document).ready(function() {
         var parent = $(this).parent().parent();
 
         if ($(this).attr('href') === '#expand') {
-            parent.nextUntil(empty_btn_parent)
-                .toggle();
+            if (parent.next().is(':hidden')) {
+                parent.nextUntil(empty_btn_parent).not('.nested.inner')
+                    .show();
+            } else {
+                parent.nextUntil(empty_btn_parent)
+                    .hide();
+            }
+
         } else {
             parent.nextUntil(empty_inner_btn_parent)
                 .toggle();
