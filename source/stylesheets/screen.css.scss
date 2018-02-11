@@ -426,6 +426,10 @@ html, body {
       &.nested > td {
         background: #333 !important;
         color: white;
+
+        em > em {
+          color: white !important;
+        }
       }
 
       &.empty {
@@ -438,8 +442,14 @@ html, body {
         a {
           font-weight: normal;
 
-          &[href^="#expand"] {
+          &[href^="#expand"]:before,
+          &[href^="#expand-inner"]:before {
+            content: '\a';
             display: block;
+          }
+
+          &[href^="#expand-inner"] {
+            color: white;
           }
         }
       }
