@@ -6,19 +6,35 @@ $(document).ready(function() {
      * Functionality to toggle nested model definitions
      */
     var expand_btn = $('a[href="#expand"]');
-    var empty_btn_parent = $('a[href="#"]').parent().parent()
+    var expand_inner_btn = $('a[href="#expand-inner"]');
+    var empty_btn_parent = $('a[href="#empty"]').parent().parent()
+        .addClass('empty');
+    var empty_inner_btn_parent = $('a[href="#empty-inner"]').parent().parent()
         .addClass('empty');
     
-    expand_btn.click(function(e) {
-        e.preventDefault();
-
-        $(this).parent().parent()
-            .nextUntil(empty_btn_parent)
-            .toggle();
-    });
+    expand_btn.click(toggleInner);
+    expand_inner_btn.click(toggleInner);
 
     expand_btn.parent().parent()
         .nextUntil(empty_btn_parent)
         .addClass('nested')
         .hide();
-})
+
+    expand_inner_btn.parent().parent()
+        .nextUntil(empty_inner_btn_parent)
+        .addClass('inner');
+
+    function toggleInner(e) {
+        e.preventDefault();
+
+        var parent = $(this).parent().parent();
+
+        if ($(this).attr('href') === '#expand') {
+            parent.nextUntil(empty_btn_parent)
+                .toggle();
+        } else {
+            parent.nextUntil(empty_inner_btn_parent)
+                .toggle();
+        }
+    }
+});

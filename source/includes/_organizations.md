@@ -121,6 +121,6 @@ This endpoint creates a new organization.
 | _defaults | Array of objects. _Collection of organization's default settings._ _Can be used for custom settings._ [toggle definition](#expand) |
 | name | Unique (to orgnization) name of setting. |
 | value | Value of setting. |
-| [](#) | |
+| [](#empty) | |
 | active | Boolean indicator if organization is active (enabled). |
 | supportPin | 5 digit number used to match organization requesting support. |

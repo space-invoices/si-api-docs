@@ -101,7 +101,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | country | Country of Client. |
 | companyNumber | String, organization registration or similar number of Client. |
 | taxNumber | String, organization VAT / GST or similar tax number of Client. |
-| [](#) | |
+| [](#empty) | |
 | _documentIssuer | Object containting issuer data. _Property is automatically populated with Organization data._ _Any key that is provided in object is used instead._ [toggle definition](#expand) |
 | name | Name of issuer. |
 | address | Address of issuer. |
@@ -114,7 +114,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | IBAN | Bank account number of issuer. |
 | bank | Bank of issuer. |
 | website | Website address of issuer. |
-| [](#) | |
+| [](#empty) | |
 | _documentItems **required** | Collection of objects containing document line items. [toggle definition](#expand) |
 | name **required** | Name of item. _Optional if `isSeparator` is set to `true`)._ |
 | description | Description of item. |
@@ -122,10 +122,14 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | unit | Unit of measurement for item ie. Item / Service / Meter / etc. |
 | price | Number, price per single item. |
 | _documentItemTaxes | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
+| taxId | ID reference to Organization's Tax. _If provided `rate`, `recoverable` and `compund` are auto populated. Note that the `rate` is chosen based on `date` property of document if Tax has multiple valid rates._ |
 | rate | Number, tax rate percent. |
-| [](#inner) | |
+| recoverable | Boolean if tax is recoverable. |
+| reverseCharged | Boolean if tax is reverse (self) charged. _Reverse charged tax is not applied to totals and is added to document's revese taxes collection._ |
+| compound | Boolean if tax is compound. _Compund tax is added on top of all other taxes applied to item._ |
+| [](#empty-inner) | |
 | isSepatator _default is *false*_ | Boolean, indicates if item is separator. _Used for visually seaprating line items and naming groups of line items._ _If `true` all properties except `name` and `description` are ignored._ |
-| [](#) | |
+| [](#empty) | |
 
 ### HTTP Response
 
@@ -143,14 +147,14 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | totalWithTax | Number, total price of document item including quantity, discount and taxes. |
 | totalDiscount | Number, total discount of document item including quantity. |
 | _documentItemTaxes | Array of tax IDs applied to the document item. |
-| [](#) | |
+| [](#empty) | |
 | note | Text note for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
 | signature | Text signature for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
 | footer | Text footer for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
 | _documentTaxes | Array of objects containing all unique taxes applied to document. [toggle definition](#expand) |
 | tax | Tax rate. |
 | totalTax | Total value for this tax rate. |
-| [](#) | |
+| [](#empty) | |
 | total | Number, document total including all item totals, excluding taxes. |
 | totalDiscount | Number, total value of all discounts applied to document. |
 | totalWithTax | Number, document total of all items including taxes. |

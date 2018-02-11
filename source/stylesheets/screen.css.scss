@@ -427,17 +427,51 @@ html, body {
         background: #333 !important;
         color: white;
 
+        &:first-child {
+          padding-right: 10px !important;
+        }
+
+        &:last-child {
+          padding-left: 10px !important;
+        }
+
         em > em {
           color: white !important;
         }
       }
 
-      &.empty {
-        display: none;
+      &.nested.inner > td {
+        background: lightgrey !important;
+        color: black;
+
+        &:first-child {
+          padding-right: 0 !important;
+        }
+
+        &:last-child {
+          padding-left: 20px !important;
+        }
+
+        em > em {
+          color: black !important;
+        }
+      }
+
+      &.empty,
+      &.empty.nested {
+        display: none !important;
       }
 
       td {
         padding: 10px;
+
+        &:first-child {
+          padding-right: 20px;
+        }
+
+        &:last-child {
+          padding-left: 0;
+        }
 
         a {
           font-weight: normal;
