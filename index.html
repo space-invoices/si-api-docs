@@ -300,6 +300,7 @@
 <h1 id='accounts'>Accounts</h1>
 <p>Accounts represent users that can login and access different organizations based on access right.</p>
 <h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts/login"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
@@ -347,6 +348,7 @@
 </tr>
 </tbody></table>
 <h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
@@ -419,6 +421,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 
 <p>An organization holds a reference to most of the information that is created through the API.</p>
 <h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
   -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
   -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
@@ -604,6 +607,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
 <h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
   -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d _documentItems[0][name]<span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
