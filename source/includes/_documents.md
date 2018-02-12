@@ -22,15 +22,15 @@ curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents" \
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "type": "invoice",
-  "draft": false,
-  "canceled": false,
-  "sentEmail": false,
   "number": "2018-00001",
+  "type": "invoice",
   "date": 2018-01-31,
   "dateService": 2018-01-31,
   "dateDue": 2018-02-31,
   "currencyId": "USD",
+  "draft": false,
+  "canceled": false,
+  "sentEmail": false,
   "_documentIssuer": {
     "name": "Space Exploration Techologies corp",
     "address": "Rocket Road",
@@ -91,7 +91,14 @@ _This example shows the process of creating an `invoice` providing minimum data.
 |      |     |
 | ---: | --- |
 | number _default is *YYYY-0000n+1*_ | String, unique (to Document type and Organization) Document number. _Auto populated with next number based on document type._ |
-| clientId | ID reference to Organization's Client. _If provided `_documentClient` is populated using referenced Client._ |
+| type _default is *invoice*_ | Type of document (invoice|estimate|advance). _Determines type of document, note that different document types contain different properties, rules and funcionalities. For example `invoice` can have Payments logged and contains `dateService` property. Document type cannot be switched once set to instance._ |
+| draft _default is *false*_ | Boolean, if invoice a draft. _If set to `true` the property cannot go back to `false`. Only present if `type` is `invoice`._ |
+| date _default is *today*_ | Javascript date, date of Document. _Represents date the Document was issued. Time is trimmed._ |
+| dateDue _default is *today + default due days*_ | Javascript date, date invoice is due. _Auto populated using Organization's default due days from today. Only present on `type` invoice. Time is trimmed._ |
+| dateService | Javascript date, date service was started or conducted. _Only present on `type` invoice. Time is trimmed._ |
+| dateServiceTo | Javascript date, date service period ends. _Only present on `type` invoice. Time is trimmed._ |
+| currencyId | ISO 4217 currency code. [Wikipedia](https://en.wikipedia.org/wiki/ISO_4217) _If not provided the Organization's default currency is used._ |
+| clientId | ID reference to Organization's Client. _If provided `_documentClient` object gets populated using referenced Client._ |
 | _documentClient | Object containting client data. _Property is optional if `clientId` is provided._ _Any key defined in object will be used instead of loaded client data._ _If `clientId` is not provided the data in object is saved to Organization's Clients and referenced in document ie. the `clientId` is auto populated._ [toggle definition](#expand) |
 | name **required** | Name of client. _Required if `clientId` not provided on Document._ |
 | address | Address of Client. |
@@ -116,7 +123,8 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | website | Website address of issuer. |
 | [](#empty) | |
 | _documentItems **required** | Collection of objects containing document line items. [toggle definition](#expand) |
-| name **required** | Name of item. _Optional if `isSeparator` is set to `true`)._ |
+| itemId | ID reference to Organization's item. _If provided the item properties are populated from referenced item._ _Any key that is provided will is used instead._ |
+| name **required** | Name of item. _Optional if `isSeparator` is set to `true`._ |
 | description | Description of item. |
 | quantity | Number, quantity of items. |
 | unit | Unit of measurement for item ie. Item / Service / Meter / etc. |
@@ -130,6 +138,10 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | [](#empty-inner) | |
 | isSepatator _default is *false*_ | Boolean, indicates if item is separator. _Used for visually seaprating line items and naming groups of line items._ _If `true` all properties except `name` and `description` are ignored._ |
 | [](#empty) | |
+| note | Text note for Document. _Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
+| signature | Text signature for Document. _Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
+| footer | Text footer for Document. _Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
+| decimalPlaces _default is *4*_ | Number of decimal places the Document items are trimmed and rounded to in calculations. _Should be 4 in most cases._ |
 
 ### HTTP Response
 
@@ -139,28 +151,28 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | ---: | --- |
 | id | Unique ID of model instance. |
 | organizationId | ID of related organization. |
-| draft | Boolean, is invoice a draft. _Only present if document type is invoice._ |
-| canceled | Boolean, is invoice canceled. _Only present if document type is invoice._ |
-| sentEmail | Boolean, has document been ever sent by email. |
-| _documentItems | Array of objects containing document items. [toggle definition](#expand) |
-| total | Number, total price of document item including quantity and discount. _Excludes taxes._ |
-| totalWithTax | Number, total price of document item including quantity, discount and taxes. |
-| totalDiscount | Number, total discount of document item including quantity. |
-| _documentItemTaxes | Array of tax IDs applied to the document item. |
+| canceled | Boolean, is invoice canceled. _Only present if Document type is invoice._ |
+| sentEmail | Boolean, has Document been ever sent by email. |
+| sentSnailMail | Boolean, has Document been ever sent by regular post. |
+| _documentItems | Array of objects containing Document items. [toggle definition](#expand) |
+| total | Number, total price of Document item including quantity and discount. _Excludes taxes._ |
+| totalTax | Number, total value of tax on Document item including quantity, discount and taxes. |
+| totalWithTax | Number, total price of Document item including quantity, discount and taxes. |
+| totalDiscount | Number, total discount of Document item including quantity. |
+| _documentItemTaxes | Array of tax IDs applied to the Document item. |
 | [](#empty) | |
-| note | Text note for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
-| signature | Text signature for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
-| footer | Text footer for document. _May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
-| _documentTaxes | Array of objects containing all unique taxes applied to document. [toggle definition](#expand) |
-| tax | Tax rate. |
+| _documentTaxes | Array of objects containing all unique taxes applied to Document. [toggle definition](#expand) |
+| tax | Number, tax rate percent. |
 | totalTax | Total value for this tax rate. |
+| base | Total value used to calculate given tax. |
 | [](#empty) | |
-| total | Number, document total including all item totals, excluding taxes. |
-| totalDiscount | Number, total value of all discounts applied to document. |
-| totalWithTax | Number, document total of all items including taxes. |
+| total | Number, Document total including all item totals, excluding taxes. |
+| totalDiscount | Number, total value of all discounts applied to Document. |
+| totalWithTax | Number, Document total of all items including taxes. |
 | totalPaid | Number, total amount of payments logged for invoice. _Only present if type is invoice. |
-| paidInFull | Boolean, if document's logged payments amount to at least it's totalWithTax amount or more. |
-| _comments | Array of objects containing user comments on document. |
+| paidInFull | Boolean, if Document's logged payments amount to at least it's totalWithTax amount or more. |
+| hasUnit | Boolean, if Document contains at least one Document item with `unit` set. _Used internaly to more easily determine if unit column needs to be displayed when rendering Document view._ |
+| _comments | Array of objects containing user comments on Document. |
 | createAt | Timestamp of model instance creation. |
 
 ## List documents
