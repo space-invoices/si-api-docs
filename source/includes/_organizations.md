@@ -10,6 +10,7 @@ An organization holds a reference to most of the information that is created thr
 
 ```shell
 curl "https://api.spaceinvoices.com/api/v1/organizations" \
+  -H "Authorization: TOKEN"
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
   -d city="Hawthorne" \

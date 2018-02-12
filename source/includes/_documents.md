@@ -8,6 +8,7 @@ We have taken a lot of care to provide developers with a wide array of options w
 
 ```shell
 curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents" \
+  -H "Authorization: TOKEN"
   -d _documentClient[name]="Rocket Man" \
   -d _documentClient[country]="USA" \
   -d _documentItems[0][name]="Space suit" \
