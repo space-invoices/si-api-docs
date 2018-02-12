@@ -587,7 +587,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <td>Value of setting.</td>
 </tr>
 <tr>
-<td style="text-align: right"><a href="#"></a></td>
+<td style="text-align: right"><a href="#empty"></a></td>
 <td></td>
 </tr>
 <tr>
@@ -605,6 +605,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
 <h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
+  -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d _documentItems[0][name]<span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
   -d _documentItems[0][quantity]<span class="o">=</span>2 <span class="se">\</span>
   -d _documentItems[0][unit]<span class="o">=</span><span class="s2">"Item"</span> <span class="se">\</span>
@@ -616,15 +617,15 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"draft"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sentEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-00001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateService"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateDue"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-02-31</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"draft"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sentEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_documentIssuer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
@@ -632,7 +633,12 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
     </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"IBAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123454321 123454321"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Of Amerika"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Of Amerika"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_documentClient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Man"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"_documentItems"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
@@ -646,12 +652,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
     </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"_documenItemTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">
-    Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">
-    Thank you for your business."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[company name]"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[company name] | [IBAN]"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_documentTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"_documentReverseTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
   </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"totalWithTax"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
@@ -675,7 +680,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of organization.</td>
+<td>ID of Organization.</td>
 </tr>
 </tbody></table>
 <h4 id='attributes'>Attributes</h4>
@@ -686,24 +691,148 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </tr>
 </thead><tbody>
 <tr>
+<td style="text-align: right">number <em>default is <em>YYYY-0000n+1</em></em></td>
+<td>String, unique (to Document type and Organization) Document number. <em>Auto populated with next number based on document type.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">type <em>default is <em>invoice</em></em></td>
+<td>Type of document (invoice</td>
+</tr>
+<tr>
+<td style="text-align: right">draft <em>default is <em>false</em></em></td>
+<td>Boolean, if invoice a draft. <em>If set to <code>true</code> the property cannot go back to <code>false</code>. Only present if <code>type</code> is <code>invoice</code>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">date <em>default is <em>today</em></em></td>
+<td>Javascript date, date of Document. <em>Represents date the Document was issued. Time is trimmed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">dateDue <em>default is <em>today + default due days</em></em></td>
+<td>Javascript date, date invoice is due. <em>Auto populated using Organization&#39;s default due days from today. Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">dateService</td>
+<td>Javascript date, date service was started or conducted. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">dateServiceTo</td>
+<td>Javascript date, date service period ends. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">currencyId</td>
+<td>ISO 4217 currency code. <a href="https://en.wikipedia.org/wiki/ISO_4217">Wikipedia</a> <em>If not provided the Organization&#39;s default currency is used.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">clientId</td>
+<td>ID reference to Organization&#39;s Client. <em>If provided <code>_documentClient</code> object gets populated using referenced Client.</em></td>
+</tr>
+<tr>
 <td style="text-align: right">_documentClient</td>
-<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided</em> <a href="#expand">toggle definition</a></td>
+<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided.</em> <em>Any key defined in object will be used instead of loaded client data.</em> <em>If <code>clientId</code> is not provided the data in object is saved to Organization&#39;s Clients and referenced in document ie. the <code>clientId</code> is auto populated.</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of client.</td>
+<td>Name of client. <em>Required if <code>clientId</code> not provided on Document.</em></td>
 </tr>
 <tr>
-<td style="text-align: right"><a href="#"></a></td>
+<td style="text-align: right">address</td>
+<td>Address of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2 of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / postal code of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>Country of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String, organization registration or similar number of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String, organization VAT / GST or similar tax number of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
 <td></td>
 </tr>
 <tr>
-<td style="text-align: right">_documentItems</td>
+<td style="text-align: right">_documentIssuer</td>
+<td>Object containting issuer data. <em>Property is automatically populated with Organization data.</em> <em>Any key that is provided in object is used instead.</em> <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Address of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2 of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / postal code of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>Country of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String, organization registration or similar number of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String, organization VAT / GST or similar tax number of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">IBAN</td>
+<td>Bank account number of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">bank</td>
+<td>Bank of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right">website</td>
+<td>Website address of issuer.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">_documentItems <strong>required</strong></td>
 <td>Collection of objects containing document line items. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
+<td style="text-align: right">itemId</td>
+<td>ID reference to Organization&#39;s item. <em>If provided the item properties are populated from referenced item.</em> <em>Any key that is provided will is used instead.</em></td>
+</tr>
+<tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of item.</td>
+<td>Name of item. <em>Optional if <code>isSeparator</code> is set to <code>true</code>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description</td>
+<td>Description of item.</td>
 </tr>
 <tr>
 <td style="text-align: right">quantity</td>
@@ -718,8 +847,56 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <td>Number, price per single item.</td>
 </tr>
 <tr>
-<td style="text-align: right"><a href="#"></a></td>
+<td style="text-align: right">_documentItemTaxes</td>
+<td>Collection of objects containing item taxes. <a href="#expand-inner">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">taxId</td>
+<td>ID reference to Organization&#39;s Tax. <em>If provided <code>rate</code>, <code>recoverable</code> and <code>compund</code> are auto populated. Note that the <code>rate</code> is chosen based on <code>date</code> property of document if Tax has multiple valid rates.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">rate</td>
+<td>Number, tax rate percent.</td>
+</tr>
+<tr>
+<td style="text-align: right">recoverable</td>
+<td>Boolean if tax is recoverable.</td>
+</tr>
+<tr>
+<td style="text-align: right">reverseCharged</td>
+<td>Boolean if tax is reverse (self) charged. <em>Reverse charged tax is not applied to totals and is added to document&#39;s revese taxes collection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">compound</td>
+<td>Boolean if tax is compound. <em>Compund tax is added on top of all other taxes applied to item.</em></td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty-inner"></a></td>
 <td></td>
+</tr>
+<tr>
+<td style="text-align: right">isSepatator <em>default is <em>false</em></em></td>
+<td>Boolean, indicates if item is separator. <em>Used for visually seaprating line items and naming groups of line items.</em> <em>If <code>true</code> all properties except <code>name</code> and <code>description</code> are ignored.</em></td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">note</td>
+<td>Text note for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">signature</td>
+<td>Text signature for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">footer</td>
+<td>Text footer for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">decimalPlaces <em>default is <em>4</em></em></td>
+<td>Number of decimal places the Document items are trimmed and rounded to in calculations. <em>Should be 4 in most cases.</em></td>
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
@@ -738,80 +915,76 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <td>ID of related organization.</td>
 </tr>
 <tr>
-<td style="text-align: right">draft</td>
-<td>Boolean, is invoice a draft. <em>Only present if document type is invoice.</em></td>
-</tr>
-<tr>
 <td style="text-align: right">canceled</td>
-<td>Boolean, is invoice canceled. <em>Only present if document type is invoice.</em></td>
+<td>Boolean, is invoice canceled. <em>Only present if Document type is invoice.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">sentEmail</td>
-<td>Boolean, has document been ever sent by email.</td>
+<td>Boolean, has Document been ever sent by email.</td>
+</tr>
+<tr>
+<td style="text-align: right">sentSnailMail</td>
+<td>Boolean, has Document been ever sent by regular post.</td>
 </tr>
 <tr>
 <td style="text-align: right">_documentItems</td>
-<td>Array of objects containing document items. <a href="#expand">toggle definition</a></td>
+<td>Array of objects containing Document items. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">total</td>
-<td>Number, total price of document item including quantity and discount. <em>Excludes taxes.</em></td>
+<td>Number, total price of Document item including quantity and discount. <em>Excludes taxes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">totalTax</td>
+<td>Number, total value of tax on Document item including quantity, discount and taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalWithTax</td>
-<td>Number, total price of document item including quantity, discount and taxes.</td>
+<td>Number, total price of Document item including quantity, discount and taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalDiscount</td>
-<td>Number, total discount of document item including quantity.</td>
+<td>Number, total discount of Document item including quantity.</td>
 </tr>
 <tr>
 <td style="text-align: right">_documentItemTaxes</td>
-<td>Array of tax IDs applied to the document item.</td>
+<td>Array of tax IDs applied to the Document item.</td>
 </tr>
 <tr>
-<td style="text-align: right"><a href="#"></a></td>
+<td style="text-align: right"><a href="#empty"></a></td>
 <td></td>
 </tr>
 <tr>
-<td style="text-align: right">note</td>
-<td>Text note for document. <em>May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
-</tr>
-<tr>
-<td style="text-align: right">signature</td>
-<td>Text signature for document. <em>May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
-</tr>
-<tr>
-<td style="text-align: right">footer</td>
-<td>Text footer for document. <em>May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
-</tr>
-<tr>
 <td style="text-align: right">_documentTaxes</td>
-<td>Array of objects containing all unique taxes applied to document. <a href="#expand">toggle definition</a></td>
+<td>Array of objects containing all unique taxes applied to Document. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">tax</td>
-<td>Tax rate.</td>
+<td>Number, tax rate percent.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalTax</td>
 <td>Total value for this tax rate.</td>
 </tr>
 <tr>
-<td style="text-align: right"><a href="#"></a></td>
+<td style="text-align: right">base</td>
+<td>Total value used to calculate given tax.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
 <td></td>
 </tr>
 <tr>
 <td style="text-align: right">total</td>
-<td>Number, document total including all item totals, excluding taxes.</td>
+<td>Number, Document total including all item totals, excluding taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalDiscount</td>
-<td>Number, total value of all discounts applied to document.</td>
+<td>Number, total value of all discounts applied to Document.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalWithTax</td>
-<td>Number, document total of all items including taxes.</td>
+<td>Number, Document total of all items including taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalPaid</td>
@@ -819,11 +992,15 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </tr>
 <tr>
 <td style="text-align: right">paidInFull</td>
-<td>Boolean, if document&#39;s logged payments amount to at least it&#39;s totalWithTax amount or more.</td>
+<td>Boolean, if Document&#39;s logged payments amount to at least it&#39;s totalWithTax amount or more.</td>
+</tr>
+<tr>
+<td style="text-align: right">hasUnit</td>
+<td>Boolean, if Document contains at least one Document item with <code>unit</code> set. <em>Used internaly to more easily determine if unit column needs to be displayed when rendering Document view.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_comments</td>
-<td>Array of objects containing user comments on document.</td>
+<td>Array of objects containing user comments on Document.</td>
 </tr>
 <tr>
 <td style="text-align: right">createAt</td>
