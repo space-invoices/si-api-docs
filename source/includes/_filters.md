@@ -74,7 +74,7 @@ curl "...?filter[where][number][like]=2018.*"
 curl "...?filter[where][number][like]=2018.*&filter[where][number][options]=i"
 
 # Regexp
-curl "...?filter[where][number][regexp]=^2018.*"
+curl "...?filter[where][number][regexp]=^2018"
 ```
 
 |      |     |

@@ -245,7 +245,7 @@ curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[ty
 ]
 ```
 
-This endpoint return a list of all Organization's documents.
+This endpoint return a list of all Organization's documents optionaly filtered if latter are passed in query params.
 
 ### HTTP Request
 
@@ -255,43 +255,86 @@ This endpoint return a list of all Organization's documents.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of account. |
+| id **required** | ID of organization. |
 | filter | Object containing query filters. See [Filters](#filters) section for more details. |
-
-#### Arguments
-
-|      |     |
-| ---: | --- |
-| name **required** | Name of company or other type of organization. |
-| address | Street or similar address. |
-| address2 | Address line 2. |
-| city | City name. |
-| zip | Zip / post code. |
-| country **required** | ISO 3166 county. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1) _The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases)._ |
-| taxSubject _default is *false*_ | Specify if the organization is subject to tax. _Property effects creation of default tax rates and texts._ |
-| taxNumber | String VAT / GST / etc. tax identification number. |
-| companyNumber | String registration or similar identification number. |
-| IBAN | Bank account number. |
-| website | Website address. |
-| locale _default is *en*_ | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Effects language of default texts and system messages._ |
-| brand _default is *space-invocies*_ | Brand source identification for internal use. |
-
-### HTTP Response
-
-#### Arguments
-
-|      |     |
-| ---: | --- |
-| id | Unique ID of model instance |
-| _defaults | Array of objects. _Collection of organization's default settings._ _Can be used for custom settings._ [toggle definition](#expand) |
-| name | Unique (to orgnization) name of setting. |
-| value | Value of setting. |
-| [](#empty) | |
-| active | Boolean indicator if organization is active (enabled). |
-| supportPin | 5 digit number used to match organization requesting support. |
+| parseShortcodes _default is *true*_ | Boolean, if shortcodes in `note`, `signature` and `footer` should be parsed to their respective values. |
 
 ## Get Document by ID
-<!-- TODO: Get document by id -->
+
+```shell
+curl "https://api.spaceinvoices.com/api/v1/documents/:id" \
+  -H "Authorization: TOKEN"
+```
+
+> Returns:
+
+```json
+{
+"id": "5a3683ea12d5a67dd0ef2f4c",
+"organizationId": "5a3683ea12d5a67dd0ef2f4d",
+"number": "2018-00001",
+"type": "invoice",
+"date": 2018-01-31,
+"dateService": 2018-01-31,
+"dateDue": 2018-02-31,
+"currencyId": "USD",
+"draft": false,
+"canceled": false,
+"sentEmail": false,
+"_documentIssuer": {
+  "name": "Space Exploration Techologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "IBAN": "123454321 123454321",
+  "bank": "Bank Of Amerika"
+},
+"clientId": "5a3683ea12d5a67dd0ef2f4d",
+"_documentClient": {
+  "name": "Rocket Man",
+  "country": "USA"
+},
+"_documentItems": [{
+  "id": "5a3683ea12d5a67dd0ef2f4e",
+  "name": "Space suit",
+  "quantity": 1,
+  "unit": "Item",
+  "discount": 0,
+  "price": 1000,
+  "total": 2000,
+  "totalWithTax": 2000,
+  "totalDiscount": 0,
+  "_documenItemTaxes": []
+}],
+"note": "When paying please use reference number 2018-00001.\nPlease transfer the money to bank account 123454321 123454321 open at Bank Of America.\n\nThank you for your business.",
+"signature": "Space Exploration Technologies corp",
+"footer": "Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN: 123454321 123454321 open at Bank Of America",
+"_documentTaxes": [],
+"_documentReverseTaxes": [],
+"total": 2000,
+"totalDiscount": 0,
+"totalWithTax": 2000,
+"totalPaid": 0,
+"paidInFull": false,
+"_comments": [],
+"createdAt": 2018-01-31T01:20:11.999Z
+}
+```
+
+This endpoint return a document by it's ID.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of document. |
+| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+| parseShortcodes _default is *true*_ | Boolean, if shortcodes in `note`, `signature` and `footer` should be parsed to their respective values. |
 
 ## Edit document
 <!-- TODO: Edit document -->
