@@ -6,7 +6,7 @@ Accounts represent users that can login and access different organizations based
 
 ```shell
 curl "https://api.spaceinvoices.com/api/v1/accounts/login" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: TOKEN" \
   -d email="name@example.com" \
   -d password="supersecret"
 ```
@@ -46,7 +46,7 @@ This endpoint authenticates an account and returns an access token that can be u
 
 ```shell
 curl "https://api.spaceinvoices.com/api/v1/accounts" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: TOKEN" \
   -d email="name@example.com" \
   -d password="supersecret"
 ```

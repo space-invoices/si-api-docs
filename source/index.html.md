@@ -14,6 +14,7 @@ includes:
   - authentication
   - organizations
   - documents
+  - filters
   - errors
 
 search: true
