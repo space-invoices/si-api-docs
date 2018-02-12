@@ -159,19 +159,23 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | totalTax | Number, total value of tax on Document item including quantity, discount and taxes. |
 | totalWithTax | Number, total price of Document item including quantity, discount and taxes. |
 | totalDiscount | Number, total discount of Document item including quantity. |
-| _documentItemTaxes | Array of tax IDs applied to the Document item. |
 | [](#empty) | |
-| _documentTaxes | Array of objects containing all unique taxes applied to Document. [toggle definition](#expand) |
-| tax | Number, tax rate percent. |
-| totalTax | Total value for this tax rate. |
-| base | Total value used to calculate given tax. |
+| _documentTaxes | Array of objects containing unique Taxes and their amount present on Document. [toggle definition](#expand) |
+| tax | Number, Tax rate percent. |
+| base | Total value used to calculate given Tax. |
+| totalTax | Total value of given Tax on Document. |
 | [](#empty) | |
-| total | Number, Document total including all item totals, excluding taxes. |
+| _documentReverseTaxes | Array of objects containing unique reverse (self) Taxes and their amount present on Document. [toggle definition](#expand) |
+| tax | Number, Tax rate percent. |
+| base | Total value used to calculate given Tax. |
+| totalTax | Total value of given Tax on Document. |
+| [](#empty) | |
+| total | Number, Document total including all Item totals, excluding Taxes. |
 | totalDiscount | Number, total value of all discounts applied to Document. |
-| totalWithTax | Number, Document total of all items including taxes. |
-| totalPaid | Number, total amount of payments logged for invoice. _Only present if type is invoice. |
-| paidInFull | Boolean, if Document's logged payments amount to at least it's totalWithTax amount or more. |
-| hasUnit | Boolean, if Document contains at least one Document item with `unit` set. _Used internaly to more easily determine if unit column needs to be displayed when rendering Document view._ |
+| totalWithTax | Number, Document total of all Items including Taxes. |
+| totalPaid | Number, total amount of payments logged for invoice. _Only present if `type` is `invoice`._ |
+| paidInFull | Boolean, if Document's logged payments amount to at least it's totalWithTax amount or more. _Only present if `type` is `invoice`._ |
+| hasUnit | Boolean, if Document contains at least one Document item with `unit` set. _Used internaly to more easily determine if unit column needs to be displayed when rendering Document view. Only present if `type` is `invoice`._ |
 | _comments | Array of objects containing user comments on Document. |
 | createAt | Timestamp of model instance creation. |
 
