@@ -947,28 +947,44 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <td>Number, total discount of Document item including quantity.</td>
 </tr>
 <tr>
-<td style="text-align: right">_documentItemTaxes</td>
-<td>Array of tax IDs applied to the Document item.</td>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">_documentTaxes</td>
+<td>Array of objects containing unique Taxes and their amount present on Document. <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">tax</td>
+<td>Number, Tax rate percent.</td>
+</tr>
+<tr>
+<td style="text-align: right">base</td>
+<td>Total value used to calculate given Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">totalTax</td>
+<td>Total value of given Tax on Document.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
 <td></td>
 </tr>
 <tr>
-<td style="text-align: right">_documentTaxes</td>
-<td>Array of objects containing all unique taxes applied to Document. <a href="#expand">toggle definition</a></td>
+<td style="text-align: right">_documentReverseTaxes</td>
+<td>Array of objects containing unique reverse (self) Taxes and their amount present on Document. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">tax</td>
-<td>Number, tax rate percent.</td>
-</tr>
-<tr>
-<td style="text-align: right">totalTax</td>
-<td>Total value for this tax rate.</td>
+<td>Number, Tax rate percent.</td>
 </tr>
 <tr>
 <td style="text-align: right">base</td>
-<td>Total value used to calculate given tax.</td>
+<td>Total value used to calculate given Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">totalTax</td>
+<td>Total value of given Tax on Document.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -976,7 +992,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </tr>
 <tr>
 <td style="text-align: right">total</td>
-<td>Number, Document total including all item totals, excluding taxes.</td>
+<td>Number, Document total including all Item totals, excluding Taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalDiscount</td>
@@ -984,19 +1000,19 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </tr>
 <tr>
 <td style="text-align: right">totalWithTax</td>
-<td>Number, Document total of all items including taxes.</td>
+<td>Number, Document total of all Items including Taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalPaid</td>
-<td>Number, total amount of payments logged for invoice. _Only present if type is invoice.</td>
+<td>Number, total amount of payments logged for invoice. <em>Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">paidInFull</td>
-<td>Boolean, if Document&#39;s logged payments amount to at least it&#39;s totalWithTax amount or more.</td>
+<td>Boolean, if Document&#39;s logged payments amount to at least it&#39;s totalWithTax amount or more. <em>Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">hasUnit</td>
-<td>Boolean, if Document contains at least one Document item with <code>unit</code> set. <em>Used internaly to more easily determine if unit column needs to be displayed when rendering Document view.</em></td>
+<td>Boolean, if Document contains at least one Document item with <code>unit</code> set. <em>Used internaly to more easily determine if unit column needs to be displayed when rendering Document view. Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_comments</td>
