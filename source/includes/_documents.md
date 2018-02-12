@@ -100,7 +100,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | currencyId | ISO 4217 currency code. [Wikipedia](https://en.wikipedia.org/wiki/ISO_4217) _If not provided the Organization's default currency is used._ |
 | clientId | ID reference to Organization's Client. _If provided `_documentClient` object gets populated using referenced Client._ |
 | _documentClient | Object containting client data. _Property is optional if `clientId` is provided._ _Any key defined in object will be used instead of loaded client data._ _If `clientId` is not provided the data in object is saved to Organization's Clients and referenced in document ie. the `clientId` is auto populated._ [toggle definition](#expand) |
-| name **required** | Name of client. _Required if `clientId` not provided on Document._ |
+| name **required** | Name of client. _Required only if `clientId` not provided on Document._ |
 | address | Address of Client. |
 | address2 | Address line 2 of Client. |
 | city | City of Client. |
