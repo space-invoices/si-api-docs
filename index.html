@@ -275,6 +275,17 @@
               </ul>
           </li>
           <li>
+            <a href="#filters" class="toc-h1 toc-link" data-title="filters">Filters</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#filters-2" class="toc-h2 toc-link" data-title="filters">Filters</a>
+                  </li>
+                  <li>
+                    <a href="#where-operators" class="toc-h2 toc-link" data-title="where-operators">Where operators</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
           </li>
       </div>
@@ -300,7 +311,7 @@
 <h1 id='accounts'>Accounts</h1>
 <p>Accounts represent users that can login and access different organizations based on access right.</p>
 <h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts/login"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
@@ -348,7 +359,7 @@
 </tr>
 </tbody></table>
 <h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre>
@@ -421,7 +432,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 
 <p>An organization holds a reference to most of the information that is created through the API.</p>
 <h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
   -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
   -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
@@ -607,7 +618,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
 <h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
   -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d _documentItems[0][name]<span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
@@ -1027,14 +1038,316 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <td>Timestamp of model instance creation.</td>
 </tr>
 </tbody></table>
-<h2 id='list-documents'>List documents</h2>
-<!-- TODO: List documents -->
-<h2 id='get-document-by-id'>Get Document by ID</h2>
-<!-- TODO: Get document by id -->
+<h2 id='list-documents'>List documents</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-00001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dateService"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dateDue"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-02-31</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"draft"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sentEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_documentIssuer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"IBAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123454321 123454321"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Of Amerika"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_documentClient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Man"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_documentItems"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space suit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalWithTax"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_documenItemTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When paying please use reference number 2018-00001.</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account 123454321 123454321 open at Bank Of America.</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN: 123454321 123454321 open at Bank Of America"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_documentTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"_documentReverseTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalWithTax"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalPaid"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paidInFull"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="err">T</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mf">11.999</span><span class="err">Z</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint return a list of all Organization&#39;s documents optionaly filtered if latter are passed in query params.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+<tr>
+<td style="text-align: right">parseShortcodes <em>default is <em>true</em></em></td>
+<td>Boolean, if shortcodes in <code>note</code>, <code>signature</code> and <code>footer</code> should be parsed to their respective values.</td>
+</tr>
+</tbody></table>
+<h2 id='get-document-by-id'>Get Document by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/documents/:id"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-00001"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
+</span><span class="s2">"dateService"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="p">,</span><span class="w">
+</span><span class="s2">"dateDue"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-02-31</span><span class="p">,</span><span class="w">
+</span><span class="s2">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"draft"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="s2">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="s2">"sentEmail"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="s2">"_documentIssuer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"IBAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123454321 123454321"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Of Amerika"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"_documentClient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Man"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="s2">"_documentItems"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space suit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalWithTax"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_documenItemTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}],</span><span class="w">
+</span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When paying please use reference number 2018-00001.</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account 123454321 123454321 open at Bank Of America.</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span><span class="p">,</span><span class="w">
+</span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN: 123454321 123454321 open at Bank Of America"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"_documentTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="s2">"_documentReverseTaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+</span><span class="s2">"totalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="s2">"totalWithTax"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+</span><span class="s2">"totalPaid"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="s2">"paidInFull"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="s2">"_comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018-01-31</span><span class="err">T</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mf">11.999</span><span class="err">Z</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint return a document by it&#39;s ID.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice</code></p>
+<h4 id='query-parameters-3'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of document.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+<tr>
+<td style="text-align: right">parseShortcodes <em>default is <em>true</em></em></td>
+<td>Boolean, if shortcodes in <code>note</code>, <code>signature</code> and <code>footer</code> should be parsed to their respective values.</td>
+</tr>
+</tbody></table>
 <h2 id='edit-document'>Edit document</h2>
 <!-- TODO: Edit document -->
 <h2 id='delete-document'>Delete document</h2>
 <!-- TODO: Delete document -->
+<h1 id='filters'>Filters</h1><h2 id='filters-2'>Filters</h2><pre class="highlight shell tab-shell"><code><span class="c"># Where</span>
+curl <span class="s2">"...?filter[where][type]=invoice"</span>
+<span class="c"># or</span>
+curl <span class="s2">"...?filter[where][type][inq]=invoice"</span>
+
+<span class="c"># Include</span>
+curl <span class="s2">"...?filter[include]=payments"</span>
+<span class="c">#or</span>
+curl <span class="s2">"...?filter[include][tax]=taxRate"</span>
+
+<span class="c"># Fields</span>
+curl <span class="s2">"...?filter[fields][type]=true"</span>
+
+<span class="c"># Limit</span>
+curl <span class="s2">"...?filter[limit]=5"</span>
+
+<span class="c"># Order</span>
+curl <span class="s2">"...?filter[order][date]=ASC"</span>
+
+<span class="c"># Skip</span>
+curl <span class="s2">"...?filter[skip]=5"</span>
+</code></pre>
+<p>Space Invoices API uses a filtering mechanism to control how data is queried.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">where</td>
+<td>Where query filter. <em>Accepts operators, see <a href="#where-operators">Where operators</a> section for details.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">include</td>
+<td>Used to include related models.</td>
+</tr>
+<tr>
+<td style="text-align: right">fields</td>
+<td>Include or exclude certain fields.</td>
+</tr>
+<tr>
+<td style="text-align: right">limit</td>
+<td>Limit amount of data returned.</td>
+</tr>
+<tr>
+<td style="text-align: right">order</td>
+<td>Order results by property.</td>
+</tr>
+<tr>
+<td style="text-align: right">skip</td>
+<td>Number of results to skip.</td>
+</tr>
+</tbody></table>
+<h2 id='where-operators'>Where operators</h2>
+<p>Where operations work in a similar way as querying a database, there operations can be controleh with the following.</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># Equal</span>
+curl <span class="s2">"...?filter[where][type]=invoice"</span>
+
+<span class="c"># And / Or</span>
+curl <span class="s2">"...?filter[where][&lt;and|or&gt;][0]=condition1&amp;?filter[where][&lt;and|or&gt;]condition2"</span>
+
+<span class="c"># GT / GTE</span>
+curl <span class="s2">"...?filter[where][date][&lt;gt|get&gt;]=2018-04-01T18:30:00.000Z"</span>
+
+<span class="c"># LT / LTE</span>
+curl <span class="s2">"...?filter[where][date][&lt;lt|lte&gt;]=2018-04-01T18:30:00.000Z"</span>
+
+<span class="c"># Between</span>
+curl <span class="s2">"...?filter[where][date][between][0]=2018-04-01T18:30:00.000Z&amp;filter[where][date][between][1]=2018-04-01T18:30:00.000Z"</span>
+
+<span class="c"># INQ / NIN</span>
+curl <span class="s2">"...?filter[where][type][&lt;inq|nin&gt;]=invoice&amp;filter[where][type][&lt;inq|nin&gt;]=estimate"</span>
+
+<span class="c"># Near</span>
+curl <span class="s2">"...?filter[where][coordinates][near]=153.536,-28.1"</span>
+<span class="c"># or</span>
+curl <span class="s2">"...?filter[where][coordinates][near]=153.536,-28.1&amp;filter[where][coordinates][maxDistance]=n&amp;filter[where][coordinates][unit]=meters"</span>
+
+<span class="c"># NEQ</span>
+curl <span class="s2">"...?filter[where][draft][neq]=false"</span>
+
+<span class="c"># LIKE / NLIKE / Options</span>
+curl <span class="s2">"...?filter[where][number][like]=2018.*"</span>
+<span class="c"># or</span>
+curl <span class="s2">"...?filter[where][number][like]=2018.*&amp;filter[where][number][options]=i"</span>
+
+<span class="c"># Regexp</span>
+curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
+</code></pre>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">=</td>
+<td>Equivalence.</td>
+</tr>
+<tr>
+<td style="text-align: right">and</td>
+<td>Logical AND operator.</td>
+</tr>
+<tr>
+<td style="text-align: right">or</td>
+<td>Logical OR operator.</td>
+</tr>
+<tr>
+<td style="text-align: right">gt, gte</td>
+<td>Numerical greather than (&gt;); greater than of equal (&gt;=). Valid for numberical and date values. For Geopoint values, the units are in miles by default.</td>
+</tr>
+<tr>
+<td style="text-align: right">lt, lte</td>
+<td>Numerical less than (&lt;); less than or equal (&lt;=). Valid only for numerical and date values. For Geopoint values, the units are in miles by default.</td>
+</tr>
+<tr>
+<td style="text-align: right">between</td>
+<td>True if the value is between the two specified values: greater than or equal to first value and less than or equal to second value.</td>
+</tr>
+<tr>
+<td style="text-align: right">inq, nin</td>
+<td>In / not in an array of values.</td>
+</tr>
+<tr>
+<td style="text-align: right">near</td>
+<td>For geolocations, return the closest points, sorted in order of distance. Use with limit to return the n closest points. <em><code>maxDistance</code> and <code>unit</code> can also be passed on same level as <code>near</code> to configure the search.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">neq</td>
+<td>Not equal (!=).</td>
+</tr>
+<tr>
+<td style="text-align: right">like, nlike, options: i</td>
+<td>LIKE / NOT LIKE operators for use with regular expressions with the case insensitive flag.</td>
+</tr>
+<tr>
+<td style="text-align: right">regexp</td>
+<td>Regular expression.</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>Space Invoices API uses the following error codes:</p>
 
