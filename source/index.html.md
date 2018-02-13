@@ -5,8 +5,9 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://slackin-hbfgjbcseo.now.sh'>Join our Slack community</a>
+  - <a href='http://joinslack.spaceinvoices.com'>Sign Up for a Developer Key</a>
+  - <a href='http://joinslack.spaceinvoices.com'>Join our public Slack community</a>
+  - <hr>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
