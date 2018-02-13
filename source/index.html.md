@@ -33,7 +33,7 @@ Space Invoices is a developer oriented invoicing API. You can use it to create a
 
 We're here to help in case you get stuck or want to make a request for functionalities. We also encourage our community to help each other that's why we've created a community Slack channel and conveniently called it Space Invaders :), hope to talk to you there!
 
-### Join our Slack community [Space Invaders](https://slackin-hbfgjbcseo.now.sh).
+### Join our Slack community [Space Invaders](http://joinslack.spaceinvoices.com).
 
 ## About
 
