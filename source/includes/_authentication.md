@@ -4,7 +4,7 @@
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://api.spaceinvoices.com/api/v1/..."
+curl "https://api.spaceinvoices.com/v1/..."
   -H "Authorization: TOKEN"
 ```
 

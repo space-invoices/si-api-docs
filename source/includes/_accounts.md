@@ -5,7 +5,7 @@ Accounts represent users that can login and access different organizations based
 ## Authenticate
 
 ```shell
-curl "https://api.spaceinvoices.com/api/v1/accounts/login" \
+curl "https://api.spaceinvoices.com/v1/accounts/login" \
   -H "Authorization: TOKEN" \
   -d email="name@example.com" \
   -d password="supersecret"
@@ -24,7 +24,7 @@ This endpoint authenticates an account and returns an access token that can be u
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/api/v1/accounts/login`
+`POST https://api.spaceinvoices.com/v1/accounts/login`
 
 #### Attributes
 
@@ -45,7 +45,7 @@ This endpoint authenticates an account and returns an access token that can be u
 ## Create New Account
 
 ```shell
-curl "https://api.spaceinvoices.com/api/v1/accounts" \
+curl "https://api.spaceinvoices.com/v1/accounts" \
   -H "Authorization: TOKEN" \
   -d email="name@example.com" \
   -d password="supersecret"
@@ -64,7 +64,7 @@ This endpoint creates a new account.
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/api/v1/accounts`
+`POST https://api.spaceinvoices.com/v1/accounts`
 
 #### Attributes
 

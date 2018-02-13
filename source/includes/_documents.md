@@ -7,7 +7,7 @@ We have taken a lot of care to provide developers with a wide array of options w
 ## Create New Document
 
 ```shell
-curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents" \
+curl "https://api.spaceinvoices.com/v1/organizations/:id/documents" \
   -H "Authorization: TOKEN" \
   -d _documentClient[name]="Rocket Man" \
   -d _documentClient[country]="USA" \
@@ -79,7 +79,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/api/v1/organizations/:id/documents`
+`POST https://api.spaceinvoices.com/v1/organizations/:id/documents`
 
 #### Query parameters
 
@@ -183,7 +183,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 ## List documents
 
 ```shell
-curl "https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice" \
+curl "https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice" \
   -H "Authorization: TOKEN"
 ```
 
@@ -249,7 +249,7 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice`
 
 #### Query parameters
 
@@ -262,7 +262,7 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 ## Get Document by ID
 
 ```shell
-curl "https://api.spaceinvoices.com/api/v1/documents/:id" \
+curl "https://api.spaceinvoices.com/v1/documents/:id" \
   -H "Authorization: TOKEN"
 ```
 
@@ -326,7 +326,7 @@ This endpoint return a document by it's ID.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice`
 
 #### Query parameters
 

@@ -9,7 +9,7 @@ An organization holds a reference to most of the information that is created thr
 ## Create New Organization
 
 ```shell
-curl "https://api.spaceinvoices.com/api/v1/organizations" \
+curl "https://api.spaceinvoices.com/v1/organizations" \
   -H "Authorization: TOKEN" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
@@ -86,7 +86,7 @@ This endpoint creates a new organization.
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/api/v1/accounts/:id/organizations`
+`POST https://api.spaceinvoices.com/v1/accounts/:id/organizations`
 
 #### Query parameters
 
