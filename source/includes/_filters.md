@@ -63,7 +63,7 @@ curl "...?filter[where][type][<inq|nin>]=invoice&filter[where][type][<inq|nin>]=
 # Near
 curl "...?filter[where][coordinates][near]=153.536,-28.1"
 # or
-curl "...?filter[where][coordinates][near]=153.536,-28.1&filter[where][coordinates][maxDistance]=n&filter[where][coordinates][unit]=meters"
+curl "...?filter[where][coordinates][near]=153.536,-28.1&filter[where][coordinates][maxDistance]=5&filter[where][coordinates][unit]=meters"
 
 # NEQ
 curl "...?filter[where][draft][neq]=false"
