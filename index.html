@@ -311,7 +311,7 @@
 <p>While the API is fully operational parts of this documentation are still missing or might change in the near future while we finalise all the aspects of this document and the product. Check back regularly for updates or sign up for our newsletter on our <a href="https://spaceinvoices.com">website</a>.</p>
 <h1 id='accounts'>Accounts</h1>
 <p>Accounts represent users that can login and access different organizations based on access right.</p>
-<h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts/login"</span> <span class="se">\</span>
+<h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/login"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
@@ -326,7 +326,7 @@
 </span></code></pre>
 <p>This endpoint authenticates an account and returns an access token that can be used in consecutive calls to the API.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/api/v1/accounts/login</code></p>
+<p><code>POST https://api.spaceinvoices.com/v1/accounts/login</code></p>
 <h4 id='attributes'>Attributes</h4>
 <table><thead>
 <tr>
@@ -359,7 +359,7 @@
 <td>ID of authenticated user account.</td>
 </tr>
 </tbody></table>
-<h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/accounts"</span> <span class="se">\</span>
+<h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
@@ -374,7 +374,7 @@
 </span></code></pre>
 <p>This endpoint creates a new account.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/api/v1/accounts</code></p>
+<p><code>POST https://api.spaceinvoices.com/v1/accounts</code></p>
 <h4 id='attributes-3'>Attributes</h4>
 <table><thead>
 <tr>
@@ -412,7 +412,7 @@
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
+curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre>
 <blockquote>
@@ -432,7 +432,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <p>This is especially useful when there is a need to manage multiple organizations as they are created for users that might signup to a certain product.</p>
 
 <p>An organization holds a reference to most of the information that is created through the API.</p>
-<h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations"</span> <span class="se">\</span>
+<h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
   -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
@@ -505,7 +505,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </span></code></pre>
 <p>This endpoint creates a new organization.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/api/v1/accounts/:id/organizations</code></p>
+<p><code>POST https://api.spaceinvoices.com/v1/accounts/:id/organizations</code></p>
 <h4 id='query-parameters'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -618,7 +618,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <p>Documents are the most complex part of Space Invoices, they are the core of our service. </p>
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
-<h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents"</span> <span class="se">\</span>
+<h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/documents"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
   -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
@@ -686,7 +686,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 
 <p><em>This example shows the process of creating an <code>invoice</code> providing minimum data.</em></p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/api/v1/organizations/:id/documents</code></p>
+<p><code>POST https://api.spaceinvoices.com/v1/organizations/:id/documents</code></p>
 <h4 id='query-parameters'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -1039,7 +1039,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <td>Timestamp of model instance creation.</td>
 </tr>
 </tbody></table>
-<h2 id='list-documents'>List documents</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice"</span> <span class="se">\</span>
+<h2 id='list-documents'>List documents</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre>
 <blockquote>
@@ -1101,7 +1101,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </span></code></pre>
 <p>This endpoint return a list of all Organization&#39;s documents optionaly filtered if latter are passed in query params.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice</code></p>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice</code></p>
 <h4 id='query-parameters-2'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -1122,7 +1122,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 <td>Boolean, if shortcodes in <code>note</code>, <code>signature</code> and <code>footer</code> should be parsed to their respective values.</td>
 </tr>
 </tbody></table>
-<h2 id='get-document-by-id'>Get Document by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/api/v1/documents/:id"</span> <span class="se">\</span>
+<h2 id='get-document-by-id'>Get Document by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/:id"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre>
 <blockquote>
@@ -1182,7 +1182,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/api/v1/..."</span>
 </span></code></pre>
 <p>This endpoint return a document by it&#39;s ID.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/api/v1/organizations/:id/documents?filter[type]=invoice</code></p>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice</code></p>
 <h4 id='query-parameters-3'>Query parameters</h4>
 <table><thead>
 <tr>
