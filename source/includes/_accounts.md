@@ -11,6 +11,19 @@ curl "https://api.spaceinvoices.com/v1/accounts/login" \
   -d password="supersecret"
 ```
 
+```javascript
+spaceInvoices.accounts.create({
+  email: 'name@example.com',
+  password: 'supersecret'
+})
+.then(function(account) {
+  console.log(account);
+})
+.catch(function(err) {
+  console.error(err);
+});
+```
+
 > Returns:
 
 ```json
@@ -50,13 +63,25 @@ curl "https://api.spaceinvoices.com/v1/accounts" \
   -d email="name@example.com" \
   -d password="supersecret"
 ```
+```javascript
+spaceInvoices.accounts.create({
+  email: 'name@example.com',
+  password: 'supersecret'
+})
+.then(function(account) {
+  console.log(account);
+})
+.catch(function(error) {
+  console.error(error);
+});
+```
 
 > Returns:
 
 ```json
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
-  "email": "someone@example.com"
+  "email": "name@example.com"
 }
 ```
 

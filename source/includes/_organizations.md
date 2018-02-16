@@ -9,7 +9,7 @@ An organization holds a reference to most of the information that is created thr
 ## Create New Organization
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations" \
+curl "https://api.spaceinvoices.com/v1/accounts/:id/organizations" \
   -H "Authorization: TOKEN" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
@@ -18,6 +18,23 @@ curl "https://api.spaceinvoices.com/v1/organizations" \
   -d country="USA" \
   -d IBAN="123454321 123454321" \
   -d bank="Bank Of America"
+```
+```javascript
+spaceInvoices.organizations.create(accountId, {
+  name: "Space Exploration Technologies corp",
+  address: "Rocket Road",
+  city: "Hawthorne",
+  zip: "CA 90250",
+  country: "USA",
+  IBAN: "123454321 123454321",
+  bank: "Bank Of America"
+})
+.then(function(organization) {
+  console.log(organization);
+})
+.catch(function(error) {
+  console.error(error);
+});
 ```
 
 > Returns:

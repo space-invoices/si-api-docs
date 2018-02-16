@@ -16,7 +16,28 @@ curl "https://api.spaceinvoices.com/v1/organizations/:id/documents" \
   -d _documentItems[0][unit]="Item" \
   -d _documentItems[0][price]="1000"
 ```
-
+```javascript
+spaceInvoices.documents.create(organisation.id, {
+  _documentClient: {
+    name: "Rocket Man",
+    country: "USA"
+  },
+  _documentItems: [
+    {
+      name: "Space suit",
+      quantity: 2,
+      unit: "Item",
+      price: 1000
+    }
+  ]
+})
+.then(function(document) {
+  console.log(document);
+})
+.catch(function(error) {
+  console.error(error);
+})
+```
 > Returns:
 
 ```json
@@ -92,7 +113,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 |      |     |
 | ---: | --- |
 | number _default is *YYYY-0000n+1*_ | String, unique (to Document type and Organization) Document number. _Auto populated with next number based on document type._ |
-| type _default is *invoice*_ | Type of document (invoice|estimate|advance). _Determines type of document, note that different document types contain different properties, rules and funcionalities. For example `invoice` can have Payments logged and contains `dateService` property. Document type cannot be switched once set to instance._ |
+| type _default is *invoice*_ | Type of document (`invoice`, `estimate` or `advance` ). _Determines type of document, note that different document types contain different properties, rules and funcionalities. For example `invoice` can have Payments logged and contains `dateService` property. Document type cannot be switched once set to instance._ |
 | draft _default is *false*_ | Boolean, if invoice a draft. _If set to `true` the property cannot go back to `false`. Only present if `type` is `invoice`._ |
 | date _default is *today*_ | Javascript date, date of Document. _Represents date the Document was issued. Time is trimmed._ |
 | dateDue _default is *today + default due days*_ | Javascript date, date invoice is due. _Auto populated using Organization's default due days from today. Only present on `type` invoice. Time is trimmed._ |
@@ -183,10 +204,26 @@ _This example shows the process of creating an `invoice` providing minimum data.
 ## List documents
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice" \
+curl "https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[where][type]=invoice" \
   -H "Authorization: TOKEN"
 ```
+```javascript
+var queryParams = {
+  filter: {
+    where: {
+      type: "invoice",
+    }
+  }
+}
 
+spaceInvoices.documents.list(organizationId, queryParams)
+.then(function(documents) {
+  console.log(documents);
+})
+.catch(function(error) {
+  console.error(error);
+});
+```
 > Returns:
 
 ```json
@@ -249,7 +286,7 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/documents`
 
 #### Query parameters
 
@@ -264,6 +301,15 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/:id" \
   -H "Authorization: TOKEN"
+```
+```javascript
+spaceInvoices.documents.getById(documentId, queryParams)
+.then(function(document) {
+  console.log(document);
+})
+.catch(function(error) {
+  console.error(error);
+})
 ```
 
 > Returns:
@@ -326,7 +372,7 @@ This endpoint return a document by it's ID.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[type]=invoice`
+`GET https://api.spaceinvoices.com/v1/documents/:id`
 
 #### Query parameters
 
