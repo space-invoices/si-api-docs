@@ -7,6 +7,9 @@
 curl "https://api.spaceinvoices.com/v1/..."
   -H "Authorization: TOKEN"
 ```
+```javascript
+var spaceInvoices = new SpaceInvoices('TOKEN');
+```
 
 > Make sure to replace `TOKEN` with your authorization token.
 
