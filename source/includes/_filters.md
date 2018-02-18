@@ -252,9 +252,7 @@ var queryParams = {
   filter: {
     where: {
       number: {
-        number: {
-          like: '2018.*'
-        }
+        like: '2018.*'
       }
     }
   }
@@ -264,10 +262,8 @@ var queryParams = {
   filter: {
     where: {
       number: {
-        number: {
-          like: '2018.*'
-          options: i
-        }
+        like: '2018.*'
+        options: i
       }
     }
   }
@@ -277,9 +273,7 @@ var queryParams = {
   filter: {
     where: {
       number: {
-        number: {
-          regexp: '2018.*'
-        }
+        regexp: '2018.*'
       }
     }
   }
