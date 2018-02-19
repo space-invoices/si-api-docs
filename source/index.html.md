@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='http://joinslack.spaceinvoices.com'>Sign Up for a Developer Key</a>
+  - <a href='http://spaceinvoices.com'>Signup for a Developer Key</a>
   - <a href='http://joinslack.spaceinvoices.com'>Join our public Slack community</a>
   - <hr>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -28,7 +28,7 @@ search: true
 
 Space Invoices is a developer oriented invoicing API. You can use it to create and manage invoices and other types of documents, it also allows you to manage any data related to those documents.
 
-### Visit our website at [spaceinvoices.com](https://spaceinvoices.com)
+### Visit our website at [spaceinvoices.com](http://spaceinvoices.com) and sign up for a developer token
 
 ## Getting help
 
@@ -42,4 +42,4 @@ We have language binding in Shell for now, other languages will be added soon! Y
 
 <aside class="warning"><strong>NOTE: This documentation is a work in progress.</strong></aside>
 
-While the API is fully operational parts of this documentation are still missing or might change in the near future while we finalise all the aspects of this document and the product. Check back regularly for updates or sign up for our newsletter on our <a href="https://spaceinvoices.com">website</a>.
+While the API is fully operational parts of this documentation are still missing or might change in the near future while we finalise all the aspects of this document and the product. Check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>.
