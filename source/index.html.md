@@ -16,6 +16,7 @@ includes:
   - accounts
   - organizations
   - documents
+  - currencies
   - filters
   - errors
 
