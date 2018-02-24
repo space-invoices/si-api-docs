@@ -1,0 +1,66 @@
+<h1 id='currencies'>Currencies</h1>
+<p>Currencies are provided and available to load from our system, if a currency is missing please let us know so we can add it.</p>
+
+<p>Besides the normal (fiat) currencies we have now also added some common cryptocurrencies.</p>
+
+<p>Note: ISO 4217 unique currency codes are used as <code>id</code> fields of currencies to simlify inclusion as related IDs in documents.</p>
+<h2 id='get-all-currencies'>Get all Currencies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/currencies"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"European Union Euro"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"€"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States Dollar"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"₿"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crypto"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ether"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"‎Ξ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crypto"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all Currencies.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/currencies</code></p>
+<h3 id='http-response'>HTTP Response</h3><h4 id='arguments'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>Unique ISO 4217 currency ID of model instance</td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of Currency.</td>
+</tr>
+<tr>
+<td style="text-align: right">symbol</td>
+<td>Symbol of currency if available otherwise same as id.</td>
+</tr>
+<tr>
+<td style="text-align: right">type</td>
+<td>Type of currencie. <em>Either <code>fiat</code> or <code>crypto</code></em></td>
+</tr>
+</tbody></table>
