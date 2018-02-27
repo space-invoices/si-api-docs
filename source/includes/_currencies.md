@@ -60,5 +60,5 @@ This endpoint retrieves all Currencies.
 | ---: | --- |
 | id | Unique ISO 4217 currency ID of model instance |
 | name | Name of Currency. |
-| symbol | Symbol of currency if available otherwise same as id. |
+| symbol | Symbol of currency if available otherwise same as ID. |
 | type | Type of currencie. _Either `fiat` or `crypto`_ |
