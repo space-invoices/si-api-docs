@@ -245,6 +245,12 @@
                   <li>
                     <a href="#create-new-account" class="toc-h2 toc-link" data-title="create-new-account">Create New Account</a>
                   </li>
+                  <li>
+                    <a href="#check-if-an-email-is-unique" class="toc-h2 toc-link" data-title="check-if-an-email-is-unique">Check if an email is unique</a>
+                  </li>
+                  <li>
+                    <a href="#read-account-details" class="toc-h2 toc-link" data-title="read-account-details">Read account details</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -280,6 +286,26 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-all-currencies" class="toc-h2 toc-link" data-title="get-all-currencies">Get all Currencies</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#clients" class="toc-h1 toc-link" data-title="clients">Clients</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-new-client" class="toc-h2 toc-link" data-title="create-new-client">Create New Client</a>
+                  </li>
+                  <li>
+                    <a href="#update-client" class="toc-h2 toc-link" data-title="update-client">Update Client</a>
+                  </li>
+                  <li>
+                    <a href="#delete-client" class="toc-h2 toc-link" data-title="delete-client">Delete Client</a>
+                  </li>
+                  <li>
+                    <a href="#list-clients" class="toc-h2 toc-link" data-title="list-clients">List Clients</a>
+                  </li>
+                  <li>
+                    <a href="#search-clients" class="toc-h2 toc-link" data-title="search-clients">Search Clients</a>
                   </li>
               </ul>
           </li>
@@ -342,10 +368,10 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <p>Accounts represent users that can login and access different organizations based on access right.</p>
 <h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/login"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
-  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
+  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
-  <span class="na">email</span><span class="p">:</span> <span class="s1">'name@example.com'</span><span class="p">,</span>
+  <span class="na">email</span><span class="p">:</span> <span class="s1">'rocketman@example.com'</span><span class="p">,</span>
   <span class="na">password</span><span class="p">:</span> <span class="s1">'supersecret'</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">{</span>
@@ -400,10 +426,10 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tbody></table>
 <h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
-  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="se">\</span>
+  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
-  <span class="na">email</span><span class="p">:</span> <span class="s1">'name@example.com'</span><span class="p">,</span>
+  <span class="na">email</span><span class="p">:</span> <span class="s1">'rocketman@example.com'</span><span class="p">,</span>
   <span class="na">password</span><span class="p">:</span> <span class="s1">'supersecret'</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">{</span>
@@ -418,7 +444,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name@example.com"</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rocketman@example.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new account.</p>
@@ -454,6 +480,84 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <tr>
 <td style="text-align: right">email</td>
 <td>Provided username.</td>
+</tr>
+</tbody></table>
+<h2 id='check-if-an-email-is-unique'>Check if an email is unique</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@example.com"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"isUnique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns a boolean value if email is unique / does not exist in the system yet.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/accounts/is-unique?email=:email</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">email <strong>required</strong></td>
+<td>Email to check.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-3'>HTTP Response</h3><h4 id='attributes-5'>Attributes</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">isUnique</td>
+<td>Boolean if email is unique.</td>
+</tr>
+</tbody></table>
+<h2 id='read-account-details'>Read account details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rocketman@example.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns an Account&#39;s details.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/accounts/:id</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Account to return.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-4'>HTTP Response</h3><h4 id='attributes-6'>Attributes</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>ID of account.</td>
+</tr>
+<tr>
+<td style="text-align: right">email</td>
+<td>Email address of account.</td>
 </tr>
 </tbody></table>
 <h1 id='organizations'>Organizations</h1>
@@ -660,10 +764,10 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </tbody></table>
 <h1 id='documents'>Documents</h1>
-<p>Documents are the most complex part of Space Invoices, they are the core of our service. </p>
+<p>Documents are the most complex part of Space Invoices, they are the core of our service.</p>
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
-<h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/documents"</span> <span class="se">\</span>
+<h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
   -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
@@ -1104,7 +1208,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <td>Timestamp of model instance creation.</td>
 </tr>
 </tbody></table>
-<h2 id='list-documents'>List documents</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[where][type]=invoice"</span> <span class="se">\</span>
+<h2 id='list-documents'>List documents</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents?filter[where][type]=invoice"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">filter</span><span class="p">:</span> <span class="p">{</span>
@@ -1202,7 +1306,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <td>Boolean, if shortcodes in <code>note</code>, <code>signature</code> and <code>footer</code> should be parsed to their respective values.</td>
 </tr>
 </tbody></table>
-<h2 id='get-document-by-id'>Get Document by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/:id"</span> <span class="se">\</span>
+<h2 id='get-document-by-id'>Get Document by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">documentId</span><span class="p">,</span> <span class="nx">queryParams</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
@@ -1360,6 +1464,365 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <td>Type of currencie. <em>Either <code>fiat</code> or <code>crypto</code></em></td>
 </tr>
 </tbody></table>
+<h1 id='clients'>Clients</h1>
+<p>Clients are businesses, end persons, organizations and any other entity that can receive a document from an organization. They can be saved and later referenced using their unique ID.</p>
+<h2 id='create-new-client'>Create New Client</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/clients"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
+  -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
+  -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
+  -d <span class="nv">zip</span><span class="o">=</span><span class="s2">"CA 90250"</span> <span class="se">\</span>
+  -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
+  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"info@spacex.com"</span> <span class="se">\</span>
+  -d <span class="nv">contact</span><span class="o">=</span><span class="s2">"Elon M."</span> <span class="se">\</span>
+  -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 789"</span> <span class="se">\</span>
+  -d <span class="nv">note</span><span class="o">=</span><span class="s2">"Orders rocket fuel every month."</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@spacex.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elon M."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 123 456 789"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orders rocket fuel every month."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new Client.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.spaceinvoices.com/v1/organizations/:id/clients</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Orgniazation for which we are creting the Client.</td>
+</tr>
+</tbody></table>
+<h4 id='arguments'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name <strong>required</strong></td>
+<td>Name of company, client or other type of organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Street or similar address.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City name.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / post code.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>ISO 3166 county.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
+<td>Specify if the Client is subject to tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String VAT / GST / etc. tax identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String registration or similar identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">email</td>
+<td>Email address of Client. <em>Used as recipient when sending documents in email.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">contact</td>
+<td>Name of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">phone</td>
+<td>Phone number of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">note</td>
+<td>Text note about Client.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>Unique ID of model instance.</td>
+</tr>
+</tbody></table>
+<h2 id='update-client'>Update Client</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
+  -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
+  -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
+  -d <span class="nv">zip</span><span class="o">=</span><span class="s2">"CA 90250"</span> <span class="se">\</span>
+  -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
+  -d <span class="nv">email</span><span class="o">=</span><span class="s2">"info@spacex.com"</span> <span class="se">\</span>
+  -d <span class="nv">contact</span><span class="o">=</span><span class="s2">"Elon M."</span> <span class="se">\</span>
+  -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 789"</span> <span class="se">\</span>
+  -d <span class="nv">note</span><span class="o">=</span><span class="s2">"Orders rocket fuel every month."</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@spacex.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elon M."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 123 456 789"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orders rocket fuel every month."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a Client by id.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PUT https://api.spaceinvoices.com/v1/clients/:id</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h4 id='arguments-3'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name <strong>required</strong></td>
+<td>Name of company, client or other type of organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Street or similar address.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City name.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / post code.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>ISO 3166 county.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
+<td>Specify if the Client is subject to tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String VAT / GST / etc. tax identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String registration or similar identification number.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h2 id='delete-client'>Delete Client</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint soft deletes a Client by id.</p>
+
+<p>Soft deleted instances stay in database but are not returned on normal calls but can be added by providing <code>deleted: true</code> property in filters.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE https://api.spaceinvoices.com/v1/clients/:id</code></p>
+<h4 id='query-parameters-3'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Client to delete.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-3'>HTTP Response</h3><h4 id='arguments-5'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">count</td>
+<td>Number of successfuly deleted items.</td>
+</tr>
+</tbody></table>
+<h2 id='list-clients'>List Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/clients"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@spacex.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elon M."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 123 456 789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orders rocket fuel every month."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint lists Organization&#39;s Clients.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/clients</code></p>
+<h4 id='query-parameters-4'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-6'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right"></td>
+<td>Array of Client objects.</td>
+</tr>
+</tbody></table>
+<h2 id='search-clients'>Search Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@spacex.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elon M."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 123 456 789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orders rocket fuel every month."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint searches for Organization&#39;s Clients.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/search-clients?term=:term</code></p>
+<h4 id='query-parameters-5'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">term <strong>required</strong></td>
+<td>String term to search for in Client properties.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-7'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right"></td>
+<td>Array of Client objects.</td>
+</tr>
+</tbody></table>
 <h1 id='filters'>Filters</h1><h2 id='filters-2'>Filters</h2><pre class="highlight shell tab-shell"><code><span class="c"># Where</span>
 curl <span class="s2">"...?filter[where][type]=invoice"</span>
 <span class="c"># or</span>
@@ -1381,6 +1844,9 @@ curl <span class="s2">"...?filter[order][date]=ASC"</span>
 
 <span class="c"># Skip</span>
 curl <span class="s2">"...?filter[skip]=5"</span>
+
+<span class="c"># Deleted</span>
+curl <span class="s2">"...?filter[deleted]=true"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Where</span>
 <span class="kd">var</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">filter</span><span class="p">:</span> <span class="p">{</span>
@@ -1449,6 +1915,13 @@ curl <span class="s2">"...?filter[skip]=5"</span>
     <span class="na">skip</span><span class="p">:</span> <span class="mi">5</span>
   <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="c1">// Skip</span>
+<span class="kd">var</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">deleted</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <p>Space Invoices API uses a filtering mechanism to control how data is queried.</p>
 
@@ -1481,6 +1954,10 @@ curl <span class="s2">"...?filter[skip]=5"</span>
 <tr>
 <td style="text-align: right">skip</td>
 <td>Number of results to skip.</td>
+</tr>
+<tr>
+<td style="text-align: right">deleted</td>
+<td>Also return deleted records. <em>Only available on models that implement soft delete.</em></td>
 </tr>
 </tbody></table>
 <h2 id='where-operators'>Where operators</h2>
@@ -1523,7 +2000,7 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
   <span class="na">filter</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">where</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">type</span><span class="p">:</span> <span class="s1">'invoice'</span>
-    <span class="p">}</span> 
+    <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -1532,12 +2009,12 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
   <span class="na">filter</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">where</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">and</span><span class="p">:</span> <span class="p">[{</span>
-          <span class="na">type</span><span class="p">:</span> <span class="s1">'invoice'</span> 
+          <span class="na">type</span><span class="p">:</span> <span class="s1">'invoice'</span>
         <span class="p">},</span> <span class="p">{</span>
           <span class="na">draft</span><span class="p">:</span> <span class="kc">false</span>
         <span class="p">}</span>
-      <span class="p">]</span>     
-    <span class="p">}</span> 
+      <span class="p">]</span>
+    <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">// GT / GTE</span>
@@ -1548,7 +2025,7 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
         <span class="na">gt</span><span class="p">:</span> <span class="s1">'2018-04-01T18:30:00.000Z'</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span> 
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// LT / LTE</span>
@@ -1571,7 +2048,7 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
           <span class="s1">'2018-04-01T18:30:00.000Z'</span>
         <span class="p">]</span>
       <span class="p">}</span>
-    <span class="p">}</span> 
+    <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">// inq / nin</span>
