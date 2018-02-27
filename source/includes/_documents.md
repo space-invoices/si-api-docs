@@ -1,13 +1,13 @@
 # Documents
 
-Documents are the most complex part of Space Invoices, they are the core of our service. 
+Documents are the most complex part of Space Invoices, they are the core of our service.
 
 We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.
 
 ## Create New Document
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/:id/documents" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents" \
   -H "Authorization: TOKEN" \
   -d _documentClient[name]="Rocket Man" \
   -d _documentClient[country]="USA" \
@@ -204,7 +204,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 ## List documents
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/:id/documents?filter[where][type]=invoice" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents?filter[where][type]=invoice" \
   -H "Authorization: TOKEN"
 ```
 ```javascript
@@ -299,7 +299,7 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 ## Get Document by ID
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/documents/:id" \
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: TOKEN"
 ```
 ```javascript

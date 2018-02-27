@@ -7,13 +7,13 @@ Accounts represent users that can login and access different organizations based
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts/login" \
   -H "Authorization: TOKEN" \
-  -d email="name@example.com" \
+  -d email="rocketman@example.com" \
   -d password="supersecret"
 ```
 
 ```javascript
 spaceInvoices.accounts.create({
-  email: 'name@example.com',
+  email: 'rocketman@example.com',
   password: 'supersecret'
 })
 .then(function(account) {
@@ -55,17 +55,18 @@ This endpoint authenticates an account and returns an access token that can be u
 | id | Generated access token. |
 | userId | ID of authenticated user account. |
 
+
 ## Create New Account
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts" \
   -H "Authorization: TOKEN" \
-  -d email="name@example.com" \
+  -d email="rocketman@example.com" \
   -d password="supersecret"
 ```
 ```javascript
 spaceInvoices.accounts.create({
-  email: 'name@example.com',
+  email: 'rocketman@example.com',
   password: 'supersecret'
 })
 .then(function(account) {
@@ -81,7 +82,7 @@ spaceInvoices.accounts.create({
 ```json
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
-  "email": "name@example.com"
+  "email": "rocketman@example.com"
 }
 ```
 
@@ -106,3 +107,80 @@ This endpoint creates a new account.
 | ---: | --- |
 | id | Unique ID of model instance. |
 | email | Provided username. |
+
+
+## Check if an email is unique
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@example.com"
+```
+```javascript
+```
+
+> Returns:
+
+```json
+{
+  "isUnique": true
+}
+```
+
+This endpoint returns a boolean value if email is unique / does not exist in the system yet.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/accounts/is-unique?email=:email`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| email **required** | Email to check. |
+
+### HTTP Response
+
+#### Attributes
+
+|      |     |
+| ---: | --- |
+| isUnique | Boolean if email is unique. |
+
+
+## Read account details
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: TOKEN"
+```
+```javascript
+```
+
+> Returns:
+
+```json
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "email": "rocketman@example.com"
+}
+```
+
+This endpoint returns an Account's details.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/accounts/:id`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Account to return. |
+
+### HTTP Response
+
+#### Attributes
+
+|      |     |
+| ---: | --- |
+| id | ID of account. |
+| email | Email address of account. |

@@ -24,7 +24,11 @@ curl "...?filter[order][date]=ASC"
 
 # Skip
 curl "...?filter[skip]=5"
+
+# Deleted
+curl "...?filter[deleted]=true"
 ```
+
 ```javascript
 // Where
 var queryParams = {
@@ -94,6 +98,13 @@ var queryParams = {
     skip: 5
   }
 }
+
+// Skip
+var queryParams = {
+  filter: {
+    deleted: true
+  }
+}
 ```
 Space Invoices API uses a filtering mechanism to control how data is queried.
 
@@ -105,6 +116,7 @@ Space Invoices API uses a filtering mechanism to control how data is queried.
 | limit | Limit amount of data returned. |
 | order | Order results by property. |
 | skip | Number of results to skip. |
+| deleted | Also return deleted records. _Only available on models that implement soft delete._ |
 
 ## Where operators
 
@@ -151,7 +163,7 @@ var queryParams = {
   filter: {
     where: {
       type: 'invoice'
-    } 
+    }
   }
 }
 
@@ -160,12 +172,12 @@ var queryParams = {
   filter: {
     where: {
       and: [{
-          type: 'invoice' 
+          type: 'invoice'
         }, {
           draft: false
         }
-      ]     
-    } 
+      ]
+    }
   }
 }
 // GT / GTE
@@ -176,7 +188,7 @@ var queryParams = {
         gt: '2018-04-01T18:30:00.000Z'
       }
     }
-  } 
+  }
 }
 
 // LT / LTE
@@ -199,7 +211,7 @@ var queryParams = {
           '2018-04-01T18:30:00.000Z'
         ]
       }
-    } 
+    }
   }
 }
 // inq / nin
