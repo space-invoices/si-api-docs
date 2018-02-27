@@ -1,0 +1,258 @@
+# Items
+
+Items are businesses, end persons, organizations and any other entity that can receive a document from an organization. They can be saved and later referenced using their unique ID.
+
+## Create New Item
+
+```shell
+curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/items" \
+  -H "Authorization: TOKEN" \
+  -d name="Space suit" \
+  -d description="Best in class suit made from durable composites." \
+  -d unit="item" \
+  -d price=100 \
+  -d taxIds[]="5a3683ea12d5a67dd0ef2f4e"
+```
+
+```javascript
+```
+
+> Returns:
+
+```json
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space suit",
+  "description": "Best in class suit made from durable composites.",
+  "unit": "item",
+  "price": 100,
+  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+}
+```
+
+This endpoint creates a new Item.
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/organizations/:id/items`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Orgniazation for which we are creting the Item. |
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| name **required** | Name of company, item or other type of organization. |
+| description | Description of item. |
+| unit | Unit of measurement. |
+| price | Number price of item. |
+| taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
+
+### HTTP Response
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| id | Unique ID of model instance. |
+
+
+## Update Item
+
+```shell
+curl -X PUT "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: TOKEN" \
+  -d name="Space suit" \
+  -d description="Best in class suit made from durable composites." \
+  -d unit="item" \
+  -d price=100 \
+  -d taxIds[]="5a3683ea12d5a67dd0ef2f4e"
+```
+
+```javascript
+```
+
+> Returns:
+
+```json
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space suit",
+  "description": "Best in class suit made from durable composites.",
+  "unit": "item",
+  "price": 100,
+  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+}
+```
+
+This endpoint updates a Item by ID.
+
+### HTTP Request
+
+`PUT https://api.spaceinvoices.com/v1/items/:id`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| name **required** | Name of company, item or other type of organization. |
+| description | Description of item. |
+| unit | Unit of measurement. |
+| price | Number price of item. |
+| taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
+
+### HTTP Response
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+
+
+## Delete Item
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: TOKEN"
+```
+
+```javascript
+```
+
+> Returns:
+
+```json
+{
+  "count": 1
+}
+```
+
+This endpoint soft deletes a Item by ID.
+
+Soft deleted instances stay in database but are not returned on normal calls but can be added by providing `deleted: true` property in filters.
+
+### HTTP Request
+
+`DELETE https://api.spaceinvoices.com/v1/items/:id`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Item to delete. |
+
+### HTTP Response
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| count | Number of successfuly deleted items. |
+
+
+## List Items
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/items" \
+  -H "Authorization: TOKEN"
+```
+
+```javascript
+```
+
+> Returns:
+
+```json
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space suit",
+    "description": "Best in class suit made from durable composites.",
+    "unit": "item",
+    "price": 100,
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  }
+]
+```
+
+This endpoint lists Organization's Items.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/organizations/:id/items`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Organization. |
+| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+
+### HTTP Response
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| | Array of Item objects. |
+
+
+## Search Items
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-items?term=Space" \
+  -H "Authorization: TOKEN"
+```
+
+```javascript
+```
+
+> Returns:
+
+```json
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space suit",
+    "description": "Best in class suit made from durable composites.",
+    "unit": "item",
+    "price": 100,
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  }
+]
+```
+
+This endpoint searches for Organization's Items.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/organizations/:id/search-items?term=:term`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Organization. |
+| term **required** | String term to search for in Item properties. |
+| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+
+### HTTP Response
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| | Array of Item objects. |

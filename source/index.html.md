@@ -18,6 +18,7 @@ includes:
   - documents
   - currencies
   - clients
+  - items
   - companies
   - filters
   - errors
