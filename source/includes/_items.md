@@ -222,6 +222,11 @@ This endpoint lists Organization's Items.
 |      |     |
 | ---: | --- |
 | id | Unique ID of Item model instance. |
+| organizationId | ID of related Organization the Item belongs to. |
+| name | Name of Item. |
+| description | Description of Item. |
+| unit | Unit of measurement of Item. |
+| price | Price of Item. |
 | taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
 | name | Name of Tax. |
 | _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
@@ -295,6 +300,11 @@ This endpoint searches for Organization's Items.
 |      |     |
 | ---: | --- |
 | id | Unique ID of Item model instance. |
+| organizationId | ID of related Organization the Item belongs to. |
+| name | Name of Item. |
+| description | Description of Item. |
+| unit | Unit of measurement of Item. |
+| price | Price of Item. |
 | taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
 | name | Name of Tax. |
 | _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
