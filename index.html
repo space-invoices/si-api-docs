@@ -1696,6 +1696,22 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <td style="text-align: right">companyNumber</td>
 <td>String registration or similar identification number.</td>
 </tr>
+<tr>
+<td style="text-align: right">email</td>
+<td>Email address of Client. <em>Used as recipient when sending documents in email.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">contact</td>
+<td>Name of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">phone</td>
+<td>Phone number of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">note</td>
+<td>Text note about Client.</td>
+</tr>
 </tbody></table>
 <h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4>
 <table><thead>
@@ -1793,8 +1809,56 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right"></td>
-<td>Array of Client objects.</td>
+<td style="text-align: right">name</td>
+<td>Name of company, client or other type of organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Street or similar address.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City name.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / post code.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>ISO 3166 county.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject</td>
+<td>Specify if the Client is subject to tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String VAT / GST / etc. tax identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String registration or similar identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">email</td>
+<td>Email address of Client. <em>Used as recipient when sending documents in email.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">contact</td>
+<td>Name of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">phone</td>
+<td>Phone number of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">note</td>
+<td>Text note about Client.</td>
 </tr>
 </tbody></table>
 <h2 id='search-clients'>Search Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space"</span> <span class="se">\</span>
@@ -1850,8 +1914,56 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right"></td>
-<td>Array of Client objects.</td>
+<td style="text-align: right">name</td>
+<td>Name of company, client or other type of organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Street or similar address.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City name.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / post code.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>ISO 3166 county.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject</td>
+<td>Specify if the Client is subject to tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String VAT / GST / etc. tax identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String registration or similar identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">email</td>
+<td>Email address of Client. <em>Used as recipient when sending documents in email.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">contact</td>
+<td>Name of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">phone</td>
+<td>Phone number of Client.</td>
+</tr>
+<tr>
+<td style="text-align: right">note</td>
+<td>Text note about Client.</td>
 </tr>
 </tbody></table>
 <h1 id='items'>Items</h1>
@@ -2053,7 +2165,22 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT 22%"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5be3095-4d31-4f09-9ac7-d459a8792621"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="mi">1970-01-01</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"recoverable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -2084,8 +2211,44 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right"></td>
-<td>Array of Item objects.</td>
+<td style="text-align: right">id</td>
+<td>Unique ID of Item model instance.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxes</td>
+<td>Collection of objects containing Item taxes. <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">_taxRates</td>
+<td>Collection of objects containing item taxes. <a href="#expand-inner">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">dateValidFrom</td>
+<td>Date when Tax Rate is valid from. <em>If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">rate</td>
+<td>Number rate of Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty-inner"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">recoverable</td>
+<td>Booleand indicator if paid Tax can be recovered by Organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">compound</td>
+<td>Booleand indicator if Tax is compound. <em>Compound Tax is calculated on top of Document Item total value including any other Taxes on the item.</em></td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='search-items'>Search Items</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-items?term=Space"</span> <span class="se">\</span>
@@ -2102,7 +2265,22 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT 22%"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5be3095-4d31-4f09-9ac7-d459a8792621"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="mi">1970-01-01</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"recoverable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -2137,8 +2315,44 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right"></td>
-<td>Array of Item objects.</td>
+<td style="text-align: right">id</td>
+<td>Unique ID of Item model instance.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxes</td>
+<td>Collection of objects containing Item taxes. <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">_taxRates</td>
+<td>Collection of objects containing item taxes. <a href="#expand-inner">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">dateValidFrom</td>
+<td>Date when Tax Rate is valid from. <em>If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">rate</td>
+<td>Number rate of Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty-inner"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">recoverable</td>
+<td>Booleand indicator if paid Tax can be recovered by Organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">compound</td>
+<td>Booleand indicator if Tax is compound. <em>Compound Tax is calculated on top of Document Item total value including any other Taxes on the item.</em></td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
 </tr>
 </tbody></table>
 <h1 id='companies'>Companies</h1>
@@ -2197,8 +2411,44 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right"></td>
-<td>Array of Company objects.</td>
+<td style="text-align: right">id</td>
+<td>Unique ID of Company model instance.</td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Address of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line two of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>ZIP / post code of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>Country of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>Tax number of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject</td>
+<td>Boolean if Company is subject to VAT / GST or other tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>Company or other organization registration number.</td>
 </tr>
 </tbody></table>
 <h2 id='search-companies'>Search Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies/search?term=Space"</span> <span class="se">\</span>
@@ -2248,8 +2498,44 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right"></td>
-<td>Array of Company objects.</td>
+<td style="text-align: right">id</td>
+<td>Unique ID of Company model instance.</td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Address of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line two of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>ZIP / post code of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>Country of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>Tax number of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject</td>
+<td>Boolean if Company is subject to VAT / GST or other tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>Company or other organization registration number.</td>
 </tr>
 </tbody></table>
 <h1 id='filters'>Filters</h1><h2 id='filters-2'>Filters</h2><pre class="highlight shell tab-shell"><code><span class="c"># Where</span>
