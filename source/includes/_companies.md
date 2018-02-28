@@ -60,7 +60,16 @@ This endpoint lists Companies.
 
 |      |     |
 | ---: | --- |
-| | Array of Company objects. |
+| id | Unique ID of Company model instance. |
+| name | Name of Company. |
+| address | Address of Company. |
+| address2 | Address line two of Company. |
+| city | City of Company. |
+| zip | ZIP / post code of Company. |
+| country | Country of Company. |
+| taxNumber | Tax number of Company. |
+| taxSubject | Boolean if Company is subject to VAT / GST or other tax. |
+| companyNumber | Company or other organization registration number. |
 
 
 ## Search Companies
@@ -110,4 +119,13 @@ This endpoint searches for Companies.
 
 |      |     |
 | ---: | --- |
-| | Array of Company objects. |
+| id | Unique ID of Company model instance. |
+| name | Name of Company. |
+| address | Address of Company. |
+| address2 | Address line two of Company. |
+| city | City of Company. |
+| zip | ZIP / post code of Company. |
+| country | Country of Company. |
+| taxNumber | Tax number of Company. |
+| taxSubject | Boolean if Company is subject to VAT / GST or other tax. |
+| companyNumber | Company or other organization registration number. |

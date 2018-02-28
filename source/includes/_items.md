@@ -182,7 +182,22 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/it
     "description": "Best in class suit made from durable composites.",
     "unit": "item",
     "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+    "taxes": [
+      {
+        "id": "5a3683ea12d5a67dd0ef2f4e",
+        "name": "VAT 22%",
+        "_taxRates": [
+          {
+            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            "dateValidFrom": 1970-01-01,
+            "rate": 22
+          }
+        ],
+        "recoverable": true,
+        "compound": false
+      }
+    ]
   }
 ]
 ```
@@ -206,7 +221,16 @@ This endpoint lists Organization's Items.
 
 |      |     |
 | ---: | --- |
-| | Array of Item objects. |
+| id | Unique ID of Item model instance. |
+| taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
+| name | Name of Tax. |
+| _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
+| dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
+| rate | Number rate of Tax. |
+| [](#empty-inner) | |
+| recoverable | Booleand indicator if paid Tax can be recovered by Organization. |
+| compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._ |
+| [](#empty) | |
 
 
 ## Search Items
@@ -230,7 +254,22 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/se
     "description": "Best in class suit made from durable composites.",
     "unit": "item",
     "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+    "taxes": [
+      {
+        "id": "5a3683ea12d5a67dd0ef2f4e",
+        "name": "VAT 22%",
+        "_taxRates": [
+          {
+            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            "dateValidFrom": 1970-01-01,
+            "rate": 22
+          }
+        ],
+        "recoverable": true,
+        "compound": false
+      }
+    ]
   }
 ]
 ```
@@ -255,4 +294,13 @@ This endpoint searches for Organization's Items.
 
 |      |     |
 | ---: | --- |
-| | Array of Item objects. |
+| id | Unique ID of Item model instance. |
+| taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
+| name | Name of Tax. |
+| _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
+| dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
+| rate | Number rate of Tax. |
+| [](#empty-inner) | |
+| recoverable | Booleand indicator if paid Tax can be recovered by Organization. |
+| compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._ |
+| [](#empty) | |

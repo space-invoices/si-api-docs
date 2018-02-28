@@ -139,6 +139,10 @@ This endpoint updates a Client by id.
 | taxSubject _default is *false*_ | Specify if the Client is subject to tax. |
 | taxNumber | String VAT / GST / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of Client. |
+| phone | Phone number of Client. |
+| note | Text note about Client. |
 
 ### HTTP Response
 
@@ -238,7 +242,19 @@ This endpoint lists Organization's Clients.
 
 |      |     |
 | ---: | --- |
-| | Array of Client objects. |
+| name | Name of company, client or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | ISO 3166 county. |
+| taxSubject | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of Client. |
+| phone | Phone number of Client. |
+| note | Text note about Client. |
 
 
 ## Search Clients
@@ -291,4 +307,16 @@ This endpoint searches for Organization's Clients.
 
 |      |     |
 | ---: | --- |
-| | Array of Client objects. |
+| name | Name of company, client or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | ISO 3166 county. |
+| taxSubject | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of Client. |
+| phone | Phone number of Client. |
+| note | Text note about Client. |
