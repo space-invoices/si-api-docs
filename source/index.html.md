@@ -22,6 +22,7 @@ includes:
   - companies
   - payments
   - recurrences
+  - taxes
   - filters
   - errors
 
