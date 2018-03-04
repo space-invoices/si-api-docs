@@ -341,6 +341,26 @@
               </ul>
           </li>
           <li>
+            <a href="#payments" class="toc-h1 toc-link" data-title="payments">Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-new-payment" class="toc-h2 toc-link" data-title="create-new-payment">Create New Payment</a>
+                  </li>
+                  <li>
+                    <a href="#update-payment" class="toc-h2 toc-link" data-title="update-payment">Update Payment</a>
+                  </li>
+                  <li>
+                    <a href="#delete-payment" class="toc-h2 toc-link" data-title="delete-payment">Delete Payment</a>
+                  </li>
+                  <li>
+                    <a href="#list-payments" class="toc-h2 toc-link" data-title="list-payments">List Payments</a>
+                  </li>
+                  <li>
+                    <a href="#list-a-document-39-s-payments" class="toc-h2 toc-link" data-title="list-a-document-s-payments">List a Document's Payments</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#filters" class="toc-h1 toc-link" data-title="filters">Filters</a>
               <ul class="toc-list-h2">
                   <li>
@@ -1967,7 +1987,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </tbody></table>
 <h1 id='items'>Items</h1>
-<p>Items are businesses, end persons, organizations and any other entity that can receive a document from an organization. They can be saved and later referenced using their unique ID.</p>
+<p>Items are items, services and any other thing that a Organization can sell. They can be saved and later referenced using their unique ID.</p>
 <h2 id='create-new-item'>Create New Item</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/items"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
@@ -2576,6 +2596,295 @@ The database is updated regularly as frequently as we can query the data for eac
 <tr>
 <td style="text-align: right">companyNumber</td>
 <td>Company or other organization registration number.</td>
+</tr>
+</tbody></table>
+<h1 id='payments'>Payments</h1>
+<p>Payments are stored for each invoice. Each invoice can have multiple payments that can also sum up to more that the invoice&#39;s total value. Payments are in the Currency of the document.</p>
+<h2 id='create-new-payment'>Create New Payment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
+  -d <span class="nv">date</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
+  -d <span class="nv">amount</span><span class="o">=</span>1000
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"documentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new Payment.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.spaceinvoices.com/v1/documents/:id/payments</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Document for which we are creting the Payment.</td>
+</tr>
+</tbody></table>
+<h4 id='arguments'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">type <strong>required</strong></td>
+<td>Type of payment, one of <code>bank</code> / <code>online</code> / <code>paypal</code> / <code>cash</code> / <code>crypto</code> / <code>other</code>.</td>
+</tr>
+<tr>
+<td style="text-align: right">date <strong>required</strong></td>
+<td>Number price of payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">amount <strong>required</strong></td>
+<td>Amount of Payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">description</td>
+<td>Description of Payment.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>Unique ID of model instance.</td>
+</tr>
+</tbody></table>
+<h2 id='update-payment'>Update Payment</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
+  -d <span class="nv">date</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
+  -d <span class="nv">amount</span><span class="o">=</span>1000
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"documentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a Payment by ID.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PUT https://api.spaceinvoices.com/v1/payments/:id</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h4 id='arguments-3'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">type <strong>required</strong></td>
+<td>Type of payment, one of <code>bank</code> / <code>online</code> / <code>paypal</code> / <code>cash</code> / <code>crypto</code> / <code>other</code>.</td>
+</tr>
+<tr>
+<td style="text-align: right">date <strong>required</strong></td>
+<td>Number price of payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">amount <strong>required</strong></td>
+<td>Amount of Payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">description</td>
+<td>Description of Payment.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h2 id='delete-payment'>Delete Payment</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a Payment by ID.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE https://api.spaceinvoices.com/v1/payments/:id</code></p>
+<h4 id='query-parameters-3'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Payment to delete.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-3'>HTTP Response</h3><h4 id='arguments-5'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">count</td>
+<td>Number of successfuly deleted payments.</td>
+</tr>
+</tbody></table>
+<h2 id='list-payments'>List Payments</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"documentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint lists Organization&#39;s Payments.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/payments</code></p>
+<h4 id='query-parameters-4'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-6'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">type</td>
+<td>Type of payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">date</td>
+<td>Number price of payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">amount</td>
+<td>Amount of Payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">description</td>
+<td>Description of Payment.</td>
+</tr>
+</tbody></table>
+<h2 id='list-a-document-39-s-payments'>List a Document&#39;s Payments</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"documentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint lists Document&#39;s Payments.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/documents/:id/payments</code></p>
+<h4 id='query-parameters-5'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Document.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-7'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">type</td>
+<td>Type of payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">date</td>
+<td>Number price of payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">amount</td>
+<td>Amount of Payment.</td>
+</tr>
+<tr>
+<td style="text-align: right">description</td>
+<td>Description of Payment.</td>
 </tr>
 </tbody></table>
 <h1 id='filters'>Filters</h1><h2 id='filters-2'>Filters</h2><pre class="highlight shell tab-shell"><code><span class="c"># Where</span>
