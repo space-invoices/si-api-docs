@@ -100,7 +100,7 @@ This endpoint updates a Payment by ID.
 |      |     |
 | ---: | --- |
 | type **required** | Type of payment, one of `bank` / `online` / `paypal` / `cash` / `crypto` / `other`. |
-| date **required** | Number price of payment. |
+| date **required** | Date of payment. |
 | amount **required** | Amount of Payment. |
 | description | Description of Payment. |
 
@@ -196,7 +196,7 @@ This endpoint lists Organization's Payments.
 |      |     |
 | ---: | --- |
 | type | Type of payment. |
-| date | Number price of payment. |
+| date | Date of payment. |
 | amount | Amount of Payment. |
 | description | Description of Payment. |
 
@@ -246,6 +246,6 @@ This endpoint lists Document's Payments.
 |      |     |
 | ---: | --- |
 | type | Type of payment. |
-| date | Number price of payment. |
+| date | Date of payment. |
 | amount | Amount of Payment. |
 | description | Description of Payment. |

@@ -21,6 +21,7 @@ includes:
   - items
   - companies
   - payments
+  - recurrences
   - filters
   - errors
 
