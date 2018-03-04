@@ -1,6 +1,6 @@
 # Items
 
-Items are businesses, end persons, organizations and any other entity that can receive a document from an organization. They can be saved and later referenced using their unique ID.
+Items are items, services and any other thing that a Organization can sell. They can be saved and later referenced using their unique ID.
 
 ## Create New Item
 

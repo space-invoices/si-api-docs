@@ -20,6 +20,7 @@ includes:
   - clients
   - items
   - companies
+  - payments
   - filters
   - errors
 
