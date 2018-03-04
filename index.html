@@ -361,6 +361,23 @@
               </ul>
           </li>
           <li>
+            <a href="#recurrences" class="toc-h1 toc-link" data-title="recurrences">Recurrences</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-new-recurrence" class="toc-h2 toc-link" data-title="create-new-recurrence">Create New Recurrence</a>
+                  </li>
+                  <li>
+                    <a href="#delete-recurrence" class="toc-h2 toc-link" data-title="delete-recurrence">Delete Recurrence</a>
+                  </li>
+                  <li>
+                    <a href="#list-recurrences" class="toc-h2 toc-link" data-title="list-recurrences">List Recurrences</a>
+                  </li>
+                  <li>
+                    <a href="#list-recurrences-2" class="toc-h2 toc-link" data-title="list-recurrences">List Recurrences</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#filters" class="toc-h1 toc-link" data-title="filters">Filters</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2711,7 +2728,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">date <strong>required</strong></td>
-<td>Number price of payment.</td>
+<td>Date of payment.</td>
 </tr>
 <tr>
 <td style="text-align: right">amount <strong>required</strong></td>
@@ -2816,7 +2833,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">date</td>
-<td>Number price of payment.</td>
+<td>Date of payment.</td>
 </tr>
 <tr>
 <td style="text-align: right">amount</td>
@@ -2876,7 +2893,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">date</td>
-<td>Number price of payment.</td>
+<td>Date of payment.</td>
 </tr>
 <tr>
 <td style="text-align: right">amount</td>
@@ -2885,6 +2902,319 @@ The database is updated regularly as frequently as we can query the data for eac
 <tr>
 <td style="text-align: right">description</td>
 <td>Description of Payment.</td>
+</tr>
+</tbody></table>
+<h1 id='recurrences'>Recurrences</h1>
+<p>Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of documents using the original document content as a base but changing the dates and number.</p>
+<h2 id='create-new-recurrence'>Create New Recurrence</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Monthly recurrence"</span> <span class="se">\</span>
+  -d <span class="nb">type</span><span class="o">=</span><span class="s2">"month"</span> <span class="se">\</span>
+  -d <span class="nv">dateFirst</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
+  -d <span class="nv">numRecurrences</span><span class="o">=</span>2
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"documentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4f"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly recurrence"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"month"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dateFirst"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"numRecurrences"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"autoSend"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notify"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"saveAsDraft"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_recurrenceDates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iteration"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iteration"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new Recurrence.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.spaceinvoices.com/v1/documents/:id/recurrences</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Document for which we are creting the Recurrence.</td>
+</tr>
+</tbody></table>
+<h4 id='arguments'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name <strong>required</strong></td>
+<td>Name of recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">type <strong>required</strong></td>
+<td>Type of recurrence, one of <code>week</code> / <code>month</code> / <code>year</code>.</td>
+</tr>
+<tr>
+<td style="text-align: right">dateFirst <strong>required</strong></td>
+<td>Date of first recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">numRecurrences <strong>required</strong></td>
+<td>Number of Recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">autoSend</td>
+<td>Boolean if a created Document should be automaticaly sent to Client when created.</td>
+</tr>
+<tr>
+<td style="text-align: right">notify</td>
+<td>Boolean if Account that created the Recurrence should be notified when a Document is created.</td>
+</tr>
+<tr>
+<td style="text-align: right">saveAsDraft</td>
+<td>Boolean if invoice should be created as draft.</td>
+</tr>
+<tr>
+<td style="text-align: right">recurrenceDates</td>
+<td>Array of objects containing created Recurrence dates. <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">date</td>
+<td>Date of Recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">iteration</td>
+<td>Number iteration index of Recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>Unique ID of model instance.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-recurrence'>Delete Recurrence</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a Recurrence by ID.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>DELETE https://api.spaceinvoices.com/v1/recurrences/:id</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Recurrence to delete.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-3'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">count</td>
+<td>Number of successfuly deleted recurrences.</td>
+</tr>
+</tbody></table>
+<h2 id='list-recurrences'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"documentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint lists Organization&#39;s Recurrences.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/recurrences</code></p>
+<h4 id='query-parameters-3'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-3'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">type</td>
+<td>Type of recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">date</td>
+<td>Number price of recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">amount</td>
+<td>Amount of Recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">description</td>
+<td>Description of Recurrence.</td>
+</tr>
+</tbody></table>
+<h2 id='list-recurrences-2'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"documentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly recurrence"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"month"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateFirst"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numRecurrences"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"autoSend"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"saveAsDraft"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_recurrenceDates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"iteration"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"iteration"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint lists Recurrences.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/documents/:id/recurrences</code></p>
+<h4 id='query-parameters-4'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Document.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-5'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">type</td>
+<td>Type of recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">dateFirst</td>
+<td>Date of first recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">numRecurrences</td>
+<td>Number of Recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">autoSend</td>
+<td>Boolean if a created Document should be automaticaly sent to Client when created.</td>
+</tr>
+<tr>
+<td style="text-align: right">notify</td>
+<td>Boolean if Account that created the Recurrence should be notified when a Document is created.</td>
+</tr>
+<tr>
+<td style="text-align: right">saveAsDraft</td>
+<td>Boolean if invoice should be created as draft.</td>
+</tr>
+<tr>
+<td style="text-align: right">recurrenceDates</td>
+<td>Array of objects containing created Recurrence dates. <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">date</td>
+<td>Date of Recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right">iteration</td>
+<td>Number iteration index of Recurrence.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
 </tr>
 </tbody></table>
 <h1 id='filters'>Filters</h1><h2 id='filters-2'>Filters</h2><pre class="highlight shell tab-shell"><code><span class="c"># Where</span>
