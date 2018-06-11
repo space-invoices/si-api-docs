@@ -12,6 +12,12 @@ curl "https://api.spaceinvoices.com/v1/..."
 var spaceInvoices = new SpaceInvoices('TOKEN');
 ```
 
+```csharp
+SpaceConfiguration.SetApiKey("TOKEN");
+```
+
+
+
 > Make sure to replace `TOKEN` with your authorization token.
 
 Space Invoices uses authorization tokens to allow access to the API. A token can be aquired from the developer dashboard [Mission Control](http://spaceinvoices.com/signup).

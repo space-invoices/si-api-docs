@@ -24,14 +24,47 @@ spaceInvoices.accounts.create({
 });
 ```
 
+```csharp
+SpaceAccountLoginOptions loginOptions = new SpaceAccountLoginOptions
+    {
+        Email = "rocketman@example.com",
+        Password = "supersecret"
+    };
+
+SpaceAccountService accountService = new SpaceAccountService();
+SpaceLogIn login = accountService.LogIn(loginOptions);
+```
+
+
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c5a3683ea12d5a67dd0ef2f4c",
   "userId": "5a3683ea12d5a67dd0ef2f4c"
 }
 ```
+
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c5a3683ea12d5a67dd0ef2f4c",
+  "userId": "5a3683ea12d5a67dd0ef2f4c"
+}
+```
+
+```csharp
+public class SpaceLogIn
+{
+    [JsonProperty("id")]
+    public string Id { get; set; }
+
+    [JsonProperty("userId")]
+    public string UserId { get; set; }
+}
+```
+
+
+
 
 This endpoint authenticates an account and returns an access token that can be used in consecutive calls to the API.
 
@@ -77,12 +110,42 @@ spaceInvoices.accounts.create({
 });
 ```
 
+```csharp
+SpaceAccountCreateOptions createOptions = new SpaceAccountCreateOptions
+    {
+        Email = "rocketman@example.com",
+        Password = "supersecret"
+    };
+
+SpaceAccountService accountService = new SpaceAccountService();
+SpaceAccount account = accountService.Create(createOptions);
+```
+
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "email": "rocketman@example.com"
+}
+```
+
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "email": "rocketman@example.com"
+}
+```
+
+```csharp
+public class SpaceAccount
+{
+    [JsonProperty("id")]
+    public string Id { get; set; }
+
+    [JsonProperty("email")]
+    public string Email { get; set; }
+
 }
 ```
 
@@ -117,11 +180,28 @@ curl "https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@exampl
 ```javascript
 ```
 
+```csharp
+SpaceAccountService accountService = new SpaceAccountService();
+Unique unique = accountService.IsUnique("rocketman@example.com");
+```
+
 > Returns:
 
-```json
+```shell
 {
   "isUnique": true
+}
+```
+
+```javascript
+```
+
+```csharp
+public class Unique
+{
+    [JsonProperty("isUnique")]
+    public string IsUnique { get; set; }
+
 }
 ```
 
@@ -155,12 +235,36 @@ curl "https://api.spaceinvoices.com/v1/accounts/5a3683ea12d5a67dd0ef2f4c" \
 ```javascript
 ```
 
+```csharp
+SpaceAccountService accountService = new SpaceAccountService();
+SpaceAccount account = accountService.Details("USER_ID");
+```
+
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "email": "rocketman@example.com"
+}
+```
+
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "email": "rocketman@example.com"
+}
+```
+
+```csharp
+public class SpaceAccount
+{
+    [JsonProperty("id")]
+    public string Id { get; set; }
+
+    [JsonProperty("email")]
+    public string Email { get; set; }
+
 }
 ```
 

@@ -37,9 +37,24 @@ spaceInvoices.organizations.create(accountId, {
 });
 ```
 
+```csharp
+SpaceOrganizationCreateOptions createOptions = new SpaceOrganizationCreateOptions{
+    Name = "Space Exploration Technologies corp",
+    Address = "Rocket Road",
+    City = "Hawthorne",
+    Zip = "CA 90250",
+    Country = "USA",
+    Iban = "123454321 123454321"
+};
+
+SpaceOrganizationService organizationService = new SpaceOrganizationService();
+SpaceOrganization organization = organizationService.Create("USER_ID", createOptions);
+
+```
+
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "name": "Space Exploration Technologies corp",
@@ -96,6 +111,115 @@ spaceInvoices.organizations.create(accountId, {
   "active": true,
   "supportPin": "12345",
   "brand": "space-invoices"
+}
+```
+
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "IBAN": "123454321 123454321",
+  "bank": "Bank Of Amerika",
+  "_defaults": [
+    {
+      "name": "image_logo",
+      "value": ""
+    }, {
+      "name": "image_signature",
+      "value": ""
+    }, {
+      "name": "invoice_note",
+      "value": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
+    }, {
+      "name": "estimate_note",
+      "value": "When paying please use reference number [document number].\n
+        Please transfer the money to bank account [IBAN] open at [bank]."
+    }, {
+      "name": "advance_note",
+      "value": "Thank you for your payment."
+    }, {
+      "name": "signature",
+      "value": "[organization name]"
+    }, {
+      "name": "footer",
+      "value": "[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"
+    }, {
+      "name": "email_reminder",
+      "value": "Dear customer,\n\nthis is a friendly reminder that the invoice [document number] is due on [document due].\n\nThank you and best regards,\n[organization name]"
+    }, {
+      "name": "email_document",
+      "value": ""
+    }, {
+      "name": "currencyId",
+      "value": "USD"
+    }, {
+      "name": "color_main",
+      "value": "0082c9"
+    }, {
+      "name": "invoice_dueDays",
+      "value": "30"
+    }, {
+      "name": "invoice_dueDays",
+      "value": "30"
+    }
+  ],
+  "locale": "en",
+  "active": true,
+  "supportPin": "12345",
+  "brand": "space-invoices"
+}
+```
+
+```csharp
+public class SpaceOrganization
+{
+
+    [JsonProperty("id")]
+    public string Id { get; set; }
+
+    [JsonProperty("name")]
+    public string Name { get; set; }
+
+    [JsonProperty("address")]
+    public string Address { get; set; }
+
+    [JsonProperty("address2")]
+    public string Address2 { get; set; }
+
+    [JsonProperty("city")]
+    public string City { get; set; }
+
+    [JsonProperty("zip")]
+    public string Zip { get; set; }
+
+    [JsonProperty("country")]
+    public string Country { get; set; }
+
+    [JsonProperty("IBAN")]
+    public string Iban { get; set; }
+
+    [JsonProperty("bank")]
+    public string Bank { get; set; }
+
+    [JsonProperty("_defaults")]
+    public List<SpaceDefault> Defaults { get; set; }
+
+    [JsonProperty("locale")]
+    public string Locale { get; set; }
+
+    [JsonProperty("active")]
+    public bool Active { get; set; }
+
+    [JsonProperty("supportPin")]
+    public string SupportPin { get; set; }
+
+    [JsonProperty("brand")]
+    public string Brand { get; set; }
+
 }
 ```
 
