@@ -561,9 +561,6 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">account</span><span class="p">);</span>
 <span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceAccountCreateOptions</span> <span class="n">createOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SpaceAccountCreateOptions</span>
     <span class="p">{</span>
         <span class="n">Email</span> <span class="p">=</span> <span class="s">"rocketman@example.com"</span><span class="p">,</span>
@@ -630,7 +627,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </tbody></table>
 <h2 id='check-if-an-email-is-unique'>Check if an email is unique</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@example.com"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">isUnique</span><span class="p">(</span><span class="s1">'rocketman@example.com"'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
 <span class="n">Unique</span> <span class="n">unique</span> <span class="p">=</span> <span class="n">accountService</span><span class="p">.</span><span class="nf">IsUnique</span><span class="p">(</span><span class="s">"rocketman@example.com"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
@@ -673,9 +674,13 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <td>Boolean if email is unique.</td>
 </tr>
 </tbody></table>
-<h2 id='read-account-details'>Read account details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+<h2 id='read-account-details'>Read account details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/:accountId"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">accountId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">account</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
 <span class="n">SpaceAccount</span> <span class="n">account</span> <span class="p">=</span> <span class="n">accountService</span><span class="p">.</span><span class="nf">Details</span><span class="p">(</span><span class="s">"USER_ID"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
@@ -1076,9 +1081,6 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceDocumentCreateOptions</span> <span class="n">createOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SpaceDocumentCreateOptions</span>
     <span class="p">{</span>
@@ -1661,9 +1663,6 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="nx">queryParams</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">documents</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">documents</span><span class="p">);</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">filter</span> <span class="p">=</span> <span class="err">@</span><span class="s">"{
 </span>                  <span class="n">filter</span><span class="p">:</span> <span class="p">{</span>
@@ -1815,9 +1814,6 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">documentId</span><span class="p">,</span> <span class="nx">queryParams</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">filter</span> <span class="p">=</span> <span class="err">@</span><span class="s">"{
 </span>                  <span class="n">filter</span><span class="p">:</span> <span class="p">{</span>
@@ -2057,7 +2053,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <p>Note: ISO 4217 unique currency codes are used as <code>id</code> fields of currencies to simlify inclusion as related IDs in documents.</p>
 <h2 id='get-all-currencies'>Get all Currencies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/currencies"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">currencies</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currencies</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2112,7 +2112,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 <tr>
 <td style="text-align: right">type</td>
-<td>Type of currencie. <em>Either <code>fiat</code> or <code>crypto</code></em></td>
+<td>Type of currency. <em>Either <code>fiat</code> or <code>crypto</code></em></td>
 </tr>
 </tbody></table>
 <h1 id='clients'>Clients</h1>
@@ -2128,7 +2128,21 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
   -d <span class="nv">contact</span><span class="o">=</span><span class="s2">"Elon M."</span> <span class="se">\</span>
   -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 789"</span> <span class="se">\</span>
   -d <span class="nv">note</span><span class="o">=</span><span class="s2">"Orders rocket fuel every month."</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+  <span class="na">zip</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+  <span class="na">country</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
+  <span class="na">email</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
+  <span class="na">contact</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
+  <span class="na">phone</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="na">note</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">client</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2244,7 +2258,21 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
   -d <span class="nv">contact</span><span class="o">=</span><span class="s2">"Elon M."</span> <span class="se">\</span>
   -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 789"</span> <span class="se">\</span>
   -d <span class="nv">note</span><span class="o">=</span><span class="s2">"Orders rocket fuel every month."</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">clientId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+  <span class="na">address</span><span class="p">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+  <span class="na">zip</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+  <span class="na">country</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
+  <span class="na">email</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
+  <span class="na">contact</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
+  <span class="na">phone</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="na">note</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">client</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2343,7 +2371,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tbody></table>
 <h2 id='delete-client'>Delete Client</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">clientId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2382,7 +2414,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tbody></table>
 <h2 id='list-clients'>List Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/clients"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">clients</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clients</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2483,7 +2519,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tbody></table>
 <h2 id='search-clients'>Search Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="s1">'Space'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">clients</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clients</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2595,7 +2635,17 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
   -d <span class="nv">unit</span><span class="o">=</span><span class="s2">"item"</span> <span class="se">\</span>
   -d <span class="nv">price</span><span class="o">=</span>100 <span class="se">\</span>
   -d taxIds[]<span class="o">=</span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span>
+  <span class="na">unit</span><span class="p">:</span> <span class="s2">"item"</span><span class="p">,</span>
+  <span class="na">price</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">taxIds</span><span class="p">:</span> <span class="p">[</span><span class="nx">taxId</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2671,7 +2721,17 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
   -d <span class="nv">unit</span><span class="o">=</span><span class="s2">"item"</span> <span class="se">\</span>
   -d <span class="nv">price</span><span class="o">=</span>100 <span class="se">\</span>
   -d taxIds[]<span class="o">=</span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">documentId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span>
+  <span class="na">unit</span><span class="p">:</span> <span class="s2">"item"</span><span class="p">,</span>
+  <span class="na">price</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">taxIds</span><span class="p">:</span> <span class="p">[</span><span class="nx">taxId</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2734,7 +2794,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tbody></table>
 <h2 id='delete-item'>Delete Item</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">itemId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2773,7 +2837,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tbody></table>
 <h2 id='list-items'>List Items</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/items"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -2893,7 +2961,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tbody></table>
 <h2 id='search-items'>Search Items</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-items?term=Space"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="s1">'space'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3030,7 +3102,11 @@ The database is updated regularly as frequently as we can query the data for eac
 <p>Accepting votes and data sources for other countries.</p>
 <h2 id='list-companies'>List Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3113,7 +3189,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='search-companies'>Search Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies/search?term=Space"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">'space'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3205,7 +3285,15 @@ The database is updated regularly as frequently as we can query the data for eac
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
   -d <span class="nv">date</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
   -d <span class="nv">amount</span><span class="o">=</span>1000
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">documentId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s2">"bank"</span><span class="p">,</span>
+  <span class="na">date</span><span class="p">:</span> <span class="s2">"2018-01-01"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payment</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payment</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3274,7 +3362,16 @@ The database is updated regularly as frequently as we can query the data for eac
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
   -d <span class="nv">date</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
   -d <span class="nv">amount</span><span class="o">=</span>1000
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">paymentId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s2">"bank"</span><span class="p">,</span>
+  <span class="na">documentId</span><span class="p">:</span> <span class="nx">documentId</span><span class="p">,</span>
+  <span class="na">date</span><span class="p">:</span> <span class="s2">"2018-01-01"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payment</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payment</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3332,7 +3429,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='delete-payment'>Delete Payment</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">paymentId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3369,7 +3470,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='list-payments'>List Payments</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payments</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payments</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3489,13 +3594,22 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h1 id='recurrences'>Recurrences</h1>
 <p>Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of documents using the original document content as a base but changing the dates and number.</p>
-<h2 id='create-new-recurrence'>Create New Recurrence</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
+<h2 id='create-new-recurrence'>Create New Recurrence</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Monthly recurrence"</span> <span class="se">\</span>
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"month"</span> <span class="se">\</span>
   -d <span class="nv">dateFirst</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
   -d <span class="nv">numRecurrences</span><span class="o">=</span>2
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">recurrences</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">documentId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Monthly recurrence"</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s2">"month"</span><span class="p">,</span>
+  <span class="na">dateFirst</span><span class="p">:</span> <span class="s2">"2018-01-01"</span><span class="p">,</span>
+  <span class="na">numRecurrences</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">recurrence</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">recurrence</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3524,7 +3638,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </span></code></pre>
 <p>This endpoint creates a new Recurrence.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.spaceinvoices.com/v1/documents/:id/recurrences</code></p>
+<p><code>POST https://api.spaceinvoices.com/v1/documents/:id/recurrence</code></p>
 <h4 id='query-parameters'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -3603,7 +3717,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='delete-recurrence'>Delete Recurrence</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">recurrences</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">recurrenceId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3638,9 +3756,13 @@ The database is updated regularly as frequently as we can query the data for eac
 <td>Number of successfuly deleted recurrences.</td>
 </tr>
 </tbody></table>
-<h2 id='list-recurrences'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
+<h2 id='list-recurrences'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">recurrences</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">recurrences</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">recurrences</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3657,7 +3779,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </span></code></pre>
 <p>This endpoint lists Organization&#39;s Recurrences.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/recurrences</code></p>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/recurrence</code></p>
 <h4 id='query-parameters-3'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -3698,7 +3820,7 @@ The database is updated regularly as frequently as we can query the data for eac
 <td>Description of Recurrence.</td>
 </tr>
 </tbody></table>
-<h2 id='list-recurrences-2'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
+<h2 id='list-recurrences-2'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
 <blockquote>
@@ -3731,7 +3853,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </span></code></pre>
 <p>This endpoint lists Recurrences.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/v1/documents/:id/recurrences</code></p>
+<p><code>GET https://api.spaceinvoices.com/v1/documents/:id/recurrence</code></p>
 <h4 id='query-parameters-4'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -3808,7 +3930,16 @@ The database is updated regularly as frequently as we can query the data for eac
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"GST 15"</span> <span class="se">\</span>
   -d _taxRates[][rate]<span class="o">=</span>15
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"GST 15"</span><span class="p">,</span>
+  <span class="na">_taxRates</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="na">rate</span><span class="p">:</span> <span class="mi">15</span>
+  <span class="p">}]</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tax</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3893,7 +4024,14 @@ The database is updated regularly as frequently as we can query the data for eac
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">rate</span><span class="o">=</span>20 <span class="se">\</span>
   -d <span class="nv">dateValidFrom</span><span class="o">=</span><span class="s2">"2018-01-01"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">addANewRateToTax</span><span class="p">(</span><span class="nx">taxId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">rate</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="s2">"dateValidFrom"</span><span class="p">:</span> <span class="s2">"2018-01-01"</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tax</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3944,7 +4082,13 @@ The database is updated regularly as frequently as we can query the data for eac
 <h2 id='update-tax'>Update Tax</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"GST 15"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">taxId</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"GST 15"</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tax</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -4019,7 +4163,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='delete-tax'>Delete Tax</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">taxId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -4058,7 +4206,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='list-taxes'>List Taxes</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/taxes"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">taxes</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">taxes</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
