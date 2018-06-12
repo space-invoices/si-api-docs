@@ -19,6 +19,20 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/cli
 ```
 
 ```javascript
+spaceInvoices.clients.create(organizationId, {
+  name: "Space Exploration Technologies corp",
+  address: "Rocket Road",
+  city: "Hawthorne",
+  zip: "CA 90250",
+  country: "USA",
+  email: "info@spacex.com",
+  contact: "Elon M.",
+  phone: "+1 123 456 789",
+  note: "Orders rocket fuel every month.",
+})
+.then(function(client) {
+  console.log(client);
+})
 ```
 
 > Returns:
@@ -95,6 +109,20 @@ curl -X PUT "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" 
 ```
 
 ```javascript
+spaceInvoices.clients.edit(clientId, {
+  name: "Space Exploration Technologies corp",
+  address: "Rocket Road",
+  city: "Hawthorne",
+  zip: "CA 90250",
+  country: "USA",
+  email: "info@spacex.com",
+  contact: "Elon M.",
+  phone: "+1 123 456 789",
+  note: "Orders rocket fuel every month.",
+})
+.then(function(client) {
+  console.log(client);
+})
 ```
 
 > Returns:
@@ -160,6 +188,10 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4
 ```
 
 ```javascript
+spaceInvoices.clients.delete(clientId)
+.then(function(count) {
+  console.log(count);
+})
 ```
 
 > Returns:
@@ -201,6 +233,10 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/cl
 ```
 
 ```javascript
+spaceInvoices.clients.list(organizationId)
+.then(function(clients) {
+  console.log(clients);
+})
 ```
 
 > Returns:
@@ -265,6 +301,10 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/se
 ```
 
 ```javascript
+spaceInvoices.clients.search(organizationId, 'Space')
+.then(function(clients) {
+  console.log(clients);
+})
 ```
 
 > Returns:

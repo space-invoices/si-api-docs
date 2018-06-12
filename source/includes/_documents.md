@@ -34,9 +34,6 @@ spaceInvoices.documents.create(organization.id, {
 .then(function(document) {
   console.log(document);
 })
-.catch(function(error) {
-  console.error(error);
-})
 ```
 > Returns:
 
@@ -219,9 +216,6 @@ var queryParams = {
 spaceInvoices.documents.list(organizationId, queryParams)
 .then(function(documents) {
   console.log(documents);
-})
-.catch(function(error) {
-  console.error(error);
 });
 ```
 > Returns:
@@ -306,9 +300,6 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
 spaceInvoices.documents.getById(documentId, queryParams)
 .then(function(document) {
   console.log(document);
-})
-.catch(function(error) {
-  console.error(error);
 })
 ```
 

@@ -14,6 +14,15 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/tax
 ```
 
 ```javascript
+spaceInvoices.taxes.create(organizationId, {
+  name: "GST 15",
+  _taxRates: [{
+    rate: 15
+  }]
+})
+.then(function(tax) {
+  console.log(tax);
+})
 ```
 
 > Returns:
@@ -77,6 +86,13 @@ curl "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates" 
 ```
 
 ```javascript
+spaceInvoices.taxes.addANewRateToTax(taxId, {
+  rate: 20,
+  "dateValidFrom": "2018-01-01"
+})
+.then(function(tax) {
+  console.log(tax);
+})
 ```
 
 > Returns:
@@ -124,6 +140,12 @@ curl -X PUT "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
 ```
 
 ```javascript
+spaceInvoices.taxes.edit(taxId, {
+  name: "GST 15",
+})
+.then(function(tax) {
+  console.log(tax);
+})
 ```
 
 > Returns:
@@ -183,6 +205,10 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c"
 ```
 
 ```javascript
+spaceInvoices.taxes.delete(taxId)
+.then(function(count) {
+  console.log(count);
+})
 ```
 
 > Returns:
@@ -224,6 +250,10 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/ta
 ```
 
 ```javascript
+spaceInvoices.taxes.list(organizationId)
+.then(function(taxes) {
+  console.log(taxes);
+})
 ```
 
 > Returns:

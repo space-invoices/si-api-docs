@@ -22,6 +22,10 @@ curl "https://api.spaceinvoices.com/v1/companies" \
 ```
 
 ```javascript
+spaceInvoices.companies.list()
+.then(function(companies) {
+  console.log(companies);
+})
 ```
 
 > Returns:
@@ -80,6 +84,10 @@ curl "https://api.spaceinvoices.com/v1/companies/search?term=Space" \
 ```
 
 ```javascript
+spaceInvoices.companies.search('space')
+.then(function(companies) {
+  console.log(companies);
+})
 ```
 
 > Returns:

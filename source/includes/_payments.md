@@ -13,6 +13,14 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/paymen
 ```
 
 ```javascript
+spaceInvoices.payments.create(documentId, {
+  type: "bank",
+  date: "2018-01-01",
+  amount: 1000
+})
+.then(function(payment) {
+  console.log(payment);
+})
 ```
 
 > Returns:
@@ -69,6 +77,15 @@ curl -X PUT "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c"
 ```
 
 ```javascript
+spaceInvoices.payments.edit(paymentId, {
+  type: "bank",
+  documentId: documentId,
+  date: "2018-01-01",
+  amount: 1000
+})
+.then(function(payment) {
+  console.log(payment);
+})
 ```
 
 > Returns:
@@ -120,6 +137,10 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f
 ```
 
 ```javascript
+spaceInvoices.payments.delete(paymentId)
+.then(function(count) {
+  console.log(count);
+})
 ```
 
 > Returns:
@@ -159,6 +180,10 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/pa
 ```
 
 ```javascript
+spaceInvoices.payments.list(organizationId)
+.then(function(payments) {
+  console.log(payments);
+})
 ```
 
 > Returns:
