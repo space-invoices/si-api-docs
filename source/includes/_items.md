@@ -15,6 +15,16 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/ite
 ```
 
 ```javascript
+spaceInvoices.items.create(organizationId, {
+  name: "Space suit",
+  description: "Best in class suit made from durable composites.",
+  unit: "item",
+  price: 100,
+  taxIds: [taxId]
+})
+.then(function(item) {
+  console.log(item);
+})
 ```
 
 > Returns:
@@ -75,6 +85,16 @@ curl -X PUT "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
 ```
 
 ```javascript
+spaceInvoices.items.edit(documentId, {
+  name: "Space suit",
+  description: "Best in class suit made from durable composites.",
+  unit: "item",
+  price: 100,
+  taxIds: [taxId]
+})
+.then(function(item) {
+  console.log(item);
+})
 ```
 
 > Returns:
@@ -128,6 +148,10 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c"
 ```
 
 ```javascript
+spaceInvoices.items.delete(itemId)
+.then(function(count) {
+  console.log(count);
+})
 ```
 
 > Returns:
@@ -169,6 +193,10 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/it
 ```
 
 ```javascript
+spaceInvoices.items.list(organizationId)
+.then(function(items) {
+  console.log(items);
+})
 ```
 
 > Returns:
@@ -246,6 +274,10 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/se
 ```
 
 ```javascript
+spaceInvoices.items.search(organizationId, 'space')
+.then(function(items) {
+  console.log(items);
+})
 ```
 
 > Returns:

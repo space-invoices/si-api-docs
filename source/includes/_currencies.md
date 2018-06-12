@@ -13,6 +13,10 @@ curl "https://api.spaceinvoices.com/v1/currencies" \
   -H "Authorization: TOKEN"
 ```
 ```javascript
+spaceInvoices.currency.list()
+.then(function(currencies) {
+  console.log(currencies);
+})
 ```
 
 > Returns:
@@ -61,4 +65,4 @@ This endpoint retrieves all Currencies.
 | id | Unique ISO 4217 currency ID of model instance |
 | name | Name of Currency. |
 | symbol | Symbol of currency if available otherwise same as ID. |
-| type | Type of currencie. _Either `fiat` or `crypto`_ |
+| type | Type of currency. _Either `fiat` or `crypto`_ |

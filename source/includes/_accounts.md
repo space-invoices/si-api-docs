@@ -105,9 +105,6 @@ spaceInvoices.accounts.create({
 .then(function(account) {
   console.log(account);
 })
-.catch(function(error) {
-  console.error(error);
-});
 ```
 
 ```csharp
@@ -178,6 +175,10 @@ This endpoint creates a new account.
 curl "https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@example.com"
 ```
 ```javascript
+spaceInvoices.accounts.isUnique('rocketman@example.com"')
+.then(function(response) {
+  console.log(response);
+})
 ```
 
 ```csharp
@@ -229,10 +230,14 @@ This endpoint returns a boolean value if email is unique / does not exist in the
 ## Read account details
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/accounts/5a3683ea12d5a67dd0ef2f4c" \
+curl "https://api.spaceinvoices.com/v1/accounts/:accountId" \
   -H "Authorization: TOKEN"
 ```
 ```javascript
+spaceInvoices.accounts.getById(accountId)
+.then(function(account) {
+  console.log(account);
+})
 ```
 
 ```csharp

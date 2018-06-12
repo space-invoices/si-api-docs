@@ -5,7 +5,7 @@ Recurrences are created for Documents. A recurrence dictates when a periodic aut
 ## Create New Recurrence
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrences" \
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence" \
   -H "Authorization: TOKEN" \
   -d name="Monthly recurrence" \
   -d type="month" \
@@ -14,6 +14,15 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurr
 ```
 
 ```javascript
+spaceInvoices.recurrences.create(documentId, {
+  name: "Monthly recurrence",
+  type: "month",
+  dateFirst: "2018-01-01",
+  numRecurrences: 2,
+})
+.then(function(recurrence) {
+  console.log(recurrence);
+})
 ```
 
 > Returns:
@@ -47,7 +56,7 @@ This endpoint creates a new Recurrence.
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/v1/documents/:id/recurrences`
+`POST https://api.spaceinvoices.com/v1/documents/:id/recurrence`
 
 #### Query parameters
 
@@ -88,6 +97,10 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0e
 ```
 
 ```javascript
+spaceInvoices.recurrences.delete(recurrenceId)
+.then(function(count) {
+  console.log(count);
+})
 ```
 
 > Returns:
@@ -122,11 +135,15 @@ This endpoint deletes a Recurrence by ID.
 ## List Recurrences
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrence" \
   -H "Authorization: TOKEN"
 ```
 
 ```javascript
+spaceInvoices.recurrences.list(organizationId)
+.then(function(recurrences) {
+  console.log(recurrences);
+})
 ```
 
 > Returns:
@@ -148,7 +165,7 @@ This endpoint lists Organization's Recurrences.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/organizations/:id/recurrences`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/recurrence`
 
 #### Query parameters
 
@@ -172,7 +189,7 @@ This endpoint lists Organization's Recurrences.
 ## List Recurrences
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrences" \
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence" \
   -H "Authorization: TOKEN"
 ```
 
@@ -212,7 +229,7 @@ This endpoint lists Recurrences.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/documents/:id/recurrences`
+`GET https://api.spaceinvoices.com/v1/documents/:id/recurrence`
 
 #### Query parameters
 
