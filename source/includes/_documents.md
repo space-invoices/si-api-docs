@@ -48,7 +48,7 @@ SpaceDocumentCreateOptions createOptions = new SpaceDocumentCreateOptions
             new SpaceDocumentItemOptions{
                 Name = "Space Suit",
                 Quantity = 1,
-                Unit = "I"
+                Unit = "Item"
             }
         }
     };
@@ -188,7 +188,7 @@ public class SpaceDocument
 
     [JsonProperty("dateDue")]
     public DateTime DateDue { get; set; }
-    
+
     [JsonProperty("currencyId")]
     public string CurrencyId { get; set; }
 
@@ -206,7 +206,7 @@ public class SpaceDocument
 
     [JsonProperty("_documentIssuer")]
     public SpaceDocumentIssuer DocumentIssuer { get; set; }
-    
+
     [JsonProperty("clientId")]
     public string ClientId { get; set; }
 
@@ -388,7 +388,7 @@ var filter = @"{
                     where: {
                       type: 'invoice'
                     }
-                  } 
+                  }
                 }";
 
 SpaceDocumentService documentService = new SpaceDocumentService();
@@ -545,10 +545,10 @@ var filter = @"{
                     where: {
                       type: 'invoice'
                     }
-                  } 
+                  }
                 }";
 
-SpaceDocumentService documentService = new SpaceDocumentService();                            
+SpaceDocumentService documentService = new SpaceDocumentService();
 SpaceDocument document = documentService.GetById("DOCUMENT_ID", filter);
 ```
 
@@ -685,7 +685,7 @@ public class SpaceDocument
 
     [JsonProperty("dateDue")]
     public DateTime DateDue { get; set; }
-    
+
     [JsonProperty("currencyId")]
     public string CurrencyId { get; set; }
 
@@ -703,7 +703,7 @@ public class SpaceDocument
 
     [JsonProperty("_documentIssuer")]
     public SpaceDocumentIssuer DocumentIssuer { get; set; }
-    
+
     [JsonProperty("clientId")]
     public string ClientId { get; set; }
 
