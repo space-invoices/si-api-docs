@@ -1093,7 +1093,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
             <span class="k">new</span> <span class="n">SpaceDocumentItemOptions</span><span class="p">{</span>
                 <span class="n">Name</span> <span class="p">=</span> <span class="s">"Space Suit"</span><span class="p">,</span>
                 <span class="n">Quantity</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-                <span class="n">Unit</span> <span class="p">=</span> <span class="s">"I"</span>
+                <span class="n">Unit</span> <span class="p">=</span> <span class="s">"Item"</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">};</span>
@@ -1669,7 +1669,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
                     <span class="k">where</span><span class="p">:</span> <span class="p">{</span>
                       <span class="n">type</span><span class="p">:</span> <span class="err">'</span><span class="n">invoice</span><span class="err">'</span>
                     <span class="p">}</span>
-                  <span class="p">}</span> 
+                  <span class="p">}</span>
                 <span class="p">}</span><span class="s">";
 </span>
 <span class="n">SpaceDocumentService</span> <span class="n">documentService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceDocumentService</span><span class="p">();</span>
@@ -1820,10 +1820,10 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
                     <span class="k">where</span><span class="p">:</span> <span class="p">{</span>
                       <span class="n">type</span><span class="p">:</span> <span class="err">'</span><span class="n">invoice</span><span class="err">'</span>
                     <span class="p">}</span>
-                  <span class="p">}</span> 
+                  <span class="p">}</span>
                 <span class="p">}</span><span class="s">";
 </span>
-<span class="n">SpaceDocumentService</span> <span class="n">documentService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceDocumentService</span><span class="p">();</span>                            
+<span class="n">SpaceDocumentService</span> <span class="n">documentService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceDocumentService</span><span class="p">();</span>
 <span class="n">SpaceDocument</span> <span class="n">document</span> <span class="p">=</span> <span class="n">documentService</span><span class="p">.</span><span class="nf">GetById</span><span class="p">(</span><span class="s">"DOCUMENT_ID"</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span>
 </code></pre>
 <blockquote>
