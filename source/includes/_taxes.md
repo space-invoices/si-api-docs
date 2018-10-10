@@ -25,6 +25,18 @@ spaceInvoices.taxes.create(organizationId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Taxes::create("ORGANIZATION_ID", array(
+    "name" => "GST 15",
+    "_taxRates" => [array(
+      "rate" => 15
+    )]
+  ));
+?>
+```
+
+
 > Returns:
 
 ```json
@@ -95,6 +107,15 @@ spaceInvoices.taxes.addANewRateToTax(taxId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Taxes::addANewRateToTax("TAX_ID", array(
+    "rate" => 20,
+    "dateValidFrom" => "2018-01-01"
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -146,6 +167,14 @@ spaceInvoices.taxes.edit(taxId, {
 .then(function(tax) {
   console.log(tax);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Taxes::edit("TAX_ID", array(
+    "name" => "GST 15"
+  ));
+?>
 ```
 
 > Returns:
@@ -211,6 +240,12 @@ spaceInvoices.taxes.delete(taxId)
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Taxes::delete("TAX_ID");
+?>
+```
+
 > Returns:
 
 ```json
@@ -254,6 +289,12 @@ spaceInvoices.taxes.list(organizationId)
 .then(function(taxes) {
   console.log(taxes);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Taxes::find("ORGANIZATION_ID");
+?>
 ```
 
 > Returns:
