@@ -74,8 +74,8 @@ public class SpaceLogIn
 ```php
 <?php
   {
-    "id" => "5a3683ea12d5a67dd0ef2f4c5a3683ea12d5a67dd0ef2f4c",
-    "userId" => "5a3683ea12d5a67dd0ef2f4c"
+    "id": "5a3683ea12d5a67dd0ef2f4c5a3683ea12d5a67dd0ef2f4c",
+    "userId": "5a3683ea12d5a67dd0ef2f4c"
   }
 ?>
 ```
@@ -174,8 +174,8 @@ public class SpaceAccount
 ```php
 <?php
   {
-    "id" => "5a3683ea12d5a67dd0ef2f4c",
-    "email" => "rocketman@example.com"
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "email": "rocketman@example.com"
   }
 ?>
 ```
@@ -249,7 +249,7 @@ public class Unique
 ```php
 <?php
   {
-    "isUnique" => true
+    "isUnique": true
   }
 ?>
 ```
@@ -330,8 +330,8 @@ public class SpaceAccount
 ```php
 <?php
   {
-    "id" => "5a3683ea12d5a67dd0ef2f4c",
-    "email" => "rocketman@example.com"
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "email": "rocketman@example.com"
   }
 ?>
 ```

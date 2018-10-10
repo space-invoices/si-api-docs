@@ -278,55 +278,55 @@ public class SpaceDocument
 ```php
 <?php
   {
-    "id" => "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId" => "5a3683ea12d5a67dd0ef2f4d",
-    "number" => "2018-00001",
-    "type" => "invoice",
-    "date" => "2018-01-31",
-    "dateService" => "2018-01-31",
-    "dateDue" => "2018-02-31",
-    "currencyId" => "USD",
-    "draft" => false,
-    "canceled" => false,
-    "sentEmail" => false,
-    "_documentIssuer" => {
-      "name" => "Space Exploration Techologies corp",
-      "address" => "Rocket Road",
-      "city" => "Hawthorne",
-      "zip" => "CA 90250",
-      "country" => "USA",
-      "IBAN" => "123454321 123454321",
-      "bank" => "Bank Of Amerika"
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "number": "2018-00001",
+    "type": "invoice",
+    "date": "2018-01-31",
+    "dateService": "2018-01-31",
+    "dateDue": "2018-02-31",
+    "currencyId": "USD",
+    "draft": false,
+    "canceled": false,
+    "sentEmail": false,
+    "_documentIssuer": {
+      "name": "Space Exploration Techologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "IBAN": "123454321 123454321",
+      "bank": "Bank Of Amerika"
     },
-    "clientId" => "5a3683ea12d5a67dd0ef2f4d",
-    "_documentClient" => {
-      "name" => "Rocket Man",
-      "country" => "USA"
+    "clientId": "5a3683ea12d5a67dd0ef2f4d",
+    "_documentClient": {
+      "name": "Rocket Man",
+      "country": "USA"
     },
-    "_documentItems" => [{
-      "id" => "5a3683ea12d5a67dd0ef2f4e",
-      "name" => "Space suit",
-      "quantity" => 1,
-      "unit" => "Item",
-      "discount" => 0,
-      "price" => 1000,
-      "total" => 2000,
-      "totalWithTax" => 2000,
-      "totalDiscount" => 0,
-      "_documenItemTaxes" => []
+    "_documentItems": [{
+      "id": "5a3683ea12d5a67dd0ef2f4e",
+      "name": "Space suit",
+      "quantity": 1,
+      "unit": "Item",
+      "discount": 0,
+      "price": 1000,
+      "total": 2000,
+      "totalWithTax": 2000,
+      "totalDiscount": 0,
+      "_documenItemTaxes": []
     }],
-    "note" => "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business.",
-    "signature" => "[company name]",
-    "footer" => "[organization name], [address], [city] [zip], [country]. IBAN => [IBAN] open at [bank]",
-    "_documentTaxes" => [],
-    "_documentReverseTaxes" => [],
-    "total" => 2000,
-    "totalDiscount" => 0,
-    "totalWithTax" => 2000,
-    "totalPaid" => 0,
-    "paidInFull" => false,
-    "_comments" => [],
-    "createdAt" => "2018-01-31T01:20:11.999Z"
+    "note": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business.",
+    "signature": "[company name]",
+    "footer": "[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]",
+    "_documentTaxes": [],
+    "_documentReverseTaxes": [],
+    "total": 2000,
+    "totalDiscount": 0,
+    "totalWithTax": 2000,
+    "totalPaid": 0,
+    "paidInFull": false,
+    "_comments": [],
+    "createdAt": "2018-01-31T01:20:11.999Z"
   }
 ?>
 ```
@@ -606,55 +606,55 @@ List<SpaceDocument>
 <?php
   [
     {
-      "id" => "5a3683ea12d5a67dd0ef2f4c",
-      "organizationId" => "5a3683ea12d5a67dd0ef2f4d",
-      "number" => "2018-00001",
-      "type" => "invoice",
-      "date" => "2018-01-31",
-      "dateService" => "2018-01-31",
-      "dateDue" => "2018-02-31",
-      "currencyId" => "USD",
-      "draft" => false,
-      "canceled" => false,
-      "sentEmail" => false,
-      "_documentIssuer" => {
-        "name" => "Space Exploration Techologies corp",
-        "address" => "Rocket Road",
-        "city" => "Hawthorne",
-        "zip" => "CA 90250",
-        "country" => "USA",
-        "IBAN" => "123454321 123454321",
-        "bank" => "Bank Of Amerika"
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+      "number": "2018-00001",
+      "type": "invoice",
+      "date": "2018-01-31",
+      "dateService": "2018-01-31",
+      "dateDue": "2018-02-31",
+      "currencyId": "USD",
+      "draft": false,
+      "canceled": false,
+      "sentEmail": false,
+      "_documentIssuer": {
+        "name": "Space Exploration Techologies corp",
+        "address": "Rocket Road",
+        "city": "Hawthorne",
+        "zip": "CA 90250",
+        "country": "USA",
+        "IBAN": "123454321 123454321",
+        "bank": "Bank Of Amerika"
       },
-      "clientId" => "5a3683ea12d5a67dd0ef2f4d",
-      "_documentClient" => {
-        "name" => "Rocket Man",
-        "country" => "USA"
+      "clientId": "5a3683ea12d5a67dd0ef2f4d",
+      "_documentClient": {
+        "name": "Rocket Man",
+        "country": "USA"
       },
-      "_documentItems" => [{
-        "id" => "5a3683ea12d5a67dd0ef2f4e",
-        "name" => "Space suit",
-        "quantity" => 1,
-        "unit" => "Item",
-        "discount" => 0,
-        "price" => 1000,
-        "total" => 2000,
-        "totalWithTax" => 2000,
-        "totalDiscount" => 0,
-        "_documenItemTaxes" => []
+      "_documentItems": [{
+        "id": "5a3683ea12d5a67dd0ef2f4e",
+        "name": "Space suit",
+        "quantity": 1,
+        "unit": "Item",
+        "discount": 0,
+        "price": 1000,
+        "total": 2000,
+        "totalWithTax": 2000,
+        "totalDiscount": 0,
+        "_documenItemTaxes": []
       }],
-      "note" => "When paying please use reference number 2018-00001.\nPlease transfer the money to bank account 123454321 123454321 open at Bank Of America.\n\nThank you for your business.",
-      "signature" => "Space Exploration Technologies corp",
-      "footer" => "Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN => 123454321 123454321 open at Bank Of America",
-      "_documentTaxes" => [],
-      "_documentReverseTaxes" => [],
-      "total" => 2000,
-      "totalDiscount" => 0,
-      "totalWithTax" => 2000,
-      "totalPaid" => 0,
-      "paidInFull" => false,
-      "_comments" => [],
-      "createdAt" => "2018-01-31T01:20:11.999Z"
+      "note": "When paying please use reference number 2018-00001.\nPlease transfer the money to bank account 123454321 123454321 open at Bank Of America.\n\nThank you for your business.",
+      "signature": "Space Exploration Technologies corp",
+      "footer": "Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN: 123454321 123454321 open at Bank Of America",
+      "_documentTaxes": [],
+      "_documentReverseTaxes": [],
+      "total": 2000,
+      "totalDiscount": 0,
+      "totalWithTax": 2000,
+      "totalPaid": 0,
+      "paidInFull": false,
+      "_comments": [],
+      "createdAt": "2018-01-31T01:20:11.999Z"
     }
   ]
 ?>
@@ -908,55 +908,55 @@ public class SpaceDocument
 ```php
 <?php
   {
-    "id" => "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId" => "5a3683ea12d5a67dd0ef2f4d",
-    "number" => "2018-00001",
-    "type" => "invoice",
-    "date" => "2018-01-31",
-    "dateService" => "2018-01-31",
-    "dateDue" => "2018-02-31",
-    "currencyId" => "USD",
-    "draft" => false,
-    "canceled" => false,
-    "sentEmail" => false,
-    "_documentIssuer" => {
-      "name" => "Space Exploration Techologies corp",
-      "address" => "Rocket Road",
-      "city" => "Hawthorne",
-      "zip" => "CA 90250",
-      "country" => "USA",
-      "IBAN" => "123454321 123454321",
-      "bank" => "Bank Of Amerika"
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "number": "2018-00001",
+    "type": "invoice",
+    "date": "2018-01-31",
+    "dateService": "2018-01-31",
+    "dateDue": "2018-02-31",
+    "currencyId": "USD",
+    "draft": false,
+    "canceled": false,
+    "sentEmail": false,
+    "_documentIssuer": {
+      "name": "Space Exploration Techologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "IBAN": "123454321 123454321",
+      "bank": "Bank Of Amerika"
     },
-    "clientId" => "5a3683ea12d5a67dd0ef2f4d",
-    "_documentClient" => {
-      "name" => "Rocket Man",
-      "country" => "USA"
+    "clientId": "5a3683ea12d5a67dd0ef2f4d",
+    "_documentClient": {
+      "name": "Rocket Man",
+      "country": "USA"
     },
-    "_documentItems" => [{
-      "id" => "5a3683ea12d5a67dd0ef2f4e",
-      "name" => "Space suit",
-      "quantity" => 1,
-      "unit" => "Item",
-      "discount" => 0,
-      "price" => 1000,
-      "total" => 2000,
-      "totalWithTax" => 2000,
-      "totalDiscount" => 0,
-      "_documenItemTaxes" => []
+    "_documentItems": [{
+      "id": "5a3683ea12d5a67dd0ef2f4e",
+      "name": "Space suit",
+      "quantity": 1,
+      "unit": "Item",
+      "discount": 0,
+      "price": 1000,
+      "total": 2000,
+      "totalWithTax": 2000,
+      "totalDiscount": 0,
+      "_documenItemTaxes": []
     }],
-    "note" => "When paying please use reference number 2018-00001.\nPlease transfer the money to bank account 123454321 123454321 open at Bank Of America.\n\nThank you for your business.",
-    "signature" => "Space Exploration Technologies corp",
-    "footer" => "Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN => 123454321 123454321 open at Bank Of America",
-    "_documentTaxes" => [],
-    "_documentReverseTaxes" => [],
-    "total" => 2000,
-    "totalDiscount" => 0,
-    "totalWithTax" => 2000,
-    "totalPaid" => 0,
-    "paidInFull" => false,
-    "_comments" => [],
-    "createdAt" => "2018-01-31T01:20:11.999Z"
+    "note": "When paying please use reference number 2018-00001.\nPlease transfer the money to bank account 123454321 123454321 open at Bank Of America.\n\nThank you for your business.",
+    "signature": "Space Exploration Technologies corp",
+    "footer": "Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN: 123454321 123454321 open at Bank Of America",
+    "_documentTaxes": [],
+    "_documentReverseTaxes": [],
+    "total": 2000,
+    "totalDiscount": 0,
+    "totalWithTax": 2000,
+    "totalPaid": 0,
+    "paidInFull": false,
+    "_comments": [],
+    "createdAt": "2018-01-31T01:20:11.999Z"
   }
 ?>
 ```
