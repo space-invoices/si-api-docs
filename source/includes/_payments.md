@@ -23,6 +23,16 @@ spaceInvoices.payments.create(documentId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Payments::create("DOCUMENT_ID", array(
+    "type" => "bank",
+    "date" => "2018-01-01",
+    "amount" => 1000
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -88,6 +98,18 @@ spaceInvoices.payments.edit(paymentId, {
 })
 ```
 
+
+```php
+<?php
+  Spaceinvoices\Payments::edit("PAYMENT_ID", array(
+    "type" => "bank",
+    "documentId" => "DOCUMENT_ID"
+    "date" => "2018-01-01",
+    "amount" => 1000,
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -143,6 +165,12 @@ spaceInvoices.payments.delete(paymentId)
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Payments::delete("PAYMENT_ID");
+?>
+```
+
 > Returns:
 
 ```json
@@ -184,6 +212,12 @@ spaceInvoices.payments.list(organizationId)
 .then(function(payments) {
   console.log(payments);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::find("ORGANIZATION_ID");
+?>
 ```
 
 > Returns:
@@ -234,6 +268,9 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/paymen
 ```
 
 ```javascript
+```
+
+```php
 ```
 
 > Returns:
