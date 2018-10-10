@@ -19,6 +19,12 @@ spaceInvoices.currency.list()
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Currencies::find();
+?>
+```
+
 > Returns:
 
 ```json
