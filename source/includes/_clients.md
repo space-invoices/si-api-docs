@@ -37,7 +37,7 @@ spaceInvoices.clients.create(organizationId, {
 
 ```php
 <?php
-  Spaceinvoices\Clients::create($organizationId, array(
+  Spaceinvoices\Clients::create("ORGANIZATION_ID", array(
     "name" => "Space Exploration Technologies corp",
     "address" => "Rocket Road",
     "city" => "Hawthorne",
@@ -143,7 +143,7 @@ spaceInvoices.clients.edit(clientId, {
 
 ```php
 <?php
-  Spaceinvoices\Clients::edit($clientId, array(
+  Spaceinvoices\Clients::edit("CLIENT_ID", array(
     "name" => "Space Exploration Technologies corp",
     "address" => "Rocket Road",
     "city" => "Hawthorne",
@@ -228,7 +228,7 @@ spaceInvoices.clients.delete(clientId)
 
 ```php
 <?php
-  Spaceinvoices\Clients::delete($clientId);
+  Spaceinvoices\Clients::delete("CLIENT_ID");
 ?>
 ```
 
@@ -279,7 +279,7 @@ spaceInvoices.clients.list(organizationId)
 
 ```php
 <?php
-  Spaceinvoices\Clients::find($organizationId);
+  Spaceinvoices\Clients::find("ORGANIZATION_ID");
 ?>
 ```
 
@@ -353,7 +353,7 @@ spaceInvoices.clients.search(organizationId, 'Space')
 
 ```php
 <?php
-  Spaceinvoices\Clients::search($organizationId, 'Space');
+  Spaceinvoices\Clients::search("ORGANIZATION_ID", 'Space');
 ?>
 ```
 
