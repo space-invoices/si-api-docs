@@ -63,7 +63,7 @@ This endpoint creates a new Payment.
 |      |     |
 | ---: | --- |
 | type **required** | Type of payment, one of `bank` / `online` / `paypal` / `cash` / `crypto` / `other`. |
-| date **required** | Number price of payment. |
+| date **required** | Date of payment. |
 | amount **required** | Amount of Payment. |
 | description | Description of Payment. |
 
@@ -82,6 +82,7 @@ This endpoint creates a new Payment.
 curl -X PUT "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: TOKEN" \
   -d type="bank" \
+  -d documentId="5a3683ea12d5a67dd0ef2f4d" \
   -d date="2018-01-01" \
   -d amount=1000
 ```
@@ -139,6 +140,7 @@ This endpoint updates a Payment by ID.
 |      |     |
 | ---: | --- |
 | type **required** | Type of payment, one of `bank` / `online` / `paypal` / `cash` / `crypto` / `other`. |
+| documentId **required** |	ID of Document for which we are updating the Payment. |
 | date **required** | Date of payment. |
 | amount **required** | Amount of Payment. |
 | description | Description of Payment. |

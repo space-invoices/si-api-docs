@@ -152,7 +152,7 @@ This endpoint deletes a Recurrence by ID.
 ## List Recurrences
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrence" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences" \
   -H "Authorization: TOKEN"
 ```
 
@@ -188,7 +188,7 @@ This endpoint lists Organization's Recurrences.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/organizations/:id/recurrence`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/recurrences`
 
 #### Query parameters
 
