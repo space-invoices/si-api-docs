@@ -99,12 +99,93 @@ var queryParams = {
   }
 }
 
-// Skip
+// Deleted
 var queryParams = {
   filter: {
     deleted: true
   }
 }
+```
+
+```php
+<?php
+  // Where
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "type" => "invoice"
+      )
+    )
+  );
+
+  // or
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "type" => array(
+          "inq" => [
+            "invoice",
+            "advance"
+          ]
+        )
+      )
+    )
+  );
+
+  // Include
+  $queryParams = array(
+    "filter" => array(
+      "include" => "payments"
+  );
+
+  // or
+  $queryParams = array(
+    "filter" => array(
+      "include" => array(
+        "tax" => "taxRate"
+      )
+    )
+  );
+
+  // Fields
+  $queryParams = array(
+    "filter" => array(
+      "fields" => array(
+        "type" => true
+      )
+    )
+  );
+
+  // Limit
+  $queryParams = array(
+    "filter" => array(
+      "limit" => 5
+    )
+  );
+
+  // Order
+  $queryParams = array(
+    "filter" => array(
+      "order" => array(
+        "date" => "ASC"
+      )
+    )
+  );
+
+  // Skip
+  $queryParams = array(
+    "filter" => array(
+      "skip" => 5
+    )
+  );
+
+  // Deleted
+  $queryParams = array(
+    "filter" => array(
+      "deleted" => true
+    )
+  );
+?>
 ```
 Space Invoices API uses a filtering mechanism to control how data is queried.
 
@@ -291,6 +372,155 @@ var queryParams = {
   }
 }
 ```
+
+```php
+<?php
+  // Equal
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "type" => "invoice"
+      )
+    )
+  );
+
+  // And | Or - Instead of and you can also use or
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "and" => [
+          array(
+            "type" => "invoice"
+          ),
+          array(
+            "draft" => false
+          )
+        ]
+      )
+    )
+  );
+
+  // GT / GTE
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "date" => array(
+          "gt" => "2018-04-01T18:30:00.000Z"
+        )
+      )
+    )
+  );
+
+  // LT / LTE
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "date" => array(
+          "lt" => "2018-04-01T18:30:00.000Z"
+        )
+      )
+    )
+  );
+
+  // Between
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "date" => array(
+          "between" => [
+            "2017-04-01T18:30:00.000Z",
+            "2018-04-01T18:30:00.000Z"
+          ]
+        )
+      )
+    )
+  );
+
+  // inq / nin
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "type" => array(
+          "inq" => [
+            "invoice",
+            "estimate"
+          ]
+        )
+      )
+    )
+  );
+
+  // Near
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "coordinates" => array(
+          "near" => "153.536,-28.1"
+        )
+      )
+    )
+  );
+
+  //or
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "coordinates" => array(
+          "near" => "153.536,-28.1",
+          "maxDistance" => 5,
+          "units" => "meters"
+        )
+      )
+    )
+  );
+
+  // NEQ
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "draft" => array(
+          "neq" => false
+        )
+      )
+    )
+  );
+
+  // LIKE | NLIKE / options
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "number" => array(
+          "like" => "2018.*"
+        )
+      )
+    )
+  );
+
+  // or
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "number" => array(
+          "like" => "2018.*",
+          "options" => "i"
+        )
+      )
+    )
+  );
+
+  // regExp
+  $queryParams = array(
+    "filter" => array(
+      "where" => array(
+        "number" => array(
+          "regexp" => "2018.*"
+        )
+      )
+    )
+  );
+?>
+```
+
 |      |     |
 | ---: | --- |
 | = | Equivalence. |

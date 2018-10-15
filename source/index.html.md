@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - javascript
   - csharp
+  - php
 
 toc_footers:
   - <a href='http://spaceinvoices.com'>Signup for a Developer Key</a>

@@ -23,6 +23,16 @@ spaceInvoices.payments.create(documentId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Payments::create("DOCUMENT_ID", array(
+    "type" => "bank",
+    "date" => "2018-01-01",
+    "amount" => 1000
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -53,7 +63,7 @@ This endpoint creates a new Payment.
 |      |     |
 | ---: | --- |
 | type **required** | Type of payment, one of `bank` / `online` / `paypal` / `cash` / `crypto` / `other`. |
-| date **required** | Number price of payment. |
+| date **required** | Date of payment. |
 | amount **required** | Amount of Payment. |
 | description | Description of Payment. |
 
@@ -72,6 +82,7 @@ This endpoint creates a new Payment.
 curl -X PUT "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: TOKEN" \
   -d type="bank" \
+  -d documentId="5a3683ea12d5a67dd0ef2f4d" \
   -d date="2018-01-01" \
   -d amount=1000
 ```
@@ -86,6 +97,18 @@ spaceInvoices.payments.edit(paymentId, {
 .then(function(payment) {
   console.log(payment);
 })
+```
+
+
+```php
+<?php
+  Spaceinvoices\Payments::edit("PAYMENT_ID", array(
+    "type" => "bank",
+    "documentId" => "DOCUMENT_ID"
+    "date" => "2018-01-01",
+    "amount" => 1000,
+  ));
+?>
 ```
 
 > Returns:
@@ -117,6 +140,7 @@ This endpoint updates a Payment by ID.
 |      |     |
 | ---: | --- |
 | type **required** | Type of payment, one of `bank` / `online` / `paypal` / `cash` / `crypto` / `other`. |
+| documentId **required** |	ID of Document for which we are updating the Payment. |
 | date **required** | Date of payment. |
 | amount **required** | Amount of Payment. |
 | description | Description of Payment. |
@@ -141,6 +165,12 @@ spaceInvoices.payments.delete(paymentId)
 .then(function(count) {
   console.log(count);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::delete("PAYMENT_ID");
+?>
 ```
 
 > Returns:
@@ -184,6 +214,12 @@ spaceInvoices.payments.list(organizationId)
 .then(function(payments) {
   console.log(payments);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::find("ORGANIZATION_ID");
+?>
 ```
 
 > Returns:
@@ -234,6 +270,9 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/paymen
 ```
 
 ```javascript
+```
+
+```php
 ```
 
 > Returns:

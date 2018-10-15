@@ -35,6 +35,22 @@ spaceInvoices.clients.create(organizationId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Clients::create("ORGANIZATION_ID", array(
+    "name" => "Space Exploration Technologies corp",
+    "address" => "Rocket Road",
+    "city" => "Hawthorne",
+    "zip" => "CA 90250",
+    "country" => "USA",
+    "email" => "info@spacex.com",
+    "contact" => "Elon M.",
+    "phone" => "+1 123 456 7890",
+    "note" => "Orders rocket fuel every month."
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -125,6 +141,22 @@ spaceInvoices.clients.edit(clientId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Clients::edit("CLIENT_ID", array(
+    "name" => "Space Exploration Technologies corp",
+    "address" => "Rocket Road",
+    "city" => "Hawthorne",
+    "zip" => "CA 90250",
+    "country" => "USA",
+    "email" => "info@spacex.com",
+    "contact" => "Elon M.",
+    "phone" => "+1 123 456 7890",
+    "note" => "Orders rocket fuel every month."
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -194,6 +226,12 @@ spaceInvoices.clients.delete(clientId)
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Clients::delete("CLIENT_ID");
+?>
+```
+
 > Returns:
 
 ```json
@@ -237,6 +275,12 @@ spaceInvoices.clients.list(organizationId)
 .then(function(clients) {
   console.log(clients);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::find("ORGANIZATION_ID");
+?>
 ```
 
 > Returns:
@@ -305,6 +349,12 @@ spaceInvoices.clients.search(organizationId, 'Space')
 .then(function(clients) {
   console.log(clients);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::search("ORGANIZATION_ID", 'Space');
+?>
 ```
 
 > Returns:

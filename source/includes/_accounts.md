@@ -35,6 +35,14 @@ SpaceAccountService accountService = new SpaceAccountService();
 SpaceLogIn login = accountService.LogIn(loginOptions);
 ```
 
+```php
+<?php
+  Spaceinvoices\Accounts::login(array(
+    "email" => "rocketman@example.com",
+    "password" => "supersecret"
+  ));
+?>
+```
 
 > Returns:
 
@@ -63,6 +71,14 @@ public class SpaceLogIn
 }
 ```
 
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c5a3683ea12d5a67dd0ef2f4c",
+    "userId": "5a3683ea12d5a67dd0ef2f4c"
+  }
+?>
+```
 
 
 
@@ -118,6 +134,15 @@ SpaceAccountService accountService = new SpaceAccountService();
 SpaceAccount account = accountService.Create(createOptions);
 ```
 
+```php
+<?php
+  Spaceinvoices\Accounts::create(array(
+    "email" => "rocketman@example.com",
+    "password" => "supersecret"
+  ));
+?>
+```
+
 > Returns:
 
 ```shell
@@ -144,6 +169,15 @@ public class SpaceAccount
     public string Email { get; set; }
 
 }
+```
+
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "email": "rocketman@example.com"
+  }
+?>
 ```
 
 This endpoint creates a new account.
@@ -175,7 +209,7 @@ This endpoint creates a new account.
 curl "https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@example.com"
 ```
 ```javascript
-spaceInvoices.accounts.isUnique('rocketman@example.com"')
+spaceInvoices.accounts.isUnique('rocketman@example.com')
 .then(function(response) {
   console.log(response);
 })
@@ -184,6 +218,12 @@ spaceInvoices.accounts.isUnique('rocketman@example.com"')
 ```csharp
 SpaceAccountService accountService = new SpaceAccountService();
 Unique unique = accountService.IsUnique("rocketman@example.com");
+```
+
+```php
+<?php
+  Spaceinvoices\Accounts::isUnique("rocketman@example.com");
+?>
 ```
 
 > Returns:
@@ -204,6 +244,14 @@ public class Unique
     public string IsUnique { get; set; }
 
 }
+```
+
+```php
+<?php
+  {
+    "isUnique": true
+  }
+?>
 ```
 
 This endpoint returns a boolean value if email is unique / does not exist in the system yet.
@@ -245,6 +293,12 @@ SpaceAccountService accountService = new SpaceAccountService();
 SpaceAccount account = accountService.Details("USER_ID");
 ```
 
+```php
+<?php
+  Spaceinvoices\Accounts::getById("USER_ID");
+?>
+```
+
 > Returns:
 
 ```shell
@@ -271,6 +325,15 @@ public class SpaceAccount
     public string Email { get; set; }
 
 }
+```
+
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "email": "rocketman@example.com"
+  }
+?>
 ```
 
 This endpoint returns an Account's details.
