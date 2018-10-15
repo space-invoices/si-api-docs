@@ -27,6 +27,18 @@ spaceInvoices.items.create(organizationId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Items::create("ORGANIZATION_ID", array(
+    "name" => "Space suit",
+    "description" => "Best in class suit made from durable composites.",
+    "unit" => "item",
+    "price" => 100,
+    "taxes" => ["TAX_ID"]
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -97,6 +109,18 @@ spaceInvoices.items.edit(documentId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Items::edit("DOCUMENT_ID", array(
+    "name" => "Space suit",
+    "description" => "Best in class suit made from durable composites.",
+    "unit" => "item",
+    "price" => 100,
+    "taxes" => ["TAX_ID"]
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -154,6 +178,12 @@ spaceInvoices.items.delete(itemId)
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Items::delete("ITEM_ID");
+?>
+```
+
 > Returns:
 
 ```json
@@ -197,6 +227,12 @@ spaceInvoices.items.list(organizationId)
 .then(function(items) {
   console.log(items);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Items::find("ORGANIZATION_ID");
+?>
 ```
 
 > Returns:
@@ -278,6 +314,12 @@ spaceInvoices.items.search(organizationId, 'space')
 .then(function(items) {
   console.log(items);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Items::search("ORGANIZATION_ID", "space");
+?>
 ```
 
 > Returns:

@@ -28,6 +28,12 @@ spaceInvoices.companies.list()
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Companies::find();
+?>
+```
+
 > Returns:
 
 ```json
@@ -88,6 +94,12 @@ spaceInvoices.companies.search('space')
 .then(function(companies) {
   console.log(companies);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Companies::search('space');
+?>
 ```
 
 > Returns:

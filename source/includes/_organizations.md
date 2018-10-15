@@ -48,8 +48,22 @@ SpaceOrganizationCreateOptions createOptions = new SpaceOrganizationCreateOption
 };
 
 SpaceOrganizationService organizationService = new SpaceOrganizationService();
-SpaceOrganization organization = organizationService.Create("USER_ID", createOptions);
+SpaceOrganization organization = organizationService.Create("ACCOUNT_ID", createOptions);
 
+```
+
+```php
+<?php
+  Spaceinvoices\Organizations::create("ACCOUNT_ID", array(
+    "name" => "Space Exploration Technologies corp",
+    "address" => "Rocket Road",
+    "city" => "Hawthorne",
+    "zip" => "CA 90250",
+    "country" => "USA",
+    "IBAN" => "123454321 123454321",
+    "bank" => "Bank Of America"
+  ));
+?>
 ```
 
 > Returns:
@@ -221,6 +235,68 @@ public class SpaceOrganization
     public string Brand { get; set; }
 
 }
+```
+
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "IBAN": "123454321 123454321",
+    "bank": "Bank Of Amerika",
+    "_defaults": [
+      {
+        "name": "image_logo",
+        "value": ""
+      }, {
+        "name": "image_signature",
+        "value": ""
+      }, {
+        "name": "invoice_note",
+        "value": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
+      }, {
+        "name": "estimate_note",
+        "value": "When paying please use reference number [document number].\n
+          Please transfer the money to bank account [IBAN] open at [bank]."
+      }, {
+        "name": "advance_note",
+        "value": "Thank you for your payment."
+      }, {
+        "name": "signature",
+        "value": "[organization name]"
+      }, {
+        "name": "footer",
+        "value": "[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"
+      }, {
+        "name": "email_reminder",
+        "value": "Dear customer,\n\nthis is a friendly reminder that the invoice [document number] is due on [document due].\n\nThank you and best regards,\n[organization name]"
+      }, {
+        "name": "email_document",
+        "value": ""
+      }, {
+        "name": "currencyId",
+        "value": "USD"
+      }, {
+        "name": "color_main",
+        "value": "0082c9"
+      }, {
+        "name": "invoice_dueDays",
+        "value": "30"
+      }, {
+        "name": "invoice_dueDays",
+        "value": "30"
+      }
+    ],
+    "locale": "en",
+    "active": true,
+    "supportPin": "12345",
+    "brand": "space-invoices"
+  }
+?>
 ```
 
 This endpoint creates a new organization.

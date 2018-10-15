@@ -16,6 +16,12 @@ var spaceInvoices = new SpaceInvoices('TOKEN');
 SpaceConfiguration.SetApiKey("TOKEN");
 ```
 
+```php
+<?php
+  Spaceinvoices\Spaceinvoices::setAccessToken("TOKEN");
+?>
+```
+
 
 
 > Make sure to replace `TOKEN` with your authorization token.

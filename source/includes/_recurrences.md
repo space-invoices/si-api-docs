@@ -25,6 +25,17 @@ spaceInvoices.recurrences.create(documentId, {
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Recurrences::create("DOCUMENT_ID", array(
+    "name" => "Monthly recurrence",
+    "type" => "month",
+    "dateFirst" => "2018-01-01",
+    "numRecurrences" => 2
+  ));
+?>
+```
+
 > Returns:
 
 ```json
@@ -103,6 +114,12 @@ spaceInvoices.recurrences.delete(recurrenceId)
 })
 ```
 
+```php
+<?php
+  Spaceinvoices\Recurrences::delete("RECURRENCE_ID");
+?>
+```
+
 > Returns:
 
 ```json
@@ -135,7 +152,7 @@ This endpoint deletes a Recurrence by ID.
 ## List Recurrences
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrence" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences" \
   -H "Authorization: TOKEN"
 ```
 
@@ -144,6 +161,12 @@ spaceInvoices.recurrences.list(organizationId)
 .then(function(recurrences) {
   console.log(recurrences);
 })
+```
+
+```php
+<?php
+  Spaceinvoices\Recurrences::find("ORGANIZATION_ID");
+?>
 ```
 
 > Returns:
@@ -165,7 +188,7 @@ This endpoint lists Organization's Recurrences.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/organizations/:id/recurrence`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/recurrences`
 
 #### Query parameters
 
@@ -194,6 +217,9 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurr
 ```
 
 ```javascript
+```
+
+```php
 ```
 
 > Returns:
