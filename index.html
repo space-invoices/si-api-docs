@@ -217,7 +217,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;csharp&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;csharp&quot;,&quot;php&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -230,6 +230,7 @@
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="php">php</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -458,6 +459,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">spaceInvoices</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SpaceInvoices</span><span class="p">(</span><span class="s1">'TOKEN'</span><span class="p">);</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceConfiguration</span><span class="p">.</span><span class="nf">SetApiKey</span><span class="p">(</span><span class="s">"TOKEN"</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Spaceinvoices</span><span class="o">::</span><span class="na">setAccessToken</span><span class="p">(</span><span class="s2">"TOKEN"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>TOKEN</code> with your authorization token.</p>
@@ -494,6 +498,12 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 
 <span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
 <span class="n">SpaceLogIn</span> <span class="n">login</span> <span class="p">=</span> <span class="n">accountService</span><span class="p">.</span><span class="nf">LogIn</span><span class="p">(</span><span class="n">loginOptions</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Accounts</span><span class="o">::</span><span class="na">login</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"rocketman@example.com"</span><span class="p">,</span>
+    <span class="s2">"password"</span> <span class="o">=&gt;</span> <span class="s2">"supersecret"</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -514,6 +524,12 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     <span class="p">[</span><span class="nf">JsonProperty</span><span class="p">(</span><span class="s">"userId"</span><span class="p">)]</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">UserId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span>
+    <span class="s2">"userId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint authenticates an account and returns an access token that can be used in consecutive calls to the API.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -569,6 +585,12 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 
 <span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
 <span class="n">SpaceAccount</span> <span class="n">account</span> <span class="p">=</span> <span class="n">accountService</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">createOptions</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Accounts</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"rocketman@example.com"</span><span class="p">,</span>
+    <span class="s2">"password"</span> <span class="o">=&gt;</span> <span class="s2">"supersecret"</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -590,6 +612,12 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">Email</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"rocketman@example.com"</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint creates a new account.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
@@ -627,12 +655,15 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </tbody></table>
 <h2 id='check-if-an-email-is-unique'>Check if an email is unique</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@example.com"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">isUnique</span><span class="p">(</span><span class="s1">'rocketman@example.com"'</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">isUnique</span><span class="p">(</span><span class="s1">'rocketman@example.com'</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
 <span class="n">Unique</span> <span class="n">unique</span> <span class="p">=</span> <span class="n">accountService</span><span class="p">.</span><span class="nf">IsUnique</span><span class="p">(</span><span class="s">"rocketman@example.com"</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Accounts</span><span class="o">::</span><span class="na">isUnique</span><span class="p">(</span><span class="s2">"rocketman@example.com"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -646,6 +677,11 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">IsUnique</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">{</span>
+    <span class="s2">"isUnique"</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint returns a boolean value if email is unique / does not exist in the system yet.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
@@ -682,6 +718,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceAccountService</span> <span class="n">accountService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceAccountService</span><span class="p">();</span>
 <span class="n">SpaceAccount</span> <span class="n">account</span> <span class="p">=</span> <span class="n">accountService</span><span class="p">.</span><span class="nf">Details</span><span class="p">(</span><span class="s">"USER_ID"</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Accounts</span><span class="o">::</span><span class="na">getById</span><span class="p">(</span><span class="s2">"USER_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -703,6 +742,12 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">Email</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"rocketman@example.com"</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint returns an Account&#39;s details.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
@@ -775,8 +820,19 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">};</span>
 
 <span class="n">SpaceOrganizationService</span> <span class="n">organizationService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceOrganizationService</span><span class="p">();</span>
-<span class="n">SpaceOrganization</span> <span class="n">organization</span> <span class="p">=</span> <span class="n">organizationService</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">"USER_ID"</span><span class="p">,</span> <span class="n">createOptions</span><span class="p">);</span>
+<span class="n">SpaceOrganization</span> <span class="n">organization</span> <span class="p">=</span> <span class="n">organizationService</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">"ACCOUNT_ID"</span><span class="p">,</span> <span class="n">createOptions</span><span class="p">);</span>
 
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Organizations</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"ACCOUNT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+    <span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+    <span class="s2">"city"</span> <span class="o">=&gt;</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+    <span class="s2">"zip"</span> <span class="o">=&gt;</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+    <span class="s2">"country"</span> <span class="o">=&gt;</span> <span class="s2">"USA"</span><span class="p">,</span>
+    <span class="s2">"IBAN"</span> <span class="o">=&gt;</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
+    <span class="s2">"bank"</span> <span class="o">=&gt;</span> <span class="s2">"Bank Of America"</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -941,6 +997,65 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">Brand</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+    <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+    <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+    <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+    <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
+    <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
+    <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span><span class="p">,</span>
+    <span class="s2">"_defaults"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"image_logo"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">""</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"image_signature"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">""</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"invoice_note"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"estimate_note"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">
+          Please transfer the money to bank account [IBAN] open at [bank]."</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"advance_note"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"Thank you for your payment."</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"signature"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"[organization name]"</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"footer"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"email_reminder"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"Dear customer,</span><span class="se">\n\n</span><span class="s2">this is a friendly reminder that the invoice [document number] is due on [document due].</span><span class="se">\n\n</span><span class="s2">Thank you and best regards,</span><span class="se">\n</span><span class="s2">[organization name]"</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"email_document"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">""</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"currencyId"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"USD"</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"color_main"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"0082c9"</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"invoice_dueDays"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"30"</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"invoice_dueDays"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="o">:</span> <span class="s2">"30"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"locale"</span><span class="o">:</span> <span class="s2">"en"</span><span class="p">,</span>
+    <span class="s2">"active"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"supportPin"</span><span class="o">:</span> <span class="s2">"12345"</span><span class="p">,</span>
+    <span class="s2">"brand"</span><span class="o">:</span> <span class="s2">"space-invoices"</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint creates a new organization.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -1100,6 +1215,23 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 
 <span class="n">SpaceDocumentService</span> <span class="n">documentService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceDocumentService</span><span class="p">();</span>
 <span class="n">SpaceDocument</span> <span class="n">document</span> <span class="p">=</span> <span class="n">documentService</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="n">createOptions</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Documents</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"estimate"</span><span class="p">,</span>
+    <span class="s2">"_documentClient"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Rocket Man"</span><span class="p">,</span>
+      <span class="s2">"country"</span> <span class="o">=&gt;</span> <span class="s2">"USA"</span>
+    <span class="p">),</span>
+    <span class="s2">"_documentItems"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+        <span class="s2">"quantity"</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"unit"</span> <span class="o">=&gt;</span> <span class="s2">"Item"</span><span class="p">,</span>
+        <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mi">1000</span>
+      <span class="p">)</span>
+    <span class="p">]</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -1292,6 +1424,59 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     <span class="p">[</span><span class="nf">JsonProperty</span><span class="p">(</span><span class="s">"createdAt"</span><span class="p">)]</span>
     <span class="k">public</span> <span class="n">DateTime</span> <span class="n">CreatedAt</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span>
+    <span class="s2">"organizationId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
+    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"2018-00001"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"invoice"</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2018-01-31"</span><span class="p">,</span>
+    <span class="s2">"dateService"</span><span class="o">:</span> <span class="s2">"2018-01-31"</span><span class="p">,</span>
+    <span class="s2">"dateDue"</span><span class="o">:</span> <span class="s2">"2018-02-31"</span><span class="p">,</span>
+    <span class="s2">"currencyId"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+    <span class="s2">"draft"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"canceled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"sentEmail"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"_documentIssuer"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+      <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+      <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+      <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
+      <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
+      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span>
+    <span class="p">},</span>
+    <span class="s2">"clientId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
+    <span class="s2">"_documentClient"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Rocket Man"</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span>
+    <span class="p">},</span>
+    <span class="s2">"_documentItems"</span><span class="o">:</span> <span class="p">[{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"unit"</span><span class="o">:</span> <span class="s2">"Item"</span><span class="p">,</span>
+      <span class="s2">"discount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"price"</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+      <span class="s2">"total"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="s2">"totalWithTax"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="s2">"totalDiscount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"_documenItemTaxes"</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">}],</span>
+    <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span><span class="p">,</span>
+    <span class="s2">"signature"</span><span class="o">:</span> <span class="s2">"[company name]"</span><span class="p">,</span>
+    <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">"[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"</span><span class="p">,</span>
+    <span class="s2">"_documentTaxes"</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="s2">"_documentReverseTaxes"</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="s2">"total"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="s2">"totalDiscount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"totalWithTax"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="s2">"totalPaid"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"paidInFull"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"_comments"</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="s2">"createdAt"</span><span class="o">:</span> <span class="s2">"2018-01-31T01:20:11.999Z"</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint creates a new document for given organization.</p>
 
@@ -1674,6 +1859,15 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </span>
 <span class="n">SpaceDocumentService</span> <span class="n">documentService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceDocumentService</span><span class="p">();</span>
 <span class="n">List</span><span class="p">&lt;</span><span class="n">SpaceDocument</span><span class="p">&gt;</span> <span class="n">documents</span> <span class="p">=</span> <span class="n">documentService</span><span class="p">.</span><span class="nf">List</span><span class="p">(</span><span class="s">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Documents</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"invoice"</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -1785,6 +1979,61 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
   <span class="p">}</span>
 <span class="p">]</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">List</span><span class="p">&lt;</span><span class="n">SpaceDocument</span><span class="p">&gt;</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span>
+      <span class="s2">"organizationId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
+      <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"2018-00001"</span><span class="p">,</span>
+      <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"invoice"</span><span class="p">,</span>
+      <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2018-01-31"</span><span class="p">,</span>
+      <span class="s2">"dateService"</span><span class="o">:</span> <span class="s2">"2018-01-31"</span><span class="p">,</span>
+      <span class="s2">"dateDue"</span><span class="o">:</span> <span class="s2">"2018-02-31"</span><span class="p">,</span>
+      <span class="s2">"currencyId"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+      <span class="s2">"draft"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">"canceled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">"sentEmail"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">"_documentIssuer"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+        <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+        <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+        <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+        <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
+        <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
+        <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span>
+      <span class="p">},</span>
+      <span class="s2">"clientId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
+      <span class="s2">"_documentClient"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Rocket Man"</span><span class="p">,</span>
+        <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span>
+      <span class="p">},</span>
+      <span class="s2">"_documentItems"</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+        <span class="s2">"quantity"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"unit"</span><span class="o">:</span> <span class="s2">"Item"</span><span class="p">,</span>
+        <span class="s2">"discount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"price"</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s2">"total"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+        <span class="s2">"totalWithTax"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+        <span class="s2">"totalDiscount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"_documenItemTaxes"</span><span class="o">:</span> <span class="p">[]</span>
+      <span class="p">}],</span>
+      <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"When paying please use reference number 2018-00001.</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account 123454321 123454321 open at Bank Of America.</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span><span class="p">,</span>
+      <span class="s2">"signature"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+      <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN: 123454321 123454321 open at Bank Of America"</span><span class="p">,</span>
+      <span class="s2">"_documentTaxes"</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">"_documentReverseTaxes"</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">"total"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="s2">"totalDiscount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"totalWithTax"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="s2">"totalPaid"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"paidInFull"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">"_comments"</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">"createdAt"</span><span class="o">:</span> <span class="s2">"2018-01-31T01:20:11.999Z"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint return a list of all Organization&#39;s documents optionaly filtered if latter are passed in query params.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
@@ -1825,6 +2074,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </span>
 <span class="n">SpaceDocumentService</span> <span class="n">documentService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceDocumentService</span><span class="p">();</span>
 <span class="n">SpaceDocument</span> <span class="n">document</span> <span class="p">=</span> <span class="n">documentService</span><span class="p">.</span><span class="nf">GetById</span><span class="p">(</span><span class="s">"DOCUMENT_ID"</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Documents</span><span class="o">::</span><span class="na">getById</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="nv">$filter</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2017,6 +2269,59 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
     <span class="p">[</span><span class="nf">JsonProperty</span><span class="p">(</span><span class="s">"createdAt"</span><span class="p">)]</span>
     <span class="k">public</span> <span class="n">DateTime</span> <span class="n">CreatedAt</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span>
+    <span class="s2">"organizationId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
+    <span class="s2">"number"</span><span class="o">:</span> <span class="s2">"2018-00001"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"invoice"</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2018-01-31"</span><span class="p">,</span>
+    <span class="s2">"dateService"</span><span class="o">:</span> <span class="s2">"2018-01-31"</span><span class="p">,</span>
+    <span class="s2">"dateDue"</span><span class="o">:</span> <span class="s2">"2018-02-31"</span><span class="p">,</span>
+    <span class="s2">"currencyId"</span><span class="o">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+    <span class="s2">"draft"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"canceled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"sentEmail"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"_documentIssuer"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+      <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+      <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+      <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
+      <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
+      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span>
+    <span class="p">},</span>
+    <span class="s2">"clientId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
+    <span class="s2">"_documentClient"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Rocket Man"</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span>
+    <span class="p">},</span>
+    <span class="s2">"_documentItems"</span><span class="o">:</span> <span class="p">[{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"unit"</span><span class="o">:</span> <span class="s2">"Item"</span><span class="p">,</span>
+      <span class="s2">"discount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"price"</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+      <span class="s2">"total"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="s2">"totalWithTax"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="s2">"totalDiscount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"_documenItemTaxes"</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">}],</span>
+    <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"When paying please use reference number 2018-00001.</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account 123454321 123454321 open at Bank Of America.</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span><span class="p">,</span>
+    <span class="s2">"signature"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+    <span class="s2">"footer"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp, Rocket Road, Hawthorne CA 90250, USA. IBAN: 123454321 123454321 open at Bank Of America"</span><span class="p">,</span>
+    <span class="s2">"_documentTaxes"</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="s2">"_documentReverseTaxes"</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="s2">"total"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="s2">"totalDiscount"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"totalWithTax"</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="s2">"totalPaid"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"paidInFull"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"_comments"</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="s2">"createdAt"</span><span class="o">:</span> <span class="s2">"2018-01-31T01:20:11.999Z"</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint return a document by it&#39;s ID.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
@@ -2057,6 +2362,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">currencies</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currencies</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Currencies</span><span class="o">::</span><span class="na">find</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2142,6 +2450,19 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">client</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Clients</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+    <span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+    <span class="s2">"city"</span> <span class="o">=&gt;</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+    <span class="s2">"zip"</span> <span class="o">=&gt;</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+    <span class="s2">"country"</span> <span class="o">=&gt;</span> <span class="s2">"USA"</span><span class="p">,</span>
+    <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
+    <span class="s2">"contact"</span> <span class="o">=&gt;</span> <span class="s2">"Elon M."</span><span class="p">,</span>
+    <span class="s2">"phone"</span> <span class="o">=&gt;</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
+    <span class="s2">"note"</span> <span class="o">=&gt;</span> <span class="s2">"Orders rocket fuel every month."</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2272,6 +2593,19 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">client</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Clients</span><span class="o">::</span><span class="na">edit</span><span class="p">(</span><span class="s2">"CLIENT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
+    <span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
+    <span class="s2">"city"</span> <span class="o">=&gt;</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
+    <span class="s2">"zip"</span> <span class="o">=&gt;</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
+    <span class="s2">"country"</span> <span class="o">=&gt;</span> <span class="s2">"USA"</span><span class="p">,</span>
+    <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
+    <span class="s2">"contact"</span> <span class="o">=&gt;</span> <span class="s2">"Elon M."</span><span class="p">,</span>
+    <span class="s2">"phone"</span> <span class="o">=&gt;</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
+    <span class="s2">"note"</span> <span class="o">=&gt;</span> <span class="s2">"Orders rocket fuel every month."</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2375,6 +2709,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Clients</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s2">"CLIENT_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2418,6 +2755,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">clients</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clients</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Clients</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2523,6 +2863,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">clients</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clients</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Clients</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="s1">'Space'</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2645,6 +2988,15 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Items</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+    <span class="s2">"description"</span> <span class="o">=&gt;</span> <span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span>
+    <span class="s2">"unit"</span> <span class="o">=&gt;</span> <span class="s2">"item"</span><span class="p">,</span>
+    <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"taxes"</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"TAX_ID"</span><span class="p">]</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2731,6 +3083,15 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Items</span><span class="o">::</span><span class="na">edit</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Space suit"</span><span class="p">,</span>
+    <span class="s2">"description"</span> <span class="o">=&gt;</span> <span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span>
+    <span class="s2">"unit"</span> <span class="o">=&gt;</span> <span class="s2">"item"</span><span class="p">,</span>
+    <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"taxes"</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"TAX_ID"</span><span class="p">]</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2798,6 +3159,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Items</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s2">"ITEM_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2841,6 +3205,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Items</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -2965,6 +3332,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Items</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="s2">"space"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3106,6 +3476,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Companies</span><span class="o">::</span><span class="na">find</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3193,6 +3566,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Companies</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">'space'</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3293,6 +3669,13 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payment</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payment</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Payments</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"bank"</span><span class="p">,</span>
+    <span class="s2">"date"</span> <span class="o">=&gt;</span> <span class="s2">"2018-01-01"</span><span class="p">,</span>
+    <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="mi">1000</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3334,7 +3717,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">date <strong>required</strong></td>
-<td>Number price of payment.</td>
+<td>Date of payment.</td>
 </tr>
 <tr>
 <td style="text-align: right">amount <strong>required</strong></td>
@@ -3360,6 +3743,7 @@ The database is updated regularly as frequently as we can query the data for eac
 <h2 id='update-payment'>Update Payment</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
+  -d <span class="nv">documentId</span><span class="o">=</span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span> <span class="se">\</span>
   -d <span class="nv">date</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
   -d <span class="nv">amount</span><span class="o">=</span>1000
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">paymentId</span><span class="p">,</span> <span class="p">{</span>
@@ -3371,6 +3755,14 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payment</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payment</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Payments</span><span class="o">::</span><span class="na">edit</span><span class="p">(</span><span class="s2">"PAYMENT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"bank"</span><span class="p">,</span>
+    <span class="s2">"documentId"</span> <span class="o">=&gt;</span> <span class="s2">"DOCUMENT_ID"</span>
+    <span class="s2">"date"</span> <span class="o">=&gt;</span> <span class="s2">"2018-01-01"</span><span class="p">,</span>
+    <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3407,6 +3799,10 @@ The database is updated regularly as frequently as we can query the data for eac
 <td>Type of payment, one of <code>bank</code> / <code>online</code> / <code>paypal</code> / <code>cash</code> / <code>crypto</code> / <code>other</code>.</td>
 </tr>
 <tr>
+<td style="text-align: right">documentId <strong>required</strong></td>
+<td>ID of Document for which we are updating the Payment.</td>
+</tr>
+<tr>
 <td style="text-align: right">date <strong>required</strong></td>
 <td>Date of payment.</td>
 </tr>
@@ -3433,6 +3829,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Payments</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s2">"PAYMENT_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3474,6 +3873,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payments</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payments</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Payments</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3534,7 +3936,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='list-a-document-39-s-payments'>List a Document&#39;s Payments</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre><pre class="highlight php tab-php"><code></code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3609,6 +4011,14 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">recurrence</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">recurrence</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Recurrences</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Monthly recurrence"</span><span class="p">,</span>
+    <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"month"</span><span class="p">,</span>
+    <span class="s2">"dateFirst"</span> <span class="o">=&gt;</span> <span class="s2">"2018-01-01"</span><span class="p">,</span>
+    <span class="s2">"numRecurrences"</span> <span class="o">=&gt;</span> <span class="mi">2</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3721,6 +4131,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Recurrences</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s2">"RECURRENCE_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3756,12 +4169,15 @@ The database is updated regularly as frequently as we can query the data for eac
 <td>Number of successfuly deleted recurrences.</td>
 </tr>
 </tbody></table>
-<h2 id='list-recurrences'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
+<h2 id='list-recurrences'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">recurrences</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">recurrences</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">recurrences</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Recurrences</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3779,7 +4195,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </span></code></pre>
 <p>This endpoint lists Organization&#39;s Recurrences.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/recurrence</code></p>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/recurrences</code></p>
 <h4 id='query-parameters-3'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -3822,7 +4238,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='list-recurrences-2'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+</code></pre><pre class="highlight javascript tab-javascript"><code></code></pre><pre class="highlight php tab-php"><code></code></pre>
 <blockquote>
 <p>Returns:</p>
 </blockquote>
@@ -3939,6 +4355,14 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tax</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Taxes</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"GST 15"</span><span class="p">,</span>
+    <span class="s2">"_taxRates"</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="k">array</span><span class="p">(</span>
+      <span class="s2">"rate"</span> <span class="o">=&gt;</span> <span class="mi">15</span>
+    <span class="p">)]</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -4031,6 +4455,12 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tax</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Taxes</span><span class="o">::</span><span class="na">addANewRateToTax</span><span class="p">(</span><span class="s2">"TAX_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"rate"</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">"dateValidFrom"</span> <span class="o">=&gt;</span> <span class="s2">"2018-01-01"</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -4088,6 +4518,11 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tax</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Taxes</span><span class="o">::</span><span class="na">edit</span><span class="p">(</span><span class="s2">"TAX_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"GST 15"</span>
+  <span class="p">));</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -4167,6 +4602,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Taxes</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s2">"TAX_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -4210,6 +4648,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">taxes</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">taxes</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Taxes</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -4389,12 +4830,90 @@ curl <span class="s2">"...?filter[deleted]=true"</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">// Skip</span>
+<span class="c1">// Deleted</span>
 <span class="kd">var</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">filter</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">deleted</span><span class="p">:</span> <span class="kc">true</span>
   <span class="p">}</span>
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="c1">// Where
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"invoice"</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// or
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"inq"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s2">"invoice"</span><span class="p">,</span>
+            <span class="s2">"advance"</span>
+          <span class="p">]</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Include
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"include"</span> <span class="o">=&gt;</span> <span class="s2">"payments"</span>
+  <span class="p">);</span>
+
+  <span class="c1">// or
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"include"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"tax"</span> <span class="o">=&gt;</span> <span class="s2">"taxRate"</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Fields
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"fields"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="kc">true</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Limit
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"limit"</span> <span class="o">=&gt;</span> <span class="mi">5</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Order
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"order"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"date"</span> <span class="o">=&gt;</span> <span class="s2">"ASC"</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Skip
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"skip"</span> <span class="o">=&gt;</span> <span class="mi">5</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Deleted
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"deleted"</span> <span class="o">=&gt;</span> <span class="kc">true</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>Space Invoices API uses a filtering mechanism to control how data is queried.</p>
 
@@ -4600,6 +5119,151 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="c1">// Equal
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"invoice"</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// And | Or - Instead of and you can also use or
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"and"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="k">array</span><span class="p">(</span>
+            <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"invoice"</span>
+          <span class="p">),</span>
+          <span class="k">array</span><span class="p">(</span>
+            <span class="s2">"draft"</span> <span class="o">=&gt;</span> <span class="kc">false</span>
+          <span class="p">)</span>
+        <span class="p">]</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// GT / GTE
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"date"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"gt"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-01T18:30:00.000Z"</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// LT / LTE
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"date"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"lt"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-01T18:30:00.000Z"</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Between
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"date"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"between"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s2">"2017-04-01T18:30:00.000Z"</span><span class="p">,</span>
+            <span class="s2">"2018-04-01T18:30:00.000Z"</span>
+          <span class="p">]</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// inq / nin
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"inq"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s2">"invoice"</span><span class="p">,</span>
+            <span class="s2">"estimate"</span>
+          <span class="p">]</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Near
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"coordinates"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"near"</span> <span class="o">=&gt;</span> <span class="s2">"153.536,-28.1"</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">//or
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"coordinates"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"near"</span> <span class="o">=&gt;</span> <span class="s2">"153.536,-28.1"</span><span class="p">,</span>
+          <span class="s2">"maxDistance"</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+          <span class="s2">"units"</span> <span class="o">=&gt;</span> <span class="s2">"meters"</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// NEQ
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"draft"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"neq"</span> <span class="o">=&gt;</span> <span class="kc">false</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// LIKE | NLIKE / options
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"number"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"like"</span> <span class="o">=&gt;</span> <span class="s2">"2018.*"</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// or
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"number"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"like"</span> <span class="o">=&gt;</span> <span class="s2">"2018.*"</span><span class="p">,</span>
+          <span class="s2">"options"</span> <span class="o">=&gt;</span> <span class="s2">"i"</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// regExp
+</span>  <span class="nv">$queryParams</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"filter"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s2">"where"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"number"</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s2">"regexp"</span> <span class="o">=&gt;</span> <span class="s2">"2018.*"</span>
+        <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -4693,6 +5357,7 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="php">php</a>
           </div>
       </div>
     </div>
