@@ -410,3 +410,74 @@ This endpoint searches for Organization's Clients.
 | contact | Name of Client. |
 | phone | Phone number of Client. |
 | note | Text note about Client. |
+
+## Get Clinet by ID
+
+```shell
+curl "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: TOKEN"
+```
+
+```javascript
+spaceInvoices.clients.getById(clientId)
+.then(function(client) {
+  console.log(client);
+})
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::getById("CLIENT_ID");
+?>
+```
+
+> Returns:
+
+```json
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 789",
+  "note": "Orders rocket fuel every month."
+}
+```
+
+This endpoint return a Client by ID.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/clients/:id`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Client. |
+
+
+### HTTP Response
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| name | Name of company, client or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | ISO 3166 county. |
+| taxSubject | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of Client. |
+| phone | Phone number of Client. |
+| note | Text note about Client. |
