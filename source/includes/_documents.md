@@ -1377,26 +1377,26 @@ spaceInvoices.documents.getPdf(DocumentId, "sl")
 PDF Buffer
 ```
 
-This endpoint deletes a Document by ID.
+__This endpoint returns a document in PDF format.__
 
-**IMPORTANT:** You can't delete documents with type `invoice`.
+The language of the document is determined by the `l` flag, if no flag is provided the organization's default locale is used. Currently this setting doesn't effect the user created content of the document, only the predefined data like table headers etc. In the future we are exploring options to allow users to provide content in multiple languages and switching it using this flag.
 
 ### HTTP Request
 
-`DELETE https://api.spaceinvoices.com/v1/documents/:id`
+`GET https://api.spaceinvoices.com/v1/documents/:id/pdf`
 
 #### Query parameters
 
 |      |     |
 | ---: | --- |
 | id **required** | ID of Document. |
-| language | Language of PDF (`sl`, `en` or `de` ). |
+| language | Language of PDF _Currently we support `sl`, `en` and `de` format._ |
 
 ### HTTP Response
 
 #### Arguments
 
-## Send email
+## Send in email
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send" \
   -H "Authorization: TOKEN" \
@@ -1420,8 +1420,8 @@ spaceInvoices.documents.send(DocumentId, {
 <?php
   Spaceinvoices\Documents::send("DOCUMENT_ID", array(
     "recipients" => "rocketman@example.com",
-    "message" => "You can find documet PDF in attachment.",
-    "subject" => "Invoice"
+    "message" => "You can find the document, number [document number], PDF in attachment.",
+    "subject" => "Invoice for service"
   ));
 ?>
 ```
@@ -1434,7 +1434,9 @@ spaceInvoices.documents.send(DocumentId, {
 }
 ```
 
-Sends email with Document PDF attachment.
+__This endpoint allows sending an email with Document PDF as attachment.__
+
+Emails are sent from our address in the name of the organization sending it and there are no styling options. In the future we intend to provide an option for users to also provide an html template for the email. Linking own domains for sending purposes will also be possible. For now only custom solutions are possible.
 
 ### HTTP Request
 
@@ -1450,9 +1452,9 @@ Sends email with Document PDF attachment.
 
 |      |     |
 | ---: | --- |
-| recipients **required** | String, list of recipients separated by a comma. |
-| message **required** | String, costum message sent in email. |
-| subject | String, email subject. |
+| recipients **required** | String, list of recipients separated with a comma. |
+| message **required** | String, costum message sent in email. _May contain shortcode notations which get parsed to data._ |
+| subject | String, email subject. _May contain shortcode notations which get parsed to data._ |
 
 ### HTTP Response
 
