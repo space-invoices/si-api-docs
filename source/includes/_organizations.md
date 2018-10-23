@@ -1,6 +1,6 @@
 # Organizations
 
-Any given account can have multiple organizations either by creating them or by being given access to them from other account holders.
+__Any given account can have multiple organizations either by creating them or by being given access to them from other account holders.__
 
 This is especially useful when there is a need to manage multiple organizations as they are created for users that might signup to a certain product.
 
@@ -320,7 +320,7 @@ This endpoint creates a new Organization.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country **required** | ISO 3166 county. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1) _The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases)._ |
+| country **required** | ISO 3166 county. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1) _The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases). We recommend providing either english language or country specific native language ISO name of country or the ISO three letter code to ensure proper taxes are applied but this is not the required form._ |
 | taxSubject _default is *false*_ | Specify if the organization is subject to tax. _Property effects creation of default tax rates and texts._ |
 | taxNumber | String VAT / GST / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
@@ -342,6 +342,152 @@ This endpoint creates a new Organization.
 | [](#empty) | |
 | active | Boolean indicator if organization is active (enabled). |
 | supportPin | 5 digit number used to match organization requesting support. |
+
+
+## Add Logo or Signature image to Organization
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/:id/upload-image?type=logo" \
+  -H "Authorization: TOKEN"
+```
+
+> Returns:
+
+```shell
+true
+```
+
+__This enpoint allows uploading a Logo or Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.__
+
+To check if an organization has a logo or signature image set we simply need to check an organization's nested `_defaults` object for keys containing `image_logo` or `image_signature`, the key should be set to `true`. The _defaults object can be viewed by [querying a organization's data](#read-organization-39-s-details).
+
+NOTE: Currently to remove an organization's logo or signature we need to update the value of the property in `_defaults` object to `false`. We will also provide an endpoint for removing images in the future `/organizations/:id/remove-image?type=logo`.
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/organizations/:organizationId/upload-image?type=type`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Organization to set image for. |
+| type **required** | The type of image we are uploading, _Valid options are `logo` or `signature`_. |
+
+|      |     |
+| ---: | --- |
+| image | The image payload to upload _Must be sent as payload  `Content-Type:application/x-www-form-urlencoded`_. |
+
+### HTTP Response
+
+#### Attributes
+
+|      |     |
+| ---: | --- |
+| success | Boolean true if request was succesful. |
+
+
+## Read Organization's details
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/:organizationId" \
+  -H "Authorization: TOKEN"
+```
+
+> Returns:
+
+```shell
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "IBAN": "123454321 123454321",
+  "bank": "Bank Of Amerika",
+  "_defaults": [
+    {
+      "name": "image_logo",
+      "value": ""
+    }, {
+      "name": "image_signature",
+      "value": ""
+    }, {
+      "name": "invoice_note",
+      "value": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
+    }, {
+      "name": "estimate_note",
+      "value": "When paying please use reference number [document number].\n
+        Please transfer the money to bank account [IBAN] open at [bank]."
+    }, {
+      "name": "advance_note",
+      "value": "Thank you for your payment."
+    }, {
+      "name": "signature",
+      "value": "[organization name]"
+    }, {
+      "name": "footer",
+      "value": "[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"
+    }, {
+      "name": "email_reminder",
+      "value": "Dear customer,\n\nthis is a friendly reminder that the invoice [document number] is due on [document due].\n\nThank you and best regards,\n[organization name]"
+    }, {
+      "name": "email_document",
+      "value": ""
+    }, {
+      "name": "currencyId",
+      "value": "USD"
+    }, {
+      "name": "color_main",
+      "value": "0082c9"
+    }, {
+      "name": "invoice_dueDays",
+      "value": "30"
+    }, {
+      "name": "invoice_dueDays",
+      "value": "30"
+    }
+  ],
+  "locale": "en",
+  "active": true,
+  "supportPin": "12345",
+  "brand": "space-invoices"
+}
+```
+
+This endpoint returns an Organization's details.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/organizations/:id`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of Organization to return. |
+
+### HTTP Response
+
+#### Attributes
+
+|      |     |
+| ---: | --- |
+| name | Name of company or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | ISO 3166 county. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1) _The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases)._ |
+| taxSubject _default is *false*_ | Specify if the organization is subject to tax. _Property effects creation of default tax rates and texts._ |
+| taxNumber | String VAT / GST / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| IBAN | Bank account number. |
+| website | Website address. |
+| locale _default is *en*_ | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Effects language of default texts and system messages._ |
+| brand _default is *space-invocies*_ | Brand source identification for internal use. |
+
 
 ## List Organizations
 
