@@ -278,6 +278,12 @@
                     <a href="#create-new-organization" class="toc-h2 toc-link" data-title="create-new-organization">Create New Organization</a>
                   </li>
                   <li>
+                    <a href="#add-logo-or-signature-image-to-organization" class="toc-h2 toc-link" data-title="add-logo-or-signature-image-to-organization">Add Logo or Signature image to Organization</a>
+                  </li>
+                  <li>
+                    <a href="#read-organization-39-s-details" class="toc-h2 toc-link" data-title="read-organization-s-details">Read Organization's details</a>
+                  </li>
+                  <li>
                     <a href="#list-organizations" class="toc-h2 toc-link" data-title="list-organizations">List Organizations</a>
                   </li>
               </ul>
@@ -441,9 +447,20 @@
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
           </li>
+          <li>
+            <a href="#apollo-ui" class="toc-h1 toc-link" data-title="apollo-ui">Apollo UI</a>
+          </li>
+          <li>
+            <a href="#changelog" class="toc-h1 toc-link" data-title="changelog">Changelog</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#23-10-2018" class="toc-h2 toc-link" data-title="23-10-2018">23.10.2018</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='http://spaceinvoices.com'>Signup for a Developer Key</a></li>
+            <li><a href='https://spaceinvoices.com'>Signup for a Developer Key</a></li>
             <li><a href='http://joinslack.spaceinvoices.com'>Join our public Slack community</a></li>
             <li><hr></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
@@ -454,17 +471,15 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1><h2 id='welcome-to-space-invoices-api'>Welcome to Space Invoices API</h2>
 <p>Space Invoices is a developer oriented invoicing API. You can use it to create and manage invoices and other types of documents, it also allows you to manage any data related to those documents.</p>
-<h3 id='visit-our-website-at-spaceinvoices-com-and-sign-up-for-a-developer-token'>Visit our website at <a href="http://spaceinvoices.com">spaceinvoices.com</a> and sign up for a developer token</h3><h2 id='getting-help'>Getting help</h2>
+<h3 id='visit-our-website-at-spaceinvoices-com-and-sign-up-for-a-developer-token'>Visit our website at <a href="http://spaceinvoices.com">spaceinvoices.com</a> and sign up for a developer token.</h3><h2 id='getting-help'>Getting help</h2>
 <p>We&#39;re here to help in case you get stuck or want to make a request for functionalities. We also encourage our community to help each other that&#39;s why we&#39;ve created a community Slack channel and conveniently called it Space Invaders :), hope to talk to you there!</p>
 <h3 id='join-our-slack-community-space-invaders'>Join our Slack community <a href="http://joinslack.spaceinvoices.com">Space Invaders</a>.</h3><h2 id='about'>About</h2>
-<p>We have language binding in Shell for now, other languages will be added soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language binding in Shell, Javascript, C-sharp and PHP for now, other languages will be added soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<aside class="warning"><strong>NOTE: This documentation is a work in progress.</strong></aside>
-
-<p>While the API is fully operational parts of this documentation are still missing or might change in the near future while we finalise all the aspects of this document and the product. Check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>.</p>
+<p>While the API is fully operational some small details of this documentation are still missing and features are added weekly so check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
-<p>Authorization token should be used to make calls to the API:</p>
+<p>Authorization token must be used to make calls to the API:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
@@ -479,13 +494,23 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <p>Make sure to replace <code>TOKEN</code> with your authorization token.</p>
 </blockquote>
 
-<p>Space Invoices uses authorization tokens to allow access to the API. A token can be aquired from the developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</p>
+<p><strong>Space Invoices uses authorization tokens to allow access to the API. A token can be aquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
 
-<p>The API key has to be included in all API requests to the server in a header like this:</p>
+<p>The API token has to be included in all API requests to the server in a header like this:</p>
 
 <p><code>Authorization: TOKEN</code></p>
 
 <aside class="notice">You must replace <code>TOKEN</code> with your obtained token.</aside>
+
+<p><br></p>
+
+<p>Alternatively the token can be added as a query parameter of the URL but this is a less recomended way as it poses a security risk.</p>
+
+<p><code>?access_token=TOKEN</code></p>
+
+<!-- <br>
+
+PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and tokens as Space Invoices. A user can be given access to view their account and organizations by clicking a link with a token in the URL. You can read more about Apollo [here](#apollo-ui). -->
 <h1 id='accounts'>Accounts</h1>
 <p>Accounts represent users that can login and access different organizations based on access right.</p>
 <h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/login"</span> <span class="se">\</span>
@@ -793,7 +818,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 </tbody></table>
 <h1 id='organizations'>Organizations</h1>
-<p>Any given account can have multiple organizations either by creating them or by being given access to them from other account holders.</p>
+<p><strong>Any given account can have multiple organizations either by creating them or by being given access to them from other account holders.</strong></p>
 
 <p>This is especially useful when there is a need to manage multiple organizations as they are created for users that might signup to a certain product.</p>
 
@@ -1113,7 +1138,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 </tr>
 <tr>
 <td style="text-align: right">country <strong>required</strong></td>
-<td>ISO 3166 county. <a href="https://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a> <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases).</em></td>
+<td>ISO 3166 county. <a href="https://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a> <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases). We recommend providing either english language or country specific native language ISO name of country or the ISO three letter code to ensure proper taxes are applied but this is not the required form.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
@@ -1178,6 +1203,200 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <tr>
 <td style="text-align: right">supportPin</td>
 <td>5 digit number used to match organization requesting support.</td>
+</tr>
+</tbody></table>
+<h2 id='add-logo-or-signature-image-to-organization'>Add Logo or Signature image to Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/upload-image?type=logo"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="nb">true</span>
+</code></pre>
+<p><strong>This enpoint allows uploading a Logo or Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.</strong></p>
+
+<p>To check if an organization has a logo or signature image set we simply need to check an organization&#39;s nested <code>_defaults</code> object for keys containing <code>image_logo</code> or <code>image_signature</code>, the key should be set to <code>true</code>. The _defaults object can be viewed by <a href="#read-organization-39-s-details">querying a organization&#39;s data</a>.</p>
+
+<p>NOTE: Currently to remove an organization&#39;s logo or signature we need to update the value of the property in <code>_defaults</code> object to <code>false</code>. We will also provide an endpoint for removing images in the future <code>/organizations/:id/remove-image?type=logo</code>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.spaceinvoices.com/v1/organizations/:organizationId/upload-image?type=type</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Organization to set image for.</td>
+</tr>
+<tr>
+<td style="text-align: right">type <strong>required</strong></td>
+<td>The type of image we are uploading, <em>Valid options are <code>logo</code> or <code>signature</code></em>.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">image</td>
+<td>The image payload to upload <em>Must be sent as payload  <code>Content-Type:application/x-www-form-urlencoded</code></em>.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-2'>HTTP Response</h3><h4 id='attributes'>Attributes</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">success</td>
+<td>Boolean true if request was succesful.</td>
+</tr>
+</tbody></table>
+<h2 id='read-organization-39-s-details'>Read Organization&#39;s details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:organizationId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Space Exploration Technologies corp"</span>,
+  <span class="s2">"address"</span>: <span class="s2">"Rocket Road"</span>,
+  <span class="s2">"city"</span>: <span class="s2">"Hawthorne"</span>,
+  <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
+  <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
+  <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
+  <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>,
+  <span class="s2">"_defaults"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"image_logo"</span>,
+      <span class="s2">"value"</span>: <span class="s2">""</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"image_signature"</span>,
+      <span class="s2">"value"</span>: <span class="s2">""</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"invoice_note"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"estimate_note"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">
+        Please transfer the money to bank account [IBAN] open at [bank]."</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"advance_note"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"Thank you for your payment."</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"signature"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"[organization name]"</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"footer"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"email_reminder"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"Dear customer,</span><span class="se">\n\n</span><span class="s2">this is a friendly reminder that the invoice [document number] is due on [document due].</span><span class="se">\n\n</span><span class="s2">Thank you and best regards,</span><span class="se">\n</span><span class="s2">[organization name]"</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"email_document"</span>,
+      <span class="s2">"value"</span>: <span class="s2">""</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"currencyId"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"USD"</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"color_main"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"0082c9"</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"invoice_dueDays"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"30"</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"invoice_dueDays"</span>,
+      <span class="s2">"value"</span>: <span class="s2">"30"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"locale"</span>: <span class="s2">"en"</span>,
+  <span class="s2">"active"</span>: <span class="nb">true</span>,
+  <span class="s2">"supportPin"</span>: <span class="s2">"12345"</span>,
+  <span class="s2">"brand"</span>: <span class="s2">"space-invoices"</span>
+<span class="o">}</span>
+</code></pre>
+<p>This endpoint returns an Organization&#39;s details.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id</code></p>
+<h4 id='query-parameters-3'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id <strong>required</strong></td>
+<td>ID of Organization to return.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-3'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of company or other type of organization.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Street or similar address.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line 2.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City name.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>Zip / post code.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>ISO 3166 county. <a href="https://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a> <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases).</em></td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
+<td>Specify if the organization is subject to tax. <em>Property effects creation of default tax rates and texts.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>String VAT / GST / etc. tax identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>String registration or similar identification number.</td>
+</tr>
+<tr>
+<td style="text-align: right">IBAN</td>
+<td>Bank account number.</td>
+</tr>
+<tr>
+<td style="text-align: right">website</td>
+<td>Website address.</td>
+</tr>
+<tr>
+<td style="text-align: right">locale <em>default is <em>en</em></em></td>
+<td>ISO 639-1 locale code. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> <em>Effects language of default texts and system messages.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">brand <em>default is <em>space-invocies</em></em></td>
+<td>Brand source identification for internal use.</td>
 </tr>
 </tbody></table>
 <h2 id='list-organizations'>List Organizations</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/:id/organizations"</span> <span class="se">\</span>
@@ -1377,9 +1596,9 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <span class="cp">?&gt;</span>
 </code></pre>
 <p>This endpoint lists all Organizations.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/accounts/:id/organizations</code></p>
-<h4 id='query-parameters-2'>Query parameters</h4>
+<h4 id='query-parameters-4'>Query parameters</h4>
 <table><thead>
 <tr>
 <th style="text-align: right"></th>
@@ -1391,7 +1610,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <td>ID of account.</td>
 </tr>
 </tbody></table>
-<h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-3'>Arguments</h4>
+<h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-3'>Arguments</h4>
 <table><thead>
 <tr>
 <th style="text-align: right"></th>
@@ -6457,6 +6676,28 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 <td>Service Unavailable <em>We&#39;re temporarily offline for maintenance. Please try again later.</em></td>
 </tr>
 </tbody></table>
+<h1 id='apollo-ui'>Apollo UI</h1>
+<blockquote>
+<p>https://getapollo.io</p>
+</blockquote>
+
+<aside class="success"> Apollo is an online invoicing app that comes free with Space Invoices.</aside>
+
+<p><strong>Apollo <a href="https://getapollo.io">getapollo.io</a> allows users to view data created through the API in a user friendly visual interface.</strong></p>
+
+<p>Each account created through the API can use their credentials to login to Apollo and view all their assigned/authorised organizations.</p>
+
+<p>We are planning to also provide Apollo as a whitelabel edition so parts of it can be added to apps as drop-in elements without the current branding.</p>
+
+<p><strong><a href="https://getapollo.io">https://getapollo.io</a></strong></p>
+<h1 id='changelog'>Changelog</h1><h2 id='23-10-2018'>23.10.2018</h2>
+<ul>
+<li>Added a changelog</li>
+<li>Added instructions for uploading a logo or signature to an organization</li>
+<li>Added information about Apollo UI</li>
+<li>Added instructions about listing a single organization&#39;s data</li>
+<li>Added alternative instructions for providing access token as query param of url</li>
+</ul>
 
       </div>
       <div class="dark-box">
