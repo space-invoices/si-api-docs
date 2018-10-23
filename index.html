@@ -310,7 +310,7 @@
                     <a href="#create-pdf" class="toc-h2 toc-link" data-title="create-pdf">Create PDF</a>
                   </li>
                   <li>
-                    <a href="#send-email" class="toc-h2 toc-link" data-title="send-email">Send email</a>
+                    <a href="#send-in-email" class="toc-h2 toc-link" data-title="send-in-email">Send in email</a>
                   </li>
               </ul>
           </li>
@@ -454,7 +454,7 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#23-10-2018" class="toc-h2 toc-link" data-title="23-10-2018">23.10.2018</a>
+                    <a href="#23-10-2018" class="toc-h2 toc-link" data-title="23-10-2018"># 23.10.2018</a>
                   </li>
               </ul>
           </li>
@@ -3490,11 +3490,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </blockquote>
 <pre class="highlight plaintext"><code>PDF Buffer
 </code></pre>
-<p>This endpoint deletes a Document by ID.</p>
+<p><strong>This endpoint returns a document in PDF format.</strong></p>
 
-<p><strong>IMPORTANT:</strong> You can&#39;t delete documents with type <code>invoice</code>.</p>
+<p>The language of the document is determined by the <code>l</code> flag, if no flag is provided the organization&#39;s default locale is used. Currently this setting doesn&#39;t effect the user created content of the document, only the predefined data like table headers etc. In the future we are exploring options to allow users to provide content in multiple languages and switching it using this flag.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>DELETE https://api.spaceinvoices.com/v1/documents/:id</code></p>
+<p><code>GET https://api.spaceinvoices.com/v1/documents/:id/pdf</code></p>
 <h4 id='query-parameters-6'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -3508,10 +3508,10 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">language</td>
-<td>Language of PDF (<code>sl</code>, <code>en</code> or <code>de</code> ).</td>
+<td>Language of PDF <em>Currently we support <code>sl</code>, <code>en</code> and <code>de</code> format.</em></td>
 </tr>
 </tbody></table>
-<h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4><h2 id='send-email'>Send email</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send"</span> <span class="se">\</span>
+<h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4><h2 id='send-in-email'>Send in email</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
   -d <span class="nv">recipients</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
   -d <span class="nv">message</span><span class="o">=</span><span class="s2">"You can find documet PDF in attachment."</span> <span class="se">\</span>
@@ -3527,8 +3527,8 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
   <span class="nx">Spaceinvoices\Documents</span><span class="o">::</span><span class="na">send</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"recipients"</span> <span class="o">=&gt;</span> <span class="s2">"rocketman@example.com"</span><span class="p">,</span>
-    <span class="s2">"message"</span> <span class="o">=&gt;</span> <span class="s2">"You can find documet PDF in attachment."</span><span class="p">,</span>
-    <span class="s2">"subject"</span> <span class="o">=&gt;</span> <span class="s2">"Invoice"</span>
+    <span class="s2">"message"</span> <span class="o">=&gt;</span> <span class="s2">"You can find the document, number [document number], PDF in attachment."</span><span class="p">,</span>
+    <span class="s2">"subject"</span> <span class="o">=&gt;</span> <span class="s2">"Invoice for service"</span>
   <span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
@@ -3539,7 +3539,9 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Sends email with Document PDF attachment.</p>
+<p><strong>This endpoint allows sending an email with Document PDF as attachment.</strong></p>
+
+<p>Emails are sent from our address in the name of the organization sending it and there are no styling options. In the future we intend to provide an option for users to also provide an html template for the email. Linking own domains for sending purposes will also be possible. For now only custom solutions are possible.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/v1/documents/:id/send</code></p>
 <h4 id='query-parameters-7'>Query parameters</h4>
@@ -3563,15 +3565,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </thead><tbody>
 <tr>
 <td style="text-align: right">recipients <strong>required</strong></td>
-<td>String, list of recipients separated by a comma.</td>
+<td>String, list of recipients separated with a comma.</td>
 </tr>
 <tr>
 <td style="text-align: right">message <strong>required</strong></td>
-<td>String, costum message sent in email.</td>
+<td>String, costum message sent in email. <em>May contain shortcode notations which get parsed to data.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">subject</td>
-<td>String, email subject.</td>
+<td>String, email subject. <em>May contain shortcode notations which get parsed to data.</em></td>
 </tr>
 </tbody></table>
 <h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4><h1 id='currencies'>Currencies</h1>
@@ -6690,13 +6692,15 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 <p>We are planning to also provide Apollo as a whitelabel edition so parts of it can be added to apps as drop-in elements without the current branding.</p>
 
 <p><strong><a href="https://getapollo.io">https://getapollo.io</a></strong></p>
-<h1 id='changelog'>Changelog</h1><h2 id='23-10-2018'>23.10.2018</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='23-10-2018'># 23.10.2018</h2>
 <ul>
 <li>Added a changelog</li>
 <li>Added instructions for uploading a logo or signature to an organization</li>
 <li>Added information about Apollo UI</li>
 <li>Added instructions about listing a single organization&#39;s data</li>
 <li>Added alternative instructions for providing access token as query param of url</li>
+<li>Added more information about sending documents in emails</li>
+<li>Added more information about downloading PDFs</li>
 </ul>
 
       </div>
