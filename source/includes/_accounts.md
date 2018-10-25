@@ -255,7 +255,7 @@ public class Unique
 ```
 
 This endpoint returns a boolean value if email is unique / does not exist in the system yet.
-<aside class="notice">Special characters should be url encoded for accurate results!</aside>
+<aside class="notice">Special characters should be url encoded, otherwise they will be stripped which may cause inaccurate results!</aside>
 
 ### HTTP Request
 
