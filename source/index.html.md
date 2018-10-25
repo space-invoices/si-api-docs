@@ -18,10 +18,11 @@ includes:
   - accounts
   - organizations
   - documents
+  - countries
   - currencies
   - clients
-  - items
   - companies
+  - items
   - payments
   - recurrences
   - taxes

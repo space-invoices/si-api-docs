@@ -366,7 +366,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | zip | Zip / postal code of Client. |
 | country | Country of Client. |
 | companyNumber | String, organization registration or similar number of Client. |
-| taxNumber | String, organization VAT / GST or similar tax number of Client. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of Client. |
 | [](#empty) | |
 | _documentIssuer | Object containting issuer data. _Property is automatically populated with Organization data._ _Any key that is provided in object is used instead._ [toggle definition](#expand) |
 | name | Name of issuer. |
@@ -376,7 +376,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | zip | Zip / postal code of issuer. |
 | country | Country of issuer. |
 | companyNumber | String, organization registration or similar number of issuer. |
-| taxNumber | String, organization VAT / GST or similar tax number of issuer. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of issuer. |
 | IBAN | Bank account number of issuer. |
 | bank | Bank of issuer. |
 | website | Website address of issuer. |
@@ -1230,7 +1230,7 @@ This endpoint updates a document.
 | zip | Zip / postal code of Client. |
 | country | Country of Client. |
 | companyNumber | String, organization registration or similar number of Client. |
-| taxNumber | String, organization VAT / GST or similar tax number of Client. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of Client. |
 | [](#empty) | |
 | _documentIssuer | Object containting issuer data. _Property is automatically populated with Organization data._ _Any key that is provided in object is used instead._ [toggle definition](#expand) |
 | name | Name of issuer. |
@@ -1240,7 +1240,7 @@ This endpoint updates a document.
 | zip | Zip / postal code of issuer. |
 | country | Country of issuer. |
 | companyNumber | String, organization registration or similar number of issuer. |
-| taxNumber | String, organization VAT / GST or similar tax number of issuer. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of issuer. |
 | IBAN | Bank account number of issuer. |
 | bank | Bank of issuer. |
 | website | Website address of issuer. |

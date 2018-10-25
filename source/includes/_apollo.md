@@ -4,7 +4,7 @@
 
 <aside class="success"> Apollo is an online invoicing app that comes free with Space Invoices.</aside>
 
-__Apollo [getapollo.io](https://getapollo.io) allows users to view data created through the API in a user friendly visual interface.__
+__Apollo ([getapollo.io](https://getapollo.io)) allows users to view data created through the API in a user friendly visual interface.__
 
 Each account created through the API can use their credentials to login to Apollo and view all their assigned/authorised organizations.
 

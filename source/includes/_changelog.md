@@ -1,6 +1,16 @@
 # Changelog
 
+## # 24.10.2018
+
+- Added countries documentation
+- Fixed some iso references
+- Added extra clarification about taxes
+- Fixed currency id field name
+- Added missing tax abbreviation field where applicable
+- Removed redundant required field notation on read operations
+
 ## # 23.10.2018
+
 - Added a changelog
 - Added instructions for uploading a logo or signature to an organization
 - Added information about Apollo UI

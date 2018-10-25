@@ -8,8 +8,7 @@ We are adding to this database slowly country by country.
 The database is updated regularly as frequently as we can query the data for each country.
 
 Current status:
-- [x] Slovenia (production API)
-- [ ] Hungary (coming soon)
+- [x] Slovenia (test API, production in 1 month)
 
 Accepting votes and data sources for other countries.
 
@@ -78,7 +77,7 @@ This endpoint lists Companies.
 | zip | ZIP / post code of Company. |
 | country | Country of Company. |
 | taxNumber | Tax number of Company. |
-| taxSubject | Boolean if Company is subject to VAT / GST or other tax. |
+| taxSubject | Boolean if Company is subject to VAT / GST / sales tax or other tax. |
 | companyNumber | Company or other organization registration number. |
 
 
@@ -147,5 +146,5 @@ This endpoint searches for Companies.
 | zip | ZIP / post code of Company. |
 | country | Country of Company. |
 | taxNumber | Tax number of Company. |
-| taxSubject | Boolean if Company is subject to VAT / GST or other tax. |
+| taxSubject | Boolean if Company is subject to VAT / GST / sales tax or other tax. |
 | companyNumber | Company or other organization registration number. |

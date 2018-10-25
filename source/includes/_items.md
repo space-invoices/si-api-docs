@@ -250,7 +250,8 @@ spaceInvoices.items.list(organizationId)
     "taxes": [
       {
         "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
+        "name": "Value Added Tax",
+        "abbreviation": "VAT",
         "_taxRates": [
           {
             "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",

@@ -320,9 +320,9 @@ This endpoint creates a new Organization.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country **required** | ISO 3166 county. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1) _The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases). We recommend providing either english language or country specific native language ISO name of country or the ISO three letter code to ensure proper taxes are applied but this is not the required form._ |
-| taxSubject _default is *false*_ | Specify if the organization is subject to tax. _Property effects creation of default tax rates and texts._ |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| country **required** | String name of country. _If passed as one of [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1) values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such._ |
+| taxSubject _default is *false*_ | Specify if the organization is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | IBAN | Bank account number. |
 | website | Website address. |
@@ -479,14 +479,14 @@ This endpoint returns an Organization's details.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | ISO 3166 county. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1) _The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases)._ |
-| taxSubject _default is *false*_ | Specify if the organization is subject to tax. _Property effects creation of default tax rates and texts._ |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| country | String name of country. |
+| taxSubject | Specify if the organization is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | IBAN | Bank account number. |
 | website | Website address. |
-| locale _default is *en*_ | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Effects language of default texts and system messages._ |
-| brand _default is *space-invocies*_ | Brand source identification for internal use. |
+| locale | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Effects language of default texts and system messages._ |
+| brand | Brand source identification for internal use. |
 
 
 ## List Organizations
@@ -732,9 +732,9 @@ This endpoint lists all Organizations.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | ISO 3166 county. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1) _The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases)._ |
-| taxSubject | Specify if the organization is subject to tax. _Property effects creation of default tax rates and texts._ |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| country | String name of country. |
+| taxSubject | Specify if the organization is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | IBAN | Bank account number. |
 | website | Website address. |

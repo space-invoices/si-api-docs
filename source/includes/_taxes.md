@@ -9,13 +9,15 @@ Taxes have rates applied to them and the rates are chosen based on date of docum
 ```shell
 curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes" \
   -H "Authorization: TOKEN" \
-  -d name="GST 15" \
+  -d name="Value Added Tax" \
+  -d abbreviation="VAT" \
   -d _taxRates[][rate]=15
 ```
 
 ```javascript
 spaceInvoices.taxes.create(organizationId, {
-  name: "GST 15",
+  name: "Value Added Tax",
+  abbreviation: "VAT",
   _taxRates: [{
     rate: 15
   }]
@@ -28,7 +30,8 @@ spaceInvoices.taxes.create(organizationId, {
 ```php
 <?php
   Spaceinvoices\Taxes::create("ORGANIZATION_ID", array(
-    "name" => "GST 15",
+    "name" => "Value Added Tax",
+    "abbreviation" => "VAT",
     "_taxRates" => [array(
       "rate" => 15
     )]
@@ -43,7 +46,8 @@ spaceInvoices.taxes.create(organizationId, {
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "GST 15",
+  "name": "Value Added Tax",
+  "abbreviation": "VAT",
   "_taxRates": [
     {
       "rate": 15,
@@ -71,7 +75,8 @@ This endpoint creates a new Tax.
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of Tax. |
+| name | Name of Tax. |
+| abbreviation | Abbreviation of Tax. |
 | _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
 | rate | Rate of tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
@@ -157,12 +162,12 @@ This endpoint creates a new Rate for a Tax.
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: TOKEN" \
-  -d name="GST 15"
+  -d name="Value Added Tax"
 ```
 
 ```javascript
 spaceInvoices.taxes.edit(taxId, {
-  name: "GST 15",
+  name: "Value Added Tax 2",
 })
 .then(function(tax) {
   console.log(tax);
@@ -172,7 +177,7 @@ spaceInvoices.taxes.edit(taxId, {
 ```php
 <?php
   Spaceinvoices\Taxes::edit("TAX_ID", array(
-    "name" => "GST 15"
+    "name" => "Value Added Tax 2"
   ));
 ?>
 ```
@@ -183,7 +188,8 @@ spaceInvoices.taxes.edit(taxId, {
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "GST 15",
+  "name": "Value Added Tax 2",
+  "abbreviation": "VAT",
   "_taxRates": [
     {
       "rate": 15,
@@ -312,7 +318,8 @@ spaceInvoices.taxes.list(organizationId)
     "taxes": [
       {
         "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
+        "name": "Value Added Tax",
+        "abbreviation": "VAT",
         "_taxRates": [
           {
             "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
@@ -347,11 +354,11 @@ This endpoint lists Organization's Taxes.
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of Tax. |
+| name  | Name of Tax. |
+| abbreviation  | Abbreviation of Tax. |
 | _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
 | rate | Rate of tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
 | [](#empty) | |
 | recoverable | Boolean if Tax is recoverable after being paid. |
 | compound | Boolean if Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
-
