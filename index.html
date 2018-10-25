@@ -315,6 +315,14 @@
               </ul>
           </li>
           <li>
+            <a href="#countries" class="toc-h1 toc-link" data-title="countries">Countries</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-countries" class="toc-h2 toc-link" data-title="get-all-countries">Get all Countries</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#currencies" class="toc-h1 toc-link" data-title="currencies">Currencies</a>
               <ul class="toc-list-h2">
                   <li>
@@ -341,7 +349,18 @@
                     <a href="#search-clients" class="toc-h2 toc-link" data-title="search-clients">Search Clients</a>
                   </li>
                   <li>
-                    <a href="#get-clinet-by-id" class="toc-h2 toc-link" data-title="get-clinet-by-id">Get Clinet by ID</a>
+                    <a href="#get-client-by-id" class="toc-h2 toc-link" data-title="get-client-by-id">Get Client by ID</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#companies" class="toc-h1 toc-link" data-title="companies">Companies</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-companies" class="toc-h2 toc-link" data-title="list-companies">List Companies</a>
+                  </li>
+                  <li>
+                    <a href="#search-companies" class="toc-h2 toc-link" data-title="search-companies">Search Companies</a>
                   </li>
               </ul>
           </li>
@@ -362,17 +381,6 @@
                   </li>
                   <li>
                     <a href="#search-items" class="toc-h2 toc-link" data-title="search-items">Search Items</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#companies" class="toc-h1 toc-link" data-title="companies">Companies</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#list-companies" class="toc-h2 toc-link" data-title="list-companies">List Companies</a>
-                  </li>
-                  <li>
-                    <a href="#search-companies" class="toc-h2 toc-link" data-title="search-companies">Search Companies</a>
                   </li>
               </ul>
           </li>
@@ -453,6 +461,9 @@
           <li>
             <a href="#changelog" class="toc-h1 toc-link" data-title="changelog">Changelog</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#24-10-2018" class="toc-h2 toc-link" data-title="24-10-2018"># 24.10.2018</a>
+                  </li>
                   <li>
                     <a href="#23-10-2018" class="toc-h2 toc-link" data-title="23-10-2018"># 23.10.2018</a>
                   </li>
@@ -1138,15 +1149,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country <strong>required</strong></td>
-<td>ISO 3166 county. <a href="https://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a> <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases). We recommend providing either english language or country specific native language ISO name of country or the ISO three letter code to ensure proper taxes are applied but this is not the required form.</em></td>
+<td>String name of country. <em>If passed as one of <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a> values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
-<td>Specify if the organization is subject to tax. <em>Property effects creation of default tax rates and texts.</em></td>
+<td>Specify if the organization is subject to tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -1368,15 +1379,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>ISO 3166 county. <a href="https://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a> <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases).</em></td>
+<td>String name of country.</td>
 </tr>
 <tr>
-<td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
-<td>Specify if the organization is subject to tax. <em>Property effects creation of default tax rates and texts.</em></td>
+<td style="text-align: right">taxSubject</td>
+<td>Specify if the organization is subject to tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -1391,11 +1402,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 <td>Website address.</td>
 </tr>
 <tr>
-<td style="text-align: right">locale <em>default is <em>en</em></em></td>
+<td style="text-align: right">locale</td>
 <td>ISO 639-1 locale code. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> <em>Effects language of default texts and system messages.</em></td>
 </tr>
 <tr>
-<td style="text-align: right">brand <em>default is <em>space-invocies</em></em></td>
+<td style="text-align: right">brand</td>
 <td>Brand source identification for internal use.</td>
 </tr>
 </tbody></table>
@@ -1639,15 +1650,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>ISO 3166 county. <a href="https://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a> <em>The country parameter is used to apply some smart defaults to the organization being created including default tax rates and texts (both may be effected by taxSubject property in some cases).</em></td>
+<td>String name of country.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject</td>
-<td>Specify if the organization is subject to tax. <em>Property effects creation of default tax rates and texts.</em></td>
+<td>Specify if the organization is subject to tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -2098,7 +2109,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST or similar tax number of Client.</td>
+<td>String, organization VAT / GST / sales tax or similar tax number of Client.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -2138,7 +2149,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST or similar tax number of issuer.</td>
+<td>String, organization VAT / GST / sales tax or similar tax number of issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">IBAN</td>
@@ -3166,7 +3177,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST or similar tax number of Client.</td>
+<td>String, organization VAT / GST / sales tax or similar tax number of Client.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -3206,7 +3217,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST or similar tax number of issuer.</td>
+<td>String, organization VAT / GST / sales tax or similar tax number of issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">IBAN</td>
@@ -3576,12 +3587,174 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 <td>String, email subject. <em>May contain shortcode notations which get parsed to data.</em></td>
 </tr>
 </tbody></table>
-<h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4><h1 id='currencies'>Currencies</h1>
-<p>Currencies are provided and available to load from our system, if a currency is missing please let us know so we can add it.</p>
+<h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4><h1 id='countries'>Countries</h1>
+<p><strong>List of 250 countries. Can be queried for info related to countries ie. english name, native name, currency, taxes, etc.</strong></p>
 
-<p>Besides the normal (fiat) currencies we have now also added some common cryptocurrencies.</p>
+<p>While all countries are present in the list not all have data about local taxes and currencies. We are regularly updating the list as we use it to perform matching for companies. We are accepting your requests to fill out specific country data.</p>
+<h2 id='get-all-countries'>Get all Countries</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/countries"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slovenia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"alpha2Code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"alpha3Code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SVN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nativeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slovenija"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numericCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"705"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"br"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eslovênia"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eslovénia"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slovenië"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slovenija"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"اسلوونی"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slowenien"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"es"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eslovenia"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slovénie"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ja"</span><span class="p">:</span><span class="w"> </span><span class="s2">"スロベニア"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"it"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slovenia"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Davek na dodano vrednost"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DDV"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Davek na dodano vrednost"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DDV"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Netherlands"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"alpha2Code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"alpha3Code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NLD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nativeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nederland"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numericCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"528"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"br"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Holanda"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Países Baixos"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nederland"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nizozemska"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"پادشاهی هلند"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Niederlande"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"es"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Países Bajos"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pays-Bas"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ja"</span><span class="p">:</span><span class="w"> </span><span class="s2">"オランダ"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"it"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paesi Bassi"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belasting toegevoegde waarde"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belasting toegevoegde waarde"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belasting toegevoegde waarde"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"additional"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all Countries.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/countries</code></p>
+<h3 id='http-response'>HTTP Response</h3><h4 id='arguments'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name</td>
+<td>String unique English name of country.</td>
+</tr>
+<tr>
+<td style="text-align: right">alpha2Code</td>
+<td>String unique ISO 2 letter code of country.</td>
+</tr>
+<tr>
+<td style="text-align: right">alpha3Code</td>
+<td>String unique ISO 3 letter code of country.</td>
+</tr>
+<tr>
+<td style="text-align: right">nativeName</td>
+<td>String unique native name of country.</td>
+</tr>
+<tr>
+<td style="text-align: right">numericCode</td>
+<td>String unique numeric code of country.</td>
+</tr>
+<tr>
+<td style="text-align: right">translations</td>
+<td>Object names of country translated to other languages. <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">key</td>
+<td>String alpha2Code of country the name is translated to.</td>
+</tr>
+<tr>
+<td style="text-align: right">value</td>
+<td>String translated name of country.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">taxes</td>
+<td>Array of objects country taxes and rates. <em>Usualy value added tax. Not all countries have tax data at the moment.</em> <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>String name of tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">abbreviation</td>
+<td>String abbreviation of tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">rate</td>
+<td>String rate of tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>String classification of tax rate ie. <code>standard</code>, <code>reduced</code>, <code>additional</code> in EU, <code>state</code>, <code>federal</code>, <code>additional</code> in US etc.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">currency</td>
+<td>String <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> name of currency primarily used in country.</td>
+</tr>
+</tbody></table>
+<h1 id='currencies'>Currencies</h1>
+<p>Currencies are provided and available to load from our system, we are accepting your requests for other currencies as the database is partial.</p>
 
-<p>Note: ISO 4217 unique currency codes are used as <code>id</code> fields of currencies to simlify inclusion as related IDs in documents.</p>
+<p>Besides the normal (fiat) currencies we have now also added some common cryptocurrencies, we are also accepting your requests for these.</p>
+
+<p>Note: <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> unique currency codes are used as <code>id</code> fields of currencies to simlify inclusion as related IDs in documents.</p>
 <h2 id='get-all-currencies'>Get all Currencies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/currencies"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
@@ -3597,25 +3770,25 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"European Union Euro"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"€"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States Dollar"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"₿"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crypto"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ether"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"‎Ξ"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crypto"</span><span class="w">
@@ -3633,8 +3806,8 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">id</td>
-<td>Unique ISO 4217 currency ID of model instance</td>
+<td style="text-align: right">isoName</td>
+<td>Unique <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency name. <em>Also used as unique ID of model instance.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">name</td>
@@ -3642,7 +3815,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">symbol</td>
-<td>Symbol of currency if available otherwise same as ID.</td>
+<td>Symbol of currency.</td>
 </tr>
 <tr>
 <td style="text-align: right">type</td>
@@ -3751,7 +3924,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>ISO 3166 county.</td>
+<td>String name of country.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
@@ -3759,7 +3932,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -3890,7 +4063,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>ISO 3166 county.</td>
+<td>String name of country.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
@@ -3898,7 +4071,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -4052,7 +4225,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>ISO 3166 county.</td>
+<td>String name of country.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject</td>
@@ -4060,7 +4233,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -4164,7 +4337,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>ISO 3166 county.</td>
+<td>String name of country.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject</td>
@@ -4172,7 +4345,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -4195,7 +4368,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 <td>Text note about Client.</td>
 </tr>
 </tbody></table>
-<h2 id='get-clinet-by-id'>Get Clinet by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+<h2 id='get-client-by-id'>Get Client by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">clientId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
@@ -4266,7 +4439,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>ISO 3166 county.</td>
+<td>String name of country.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject</td>
@@ -4274,7 +4447,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String VAT / GST / etc. tax identification number.</td>
+<td>String VAT / GST / sales tax / etc. tax identification number.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
@@ -4295,6 +4468,202 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 <tr>
 <td style="text-align: right">note</td>
 <td>Text note about Client.</td>
+</tr>
+</tbody></table>
+<h1 id='companies'>Companies</h1>
+<p>Companies is a searchable collection of companies and organization we maintain and is available to simplify issuing documents.</p>
+
+<p>It is recommended to use this database for user interfaces as a search while you type feature but to limit searches to specific countries based on user&#39;s origin.</p>
+
+<p>We are adding to this database slowly country by country.
+The database is updated regularly as frequently as we can query the data for each country.</p>
+
+<p>Current status:
+- [x] Slovenia (test API, production in 1 month)</p>
+
+<p>Accepting votes and data sources for other countries.</p>
+<h2 id='list-companies'>List Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Companies</span><span class="o">::</span><span class="na">find</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"taxSubject"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint lists Companies.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/companies</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3><h4 id='arguments'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>Unique ID of Company model instance.</td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Address of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line two of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>ZIP / post code of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>Country of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>Tax number of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject</td>
+<td>Boolean if Company is subject to VAT / GST / sales tax or other tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>Company or other organization registration number.</td>
+</tr>
+</tbody></table>
+<h2 id='search-companies'>Search Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies/search?term=Space"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">'space'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+  <span class="nx">Spaceinvoices\Companies</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">'space'</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"taxSubject"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint searches for Companies.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.spaceinvoices.com/v1/companies/search?term=:term</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">term <strong>required</strong></td>
+<td>String term to search for in Company properties.</td>
+</tr>
+<tr>
+<td style="text-align: right">filter</td>
+<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
+<table><thead>
+<tr>
+<th style="text-align: right"></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">id</td>
+<td>Unique ID of Company model instance.</td>
+</tr>
+<tr>
+<td style="text-align: right">name</td>
+<td>Name of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address</td>
+<td>Address of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">address2</td>
+<td>Address line two of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">city</td>
+<td>City of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">zip</td>
+<td>ZIP / post code of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">country</td>
+<td>Country of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxNumber</td>
+<td>Tax number of Company.</td>
+</tr>
+<tr>
+<td style="text-align: right">taxSubject</td>
+<td>Boolean if Company is subject to VAT / GST / sales tax or other tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">companyNumber</td>
+<td>Company or other organization registration number.</td>
 </tr>
 </tbody></table>
 <h1 id='items'>Items</h1>
@@ -4552,7 +4921,8 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
     </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT 22%"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value Added Tax"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5be3095-4d31-4f09-9ac7-d459a8792621"</span><span class="p">,</span><span class="w">
@@ -4783,203 +5153,6 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
 <td></td>
-</tr>
-</tbody></table>
-<h1 id='companies'>Companies</h1>
-<p>Companies is a searchable collection of companies and organization we maintain and is available to simplify issuing documents.</p>
-
-<p>It is recommended to use this database for user interfaces as a search while you type feature but to limit searches to specific countries based on user&#39;s origin.</p>
-
-<p>We are adding to this database slowly country by country.
-The database is updated regularly as frequently as we can query the data for each country.</p>
-
-<p>Current status:
-- [x] Slovenia (production API)
-- [ ] Hungary (coming soon)</p>
-
-<p>Accepting votes and data sources for other countries.</p>
-<h2 id='list-companies'>List Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
-<span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-  <span class="nx">Spaceinvoices\Companies</span><span class="o">::</span><span class="na">find</span><span class="p">();</span>
-<span class="cp">?&gt;</span>
-</code></pre>
-<blockquote>
-<p>Returns:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxSubject"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint lists Companies.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/v1/companies</code></p>
-<h4 id='query-parameters'>Query parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">filter</td>
-<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
-</tr>
-</tbody></table>
-<h3 id='http-response'>HTTP Response</h3><h4 id='arguments'>Arguments</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id</td>
-<td>Unique ID of Company model instance.</td>
-</tr>
-<tr>
-<td style="text-align: right">name</td>
-<td>Name of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">address</td>
-<td>Address of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">address2</td>
-<td>Address line two of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">city</td>
-<td>City of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">zip</td>
-<td>ZIP / post code of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">country</td>
-<td>Country of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">taxNumber</td>
-<td>Tax number of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">taxSubject</td>
-<td>Boolean if Company is subject to VAT / GST or other tax.</td>
-</tr>
-<tr>
-<td style="text-align: right">companyNumber</td>
-<td>Company or other organization registration number.</td>
-</tr>
-</tbody></table>
-<h2 id='search-companies'>Search Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies/search?term=Space"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">'space'</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
-<span class="p">})</span>
-</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-  <span class="nx">Spaceinvoices\Companies</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">'space'</span><span class="p">);</span>
-<span class="cp">?&gt;</span>
-</code></pre>
-<blockquote>
-<p>Returns:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocket Road"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hawthorne"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA 90250"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxSubject"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint searches for Companies.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/v1/companies/search?term=:term</code></p>
-<h4 id='query-parameters-2'>Query parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">term <strong>required</strong></td>
-<td>String term to search for in Company properties.</td>
-</tr>
-<tr>
-<td style="text-align: right">filter</td>
-<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
-</tr>
-</tbody></table>
-<h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id</td>
-<td>Unique ID of Company model instance.</td>
-</tr>
-<tr>
-<td style="text-align: right">name</td>
-<td>Name of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">address</td>
-<td>Address of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">address2</td>
-<td>Address line two of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">city</td>
-<td>City of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">zip</td>
-<td>ZIP / post code of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">country</td>
-<td>Country of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">taxNumber</td>
-<td>Tax number of Company.</td>
-</tr>
-<tr>
-<td style="text-align: right">taxSubject</td>
-<td>Boolean if Company is subject to VAT / GST or other tax.</td>
-</tr>
-<tr>
-<td style="text-align: right">companyNumber</td>
-<td>Company or other organization registration number.</td>
 </tr>
 </tbody></table>
 <h1 id='payments'>Payments</h1>
@@ -5672,10 +5845,12 @@ The database is updated regularly as frequently as we can query the data for eac
 <p>Taxes have rates applied to them and the rates are chosen based on date of document when they came into force as rates change in countries sometimes.</p>
 <h2 id='create-new-tax'>Create New Tax</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
-  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"GST 15"</span> <span class="se">\</span>
+  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Value Added Tax"</span> <span class="se">\</span>
+  -d <span class="nv">abbreviation</span><span class="o">=</span><span class="s2">"VAT"</span> <span class="se">\</span>
   -d _taxRates[][rate]<span class="o">=</span>15
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s2">"GST 15"</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Value Added Tax"</span><span class="p">,</span>
+  <span class="na">abbreviation</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
   <span class="na">_taxRates</span><span class="p">:</span> <span class="p">[{</span>
     <span class="na">rate</span><span class="p">:</span> <span class="mi">15</span>
   <span class="p">}]</span>
@@ -5685,7 +5860,8 @@ The database is updated regularly as frequently as we can query the data for eac
 <span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
   <span class="nx">Spaceinvoices\Taxes</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"GST 15"</span><span class="p">,</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Value Added Tax"</span><span class="p">,</span>
+    <span class="s2">"abbreviation"</span> <span class="o">=&gt;</span> <span class="s2">"VAT"</span><span class="p">,</span>
     <span class="s2">"_taxRates"</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="k">array</span><span class="p">(</span>
       <span class="s2">"rate"</span> <span class="o">=&gt;</span> <span class="mi">15</span>
     <span class="p">)]</span>
@@ -5698,7 +5874,8 @@ The database is updated regularly as frequently as we can query the data for eac
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GST 15"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value Added Tax"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -5732,8 +5909,12 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">name <strong>required</strong></td>
+<td style="text-align: right">name</td>
 <td>Name of Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">abbreviation</td>
+<td>Abbreviation of Tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">_taxRates</td>
@@ -5839,16 +6020,16 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h2 id='update-tax'>Update Tax</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
-  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"GST 15"</span>
+  -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Value Added Tax"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">taxId</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s2">"GST 15"</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Value Added Tax 2"</span><span class="p">,</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tax</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
   <span class="nx">Spaceinvoices\Taxes</span><span class="o">::</span><span class="na">edit</span><span class="p">(</span><span class="s2">"TAX_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"GST 15"</span>
+    <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Value Added Tax 2"</span>
   <span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
@@ -5858,7 +6039,8 @@ The database is updated regularly as frequently as we can query the data for eac
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GST 15"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value Added Tax 2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -5995,7 +6177,8 @@ The database is updated regularly as frequently as we can query the data for eac
     </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT 22%"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value Added Tax"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5be3095-4d31-4f09-9ac7-d459a8792621"</span><span class="p">,</span><span class="w">
@@ -6037,8 +6220,12 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">name <strong>required</strong></td>
+<td style="text-align: right">name</td>
 <td>Name of Tax.</td>
+</tr>
+<tr>
+<td style="text-align: right">abbreviation</td>
+<td>Abbreviation of Tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">_taxRates</td>
@@ -6685,14 +6872,23 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 
 <aside class="success"> Apollo is an online invoicing app that comes free with Space Invoices.</aside>
 
-<p><strong>Apollo <a href="https://getapollo.io">getapollo.io</a> allows users to view data created through the API in a user friendly visual interface.</strong></p>
+<p><strong>Apollo (<a href="https://getapollo.io">getapollo.io</a>) allows users to view data created through the API in a user friendly visual interface.</strong></p>
 
 <p>Each account created through the API can use their credentials to login to Apollo and view all their assigned/authorised organizations.</p>
 
 <p>We are planning to also provide Apollo as a whitelabel edition so parts of it can be added to apps as drop-in elements without the current branding.</p>
 
 <p><strong><a href="https://getapollo.io">https://getapollo.io</a></strong></p>
-<h1 id='changelog'>Changelog</h1><h2 id='23-10-2018'># 23.10.2018</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='24-10-2018'># 24.10.2018</h2>
+<ul>
+<li>Added countries documentation</li>
+<li>Fixed some iso references</li>
+<li>Added extra clarification about taxes</li>
+<li>Fixed currency id field name</li>
+<li>Added missing tax abbreviation field where applicable</li>
+<li>Removed redundant required field notation on read operations</li>
+</ul>
+<h2 id='23-10-2018'># 23.10.2018</h2>
 <ul>
 <li>Added a changelog</li>
 <li>Added instructions for uploading a logo or signature to an organization</li>
