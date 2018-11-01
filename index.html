@@ -462,6 +462,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#01-11-2018" class="toc-h2 toc-link" data-title="01-11-2018"># 01.11.2018</a>
+                  </li>
+                  <li>
                     <a href="#24-10-2018" class="toc-h2 toc-link" data-title="24-10-2018"># 24.10.2018</a>
                   </li>
                   <li>
@@ -482,7 +485,7 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1><h2 id='welcome-to-space-invoices-api'>Welcome to Space Invoices API</h2>
 <p>Space Invoices is a developer oriented invoicing API. You can use it to create and manage invoices and other types of documents, it also allows you to manage any data related to those documents.</p>
-<h3 id='visit-our-website-at-spaceinvoices-com-and-sign-up-for-a-developer-token'>Visit our website at <a href="http://spaceinvoices.com">spaceinvoices.com</a> and sign up for a developer token.</h3><h2 id='getting-help'>Getting help</h2>
+<h3 id='visit-our-website-at-spaceinvoices-com-and-sign-up-for-a-developer-account'>Visit our website at <a href="https://spaceinvoices.com">spaceinvoices.com</a> and sign up for a developer account.</h3><h2 id='getting-help'>Getting help</h2>
 <p>We&#39;re here to help in case you get stuck or want to make a request for functionalities. We also encourage our community to help each other that&#39;s why we&#39;ve created a community Slack channel and conveniently called it Space Invaders :), hope to talk to you there!</p>
 <h3 id='join-our-slack-community-space-invaders'>Join our Slack community <a href="http://joinslack.spaceinvoices.com">Space Invaders</a>.</h3><h2 id='about'>About</h2>
 <p>We have language binding in Shell, Javascript, C-sharp and PHP for now, other languages will be added soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
@@ -490,42 +493,42 @@
 <p>While the API is fully operational some small details of this documentation are still missing and features are added weekly so check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
-<p>Authorization token must be used to make calls to the API:</p>
+<p>Launch codes must be used to make calls to the API:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">spaceInvoices</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SpaceInvoices</span><span class="p">(</span><span class="s1">'TOKEN'</span><span class="p">);</span>
-</code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceConfiguration</span><span class="p">.</span><span class="nf">SetApiKey</span><span class="p">(</span><span class="s">"TOKEN"</span><span class="p">);</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">spaceInvoices</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SpaceInvoices</span><span class="p">(</span><span class="s1">'LAUNCH_CODE'</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceConfiguration</span><span class="p">.</span><span class="nf">SetApiKey</span><span class="p">(</span><span class="s">"LAUNCH_CODE"</span><span class="p">);</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-  <span class="nx">Spaceinvoices\Spaceinvoices</span><span class="o">::</span><span class="na">setAccessToken</span><span class="p">(</span><span class="s2">"TOKEN"</span><span class="p">);</span>
+  <span class="nx">Spaceinvoices\Spaceinvoices</span><span class="o">::</span><span class="na">setAccessToken</span><span class="p">(</span><span class="s2">"LAUNCH_CODE"</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>TOKEN</code> with your authorization token.</p>
+<p>Make sure to replace <code>LAUNCH_CODE</code> with your own launch code.</p>
 </blockquote>
 
-<p><strong>Space Invoices uses authorization tokens to allow access to the API. A token can be aquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
+<p><strong>Space Invoices uses launch codes to allow access to the API. A launch code can be aquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
 
-<p>The API token has to be included in all API requests to the server in a header like this:</p>
+<p>The API launch code has to be included in all API requests to the server in a header like this:</p>
 
-<p><code>Authorization: TOKEN</code></p>
+<p><code>Authorization: LAUNCH_CODE</code></p>
 
-<aside class="notice">You must replace <code>TOKEN</code> with your obtained token.</aside>
+<aside class="notice">You must replace <code>LAUNCH_CODE</code> with your launch code obtained from our website.</aside>
 
 <p><br></p>
 
-<p>Alternatively the token can be added as a query parameter of the URL but this is a less recomended way as it poses a security risk.</p>
+<p>Alternatively the launch code can be added as a query parameter of the URL but this is a less recomended way as it poses a security risk.</p>
 
-<p><code>?access_token=TOKEN</code></p>
+<p><code>?access_token=LAUNCH_CODE</code></p>
 
 <!-- <br>
 
-PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and tokens as Space Invoices. A user can be given access to view their account and organizations by clicking a link with a token in the URL. You can read more about Apollo [here](#apollo-ui). -->
+PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launch code as Space Invoices. A user can be given access to view their account and organizations by clicking a link with a launch code in the URL. You can read more about Apollo [here](#apollo-ui). -->
 <h1 id='accounts'>Accounts</h1>
 <p>Accounts represent users that can login and access different organizations based on access right.</p>
 <h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/login"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
@@ -579,7 +582,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint authenticates an account and returns an access token that can be used in consecutive calls to the API.</p>
+<p>This endpoint authenticates an account and returns a launch code (access token) that can be used in consecutive calls to the API.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/v1/accounts/login</code></p>
 <h4 id='attributes'>Attributes</h4>
@@ -607,7 +610,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Generated access token.</td>
+<td>Generated launch code (access token).</td>
 </tr>
 <tr>
 <td style="text-align: right">userId</td>
@@ -615,7 +618,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
   -d <span class="nv">password</span><span class="o">=</span><span class="s2">"supersecret"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
@@ -760,7 +763,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='read-account-details'>Read account details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/:accountId"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">accountId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">account</span><span class="p">);</span>
@@ -836,7 +839,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 
 <p>An organization holds a reference to most of the information that is created through the API.</p>
 <h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/:id/organizations"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
   -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
   -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
@@ -1218,7 +1221,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='add-logo-or-signature-image-to-organization'>Add Logo or Signature image to Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/upload-image?type=logo"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -1273,7 +1276,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='read-organization-39-s-details'>Read Organization&#39;s details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:organizationId"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -1412,7 +1415,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='list-organizations'>List Organizations</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/:id/organizations"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">organizations</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">accountId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">organization</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">organization</span><span class="p">);</span>
@@ -1711,7 +1714,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
 <h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
   -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d _documentItems[0][name]<span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
@@ -2374,7 +2377,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='list-documents'>List Documents</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents?filter[where][type]=invoice"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">filter</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">where</span><span class="p">:</span> <span class="p">{</span>
@@ -2597,7 +2600,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='get-document-by-id'>Get Document by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">documentId</span><span class="p">,</span> <span class="nx">queryParams</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
@@ -2885,7 +2888,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='edit-document'>Edit Document</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
   -d _documentClient[country]<span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d _documentItems[0][name]<span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
@@ -3442,7 +3445,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='delete-document'>Delete Document</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">DocumentId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
@@ -3488,7 +3491,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='create-pdf'>Create PDF</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/pdf?l=sl"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">getPdf</span><span class="p">(</span><span class="nx">DocumentId</span><span class="p">,</span> <span class="s2">"sl"</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pdf</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pdf</span><span class="p">);</span>
@@ -3524,7 +3527,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4><h2 id='send-in-email'>Send in email</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">recipients</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
   -d <span class="nv">message</span><span class="o">=</span><span class="s2">"You can find documet PDF in attachment."</span> <span class="se">\</span>
   -d <span class="nv">subject</span><span class="o">=</span><span class="s2">"Invoice"</span>
@@ -3593,7 +3596,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 
 <p>While all countries are present in the list not all have data about local taxes and currencies. We are regularly updating the list as we use it to perform matching for companies. We are accepting your requests to fill out specific country data.</p>
 <h2 id='get-all-countries'>Get all Countries</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/countries"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -3757,7 +3760,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 
 <p>Note: <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> unique currency codes are used as <code>id</code> fields of currencies to simlify inclusion as related IDs in documents.</p>
 <h2 id='get-all-currencies'>Get all Currencies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/currencies"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">currencies</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currencies</span><span class="p">);</span>
@@ -3826,7 +3829,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 <h1 id='clients'>Clients</h1>
 <p>Clients are businesses, end persons, organizations and any other entity that can receive a document from an organization. They can be saved and later referenced using their unique ID.</p>
 <h2 id='create-new-client'>Create New Client</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/clients"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
   -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
   -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
@@ -3969,7 +3972,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='update-client'>Update Client</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
   -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
   -d <span class="nv">city</span><span class="o">=</span><span class="s2">"Hawthorne"</span> <span class="se">\</span>
@@ -4104,7 +4107,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </thead><tbody>
 </tbody></table>
 <h2 id='delete-client'>Delete Client</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">clientId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
@@ -4150,7 +4153,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='list-clients'>List Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/clients"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">clients</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clients</span><span class="p">);</span>
@@ -4258,7 +4261,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='search-clients'>Search Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="s1">'Space'</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">clients</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clients</span><span class="p">);</span>
@@ -4370,7 +4373,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and token
 </tr>
 </tbody></table>
 <h2 id='get-client-by-id'>Get Client by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">clientId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">client</span><span class="p">);</span>
@@ -4484,7 +4487,7 @@ The database is updated regularly as frequently as we can query the data for eac
 
 <p>Accepting votes and data sources for other countries.</p>
 <h2 id='list-companies'>List Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
@@ -4574,7 +4577,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='search-companies'>Search Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies/search?term=Space"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">'space'</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">companies</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">companies</span><span class="p">);</span>
@@ -4670,7 +4673,7 @@ The database is updated regularly as frequently as we can query the data for eac
 <h1 id='items'>Items</h1>
 <p>Items are items, services and any other thing that a Organization can sell. They can be saved and later referenced using their unique ID.</p>
 <h2 id='create-new-item'>Create New Item</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/items"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
   -d <span class="nv">description</span><span class="o">=</span><span class="s2">"Best in class suit made from durable composites."</span> <span class="se">\</span>
   -d <span class="nv">unit</span><span class="o">=</span><span class="s2">"item"</span> <span class="se">\</span>
@@ -4765,7 +4768,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='update-item'>Update Item</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
   -d <span class="nv">description</span><span class="o">=</span><span class="s2">"Best in class suit made from durable composites."</span> <span class="se">\</span>
   -d <span class="nv">unit</span><span class="o">=</span><span class="s2">"item"</span> <span class="se">\</span>
@@ -4852,7 +4855,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 </tbody></table>
 <h2 id='delete-item'>Delete Item</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">itemId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
@@ -4898,7 +4901,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='list-items'>List Items</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/items"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
@@ -5026,7 +5029,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='search-items'>Search Items</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-items?term=Space"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="s1">'space'</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
@@ -5159,7 +5162,7 @@ The database is updated regularly as frequently as we can query the data for eac
 <h1 id='payments'>Payments</h1>
 <p>Payments are stored for each invoice. Each invoice can have multiple payments that can also sum up to more that the invoice&#39;s total value. Payments are in the Currency of the document.</p>
 <h2 id='create-new-payment'>Create New Payment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
   -d <span class="nv">date</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
   -d <span class="nv">amount</span><span class="o">=</span>1000
@@ -5243,7 +5246,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='update-payment'>Update Payment</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
   -d <span class="nv">documentId</span><span class="o">=</span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span> <span class="se">\</span>
   -d <span class="nv">date</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
@@ -5326,7 +5329,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 </tbody></table>
 <h2 id='delete-payment'>Delete Payment</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">paymentId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
@@ -5370,7 +5373,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='list-payments'>List Payments</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">payments</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">payments</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payments</span><span class="p">);</span>
@@ -5437,7 +5440,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='list-a-document-39-s-payments'>List a Document&#39;s Payments</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code></code></pre><pre class="highlight php tab-php"><code></code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -5499,7 +5502,7 @@ The database is updated regularly as frequently as we can query the data for eac
 <h1 id='recurrences'>Recurrences</h1>
 <p>Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of documents using the original document content as a base but changing the dates and number.</p>
 <h2 id='create-new-recurrence'>Create New Recurrence</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Monthly recurrence"</span> <span class="se">\</span>
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"month"</span> <span class="se">\</span>
   -d <span class="nv">dateFirst</span><span class="o">=</span><span class="s2">"2018-01-01"</span> <span class="se">\</span>
@@ -5628,7 +5631,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='delete-recurrence'>Delete Recurrence</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">recurrences</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">recurrenceId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
@@ -5672,7 +5675,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='list-recurrences'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">recurrences</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">recurrences</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">recurrences</span><span class="p">);</span>
@@ -5739,7 +5742,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='list-recurrences-2'>List Recurrences</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code></code></pre><pre class="highlight php tab-php"><code></code></pre>
 <blockquote>
 <p>Returns:</p>
@@ -5845,7 +5848,7 @@ The database is updated regularly as frequently as we can query the data for eac
 
 <p>Taxes have rates applied to them and the rates are chosen based on date of document when they came into force as rates change in countries sometimes.</p>
 <h2 id='create-new-tax'>Create New Tax</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Value Added Tax"</span> <span class="se">\</span>
   -d <span class="nv">abbreviation</span><span class="o">=</span><span class="s2">"VAT"</span> <span class="se">\</span>
   -d _taxRates[][rate]<span class="o">=</span>15
@@ -5955,7 +5958,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='add-new-rate-to-a-tax'>Add New Rate to a Tax</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">rate</span><span class="o">=</span>20 <span class="se">\</span>
   -d <span class="nv">dateValidFrom</span><span class="o">=</span><span class="s2">"2018-01-01"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">addANewRateToTax</span><span class="p">(</span><span class="nx">taxId</span><span class="p">,</span> <span class="p">{</span>
@@ -6020,7 +6023,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 </tbody></table>
 <h2 id='update-tax'>Update Tax</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Value Added Tax"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">taxId</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s2">"Value Added Tax 2"</span><span class="p">,</span>
@@ -6108,7 +6111,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 </tbody></table>
 <h2 id='delete-tax'>Delete Tax</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">taxId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
@@ -6154,7 +6157,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h2 id='list-taxes'>List Taxes</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/taxes"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: TOKEN"</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">taxes</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">taxes</span><span class="p">);</span>
@@ -6880,7 +6883,11 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 <p>We are planning to also provide Apollo as a whitelabel edition so parts of it can be added to apps as drop-in elements without the current branding.</p>
 
 <p><strong><a href="https://getapollo.io">https://getapollo.io</a></strong></p>
-<h1 id='changelog'>Changelog</h1><h2 id='24-10-2018'># 24.10.2018</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='01-11-2018'># 01.11.2018</h2>
+<ul>
+<li>Renamed token to launch codes :)</li>
+</ul>
+<h2 id='24-10-2018'># 24.10.2018</h2>
 <ul>
 <li>Added countries documentation</li>
 <li>Fixed some iso references</li>
