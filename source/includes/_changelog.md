@@ -1,5 +1,9 @@
 # Changelog
 
+## # 01.11.2018
+
+- Renamed token to launch codes :)
+
 ## # 24.10.2018
 
 - Added countries documentation

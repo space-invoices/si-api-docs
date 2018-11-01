@@ -17,7 +17,7 @@ Accepting votes and data sources for other countries.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/companies" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -85,7 +85,7 @@ This endpoint lists Companies.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/companies/search?term=Space" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript

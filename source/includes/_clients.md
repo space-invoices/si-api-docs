@@ -6,7 +6,7 @@ Clients are businesses, end persons, organizations and any other entity that can
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/clients" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
   -d city="Hawthorne" \
@@ -112,7 +112,7 @@ This endpoint creates a new Client.
 
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
   -d city="Hawthorne" \
@@ -216,7 +216,7 @@ This endpoint updates a Client by id.
 
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -267,7 +267,7 @@ Soft deleted instances stay in database but are not returned on normal calls but
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/clients" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -341,7 +341,7 @@ This endpoint lists Organization's Clients.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -415,7 +415,7 @@ This endpoint searches for Organization's Clients.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript

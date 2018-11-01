@@ -8,7 +8,7 @@ While all countries are present in the list not all have data about local taxes 
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/countries" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 > Returns:

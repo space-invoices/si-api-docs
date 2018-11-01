@@ -8,7 +8,7 @@ Taxes have rates applied to them and the rates are chosen based on date of docum
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Value Added Tax" \
   -d abbreviation="VAT" \
   -d _taxRates[][rate]=15
@@ -97,7 +97,7 @@ This endpoint creates a new Tax.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d rate=20 \
   -d dateValidFrom="2018-01-01"
 ```
@@ -161,7 +161,7 @@ This endpoint creates a new Rate for a Tax.
 
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Value Added Tax"
 ```
 
@@ -236,7 +236,7 @@ This endpoint updates a Tax by ID.
 
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -287,7 +287,7 @@ A Tax can only be deleted if it's not used on any Document.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/taxes" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript

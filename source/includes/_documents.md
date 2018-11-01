@@ -8,7 +8,7 @@ We have taken a lot of care to provide developers with a wide array of options w
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d _documentClient[name]="Rocket Man" \
   -d _documentClient[country]="USA" \
   -d _documentItems[0][name]="Space suit" \
@@ -442,7 +442,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents?filter[where][type]=invoice" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 ```javascript
 var queryParams = {
@@ -678,7 +678,7 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 ```javascript
 spaceInvoices.documents.getById(documentId, queryParams)
@@ -978,7 +978,7 @@ This endpoint return a document by it's ID.
 ## Edit Document
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d _documentClient[name]="Rocket Man" \
   -d _documentClient[country]="USA" \
   -d _documentItems[0][name]="Space suit" \
@@ -1306,7 +1306,7 @@ This endpoint updates a document.
 ## Delete Document
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -1355,7 +1355,7 @@ This endpoint deletes a Document by ID.
 ## Create PDF
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/pdf?l=sl" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -1399,7 +1399,7 @@ The language of the document is determined by the `l` flag, if no flag is provid
 ## Send in email
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d recipients="rocketman@example.com" \
   -d message="You can find documet PDF in attachment." \
   -d subject="Invoice"

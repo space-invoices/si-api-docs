@@ -6,7 +6,7 @@ Recurrences are created for Documents. A recurrence dictates when a periodic aut
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Monthly recurrence" \
   -d type="month" \
   -d dateFirst="2018-01-01" \
@@ -104,7 +104,7 @@ This endpoint creates a new Recurrence.
 
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -153,7 +153,7 @@ This endpoint deletes a Recurrence by ID.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/recurrences" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -213,7 +213,7 @@ This endpoint lists Organization's Recurrences.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript

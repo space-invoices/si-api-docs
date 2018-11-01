@@ -10,7 +10,7 @@ An organization holds a reference to most of the information that is created thr
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts/:id/organizations" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
   -d city="Hawthorne" \
@@ -348,7 +348,7 @@ This endpoint creates a new Organization.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/:id/upload-image?type=logo" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 > Returns:
@@ -391,7 +391,7 @@ NOTE: Currently to remove an organization's logo or signature we need to update 
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/:organizationId" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 > Returns:
@@ -493,7 +493,7 @@ This endpoint returns an Organization's details.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts/:id/organizations" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript

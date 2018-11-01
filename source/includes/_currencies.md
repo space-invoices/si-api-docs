@@ -10,7 +10,7 @@ Note: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) unique currency codes a
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/currencies" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 ```javascript
 spaceInvoices.currency.list()

@@ -6,7 +6,7 @@ Payments are stored for each invoice. Each invoice can have multiple payments th
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d type="bank" \
   -d date="2018-01-01" \
   -d amount=1000
@@ -80,7 +80,7 @@ This endpoint creates a new Payment.
 
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d type="bank" \
   -d documentId="5a3683ea12d5a67dd0ef2f4d" \
   -d date="2018-01-01" \
@@ -157,7 +157,7 @@ This endpoint updates a Payment by ID.
 
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -206,7 +206,7 @@ This endpoint deletes a Payment by ID.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/payments" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -266,7 +266,7 @@ This endpoint lists Organization's Payments.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript

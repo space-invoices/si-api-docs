@@ -40,7 +40,7 @@ search: true
 
 Space Invoices is a developer oriented invoicing API. You can use it to create and manage invoices and other types of documents, it also allows you to manage any data related to those documents.
 
-### Visit our website at [spaceinvoices.com](http://spaceinvoices.com) and sign up for a developer token.
+### Visit our website at [spaceinvoices.com](https://spaceinvoices.com) and sign up for a developer account.
 
 ## Getting help
 
