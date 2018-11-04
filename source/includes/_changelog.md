@@ -1,5 +1,18 @@
 # Changelog
 
+## # 4.11.2018
+
+- Added instructions for `_documentItems[].save` property to the create document method
+- Added instructions for missing `dateValidTill` and `datePaid` document properties
+- Estimate's `dateValidTill` is set based on new default value set on organization `estimate_validTillDays`
+- Added `_documentConversionRate` definition to `document`
+- Added better tax loading for documents methods
+- Added tax loading instructions for documents methods
+- Added better tax loading for items methods
+- Added tax loading instructions for items methods
+- Fixed list taxes example response
+- Fixed create tax curl typo
+
 ## # 01.11.2018
 
 - Renamed token to launch codes :)

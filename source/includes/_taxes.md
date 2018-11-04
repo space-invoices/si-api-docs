@@ -2,7 +2,9 @@
 
 Taxes are stored per Organization and are then referenced on Items that need to charge it.
 
-Taxes have rates applied to them and the rates are chosen based on date of document when they came into force as rates change in countries sometimes.
+Taxes have rates applied to them and the rates are chosen based on date of document when they came into force as rates might change sometimes. This ensures correct tax rates on documents based on the date of document.
+
+NOTE: When adding taxes to document items or items, the tax can be easily referenced (in prioritised order) by it's id, rate or classification.
 
 ## Create New Tax
 
@@ -11,7 +13,8 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/tax
   -H "Authorization: LAUNCH_CODE" \
   -d name="Value Added Tax" \
   -d abbreviation="VAT" \
-  -d _taxRates[][rate]=15
+  -d classification="standard" \
+  -d _taxRates[0][rate]=15
 ```
 
 ```javascript
@@ -48,6 +51,7 @@ spaceInvoices.taxes.create(organizationId, {
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
   "name": "Value Added Tax",
   "abbreviation": "VAT",
+  "classification": "standard",
   "_taxRates": [
     {
       "rate": 15,
@@ -76,7 +80,8 @@ This endpoint creates a new Tax.
 |      |     |
 | ---: | --- |
 | name | Name of Tax. |
-| abbreviation | Abbreviation of Tax. |
+| abbreviation | Abbreviation of Tax name ie. VAT. |
+| classification | String classification of tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
 | _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
 | rate | Rate of tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
@@ -219,6 +224,8 @@ This endpoint updates a Tax by ID.
 | name **required** | Name of Tax. |
 | _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
 | rate | Rate of tax. |
+| abbreviation | Abbreviation of Tax name ie. VAT. |
+| classification | String classification of tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
 | [](#empty) | |
 | recoverable _Default is *true*_ | Boolean if Tax is recoverable after being paid. |
@@ -308,29 +315,18 @@ spaceInvoices.taxes.list(organizationId)
 ```json
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "tax",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
+    "id": "5a3683ea12d5a67dd0ef2f4e",
+    "name": "Value Added Tax",
+    "abbreviation": "VAT",
+    "_taxRates": [
       {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "Value Added Tax",
-        "abbreviation": "VAT",
-        "_taxRates": [
-          {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
-        ],
-        "recoverable": true,
-        "compound": false
+        "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+        "dateValidFrom": 1970-01-01,
+        "rate": 22
       }
-    ]
+    ],
+    "recoverable": true,
+    "compound": false
   }
 ]
 ```
@@ -355,7 +351,8 @@ This endpoint lists Organization's Taxes.
 |      |     |
 | ---: | --- |
 | name  | Name of Tax. |
-| abbreviation  | Abbreviation of Tax. |
+| abbreviation  | Abbreviation of Tax name ie. VAT. |
+| classification | String classification of tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
 | _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
 | rate | Rate of tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |

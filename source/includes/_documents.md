@@ -4,6 +4,8 @@ Documents are the most complex part of Space Invoices, they are the core of our 
 
 We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.
 
+NOTE: We have improved how taxes can be loaded to document items. Normaly a tax can be added to document items by adding `taxId` property to `_documentItems[]._documentItemTaxes` array, but this places the responsibility of knowing tax ids on the user which is not very convenient. With this in mind we added the feature that allows referencing a tax by just it's rate or classification instead of the normal id. The API then attemplts to load the best match from the organiation's taxes.
+
 ## Create New Document
 
 ```shell
@@ -353,9 +355,11 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | type _default is *invoice*_ | Type of document (`invoice`, `estimate` or `advance` ). _Determines type of document, note that different document types contain different properties, rules and funcionalities. For example `invoice` can have Payments logged and contains `dateService` property. Document type cannot be switched once set to instance._ |
 | draft _default is *false*_ | Boolean, if invoice a draft. _If set to `true` the property cannot go back to `false`. Only present if `type` is `invoice`._ |
 | date _default is *today*_ | Javascript date, date of Document. _Represents date the Document was issued. Time is trimmed._ |
-| dateDue _default is *today + default due days*_ | Javascript date, date invoice is due. _Auto populated using Organization's default due days from today. Only present on `type` invoice. Time is trimmed._ |
+| dateDue _default is *today + default due days*_ | Javascript date, date invoice is due. _Auto populated using Organization's default due days (`invoice_dueDays`) from today. Only present on `type` invoice. Time is trimmed._ |
 | dateService | Javascript date, date service was started or conducted. _Only present on `type` invoice. Time is trimmed._ |
 | dateServiceTo | Javascript date, date service period ends. _Only present on `type` invoice. Time is trimmed._ |
+| dateValidTill _default is *today + default valid till days*_ | Javascript date, date estimale is valid till. _Auto populated using Organization's default days valid till (`estimate_validTillDays`) from today. Only present on `type` estimate. Time is trimmed._ |
+| datePaid _default is *today*_ | Javascript date, date advance was paid on. _Only present on `type` advance. Time is trimmed._ |
 | currencyId | ISO 4217 currency code. [Wikipedia](https://en.wikipedia.org/wiki/ISO_4217) _If not provided the Organization's default currency is used._ |
 | clientId | ID reference to Organization's Client. _If provided `_documentClient` object gets populated using referenced Client._ |
 | _documentClient | Object containting client data. _Property is optional if `clientId` is provided._ _Any key defined in object will be used instead of loaded client data._ _If `clientId` is not provided the data in object is saved to Organization's Clients and referenced in document ie. the `clientId` is auto populated._ [toggle definition](#expand) |
@@ -389,18 +393,27 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | unit | Unit of measurement for item ie. Item / Service / Meter / etc. |
 | price | Number, price per single item. |
 | _documentItemTaxes | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
-| taxId | ID reference to Organization's Tax. _If provided `rate`, `recoverable` and `compund` are auto populated. Note that the `rate` is chosen based on `date` property of document if Tax has multiple valid rates._ |
-| rate | Number, tax rate percent. |
+| taxId | ID reference to Organization's Tax. _If property is provided `rate`, `recoverable` and `compund` properties are auto populated. Note that the `rate` is chosen based on `date` property of document if Tax has multiple valid rates._ |
+| rate | Number, tax rate percent. _If only rate is provided API attempts to match tax by it from database and populate id._ |
+| classification | String, tax classification. _If only classification is provided API attempts to match tax by it from database and populate id._ |
 | recoverable | Boolean if tax is recoverable. |
 | reverseCharged | Boolean if tax is reverse (self) charged. _Reverse charged tax is not applied to totals and is added to document's revese taxes collection._ |
 | compound | Boolean if tax is compound. _Compund tax is added on top of all other taxes applied to item._ |
 | [](#empty-inner) | |
 | isSepatator _default is *false*_ | Boolean, indicates if item is separator. _Used for visually seaprating line items and naming groups of line items._ _If `true` all properties except `name` and `description` are ignored._ |
+| save _default is *false*_ | Boolean if item should be saved. _If true the item is saved to organization's collection of items. The document item is also populated with the item's ID in the itemId field. NOTE: Ignored if itemId is also provided._ |
 | [](#empty) | |
 | note | Text note for Document. _Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
 | signature | Text signature for Document. _Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
 | footer | Text footer for Document. _Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when `parseForDisplay` flag is provided._ |
 | decimalPlaces _default is *4*_ | Number of decimal places the Document items are trimmed and rounded to in calculations. _Should be 4 in most cases._ |
+| _documentConversionRate | Object containting currency conversion rate data. _Property is automatically populated with data if document currencyId is set to a currency that is not the Organization's default._ _Can be manually populated._ _Also generates a disclaimer on a generated document PDF._ [toggle definition](#expand) |
+| date | Date of conversion rate data. _Usually date of document except in cases when data is not available ie. holidays then the first available date going back._ |
+| from | Currency conversion is made from. |
+| to | Currency conversion is made into. |
+| rate | Conversion rate value. |
+| source | Source of conversion rate _ie. European Centra Bank._ |
+| [](#empty) | |
 
 ### HTTP Response
 
@@ -1254,7 +1267,8 @@ This endpoint updates a document.
 | price | Number, price per single item. |
 | _documentItemTaxes | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
 | taxId | ID reference to Organization's Tax. _If provided `rate`, `recoverable` and `compund` are auto populated. Note that the `rate` is chosen based on `date` property of document if Tax has multiple valid rates._ |
-| rate | Number, tax rate percent. |
+| rate | Number, tax rate percent. _If only rate is provided API attempts to match tax by it from database and populate id._ |
+| classification | String, tax classification. _If only classification is provided API attempts to match tax by it from database and populate id._ |
 | recoverable | Boolean if tax is recoverable. |
 | reverseCharged | Boolean if tax is reverse (self) charged. _Reverse charged tax is not applied to totals and is added to document's revese taxes collection._ |
 | compound | Boolean if tax is compound. _Compund tax is added on top of all other taxes applied to item._ |
@@ -1355,11 +1369,12 @@ This endpoint deletes a Document by ID.
 ## Create PDF
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/pdf?l=sl" \
-  -H "Authorization: LAUNCH_CODE"
+  -H "Authorization: LAUNCH_CODE" \
+  -o document.pdf
 ```
 
 ```javascript
-spaceInvoices.documents.getPdf(DocumentId, "sl")
+spaceInvoices.documents.getPdf(DocumentId, "en")
 .then(function(pdf) {
   console.log(pdf);
 })
@@ -1367,7 +1382,7 @@ spaceInvoices.documents.getPdf(DocumentId, "sl")
 
 ```php
 <?php
-  Spaceinvoices\Documents::getPdf("DOCUMENT_ID", "sl");
+  Spaceinvoices\Documents::getPdf("DOCUMENT_ID", "en");
 ?>
 ```
 
@@ -1383,14 +1398,14 @@ The language of the document is determined by the `l` flag, if no flag is provid
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/documents/:id/pdf`
+`GET https://api.spaceinvoices.com/v1/documents/:id/pdf?l=:language`
 
 #### Query parameters
 
 |      |     |
 | ---: | --- |
 | id **required** | ID of Document. |
-| language | Language of PDF _Currently we support `sl`, `en` and `de` format._ |
+| language | Language of PDF _Currently we support `sl`, `en` and `de` languages. Defaults to organization's locale._ |
 
 ### HTTP Response
 

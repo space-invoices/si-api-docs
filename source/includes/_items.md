@@ -2,6 +2,8 @@
 
 Items are items, services and any other thing that a Organization can sell. They can be saved and later referenced using their unique ID.
 
+NOTE: While taxes are added to items by adding id in `taxIds` property, they can also be referenced by their rate or classification value by providing either of the values in `_itemTaxes` array property as an object. The API will attempt to find the best match.
+
 ## Create New Item
 
 ```shell
@@ -34,7 +36,7 @@ spaceInvoices.items.create(organizationId, {
     "description" => "Best in class suit made from durable composites.",
     "unit" => "item",
     "price" => 100,
-    "taxes" => ["TAX_ID"]
+    "taxId" => ["TAX_ID"]
   ));
 ?>
 ```
@@ -74,6 +76,10 @@ This endpoint creates a new Item.
 | unit | Unit of measurement. |
 | price | Number price of item. |
 | taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
+| _itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
+| rate | Rate of tax to match. |
+| classification | Classification of tax to match. |
+| [](#empty) | |
 
 ### HTTP Response
 
@@ -155,6 +161,10 @@ This endpoint updates a Item by ID.
 | unit | Unit of measurement. |
 | price | Number price of item. |
 | taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
+| _itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
+| rate | Rate of tax to match. |
+| classification | Classification of tax to match. |
+| [](#empty) | |
 
 ### HTTP Response
 
