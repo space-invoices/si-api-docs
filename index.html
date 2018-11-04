@@ -462,6 +462,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#4-11-2018" class="toc-h2 toc-link" data-title="4-11-2018"># 4.11.2018</a>
+                  </li>
+                  <li>
                     <a href="#01-11-2018" class="toc-h2 toc-link" data-title="01-11-2018"># 01.11.2018</a>
                   </li>
                   <li>
@@ -1713,6 +1716,8 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 <p>Documents are the most complex part of Space Invoices, they are the core of our service.</p>
 
 <p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
+
+<p>NOTE: We have improved how taxes can be loaded to document items. Normaly a tax can be added to document items by adding <code>taxId</code> property to <code>_documentItems[]._documentItemTaxes</code> array, but this places the responsibility of knowing tax ids on the user which is not very convenient. With this in mind we added the feature that allows referencing a tax by just it&#39;s rate or classification instead of the normal id. The API then attemplts to load the best match from the organiation&#39;s taxes.</p>
 <h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
@@ -2061,7 +2066,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">dateDue <em>default is <em>today + default due days</em></em></td>
-<td>Javascript date, date invoice is due. <em>Auto populated using Organization&#39;s default due days from today. Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+<td>Javascript date, date invoice is due. <em>Auto populated using Organization&#39;s default due days (<code>invoice_dueDays</code>) from today. Only present on <code>type</code> invoice. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">dateService</td>
@@ -2070,6 +2075,14 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 <tr>
 <td style="text-align: right">dateServiceTo</td>
 <td>Javascript date, date service period ends. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">dateValidTill <em>default is <em>today + default valid till days</em></em></td>
+<td>Javascript date, date estimale is valid till. <em>Auto populated using Organization&#39;s default days valid till (<code>estimate_validTillDays</code>) from today. Only present on <code>type</code> estimate. Time is trimmed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">datePaid <em>default is <em>today</em></em></td>
+<td>Javascript date, date advance was paid on. <em>Only present on <code>type</code> advance. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">currencyId</td>
@@ -2205,11 +2218,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">taxId</td>
-<td>ID reference to Organization&#39;s Tax. <em>If provided <code>rate</code>, <code>recoverable</code> and <code>compund</code> are auto populated. Note that the <code>rate</code> is chosen based on <code>date</code> property of document if Tax has multiple valid rates.</em></td>
+<td>ID reference to Organization&#39;s Tax. <em>If property is provided <code>rate</code>, <code>recoverable</code> and <code>compund</code> properties are auto populated. Note that the <code>rate</code> is chosen based on <code>date</code> property of document if Tax has multiple valid rates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>Number, tax rate percent.</td>
+<td>Number, tax rate percent. <em>If only rate is provided API attempts to match tax by it from database and populate id.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>String, tax classification. <em>If only classification is provided API attempts to match tax by it from database and populate id.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">recoverable</td>
@@ -2232,6 +2249,10 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 <td>Boolean, indicates if item is separator. <em>Used for visually seaprating line items and naming groups of line items.</em> <em>If <code>true</code> all properties except <code>name</code> and <code>description</code> are ignored.</em></td>
 </tr>
 <tr>
+<td style="text-align: right">save <em>default is <em>false</em></em></td>
+<td>Boolean if item should be saved. <em>If true the item is saved to organization&#39;s collection of items. The document item is also populated with the item&#39;s ID in the itemId field. NOTE: Ignored if itemId is also provided.</em></td>
+</tr>
+<tr>
 <td style="text-align: right"><a href="#empty"></a></td>
 <td></td>
 </tr>
@@ -2250,6 +2271,34 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 <tr>
 <td style="text-align: right">decimalPlaces <em>default is <em>4</em></em></td>
 <td>Number of decimal places the Document items are trimmed and rounded to in calculations. <em>Should be 4 in most cases.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">_documentConversionRate</td>
+<td>Object containting currency conversion rate data. <em>Property is automatically populated with data if document currencyId is set to a currency that is not the Organization&#39;s default.</em> <em>Can be manually populated.</em> <em>Also generates a disclaimer on a generated document PDF.</em> <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">date</td>
+<td>Date of conversion rate data. <em>Usually date of document except in cases when data is not available ie. holidays then the first available date going back.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">from</td>
+<td>Currency conversion is made from.</td>
+</tr>
+<tr>
+<td style="text-align: right">to</td>
+<td>Currency conversion is made into.</td>
+</tr>
+<tr>
+<td style="text-align: right">rate</td>
+<td>Conversion rate value.</td>
+</tr>
+<tr>
+<td style="text-align: right">source</td>
+<td>Source of conversion rate <em>ie. European Centra Bank.</em></td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
@@ -3277,7 +3326,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>Number, tax rate percent.</td>
+<td>Number, tax rate percent. <em>If only rate is provided API attempts to match tax by it from database and populate id.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>String, tax classification. <em>If only classification is provided API attempts to match tax by it from database and populate id.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">recoverable</td>
@@ -3491,13 +3544,14 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 </tbody></table>
 <h2 id='create-pdf'>Create PDF</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/pdf?l=sl"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">getPdf</span><span class="p">(</span><span class="nx">DocumentId</span><span class="p">,</span> <span class="s2">"sl"</span><span class="p">)</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
+  -o document.pdf
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">getPdf</span><span class="p">(</span><span class="nx">DocumentId</span><span class="p">,</span> <span class="s2">"en"</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pdf</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pdf</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-  <span class="nx">Spaceinvoices\Documents</span><span class="o">::</span><span class="na">getPdf</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="s2">"sl"</span><span class="p">);</span>
+  <span class="nx">Spaceinvoices\Documents</span><span class="o">::</span><span class="na">getPdf</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="s2">"en"</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 </code></pre>
 <blockquote>
@@ -3509,7 +3563,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 
 <p>The language of the document is determined by the <code>l</code> flag, if no flag is provided the organization&#39;s default locale is used. Currently this setting doesn&#39;t effect the user created content of the document, only the predefined data like table headers etc. In the future we are exploring options to allow users to provide content in multiple languages and switching it using this flag.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/v1/documents/:id/pdf</code></p>
+<p><code>GET https://api.spaceinvoices.com/v1/documents/:id/pdf?l=:language</code></p>
 <h4 id='query-parameters-6'>Query parameters</h4>
 <table><thead>
 <tr>
@@ -3523,7 +3577,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">language</td>
-<td>Language of PDF <em>Currently we support <code>sl</code>, <code>en</code> and <code>de</code> format.</em></td>
+<td>Language of PDF <em>Currently we support <code>sl</code>, <code>en</code> and <code>de</code> languages. Defaults to organization&#39;s locale.</em></td>
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4><h2 id='send-in-email'>Send in email</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send"</span> <span class="se">\</span>
@@ -4672,6 +4726,8 @@ The database is updated regularly as frequently as we can query the data for eac
 </tbody></table>
 <h1 id='items'>Items</h1>
 <p>Items are items, services and any other thing that a Organization can sell. They can be saved and later referenced using their unique ID.</p>
+
+<p>NOTE: While taxes are added to items by adding id in <code>taxIds</code> property, they can also be referenced by their rate or classification value by providing either of the values in <code>_itemTaxes</code> array property as an object. The API will attempt to find the best match.</p>
 <h2 id='create-new-item'>Create New Item</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/items"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space suit"</span> <span class="se">\</span>
@@ -4695,7 +4751,7 @@ The database is updated regularly as frequently as we can query the data for eac
     <span class="s2">"description"</span> <span class="o">=&gt;</span> <span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span>
     <span class="s2">"unit"</span> <span class="o">=&gt;</span> <span class="s2">"item"</span><span class="p">,</span>
     <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">"taxes"</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"TAX_ID"</span><span class="p">]</span>
+    <span class="s2">"taxId"</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"TAX_ID"</span><span class="p">]</span>
   <span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
@@ -4753,6 +4809,22 @@ The database is updated regularly as frequently as we can query the data for eac
 <tr>
 <td style="text-align: right">taxIds</td>
 <td>Array of related Tax IDs that the Organization has. <em>The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">_itemTaxes</td>
+<td>Array of tax rates / classifications. <em>Can be used in case tax id is not known and should be loaded by API based on tax rate or classification.</em> <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">rate</td>
+<td>Rate of tax to match.</td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>Classification of tax to match.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
@@ -4844,6 +4916,22 @@ The database is updated regularly as frequently as we can query the data for eac
 <tr>
 <td style="text-align: right">taxIds</td>
 <td>Array of related Tax IDs that the Organization has. <em>The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">_itemTaxes</td>
+<td>Array of tax rates / classifications. <em>Can be used in case tax id is not known and should be loaded by API based on tax rate or classification.</em> <a href="#expand">toggle definition</a></td>
+</tr>
+<tr>
+<td style="text-align: right">rate</td>
+<td>Rate of tax to match.</td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>Classification of tax to match.</td>
+</tr>
+<tr>
+<td style="text-align: right"><a href="#empty"></a></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4>
@@ -5846,12 +5934,15 @@ The database is updated regularly as frequently as we can query the data for eac
 <h1 id='taxes'>Taxes</h1>
 <p>Taxes are stored per Organization and are then referenced on Items that need to charge it.</p>
 
-<p>Taxes have rates applied to them and the rates are chosen based on date of document when they came into force as rates change in countries sometimes.</p>
+<p>Taxes have rates applied to them and the rates are chosen based on date of document when they came into force as rates might change sometimes. This ensures correct tax rates on documents based on the date of document.</p>
+
+<p>NOTE: When adding taxes to document items or items, the tax can be easily referenced (in prioritised order) by it&#39;s id, rate or classification.</p>
 <h2 id='create-new-tax'>Create New Tax</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Value Added Tax"</span> <span class="se">\</span>
   -d <span class="nv">abbreviation</span><span class="o">=</span><span class="s2">"VAT"</span> <span class="se">\</span>
-  -d _taxRates[][rate]<span class="o">=</span>15
+  -d <span class="nv">classification</span><span class="o">=</span><span class="s2">"standard"</span> <span class="se">\</span>
+  -d _taxRates[0][rate]<span class="o">=</span>15
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">taxes</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s2">"Value Added Tax"</span><span class="p">,</span>
   <span class="na">abbreviation</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
@@ -5880,6 +5971,7 @@ The database is updated regularly as frequently as we can query the data for eac
   </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value Added Tax"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -5918,7 +6010,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">abbreviation</td>
-<td>Abbreviation of Tax.</td>
+<td>Abbreviation of Tax name ie. VAT.</td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>String classification of tax. <em>Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_taxRates</td>
@@ -6086,6 +6182,14 @@ The database is updated regularly as frequently as we can query the data for eac
 <td>Rate of tax.</td>
 </tr>
 <tr>
+<td style="text-align: right">abbreviation</td>
+<td>Abbreviation of Tax name ie. VAT.</td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>String classification of tax. <em>Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates.</em></td>
+</tr>
+<tr>
 <td style="text-align: right">dateValidFrom</td>
 <td>Date when the rate came into force. <em>Used on Documents to determine which rate should be used based on Document date.</em></td>
 </tr>
@@ -6171,29 +6275,18 @@ The database is updated regularly as frequently as we can query the data for eac
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4c"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space suit"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best in class suit made from durable composites."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tax"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"taxIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="w"> </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"taxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value Added Tax"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a3683ea12d5a67dd0ef2f4e"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value Added Tax"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"_taxRates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5be3095-4d31-4f09-9ac7-d459a8792621"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"dateValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="mi">1970-01-01</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"recoverable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5be3095-4d31-4f09-9ac7-d459a8792621"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dateValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="mi">1970-01-01</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"recoverable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -6229,7 +6322,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">abbreviation</td>
-<td>Abbreviation of Tax.</td>
+<td>Abbreviation of Tax name ie. VAT.</td>
+</tr>
+<tr>
+<td style="text-align: right">classification</td>
+<td>String classification of tax. <em>Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_taxRates</td>
@@ -6883,7 +6980,20 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 <p>We are planning to also provide Apollo as a whitelabel edition so parts of it can be added to apps as drop-in elements without the current branding.</p>
 
 <p><strong><a href="https://getapollo.io">https://getapollo.io</a></strong></p>
-<h1 id='changelog'>Changelog</h1><h2 id='01-11-2018'># 01.11.2018</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='4-11-2018'># 4.11.2018</h2>
+<ul>
+<li>Added instructions for <code>_documentItems[].save</code> property to the create document method</li>
+<li>Added instructions for missing <code>dateValidTill</code> and <code>datePaid</code> document properties</li>
+<li>Estimate&#39;s <code>dateValidTill</code> is set based on new default value set on organization <code>estimate_validTillDays</code></li>
+<li>Added <code>_documentConversionRate</code> definition to <code>document</code></li>
+<li>Added better tax loading for documents methods</li>
+<li>Added tax loading instructions for documents methods</li>
+<li>Added better tax loading for items methods</li>
+<li>Added tax loading instructions for items methods</li>
+<li>Fixed list taxes example response</li>
+<li>Fixed create tax curl typo</li>
+</ul>
+<h2 id='01-11-2018'># 01.11.2018</h2>
 <ul>
 <li>Renamed token to launch codes :)</li>
 </ul>
