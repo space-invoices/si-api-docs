@@ -38,20 +38,20 @@ spaceInvoices.documents.create(organization.id, {
 
 ```csharp
 SpaceDocumentCreateOptions createOptions = new SpaceDocumentCreateOptions
-    {
-        DocumentClient = new SpaceDocumentClientOptions
-        {
-            Name = "Rocket Man",
-            Country = "USA"
-        },
-        DocumentItems = new List<SpaceDocumentItemOptions>{
-            new SpaceDocumentItemOptions{
-                Name = "Space Suit",
-                Quantity = 1,
-                Unit = "I"
-            }
-        }
-    };
+{
+  DocumentClient = new SpaceDocumentClientOptions
+  {
+    Name = "Rocket Man",
+    Country = "USA"
+  },
+  DocumentItems = new List<SpaceDocumentItemOptions>{
+    new SpaceDocumentItemOptions{
+      Name = "Space Suit",
+      Quantity = 1,
+      Unit = "I"
+    }
+  }
+};
 
 SpaceDocumentService documentService = new SpaceDocumentService();
 SpaceDocument document = documentService.Create("ORGANIZATION_ID", createOptions);
@@ -189,89 +189,89 @@ SpaceDocument document = documentService.Create("ORGANIZATION_ID", createOptions
 ```csharp
 public class SpaceDocument
 {
-    [JsonProperty("id")]
-    public string Id { get; set; }
+  [JsonProperty("id")]
+  public string Id { get; set; }
 
-    [JsonProperty("organizationId")]
-    public string OrganizationId { get; set; }
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
 
-    [JsonProperty("number")]
-    public string Number { get; set; }
+  [JsonProperty("number")]
+  public string Number { get; set; }
 
-    [JsonProperty("type")]
-    public string Type { get; set; }
+  [JsonProperty("type")]
+  public string Type { get; set; }
 
-    [JsonProperty("date")]
-    public DateTime Date { get; set; }
+  [JsonProperty("date")]
+  public DateTime Date { get; set; }
 
-    [JsonProperty("dateService")]
-    public DateTime DateService { get; set; }
+  [JsonProperty("dateService")]
+  public DateTime DateService { get; set; }
 
-    [JsonProperty("dateDue")]
-    public DateTime DateDue { get; set; }
+  [JsonProperty("dateDue")]
+  public DateTime DateDue { get; set; }
 
-    [JsonProperty("currencyId")]
-    public string CurrencyId { get; set; }
+  [JsonProperty("currencyId")]
+  public string CurrencyId { get; set; }
 
-    [JsonProperty("draft")]
-    public bool Draft { get; set; }
+  [JsonProperty("draft")]
+  public bool Draft { get; set; }
 
-    [JsonProperty("canceled")]
-    public bool Canceled { get; set; }
+  [JsonProperty("canceled")]
+  public bool Canceled { get; set; }
 
-    [JsonProperty("sentEmail")]
-    public bool SentEmail { get; set; }
+  [JsonProperty("sentEmail")]
+  public bool SentEmail { get; set; }
 
-    [JsonProperty("sentSnailMail")]
-    public bool SentSnailMail { get; set; }
+  [JsonProperty("sentSnailMail")]
+  public bool SentSnailMail { get; set; }
 
-    [JsonProperty("_documentIssuer")]
-    public SpaceDocumentIssuer DocumentIssuer { get; set; }
+  [JsonProperty("_documentIssuer")]
+  public SpaceDocumentIssuer DocumentIssuer { get; set; }
 
-    [JsonProperty("clientId")]
-    public string ClientId { get; set; }
+  [JsonProperty("clientId")]
+  public string ClientId { get; set; }
 
-    [JsonProperty("_documentClient")]
-    public SpaceDocumentClient DocumentClient { get; set; }
+  [JsonProperty("_documentClient")]
+  public SpaceDocumentClient DocumentClient { get; set; }
 
-    [JsonProperty("_documentItems")]
-    public List<SpaceDocumentItem> DocumentItems { get; set; }
+  [JsonProperty("_documentItems")]
+  public List<SpaceDocumentItem> DocumentItems { get; set; }
 
-    [JsonProperty("note")]
-    public string Note { get; set; }
+  [JsonProperty("note")]
+  public string Note { get; set; }
 
-    [JsonProperty("signature")]
-    public string Signature { get; set; }
+  [JsonProperty("signature")]
+  public string Signature { get; set; }
 
-    [JsonProperty("footer")]
-    public string Footer { get; set; }
+  [JsonProperty("footer")]
+  public string Footer { get; set; }
 
-    [JsonProperty("_documentTaxes")]
-    public List<SpaceDocumentTax> DocumentTaxes { get; set; }
+  [JsonProperty("_documentTaxes")]
+  public List<SpaceDocumentTax> DocumentTaxes { get; set; }
 
-    [JsonProperty("_documentReverseTaxes")]
-    public List<SpaceDocumentTax> DocumentReverseTaxes { get; set; }
+  [JsonProperty("_documentReverseTaxes")]
+  public List<SpaceDocumentTax> DocumentReverseTaxes { get; set; }
 
-    [JsonProperty("total")]
-    public decimal Total { get; set; }
+  [JsonProperty("total")]
+  public decimal Total { get; set; }
 
-    [JsonProperty("totalDiscount")]
-    public decimal TotalDiscount { get; set; }
+  [JsonProperty("totalDiscount")]
+  public decimal TotalDiscount { get; set; }
 
-    [JsonProperty("totalWithTax")]
-    public decimal TotalWithTax { get; set; }
+  [JsonProperty("totalWithTax")]
+  public decimal TotalWithTax { get; set; }
 
-    [JsonProperty("totalPaid")]
-    public decimal TotalPaid { get; set; }
+  [JsonProperty("totalPaid")]
+  public decimal TotalPaid { get; set; }
 
-    [JsonProperty("paidInFull")]
-    public bool PaidInFull { get; set; }
+  [JsonProperty("paidInFull")]
+  public bool PaidInFull { get; set; }
 
-    [JsonProperty("_comments")]
-    public string[] Comments { get; set; }
+  [JsonProperty("_comments")]
+  public string[] Comments { get; set; }
 
-    [JsonProperty("createdAt")]
-    public DateTime CreatedAt { get; set; }
+  [JsonProperty("createdAt")]
+  public DateTime CreatedAt { get; set; }
 }
 ```
 
@@ -819,89 +819,89 @@ SpaceDocument document = documentService.GetById("DOCUMENT_ID", filter);
 ```csharp
 public class SpaceDocument
 {
-    [JsonProperty("id")]
-    public string Id { get; set; }
+  [JsonProperty("id")]
+  public string Id { get; set; }
 
-    [JsonProperty("organizationId")]
-    public string OrganizationId { get; set; }
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
 
-    [JsonProperty("number")]
-    public string Number { get; set; }
+  [JsonProperty("number")]
+  public string Number { get; set; }
 
-    [JsonProperty("type")]
-    public string Type { get; set; }
+  [JsonProperty("type")]
+  public string Type { get; set; }
 
-    [JsonProperty("date")]
-    public DateTime Date { get; set; }
+  [JsonProperty("date")]
+  public DateTime Date { get; set; }
 
-    [JsonProperty("dateService")]
-    public DateTime DateService { get; set; }
+  [JsonProperty("dateService")]
+  public DateTime DateService { get; set; }
 
-    [JsonProperty("dateDue")]
-    public DateTime DateDue { get; set; }
+  [JsonProperty("dateDue")]
+  public DateTime DateDue { get; set; }
 
-    [JsonProperty("currencyId")]
-    public string CurrencyId { get; set; }
+  [JsonProperty("currencyId")]
+  public string CurrencyId { get; set; }
 
-    [JsonProperty("draft")]
-    public bool Draft { get; set; }
+  [JsonProperty("draft")]
+  public bool Draft { get; set; }
 
-    [JsonProperty("canceled")]
-    public bool Canceled { get; set; }
+  [JsonProperty("canceled")]
+  public bool Canceled { get; set; }
 
-    [JsonProperty("sentEmail")]
-    public bool SentEmail { get; set; }
+  [JsonProperty("sentEmail")]
+  public bool SentEmail { get; set; }
 
-    [JsonProperty("sentSnailMail")]
-    public bool SentSnailMail { get; set; }
+  [JsonProperty("sentSnailMail")]
+  public bool SentSnailMail { get; set; }
 
-    [JsonProperty("_documentIssuer")]
-    public SpaceDocumentIssuer DocumentIssuer { get; set; }
+  [JsonProperty("_documentIssuer")]
+  public SpaceDocumentIssuer DocumentIssuer { get; set; }
 
-    [JsonProperty("clientId")]
-    public string ClientId { get; set; }
+  [JsonProperty("clientId")]
+  public string ClientId { get; set; }
 
-    [JsonProperty("_documentClient")]
-    public SpaceDocumentClient DocumentClient { get; set; }
+  [JsonProperty("_documentClient")]
+  public SpaceDocumentClient DocumentClient { get; set; }
 
-    [JsonProperty("_documentItems")]
-    public List<SpaceDocumentItem> DocumentItems { get; set; }
+  [JsonProperty("_documentItems")]
+  public List<SpaceDocumentItem> DocumentItems { get; set; }
 
-    [JsonProperty("note")]
-    public string Note { get; set; }
+  [JsonProperty("note")]
+  public string Note { get; set; }
 
-    [JsonProperty("signature")]
-    public string Signature { get; set; }
+  [JsonProperty("signature")]
+  public string Signature { get; set; }
 
-    [JsonProperty("footer")]
-    public string Footer { get; set; }
+  [JsonProperty("footer")]
+  public string Footer { get; set; }
 
-    [JsonProperty("_documentTaxes")]
-    public List<SpaceDocumentTax> DocumentTaxes { get; set; }
+  [JsonProperty("_documentTaxes")]
+  public List<SpaceDocumentTax> DocumentTaxes { get; set; }
 
-    [JsonProperty("_documentReverseTaxes")]
-    public List<SpaceDocumentTax> DocumentReverseTaxes { get; set; }
+  [JsonProperty("_documentReverseTaxes")]
+  public List<SpaceDocumentTax> DocumentReverseTaxes { get; set; }
 
-    [JsonProperty("total")]
-    public decimal Total { get; set; }
+  [JsonProperty("total")]
+  public decimal Total { get; set; }
 
-    [JsonProperty("totalDiscount")]
-    public decimal TotalDiscount { get; set; }
+  [JsonProperty("totalDiscount")]
+  public decimal TotalDiscount { get; set; }
 
-    [JsonProperty("totalWithTax")]
-    public decimal TotalWithTax { get; set; }
+  [JsonProperty("totalWithTax")]
+  public decimal TotalWithTax { get; set; }
 
-    [JsonProperty("totalPaid")]
-    public decimal TotalPaid { get; set; }
+  [JsonProperty("totalPaid")]
+  public decimal TotalPaid { get; set; }
 
-    [JsonProperty("paidInFull")]
-    public bool PaidInFull { get; set; }
+  [JsonProperty("paidInFull")]
+  public bool PaidInFull { get; set; }
 
-    [JsonProperty("_comments")]
-    public string[] Comments { get; set; }
+  [JsonProperty("_comments")]
+  public string[] Comments { get; set; }
 
-    [JsonProperty("createdAt")]
-    public DateTime CreatedAt { get; set; }
+  [JsonProperty("createdAt")]
+  public DateTime CreatedAt { get; set; }
 }
 ```
 
@@ -1007,6 +1007,24 @@ spaceInvoices.documents.edit(document.id, {
 ```
 
 ```csharp
+SpaceDocumentEditOptions editOptions = new SpaceDocumentEditOptions
+{
+  DocumentClient = new SpaceDocumentClientOptions
+  {
+    Name = "Rocket Man",
+    Country = "USA"
+  },
+  DocumentItems = new List<SpaceDocumentItemOptions>{
+    new SpaceDocumentItemOptions{
+      Name = "Space Suit",
+      Quantity = 1,
+      Unit = "I"
+    }
+  }
+};
+
+SpaceDocumentService documentService = new SpaceDocumentService();
+SpaceDocument editedDocument = documentService.Edit("DOCUMENT_ID", editOptions);
 ```
 
 ```php
@@ -1139,6 +1157,93 @@ spaceInvoices.documents.edit(document.id, {
 ```
 
 ```csharp
+public class SpaceDocument
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("number")]
+  public string Number { get; set; }
+
+  [JsonProperty("type")]
+  public string Type { get; set; }
+
+  [JsonProperty("date")]
+  public DateTime Date { get; set; }
+
+  [JsonProperty("dateService")]
+  public DateTime DateService { get; set; }
+
+  [JsonProperty("dateDue")]
+  public DateTime DateDue { get; set; }
+  
+  [JsonProperty("currencyId")]
+  public string CurrencyId { get; set; }
+
+  [JsonProperty("draft")]
+  public bool Draft { get; set; }
+
+  [JsonProperty("canceled")]
+  public bool Canceled { get; set; }
+
+  [JsonProperty("sentEmail")]
+  public bool SentEmail { get; set; }
+
+  [JsonProperty("sentSnailMail")]
+  public bool SentSnailMail { get; set; }
+
+  [JsonProperty("_documentIssuer")]
+  public SpaceDocumentIssuer DocumentIssuer { get; set; }
+  
+  [JsonProperty("clientId")]
+  public string ClientId { get; set; }
+
+  [JsonProperty("_documentClient")]
+  public SpaceDocumentClient DocumentClient { get; set; }
+
+  [JsonProperty("_documentItems")]
+  public List<SpaceDocumentItem> DocumentItems { get; set; }
+
+  [JsonProperty("note")]
+  public string Note { get; set; }
+
+  [JsonProperty("signature")]
+  public string Signature { get; set; }
+
+  [JsonProperty("footer")]
+  public string Footer { get; set; }
+
+  [JsonProperty("_documentTaxes")]
+  public List<SpaceDocumentTax> DocumentTaxes { get; set; }
+
+  [JsonProperty("_documentReverseTaxes")]
+  public List<SpaceDocumentTax> DocumentReverseTaxes { get; set; }
+
+  [JsonProperty("total")]
+  public decimal Total { get; set; }
+
+  [JsonProperty("totalDiscount")]
+  public decimal TotalDiscount { get; set; }
+
+  [JsonProperty("totalWithTax")]
+  public decimal TotalWithTax { get; set; }
+
+  [JsonProperty("totalPaid")]
+  public decimal TotalPaid { get; set; }
+
+  [JsonProperty("paidInFull")]
+  public bool PaidInFull { get; set; }
+
+  // should comment be a class?
+  [JsonProperty("_comments")]
+  public string[] Comments { get; set; }
+
+  [JsonProperty("createdAt")]
+  public DateTime CreatedAt { get; set; }
+}
 ```
 
 ```php
@@ -1316,6 +1421,11 @@ spaceInvoices.documents.delete(DocumentId)
 })
 ```
 
+```csharp
+SpaceDocumentService documentService = new SpaceDocumentService();
+Counter counter = documentService.Delete("DOCUMENT_ID");
+```
+
 ```php
 <?php
   Spaceinvoices\Documents::delete("DOCUMENT_ID");
@@ -1324,10 +1434,30 @@ spaceInvoices.documents.delete(DocumentId)
 
 > Returns:
 
-```json
+```shell
 {
   "count": 1
 }
+```
+```javascript
+{
+  "count": 1
+}
+```
+
+```csharp
+public class Counter
+{
+  [JsonProperty("count")]
+  public int Count { get; set; }
+}
+```
+```php
+<?php
+  {
+    "count": 1
+  }
+?>
 ```
 
 This endpoint deletes a Document by ID.
@@ -1365,6 +1495,11 @@ spaceInvoices.documents.getPdf(DocumentId, "sl")
 })
 ```
 
+```csharp
+SpaceDocumentService documentService = new SpaceDocumentService();
+HttpResponseMessage res = documentService.GetPdf("DOCUMENT_ID");
+```
+
 ```php
 <?php
   Spaceinvoices\Documents::getPdf("DOCUMENT_ID", "sl");
@@ -1372,8 +1507,18 @@ spaceInvoices.documents.getPdf(DocumentId, "sl")
 ```
 
 > Returns:
-
+```shell
+PDF Buffer
 ```
+
+```javascript
+PDF Buffer
+```
+
+```csharp
+HttpResponseMessage
+```
+```php
 PDF Buffer
 ```
 
@@ -1415,6 +1560,15 @@ spaceInvoices.documents.send(DocumentId, {
   console.log(send);
 })
 ```
+```csharp
+SpaceDocumentService documentService = new SpaceDocumentService();
+SpaceDocumentSendOptions documentSendOptions = new SpaceDocumentSendOptions{
+    Recipients = "rocketman@example.com",
+    Message = "You can find documet PDF in attachment.",
+    Subject = "Invoice"
+};
+Result res = documentService.Send("DOCUMENT_ID", documentSendOptions);
+```
 
 ```php
 <?php
@@ -1428,10 +1582,30 @@ spaceInvoices.documents.send(DocumentId, {
 
 > Returns:
 
-```json
+```shell
 {
-    "success": true
+  "success": true
 }
+```
+```javascript
+{
+  "success": true
+}
+```
+```csharp
+public class Result
+{
+  [JsonProperty("success")]
+  public bool Success { get; set; }
+
+}
+```
+```php
+<?php
+  {
+    "success": true
+  }
+?>
 ```
 
 Sends email with Document PDF attachment.

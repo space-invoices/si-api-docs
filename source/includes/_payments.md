@@ -22,6 +22,17 @@ spaceInvoices.payments.create(documentId, {
   console.log(payment);
 })
 ```
+```csharp
+SpacePaymentService paymentService = new SpacePaymentService();
+SpacePaymentCreateOptions createOptions = new SpacePaymentCreateOptions
+{
+    Type = "bank",
+    Date = DateTime.Today,
+    Amount = 1000
+};
+
+SpacePayment payment =  paymentService.Create("DOCUMENT_ID", createOptions);
+```
 
 ```php
 <?php
@@ -35,7 +46,7 @@ spaceInvoices.payments.create(documentId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "documentId": "5a3683ea12d5a67dd0ef2f4d",
@@ -44,6 +55,53 @@ spaceInvoices.payments.create(documentId, {
   "date": "2018-01-01",
   "amount": 1000
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "documentId": "5a3683ea12d5a67dd0ef2f4d",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+  "type": "bank",
+  "date": "2018-01-01",
+  "amount": 1000
+}
+```
+```csharp
+public class SpacePayment
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("documentId")]
+  public string DocumentId { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("type")]
+  public string Type { get; set; }
+
+  [JsonProperty("date")]
+  public DateTime Date { get; set; }
+
+  [JsonProperty("amount")]
+  public decimal Amount { get; set; }
+
+  [JsonProperty("description")]
+  public string Description { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "documentId": "5a3683ea12d5a67dd0ef2f4d",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+    "type": "bank",
+    "date": "2018-01-01",
+    "amount": 1000
+  }
+?>
 ```
 
 This endpoint creates a new Payment.
@@ -98,6 +156,17 @@ spaceInvoices.payments.edit(paymentId, {
   console.log(payment);
 })
 ```
+```csharp
+SpacePaymentEditOptions editOptions = new SpacePaymentEditOptions
+{
+    Amount = 1000,
+    DocumentId = "DOCUMENT_ID",
+    Date = DateTime.Today,
+    Type = "online"
+};
+SpacePaymentService paymentService = new SpacePaymentService();
+SpacePayment payment =  paymentService.Edit("PAYMENT_ID", editOptions);
+```
 
 
 ```php
@@ -113,7 +182,7 @@ spaceInvoices.payments.edit(paymentId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "documentId": "5a3683ea12d5a67dd0ef2f4d",
@@ -122,6 +191,53 @@ spaceInvoices.payments.edit(paymentId, {
   "date": "2018-01-01",
   "amount": 1000
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "documentId": "5a3683ea12d5a67dd0ef2f4d",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+  "type": "bank",
+  "date": "2018-01-01",
+  "amount": 1000
+}
+```
+```csharp
+public class SpacePayment
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("documentId")]
+  public string DocumentId { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("type")]
+  public string Type { get; set; }
+
+  [JsonProperty("date")]
+  public DateTime Date { get; set; }
+
+  [JsonProperty("amount")]
+  public decimal Amount { get; set; }
+
+  [JsonProperty("description")]
+  public string Description { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "documentId": "5a3683ea12d5a67dd0ef2f4d",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+    "type": "bank",
+    "date": "2018-01-01",
+    "amount": 1000
+  }
+?>
 ```
 
 This endpoint updates a Payment by ID.
@@ -166,7 +282,10 @@ spaceInvoices.payments.delete(paymentId)
   console.log(count);
 })
 ```
-
+```csharp
+SpacePaymentService paymentService = new SpacePaymentService();
+Counter counter = paymentService.Delete("PAYMENT_ID");
+```
 ```php
 <?php
   Spaceinvoices\Payments::delete("PAYMENT_ID");
@@ -175,10 +294,29 @@ spaceInvoices.payments.delete(paymentId)
 
 > Returns:
 
-```json
+```shell
 {
   "count": 1
 }
+```
+```javascript
+{
+  "count": 1
+}
+```
+```csharp
+public class Counter
+{
+  [JsonProperty("count")]
+  public int Count { get; set; }
+}
+```
+```php
+<?php
+  {
+    "count": 1
+  }
+?>
 ```
 
 This endpoint deletes a Payment by ID.
@@ -215,6 +353,10 @@ spaceInvoices.payments.list(organizationId)
   console.log(payments);
 })
 ```
+```csharp
+SpacePaymentService paymentService = new SpacePaymentService();
+List<SpacePayment> payments = paymentService.List("ORGANIZATION_ID");
+```
 
 ```php
 <?php
@@ -224,7 +366,7 @@ spaceInvoices.payments.list(organizationId)
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -235,6 +377,35 @@ spaceInvoices.payments.list(organizationId)
     "amount": 1000
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "documentId": "5a3683ea12d5a67dd0ef2f4d",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+    "type": "bank",
+    "date": "2018-01-01",
+    "amount": 1000
+  }
+]
+```
+```csharp
+List<SpacePayment> 
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "documentId": "5a3683ea12d5a67dd0ef2f4d",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+      "type": "bank",
+      "date": "2018-01-01",
+      "amount": 1000
+    }
+  ]
+?>
 ```
 
 This endpoint lists Organization's Payments.
@@ -271,13 +442,17 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/paymen
 
 ```javascript
 ```
+```csharp
+SpacePaymentService paymentService = new SpacePaymentService();
+List<SpacePayment> payments = paymentService.ListADocumentPayments("DOCUMENT_ID");
+```
 
 ```php
 ```
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -288,6 +463,35 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/paymen
     "amount": 1000
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "documentId": "5a3683ea12d5a67dd0ef2f4d",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+    "type": "bank",
+    "date": "2018-01-01",
+    "amount": 1000
+  }
+]
+```
+```csharp
+List<SpacePayment>
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "documentId": "5a3683ea12d5a67dd0ef2f4d",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+      "type": "bank",
+      "date": "2018-01-01",
+      "amount": 1000
+    }
+  ]
+?>
 ```
 
 This endpoint lists Document's Payments.

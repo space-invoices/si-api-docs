@@ -235,6 +235,9 @@ Unique unique = accountService.IsUnique("rocketman@example.com");
 ```
 
 ```javascript
+{
+  "isUnique": true
+}
 ```
 
 ```csharp

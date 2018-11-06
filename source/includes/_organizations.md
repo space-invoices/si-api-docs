@@ -361,6 +361,8 @@ spaceInvoices.organizations.list(accountId)
 ```
 
 ```csharp
+SpaceOrganizationService organizationService = new SpaceOrganizationService();
+List<SpaceOrganization> organizations = organizationService.List("ACCOUNT_ID");
 ```
 
 ```php
@@ -496,6 +498,7 @@ spaceInvoices.organizations.list(accountId)
 ```
 
 ```csharp
+List<SpaceOrganization> 
 ```
 
 ```php

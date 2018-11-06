@@ -24,6 +24,20 @@ spaceInvoices.taxes.create(organizationId, {
   console.log(tax);
 })
 ```
+```csharp
+List<SpaceTaxRate> taxRates = new List<SpaceTaxRate>();
+taxRates.Add(new SpaceTaxRate { Rate = 22, DateValidFrom = "2018-01-01" });
+
+SpaceTaxCreateOptions createOptions = new SpaceTaxCreateOptions
+{
+    Name = "GST 15",
+    Abbreviation = "VAT",
+    _taxRates = taxRates
+};
+
+SpaceTaxService taxService = new SpaceTaxService();
+SpaceTax tax = taxService.Create("ORGANIZATION_ID", createOptions);
+```
 
 ```php
 <?php
@@ -39,7 +53,7 @@ spaceInvoices.taxes.create(organizationId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
@@ -53,6 +67,71 @@ spaceInvoices.taxes.create(organizationId, {
   "recoverable": true,
   "compound": false,
 }
+```
+
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "GST 15",
+  "_taxRates": [
+    {
+      "rate": 15,
+      "dateValidFrom": "1970-01-01"
+    }
+  ],
+  "recoverable": true,
+  "compound": false,
+}
+```
+```csharp
+public class SpaceTax
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("_taxRates")]
+  public List<SpaceTaxRate> _taxRates { get; set; }
+
+  [JsonProperty("recoverable")]
+  public bool Recoverable { get; set; }
+
+  [JsonProperty("compound")]
+  public bool Compound { get; set; }
+}
+
+public class SpaceTaxRate
+{
+  [JsonProperty("rate")]
+  public decimal Rate { get; set; }
+
+  [JsonProperty("dateValidFrom")]
+  public string DateValidFrom { get; set; }
+
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "GST 15",
+    "_taxRates": [
+      {
+        "rate": 15,
+        "dateValidFrom": "1970-01-01"
+      }
+    ],
+    "recoverable": true,
+    "compound": false,
+  }
+?>
 ```
 
 This endpoint creates a new Tax.
@@ -106,6 +185,17 @@ spaceInvoices.taxes.addANewRateToTax(taxId, {
   console.log(tax);
 })
 ```
+```csharp
+
+SpaceTaxService taxService = new SpaceTaxService();
+SpaceTaxRate taxRate = new SpaceTaxRate
+{
+    Rate = 30,
+    DateValidFrom = "2018-01-01"
+};
+
+SpaceTaxRate taxRate = taxService.AddANewRateToTax("TAX_ID", taxRate);
+```
 
 ```php
 <?php
@@ -118,11 +208,36 @@ spaceInvoices.taxes.addANewRateToTax(taxId, {
 
 > Returns:
 
-```json
+```shell
 {
   "rate": 20,
   "dateValidFrom": "2018-01-01"
 }
+```
+```javascript
+{
+  "rate": 20,
+  "dateValidFrom": "2018-01-01"
+}
+```
+```csharp
+public class SpaceTaxRate
+{
+  [JsonProperty("rate")]
+  public decimal Rate { get; set; }
+
+  [JsonProperty("dateValidFrom")]
+  public string DateValidFrom { get; set; }
+
+}
+```
+```php
+<?php
+  {
+    "rate": 20,
+    "dateValidFrom": "2018-01-01"
+  }
+?>
 ```
 
 This endpoint creates a new Rate for a Tax.
@@ -168,6 +283,16 @@ spaceInvoices.taxes.edit(taxId, {
   console.log(tax);
 })
 ```
+```csharp
+SpaceTaxService taxService = new SpaceTaxService();
+
+SpaceTaxEditOptions editOptions = new SpaceTaxEditOptions
+{
+    Name = "GST 15"
+};
+
+SpaceTax tax = taxService.Edit("TAX_ID", editOptions);
+```
 
 ```php
 <?php
@@ -179,7 +304,7 @@ spaceInvoices.taxes.edit(taxId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
@@ -193,6 +318,73 @@ spaceInvoices.taxes.edit(taxId, {
   "recoverable": true,
   "compound": false,
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "GST 15",
+  "_taxRates": [
+    {
+      "rate": 15,
+      "dateValidFrom": "1970-01-01"
+    }
+  ],
+  "recoverable": true,
+  "compound": false,
+}
+```
+```csharp
+public class SpaceTax
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("_taxRates")]
+  public List<SpaceTaxRate> _taxRates { get; set; }
+
+  [JsonProperty("recoverable")]
+  public bool Recoverable { get; set; }
+
+  [JsonProperty("compound")]
+  public bool Compound { get; set; }
+
+  [JsonProperty("abbreviation")]
+  public string Abbreviation { get; set; }
+}
+
+public class SpaceTaxRate
+{
+  [JsonProperty("rate")]
+  public decimal Rate { get; set; }
+
+  [JsonProperty("dateValidFrom")]
+  public string DateValidFrom { get; set; }
+
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "GST 15",
+    "_taxRates": [
+      {
+        "rate": 15,
+        "dateValidFrom": "1970-01-01"
+      }
+    ],
+    "recoverable": true,
+    "compound": false,
+  }
+?>
 ```
 
 This endpoint updates a Tax by ID.
@@ -240,6 +432,11 @@ spaceInvoices.taxes.delete(taxId)
 })
 ```
 
+```csharp
+SpaceTaxService taxService = new SpaceTaxService();
+Counter counter = taxService.Delete("TAX_ID");
+```
+
 ```php
 <?php
   Spaceinvoices\Taxes::delete("TAX_ID");
@@ -248,10 +445,29 @@ spaceInvoices.taxes.delete(taxId)
 
 > Returns:
 
-```json
+```shell
 {
   "count": 1
 }
+```
+```javascript
+{
+  "count": 1
+}
+```
+```csharp
+public class Counter
+{
+  [JsonProperty("count")]
+  public int Count { get; set; }
+}
+```
+```php
+<?php
+  {
+    "count": 1
+  }
+?>
 ```
 
 This endpoint deletes a Tax by ID.
@@ -290,6 +506,10 @@ spaceInvoices.taxes.list(organizationId)
   console.log(taxes);
 })
 ```
+```csharp
+SpaceTaxService taxService = new SpaceTaxService();
+List<SpaceTax> taxes = taxService.List("ORGANIZATION_ID");
+```
 
 ```php
 <?php
@@ -299,7 +519,7 @@ spaceInvoices.taxes.list(organizationId)
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -326,6 +546,67 @@ spaceInvoices.taxes.list(organizationId)
     ]
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space suit",
+    "description": "Best in class suit made from durable composites.",
+    "unit": "tax",
+    "price": 100,
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+    "taxes": [
+      {
+        "id": "5a3683ea12d5a67dd0ef2f4e",
+        "name": "VAT 22%",
+        "_taxRates": [
+          {
+            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            "dateValidFrom": 1970-01-01,
+            "rate": 22
+          }
+        ],
+        "recoverable": true,
+        "compound": false
+      }
+    ]
+  }
+]
+```
+```csharp
+List<SpaceTax> 
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+      "name": "Space suit",
+      "description": "Best in class suit made from durable composites.",
+      "unit": "tax",
+      "price": 100,
+      "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+      "taxes": [
+        {
+          "id": "5a3683ea12d5a67dd0ef2f4e",
+          "name": "VAT 22%",
+          "_taxRates": [
+            {
+              "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+              "dateValidFrom": 1970-01-01,
+              "rate": 22
+            }
+          ],
+          "recoverable": true,
+          "compound": false
+        }
+      ]
+    }
+  ]
+?>
 ```
 
 This endpoint lists Organization's Taxes.

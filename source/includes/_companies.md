@@ -27,6 +27,10 @@ spaceInvoices.companies.list()
   console.log(companies);
 })
 ```
+```csharp
+SpaceCompanyService companyService = new SpaceCompanyService();
+List<SpaceCompany> companies = companyService.List();
+```
 
 ```php
 <?php
@@ -36,7 +40,7 @@ spaceInvoices.companies.list()
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -50,6 +54,71 @@ spaceInvoices.companies.list()
     "companyNumber": "123456789"
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "taxNumber": "",
+    "taxSubject": true,
+    "companyNumber": "123456789"
+  }
+]
+```
+```csharp
+List<SpaceCompany> 
+
+public class SpaceCompany
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("address")]
+  public string Address { get; set; }
+
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public bool TaxSubject { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+}
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "name": "Space Exploration Technologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "taxNumber": "",
+      "taxSubject": true,
+      "companyNumber": "123456789"
+    }
+  ]
+?>
 ```
 
 This endpoint lists Companies.
@@ -95,6 +164,10 @@ spaceInvoices.companies.search('space')
   console.log(companies);
 })
 ```
+```csharp
+SpaceCompanyService companyService = new SpaceCompanyService();
+List<SpaceCompany> companies = companyService.Search("space");
+```
 
 ```php
 <?php
@@ -104,7 +177,7 @@ spaceInvoices.companies.search('space')
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -118,6 +191,71 @@ spaceInvoices.companies.search('space')
     "companyNumber": "123456789"
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "taxNumber": "",
+    "taxSubject": true,
+    "companyNumber": "123456789"
+  }
+]
+```
+```csharp
+List<SpaceCompany> 
+
+public class SpaceCompany
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("address")]
+  public string Address { get; set; }
+
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public bool TaxSubject { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+}
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "name": "Space Exploration Technologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "taxNumber": "",
+      "taxSubject": true,
+      "companyNumber": "123456789"
+    }
+  ]
+?>
 ```
 
 This endpoint searches for Companies.

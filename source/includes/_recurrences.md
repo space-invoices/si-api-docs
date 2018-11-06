@@ -24,6 +24,18 @@ spaceInvoices.recurrences.create(documentId, {
   console.log(recurrence);
 })
 ```
+```csharp
+SpaceRecurrenceService recurrenceService = new SpaceRecurrenceService();
+SpaceRecurrenceCreateOptions createOptions = new SpaceRecurrenceCreateOptions
+{
+    Name = "Monthly recurrence",
+    DateFirst = DateTime.Today,
+    Type = "month",
+    NumRecurrences = 2
+
+};
+SpaceRecurrence recurrence = recurrenceService.Create("DOCUMENT_ID", createOptions);
+```
 
 ```php
 <?php
@@ -38,7 +50,7 @@ spaceInvoices.recurrences.create(documentId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "documentId": "5a3683ea12d5a67dd0ef2f4d",
@@ -61,6 +73,105 @@ spaceInvoices.recurrences.create(documentId, {
     }
   ]
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "documentId": "5a3683ea12d5a67dd0ef2f4d",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+  "accountId": "5a3683ea12d5a67dd0ef2f4f",
+  "name": "Monthly recurrence",
+  "type": "month",
+  "dateFirst": "2018-01-01",
+  "numRecurrences": 2,
+  "autoSend": false,
+  "notify": true,
+  "saveAsDraft": false,
+  "_recurrenceDates": [
+    {
+      "date": "2018-01-01",
+      "iteration": 1
+    }, {
+      "date": "2018-02-01",
+      "iteration": 2
+    }
+  ]
+}
+```
+```csharp
+public class SpaceRecurrence
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("documentId")]
+  public string DocumentId { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("accountId")]
+  public string AccountId { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("type")]
+  public string Type { get; set; }
+
+  [JsonProperty("dateFirst")]
+  public DateTime DateFirst { get; set; }
+
+  [JsonProperty("numRecurrences")]
+  public int NumRecurrences { get; set; }
+
+  [JsonProperty("autoSend")]
+  public bool AutoSend { get; set; }
+
+  [JsonProperty("notify")]
+  public bool Notify { get; set; }
+
+  [JsonProperty("saveAsDraft")]
+  public bool SaveAsDraft { get; set; }
+
+  [JsonProperty("_recurrenceDates")]
+  public List<SpaceRecurrenceDate> _recurrenceDates { get; set; }
+}
+
+public class SpaceRecurrenceDate
+{
+  [JsonProperty("date")]
+  public DateTime Date { get; set; }
+
+  [JsonProperty("iteration")]
+  public int Iteration { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "documentId": "5a3683ea12d5a67dd0ef2f4d",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+    "accountId": "5a3683ea12d5a67dd0ef2f4f",
+    "name": "Monthly recurrence",
+    "type": "month",
+    "dateFirst": "2018-01-01",
+    "numRecurrences": 2,
+    "autoSend": false,
+    "notify": true,
+    "saveAsDraft": false,
+    "_recurrenceDates": [
+      {
+        "date": "2018-01-01",
+        "iteration": 1
+      }, {
+        "date": "2018-02-01",
+        "iteration": 2
+      }
+    ]
+  }
+?>
 ```
 
 This endpoint creates a new Recurrence.
@@ -114,6 +225,11 @@ spaceInvoices.recurrences.delete(recurrenceId)
 })
 ```
 
+```csharp
+SpaceRecurrenceService recurrenceService = new SpaceRecurrenceService();
+Counter counter = recurrenceService.Delete("RECURRENCE_ID");
+```
+
 ```php
 <?php
   Spaceinvoices\Recurrences::delete("RECURRENCE_ID");
@@ -122,10 +238,29 @@ spaceInvoices.recurrences.delete(recurrenceId)
 
 > Returns:
 
-```json
+```shell
 {
   "count": 1
 }
+```
+```javascript
+{
+  "count": 1
+}
+```
+```csharp
+public class Counter
+{
+  [JsonProperty("count")]
+  public int Count { get; set; }
+}
+```
+```php
+<?php
+  {
+    "count": 1
+  }
+?>
 ```
 
 This endpoint deletes a Recurrence by ID.
@@ -162,6 +297,10 @@ spaceInvoices.recurrences.list(organizationId)
   console.log(recurrences);
 })
 ```
+```csharp
+SpaceRecurrenceService recurrenceService = new SpaceRecurrenceService();
+List<SpaceRecurrence> recurrencies = recurrenceService.List("ORGANIZATION_ID");
+```
 
 ```php
 <?php
@@ -171,7 +310,7 @@ spaceInvoices.recurrences.list(organizationId)
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -182,6 +321,35 @@ spaceInvoices.recurrences.list(organizationId)
     "amount": 1000
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "documentId": "5a3683ea12d5a67dd0ef2f4d",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+    "type": "bank",
+    "date": "2018-01-01",
+    "amount": 1000
+  }
+]
+```
+```csharp
+List<SpaceRecurrence>
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "documentId": "5a3683ea12d5a67dd0ef2f4d",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+      "type": "bank",
+      "date": "2018-01-01",
+      "amount": 1000
+    }
+  ]
+?>
 ```
 
 This endpoint lists Organization's Recurrences.
@@ -218,13 +386,17 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurr
 
 ```javascript
 ```
+```csharp
+SpaceRecurrenceService recurrenceService = new SpaceRecurrenceService();
+SpaceRecurrence recurrence = recurrenceService.GetADocumentRecurrence("DOCUMENT_ID");
+```
 
 ```php
 ```
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -249,6 +421,109 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurr
     ]
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "documentId": "5a3683ea12d5a67dd0ef2f4d",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+    "accountId": "5a3683ea12d5a67dd0ef2f4f",
+    "name": "Monthly recurrence",
+    "type": "month",
+    "dateFirst": "2018-01-01",
+    "numRecurrences": 2,
+    "autoSend": false,
+    "notify": true,
+    "saveAsDraft": false,
+    "_recurrenceDates": [
+      {
+        "date": "2018-01-01",
+        "iteration": 1
+      }, {
+        "date": "2018-02-01",
+        "iteration": 2
+      }
+    ]
+  }
+]
+```
+```csharp
+public class SpaceRecurrence
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("documentId")]
+  public string DocumentId { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("accountId")]
+  public string AccountId { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("type")]
+  public string Type { get; set; }
+
+  [JsonProperty("dateFirst")]
+  public DateTime DateFirst { get; set; }
+
+  [JsonProperty("numRecurrences")]
+  public int NumRecurrences { get; set; }
+
+  [JsonProperty("autoSend")]
+  public bool AutoSend { get; set; }
+
+  [JsonProperty("notify")]
+  public bool Notify { get; set; }
+
+  [JsonProperty("saveAsDraft")]
+  public bool SaveAsDraft { get; set; }
+
+  [JsonProperty("_recurrenceDates")]
+  public List<SpaceRecurrenceDate> _recurrenceDates { get; set; }
+}
+
+public class SpaceRecurrenceDate
+{
+  [JsonProperty("date")]
+  public DateTime Date { get; set; }
+
+  [JsonProperty("iteration")]
+  public int Iteration { get; set; }
+}
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "documentId": "5a3683ea12d5a67dd0ef2f4d",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+      "accountId": "5a3683ea12d5a67dd0ef2f4f",
+      "name": "Monthly recurrence",
+      "type": "month",
+      "dateFirst": "2018-01-01",
+      "numRecurrences": 2,
+      "autoSend": false,
+      "notify": true,
+      "saveAsDraft": false,
+      "_recurrenceDates": [
+        {
+          "date": "2018-01-01",
+          "iteration": 1
+        }, {
+          "date": "2018-02-01",
+          "iteration": 2
+        }
+      ]
+    }
+  ]
+?>
 ```
 
 This endpoint lists Recurrences.

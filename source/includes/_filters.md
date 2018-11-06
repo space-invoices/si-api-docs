@@ -107,6 +107,84 @@ var queryParams = {
 }
 ```
 
+```csharp
+// Where
+var queryParams = @"{
+  filter: {
+    where: {
+      type: "invoice"
+    }
+  }
+}";
+// or
+var queryParams = @"{
+  filter: {
+    where: {
+      type: {
+        inq: [
+          "invoice",
+          "advance"
+        ]
+      }
+    }
+  }
+}";
+
+// Include
+var queryParams = @"{
+  filter: {
+    include: 'payments'
+  }
+}";
+// or
+var queryParams = @"{
+  filter: {
+    include: {
+      tax: 'taxRate'
+    }
+  }
+}";
+
+// Fields
+var queryParams = @"{
+  filter: {
+    fields: {
+      type: true
+    }
+  }
+}";
+
+// Limit
+var queryParams = @"{
+  filter: {
+    limit: 5
+  }
+}";
+
+// Order
+var queryParams = @"{
+  filter: {
+    order: {
+      date: 'ASC'
+    }
+  }
+}";
+
+// Skip
+var queryParams = @"{
+  filter: {
+    skip: 5
+  }
+}";
+
+// Deleted
+var queryParams = @"{
+  filter: {
+    deleted: true
+  }
+}";
+```
+
 ```php
 <?php
   // Where

@@ -18,6 +18,10 @@ spaceInvoices.currency.list()
   console.log(currencies);
 })
 ```
+```csharp
+SpaceCurrencyService currencyService = new SpaceCurrencyService();
+List<SpaceCurrency> currencies = currencyService.List();
+```
 
 ```php
 <?php
@@ -27,7 +31,7 @@ spaceInvoices.currency.list()
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "EUR",
@@ -54,6 +58,80 @@ spaceInvoices.currency.list()
     "type": "crypto"
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "EUR",
+    "name": "European Union Euro",
+    "symbol": "€",
+    "type": "fiat"
+  },
+  {
+    "id": "USD",
+    "name": "United States Dollar",
+    "symbol": "$",
+    "type": "fiat"
+  },
+  {
+    "id": "BTC",
+    "name": "Bitcoin",
+    "symbol": "₿",
+    "type": "crypto"
+  },
+  {
+    "id": "ETH",
+    "name": "Ether",
+    "symbol": "‎Ξ",
+    "type": "crypto"
+  }
+]
+```
+```csharp
+public class SpaceCurrency
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("symbol")]
+  public string Symbol { get; set; }
+
+  [JsonProperty("type")]
+  public string Type { get; set; }
+}
+```
+```php
+<?php
+  [
+    {
+      "id": "EUR",
+      "name": "European Union Euro",
+      "symbol": "€",
+      "type": "fiat"
+    },
+    {
+      "id": "USD",
+      "name": "United States Dollar",
+      "symbol": "$",
+      "type": "fiat"
+    },
+    {
+      "id": "BTC",
+      "name": "Bitcoin",
+      "symbol": "₿",
+      "type": "crypto"
+    },
+    {
+      "id": "ETH",
+      "name": "Ether",
+      "symbol": "‎Ξ",
+      "type": "crypto"
+    }
+  ]
+?>
 ```
 
 This endpoint retrieves all Currencies.
