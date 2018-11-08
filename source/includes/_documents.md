@@ -8,7 +8,7 @@ We have taken a lot of care to provide developers with a wide array of options w
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d _documentClient[name]="Rocket Man" \
   -d _documentClient[country]="USA" \
   -d _documentItems[0][name]="Space suit" \
@@ -39,18 +39,18 @@ spaceInvoices.documents.create(organization.id, {
 ```csharp
 SpaceDocumentCreateOptions createOptions = new SpaceDocumentCreateOptions
 {
-  DocumentClient = new SpaceDocumentClientOptions
-  {
-    Name = "Rocket Man",
-    Country = "USA"
-  },
-  DocumentItems = new List<SpaceDocumentItemOptions>{
-    new SpaceDocumentItemOptions{
-      Name = "Space Suit",
-      Quantity = 1,
-      Unit = "I"
+    DocumentClient = new SpaceDocumentClientOptions
+    {
+        Name = "Rocket Man",
+        Country = "USA"
+    },
+    DocumentItems = new List<SpaceDocumentItemOptions>{
+        new SpaceDocumentItemOptions{
+            Name = "Space Suit",
+            Quantity = 1,
+            Unit = "Item"
+        }
     }
-  }
 };
 
 SpaceDocumentService documentService = new SpaceDocumentService();
@@ -366,7 +366,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | zip | Zip / postal code of Client. |
 | country | Country of Client. |
 | companyNumber | String, organization registration or similar number of Client. |
-| taxNumber | String, organization VAT / GST or similar tax number of Client. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of Client. |
 | [](#empty) | |
 | _documentIssuer | Object containting issuer data. _Property is automatically populated with Organization data._ _Any key that is provided in object is used instead._ [toggle definition](#expand) |
 | name | Name of issuer. |
@@ -376,7 +376,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 | zip | Zip / postal code of issuer. |
 | country | Country of issuer. |
 | companyNumber | String, organization registration or similar number of issuer. |
-| taxNumber | String, organization VAT / GST or similar tax number of issuer. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of issuer. |
 | IBAN | Bank account number of issuer. |
 | bank | Bank of issuer. |
 | website | Website address of issuer. |
@@ -442,7 +442,7 @@ _This example shows the process of creating an `invoice` providing minimum data.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents?filter[where][type]=invoice" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 ```javascript
 var queryParams = {
@@ -678,7 +678,7 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 ```javascript
 spaceInvoices.documents.getById(documentId, queryParams)
@@ -978,7 +978,7 @@ This endpoint return a document by it's ID.
 ## Edit Document
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d _documentClient[name]="Rocket Man" \
   -d _documentClient[country]="USA" \
   -d _documentItems[0][name]="Space suit" \
@@ -1335,7 +1335,7 @@ This endpoint updates a document.
 | zip | Zip / postal code of Client. |
 | country | Country of Client. |
 | companyNumber | String, organization registration or similar number of Client. |
-| taxNumber | String, organization VAT / GST or similar tax number of Client. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of Client. |
 | [](#empty) | |
 | _documentIssuer | Object containting issuer data. _Property is automatically populated with Organization data._ _Any key that is provided in object is used instead._ [toggle definition](#expand) |
 | name | Name of issuer. |
@@ -1345,7 +1345,7 @@ This endpoint updates a document.
 | zip | Zip / postal code of issuer. |
 | country | Country of issuer. |
 | companyNumber | String, organization registration or similar number of issuer. |
-| taxNumber | String, organization VAT / GST or similar tax number of issuer. |
+| taxNumber | String, organization VAT / GST / sales tax or similar tax number of issuer. |
 | IBAN | Bank account number of issuer. |
 | bank | Bank of issuer. |
 | website | Website address of issuer. |
@@ -1411,7 +1411,7 @@ This endpoint updates a document.
 ## Delete Document
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -1485,7 +1485,7 @@ This endpoint deletes a Document by ID.
 ## Create PDF
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/pdf?l=sl" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -1507,6 +1507,7 @@ HttpResponseMessage res = documentService.GetPdf("DOCUMENT_ID");
 ```
 
 > Returns:
+
 ```shell
 PDF Buffer
 ```
@@ -1522,29 +1523,29 @@ HttpResponseMessage
 PDF Buffer
 ```
 
-This endpoint deletes a Document by ID.
+__This endpoint returns a document in PDF format.__
 
-**IMPORTANT:** You can't delete documents with type `invoice`.
+The language of the document is determined by the `l` flag, if no flag is provided the organization's default locale is used. Currently this setting doesn't effect the user created content of the document, only the predefined data like table headers etc. In the future we are exploring options to allow users to provide content in multiple languages and switching it using this flag.
 
 ### HTTP Request
 
-`DELETE https://api.spaceinvoices.com/v1/documents/:id`
+`GET https://api.spaceinvoices.com/v1/documents/:id/pdf`
 
 #### Query parameters
 
 |      |     |
 | ---: | --- |
 | id **required** | ID of Document. |
-| language | Language of PDF (`sl`, `en` or `de` ). |
+| language | Language of PDF _Currently we support `sl`, `en` and `de` format._ |
 
 ### HTTP Response
 
 #### Arguments
 
-## Send email
+## Send in email
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d recipients="rocketman@example.com" \
   -d message="You can find documet PDF in attachment." \
   -d subject="Invoice"
@@ -1574,8 +1575,8 @@ Result res = documentService.Send("DOCUMENT_ID", documentSendOptions);
 <?php
   Spaceinvoices\Documents::send("DOCUMENT_ID", array(
     "recipients" => "rocketman@example.com",
-    "message" => "You can find documet PDF in attachment.",
-    "subject" => "Invoice"
+    "message" => "You can find the document, number [document number], PDF in attachment.",
+    "subject" => "Invoice for service"
   ));
 ?>
 ```
@@ -1608,7 +1609,9 @@ public class Result
 ?>
 ```
 
-Sends email with Document PDF attachment.
+__This endpoint allows sending an email with Document PDF as attachment.__
+
+Emails are sent from our address in the name of the organization sending it and there are no styling options. In the future we intend to provide an option for users to also provide an html template for the email. Linking own domains for sending purposes will also be possible. For now only custom solutions are possible.
 
 ### HTTP Request
 
@@ -1624,9 +1627,9 @@ Sends email with Document PDF attachment.
 
 |      |     |
 | ---: | --- |
-| recipients **required** | String, list of recipients separated by a comma. |
-| message **required** | String, costum message sent in email. |
-| subject | String, email subject. |
+| recipients **required** | String, list of recipients separated with a comma. |
+| message **required** | String, costum message sent in email. _May contain shortcode notations which get parsed to data._ |
+| subject | String, email subject. _May contain shortcode notations which get parsed to data._ |
 
 ### HTTP Response
 

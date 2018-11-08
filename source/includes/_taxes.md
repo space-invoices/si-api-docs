@@ -8,14 +8,16 @@ Taxes have rates applied to them and the rates are chosen based on date of docum
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes" \
-  -H "Authorization: TOKEN" \
-  -d name="GST 15" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Value Added Tax" \
+  -d abbreviation="VAT" \
   -d _taxRates[][rate]=15
 ```
 
 ```javascript
 spaceInvoices.taxes.create(organizationId, {
-  name: "GST 15",
+  name: "Value Added Tax",
+  abbreviation: "VAT",
   _taxRates: [{
     rate: 15
   }]
@@ -30,7 +32,7 @@ taxRates.Add(new SpaceTaxRate { Rate = 22, DateValidFrom = "2018-01-01" });
 
 SpaceTaxCreateOptions createOptions = new SpaceTaxCreateOptions
 {
-    Name = "GST 15",
+    Name = "Value Added Tax",
     Abbreviation = "VAT",
     _taxRates = taxRates
 };
@@ -42,7 +44,8 @@ SpaceTax tax = taxService.Create("ORGANIZATION_ID", createOptions);
 ```php
 <?php
   Spaceinvoices\Taxes::create("ORGANIZATION_ID", array(
-    "name" => "GST 15",
+    "name" => "Value Added Tax",
+    "abbreviation" => "VAT",
     "_taxRates" => [array(
       "rate" => 15
     )]
@@ -73,7 +76,8 @@ SpaceTax tax = taxService.Create("ORGANIZATION_ID", createOptions);
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "GST 15",
+  "name": "Value Added Tax",
+  "abbreviation": "VAT",
   "_taxRates": [
     {
       "rate": 15,
@@ -150,7 +154,8 @@ This endpoint creates a new Tax.
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of Tax. |
+| name | Name of Tax. |
+| abbreviation | Abbreviation of Tax. |
 | _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
 | rate | Rate of tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
@@ -171,7 +176,7 @@ This endpoint creates a new Tax.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d rate=20 \
   -d dateValidFrom="2018-01-01"
 ```
@@ -194,7 +199,7 @@ SpaceTaxRate taxRate = new SpaceTaxRate
     DateValidFrom = "2018-01-01"
 };
 
-SpaceTaxRate taxRate = taxService.AddANewRateToTax("TAX_ID", taxRate);
+SpaceTaxRate taxRate = taxService.AddRateToTax("TAX_ID", taxRate);
 ```
 
 ```php
@@ -271,13 +276,13 @@ This endpoint creates a new Rate for a Tax.
 
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
-  -d name="GST 15"
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Value Added Tax"
 ```
 
 ```javascript
 spaceInvoices.taxes.edit(taxId, {
-  name: "GST 15",
+  name: "Value Added Tax 2",
 })
 .then(function(tax) {
   console.log(tax);
@@ -288,7 +293,7 @@ SpaceTaxService taxService = new SpaceTaxService();
 
 SpaceTaxEditOptions editOptions = new SpaceTaxEditOptions
 {
-    Name = "GST 15"
+    Name = "Value Added Tax 2"
 };
 
 SpaceTax tax = taxService.Edit("TAX_ID", editOptions);
@@ -297,7 +302,7 @@ SpaceTax tax = taxService.Edit("TAX_ID", editOptions);
 ```php
 <?php
   Spaceinvoices\Taxes::edit("TAX_ID", array(
-    "name" => "GST 15"
+    "name" => "Value Added Tax 2"
   ));
 ?>
 ```
@@ -323,7 +328,8 @@ SpaceTax tax = taxService.Edit("TAX_ID", editOptions);
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "GST 15",
+  "name": "Value Added Tax 2",
+  "abbreviation": "VAT",
   "_taxRates": [
     {
       "rate": 15,
@@ -422,7 +428,7 @@ This endpoint updates a Tax by ID.
 
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -497,7 +503,7 @@ A Tax can only be deleted if it's not used on any Document.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/taxes" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -532,7 +538,8 @@ List<SpaceTax> taxes = taxService.List("ORGANIZATION_ID");
     "taxes": [
       {
         "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
+        "name": "Value Added Tax",
+        "abbreviation": "VAT",
         "_taxRates": [
           {
             "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
@@ -628,11 +635,11 @@ This endpoint lists Organization's Taxes.
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of Tax. |
+| name  | Name of Tax. |
+| abbreviation  | Abbreviation of Tax. |
 | _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
 | rate | Rate of tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
 | [](#empty) | |
 | recoverable | Boolean if Tax is recoverable after being paid. |
 | compound | Boolean if Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
-

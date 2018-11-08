@@ -6,7 +6,7 @@ Items are items, services and any other thing that a Organization can sell. They
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/items" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Space suit" \
   -d description="Best in class suit made from durable composites." \
   -d unit="item" \
@@ -154,7 +154,7 @@ This endpoint creates a new Item.
 
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Space suit" \
   -d description="Best in class suit made from durable composites." \
   -d unit="item" \
@@ -295,7 +295,7 @@ This endpoint updates a Item by ID.
 
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -370,7 +370,7 @@ Soft deleted instances stay in database but are not returned on normal calls but
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/items" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -413,7 +413,8 @@ List<SpaceItem> items = itemService.List("ORGANIZATION_ID", filter);
     "taxes": [
       {
         "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
+        "name": "Value Added Tax",
+        "abbreviation": "VAT",
         "_taxRates": [
           {
             "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
@@ -530,7 +531,7 @@ This endpoint lists Organization's Items.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-items?term=Space" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript

@@ -450,6 +450,140 @@ var queryParams = {
   }
 }
 ```
+```csharp
+// Equal
+var queryParams = @"{
+  filter: {
+    where: {
+      type: 'invoice'
+    }
+  }
+}";
+
+// And | Or - Instead of and you can also use or
+var queryParams = @"{
+  filter: {
+    where: {
+      and: [{
+          type: 'invoice'
+        }, {
+          draft: false
+        }
+      ]
+    }
+  }
+}";
+// GT / GTE
+var queryParams = @"{
+  filter: {
+    where: {
+      date: {
+        gt: '2018-04-01T18:30:00.000Z'
+      }
+    }
+  }
+}";
+
+// LT / LTE
+var queryParams = @"{
+  filter: {
+    where: {
+      date: {
+        lt: '2018-04-01T18:30:00.000Z'
+      }
+    }
+  }
+}";
+// Between
+var queryParams = @"{
+  filter: {
+    where: {
+      date: {
+        between: [
+          '2017-04-01T18:30:00.000Z',
+          '2018-04-01T18:30:00.000Z'
+        ]
+      }
+    }
+  }
+}";
+// inq / nin
+var queryParams = @"{
+  filter: {
+    where: {
+      type: {
+        inq: [
+          'invoice',
+          'estimate'
+        ]
+      }
+    }
+  }
+}";
+// Near
+var queryParams = @"{
+  filter: {
+    where: {
+      coordinates: {
+        near: '153.536,-28.1'
+      }
+    }
+  }
+}";
+//or
+var queryParams = @"{
+  filter: {
+    where: {
+      coordinates: {
+        near: '153.536,-28.1',
+        maxDistance: 5,
+        units: 'meters'
+      }
+    }
+  }
+}";
+// NEQ
+var queryParams = @"{
+  filter: {
+    where: {
+      draft: {
+        neq: false
+      }
+    }
+  }
+}";
+// LIKE | NLIKE / options
+var queryParams = @"{
+  filter: {
+    where: {
+      number: {
+        like: '2018.*'
+      }
+    }
+  }
+}";
+// or
+var queryParams = @"{
+  filter: {
+    where: {
+      number: {
+        like: '2018.*'
+        options: i
+      }
+    }
+  }
+}";
+// regExp
+var queryParams = @"{
+  filter: {
+    where: {
+      number: {
+        regexp: '2018.*'
+      }
+    }
+  }
+}";
+```
 
 ```php
 <?php

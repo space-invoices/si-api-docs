@@ -6,7 +6,7 @@ Clients are businesses, end persons, organizations and any other entity that can
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/clients" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
   -d city="Hawthorne" \
@@ -198,9 +198,9 @@ This endpoint creates a new Client.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | ISO 3166 county. |
+| country | String name of country. |
 | taxSubject _default is *false*_ | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
 | contact | Name of Client. |
@@ -220,7 +220,7 @@ This endpoint creates a new Client.
 
 ```shell
 curl -X PUT "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
   -d city="Hawthorne" \
@@ -411,9 +411,9 @@ This endpoint updates a Client by id.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | ISO 3166 county. |
+| country | String name of country. |
 | taxSubject _default is *false*_ | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
 | contact | Name of Client. |
@@ -432,7 +432,7 @@ This endpoint updates a Client by id.
 
 ```shell
 curl -X DELETE "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -507,7 +507,7 @@ Soft deleted instances stay in database but are not returned on normal calls but
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/clients" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -611,9 +611,9 @@ This endpoint lists Organization's Clients.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | ISO 3166 county. |
+| country | String name of country. |
 | taxSubject | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
 | contact | Name of Client. |
@@ -625,7 +625,7 @@ This endpoint lists Organization's Clients.
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -729,20 +729,20 @@ This endpoint searches for Organization's Clients.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | ISO 3166 county. |
+| country | String name of country. |
 | taxSubject | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
 | contact | Name of Client. |
 | phone | Phone number of Client. |
 | note | Text note about Client. |
 
-## Get Clinet by ID
+## Get Client by ID
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
@@ -894,9 +894,9 @@ This endpoint return a Client by ID.
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | ISO 3166 county. |
+| country | String name of country. |
 | taxSubject | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / etc. tax identification number. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
 | contact | Name of Client. |

@@ -74,8 +74,11 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
+    max-width: 80%;
     margin-bottom: $logo-margin;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &>.search {
@@ -524,15 +527,15 @@ html, body {
           font-weight: normal;
         }
       }
-      
+
       &:last-child {
         border-bottom: 1px solid #ccc;
       }
-  
+
       &:nth-child(odd)>td {
         background-color: lighten($main-bg,4.2%);
       }
-  
+
       &:nth-child(even)>td {
         background-color: lighten($main-bg,2.4%);
       }
@@ -568,7 +571,7 @@ html, body {
 
   pre {
     white-space: pre-wrap;
-  
+
     &>code {
       background-color: transparent;
       padding: 0;

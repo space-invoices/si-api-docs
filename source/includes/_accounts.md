@@ -6,7 +6,7 @@ Accounts represent users that can login and access different organizations based
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts/login" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d email="rocketman@example.com" \
   -d password="supersecret"
 ```
@@ -82,7 +82,7 @@ public class SpaceLogIn
 
 
 
-This endpoint authenticates an account and returns an access token that can be used in consecutive calls to the API.
+This endpoint authenticates an account and returns a launch code (access token) that can be used in consecutive calls to the API.
 
 ### HTTP Request
 
@@ -101,7 +101,7 @@ This endpoint authenticates an account and returns an access token that can be u
 
 |      |     |
 | ---: | --- |
-| id | Generated access token. |
+| id | Generated launch code (access token). |
 | userId | ID of authenticated user account. |
 
 
@@ -109,7 +109,7 @@ This endpoint authenticates an account and returns an access token that can be u
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts" \
-  -H "Authorization: TOKEN" \
+  -H "Authorization: LAUNCH_CODE" \
   -d email="rocketman@example.com" \
   -d password="supersecret"
 ```
@@ -283,7 +283,7 @@ This endpoint returns a boolean value if email is unique / does not exist in the
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/accounts/:accountId" \
-  -H "Authorization: TOKEN"
+  -H "Authorization: LAUNCH_CODE"
 ```
 ```javascript
 spaceInvoices.accounts.getById(accountId)
