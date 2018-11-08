@@ -14,6 +14,11 @@ curl "https://api.spaceinvoices.com/v1/countries" \
 SpaceCountryService countryService = new SpaceCountryService();
 List<SpaceCountry> countries = countryService.List();
 ```
+```php
+<?php
+  Spaceinvoices\Countries::find();
+?>
+```
 
 > Returns:
 
@@ -137,6 +142,86 @@ public class SpaceCountryTax
   [JsonProperty("classification")]
   public string Classification { get; set; }
 }
+```
+```php
+<?php
+  [
+    {
+      "name": "Slovenia",
+      "alpha2Code": "SI",
+      "alpha3Code": "SVN",
+      "nativeName": "Slovenija",
+      "numericCode": "705",
+      "translations": {
+        "br": "Eslovênia",
+        "pt": "Eslovénia",
+        "nl": "Slovenië",
+        "hr": "Slovenija",
+        "fa": "اسلوونی",
+        "de": "Slowenien",
+        "es": "Eslovenia",
+        "fr": "Slovénie",
+        "ja": "スロベニア",
+        "it": "Slovenia"
+      },
+      "taxes": [
+        {
+          "name": "Davek na dodano vrednost",
+          "abbreviation": "DDV",
+          "rate": "22",
+          "classification": "standard"
+        },
+        {
+          "name": "Davek na dodano vrednost",
+          "abbreviation": "DDV",
+          "rate": "9.5",
+          "classification": "reduced"
+        }
+      ],
+      "currency": "EUR"
+    },
+    {
+      "name": "Netherlands",
+      "alpha2Code": "NL",
+      "alpha3Code": "NLD",
+      "nativeName": "Nederland",
+      "numericCode": "528",
+      "translations": {
+        "br": "Holanda",
+        "pt": "Países Baixos",
+        "nl": "Nederland",
+        "hr": "Nizozemska",
+        "fa": "پادشاهی هلند",
+        "de": "Niederlande",
+        "es": "Países Bajos",
+        "fr": "Pays-Bas",
+        "ja": "オランダ",
+        "it": "Paesi Bassi"
+      },
+      "taxes": [
+        {
+          "name": "Belasting toegevoegde waarde",
+          "abbreviation": "BTW",
+          "rate": "21",
+          "classification": "standard"
+        },
+        {
+          "name": "Belasting toegevoegde waarde",
+          "abbreviation": "BTW",
+          "rate": "6",
+          "classification": "reduced"
+        },
+        {
+          "name": "Belasting toegevoegde waarde",
+          "abbreviation": "BTW",
+          "rate": "0",
+          "classification": "additional"
+        }
+      ],
+      "currency": "EUR"
+    }
+  ]
+?>
 ```
 
 This endpoint retrieves all Countries.

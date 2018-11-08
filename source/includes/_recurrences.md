@@ -392,6 +392,9 @@ SpaceRecurrence recurrence = recurrenceService.GetADocumentRecurrence("DOCUMENT_
 ```
 
 ```php
+<?php
+  Spaceinvoices\Recurrences::findDocumentRecurrences("DOCUMENT_ID");
+?>
 ```
 
 > Returns:

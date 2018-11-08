@@ -391,7 +391,7 @@ List<SpacePayment> payments = paymentService.List("ORGANIZATION_ID");
 ]
 ```
 ```csharp
-List<SpacePayment> 
+List<SpacePayment>
 ```
 ```php
 <?php
@@ -448,6 +448,9 @@ List<SpacePayment> payments = paymentService.ListADocumentPayments("DOCUMENT_ID"
 ```
 
 ```php
+<?php
+  Spaceinvoices\Payments::findDocumentPayments("DOCUMENT_ID");
+?>
 ```
 
 > Returns:
