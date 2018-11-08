@@ -12,7 +12,7 @@ curl "https://api.spaceinvoices.com/v1/accounts/login" \
 ```
 
 ```javascript
-spaceInvoices.accounts.create({
+spaceInvoices.accounts.login({
   email: 'rocketman@example.com',
   password: 'supersecret'
 })

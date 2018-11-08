@@ -377,7 +377,7 @@ This endpoint lists Organization's Recurrences.
 | description | Description of Recurrence. |
 
 
-## List Recurrences
+## List a Document's Recurrences
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence" \
@@ -385,6 +385,10 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurr
 ```
 
 ```javascript
+spaceInvoices.recurrences.listDocumentRecurrences(documentId)
+.then(function(recurrences) {
+  console.log(recurrences);
+});
 ```
 ```csharp
 SpaceRecurrenceService recurrenceService = new SpaceRecurrenceService();

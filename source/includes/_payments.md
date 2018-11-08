@@ -441,6 +441,11 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/paymen
 ```
 
 ```javascript
+spaceInvoices.payments.listDocumentPayments(documentId)
+.then(function(payments) {
+  console.log(payments);
+});
+
 ```
 ```csharp
 SpacePaymentService paymentService = new SpacePaymentService();

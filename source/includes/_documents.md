@@ -1415,7 +1415,7 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2
 ```
 
 ```javascript
-spaceInvoices.documents.delete(DocumentId)
+spaceInvoices.documents.delete(documentId)
 .then(function(count) {
   console.log(count);
 })
@@ -1489,7 +1489,7 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/pdf?l=
 ```
 
 ```javascript
-spaceInvoices.documents.getPdf(DocumentId, "sl")
+spaceInvoices.documents.getPdf(documentId, "sl")
 .then(function(pdf) {
   console.log(pdf);
 })
@@ -1552,7 +1552,7 @@ curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send" 
 ```
 
 ```javascript
-spaceInvoices.documents.send(DocumentId, {
+spaceInvoices.documents.send(documentId, {
   recipients: "rocketman@example.com",
   message: "You can find documet PDF in attachment.",
   subject: "Invoice"
