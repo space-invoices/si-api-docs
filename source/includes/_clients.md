@@ -35,6 +35,23 @@ spaceInvoices.clients.create(organizationId, {
 })
 ```
 
+```csharp
+SpaceClientCreateOptions createOptions = new SpaceClientCreateOptions
+{
+  Name: "Space Exploration Technologies corp",
+  Address: "Rocket Road",
+  City: "Hawthorne",
+  Zip: "CA 90250",
+  Country: "USA",
+  Email: "info@spacex.com",
+  Contact: "Elon M.",
+  Phone: "+1 123 456 789",
+  Note: "Orders rocket fuel every month."
+};
+SpaceClientService clientService = new SpaceClientService();
+SpaceClient client = clientService.Create("ORGANIZATION_ID", createOptions);
+```
+
 ```php
 <?php
   Spaceinvoices\Clients::create("ORGANIZATION_ID", array(
@@ -53,7 +70,7 @@ spaceInvoices.clients.create(organizationId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
@@ -67,6 +84,97 @@ spaceInvoices.clients.create(organizationId, {
   "phone": "+1 123 456 789",
   "note": "Orders rocket fuel every month."
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 789",
+  "note": "Orders rocket fuel every month."
+}
+```
+
+```csharp
+public class SpaceClient
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("address")]
+  public string Address { get; set; }
+
+  [JsonProperty("address2")]
+  public string Address2 { get; set; }
+
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public string TaxSubject { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+
+  [JsonProperty("email")]
+  public string Email { get; set; }
+
+  [JsonProperty("contact")]
+  public string Contact { get; set; }
+
+  [JsonProperty("phone")]
+  public string Phone { get; set; }
+
+  [JsonProperty("note")]
+  public string Note { get; set; }
+
+  [JsonProperty("IBAN")]
+  public string Iban { get; set; }
+
+  [JsonProperty("bank")]
+  public string Bank { get; set; }
+
+  [JsonProperty("SWIFT")]
+  public string Swift { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 789",
+    "note": "Orders rocket fuel every month."
+  }
+?>
 ```
 
 This endpoint creates a new Client.
@@ -141,6 +249,24 @@ spaceInvoices.clients.edit(clientId, {
 })
 ```
 
+```csharp
+SpaceClientEditOptions editOptions = new SpaceClientEditOptions
+{
+  Name: "Space Exploration Technologies corp",
+  Address: "Rocket Road",
+  City: "Hawthorne",
+  Zip: "CA 90250",
+  Country: "USA",
+  Email: "info@spacex.com",
+  Contact: "Elon M.",
+  Phone: "+1 123 456 789",
+  Note: "Orders rocket fuel every month.",
+
+};
+SpaceClientService clientService = new SpaceClientService();
+SpaceClient client = clientService.Edit("ORGANIZATION_ID", editOptions);
+```
+
 ```php
 <?php
   Spaceinvoices\Clients::edit("CLIENT_ID", array(
@@ -159,7 +285,7 @@ spaceInvoices.clients.edit(clientId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
@@ -173,6 +299,96 @@ spaceInvoices.clients.edit(clientId, {
   "phone": "+1 123 456 789",
   "note": "Orders rocket fuel every month."
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 789",
+  "note": "Orders rocket fuel every month."
+}
+```
+```csharp
+public class SpaceClient
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("address")]
+  public string Address { get; set; }
+
+  [JsonProperty("address2")]
+  public string Address2 { get; set; }
+
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public string TaxSubject { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+
+  [JsonProperty("email")]
+  public string Email { get; set; }
+
+  [JsonProperty("contact")]
+  public string Contact { get; set; }
+
+  [JsonProperty("phone")]
+  public string Phone { get; set; }
+
+  [JsonProperty("note")]
+  public string Note { get; set; }
+
+  [JsonProperty("IBAN")]
+  public string Iban { get; set; }
+
+  [JsonProperty("bank")]
+  public string Bank { get; set; }
+
+  [JsonProperty("SWIFT")]
+  public string Swift { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 789",
+    "note": "Orders rocket fuel every month."
+  }
+?>
 ```
 
 This endpoint updates a Client by id.
@@ -226,6 +442,11 @@ spaceInvoices.clients.delete(clientId)
 })
 ```
 
+```csharp
+SpaceClientService clientService = new SpaceClientService();
+Counter deleted = clientService.Delete("CLIENT_ID";
+```
+
 ```php
 <?php
   Spaceinvoices\Clients::delete("CLIENT_ID");
@@ -234,10 +455,29 @@ spaceInvoices.clients.delete(clientId)
 
 > Returns:
 
-```json
+```shell
 {
   "count": 1
 }
+```
+```javascript
+{
+  "count": 1
+}
+```
+```csharp
+public class Counter
+{
+  [JsonProperty("count")]
+  public int Count { get; set; }
+}
+```
+```php
+<?php
+  {
+    "count": 1
+  }
+?>
 ```
 
 This endpoint soft deletes a Client by id.
@@ -276,6 +516,10 @@ spaceInvoices.clients.list(organizationId)
   console.log(clients);
 })
 ```
+```csharp
+SpaceClientService clientService = new SpaceClientService();
+List<SpaceClient> list = clientService.List("ORGANIZATION_ID");
+```
 
 ```php
 <?php
@@ -285,7 +529,7 @@ spaceInvoices.clients.list(organizationId)
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -301,6 +545,46 @@ spaceInvoices.clients.list(organizationId)
     "note": "Orders rocket fuel every month."
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 789",
+    "note": "Orders rocket fuel every month."
+  }
+]
+```
+
+```csharp
+List<SpaceClient> 
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+      "name": "Space Exploration Technologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "email": "info@spacex.com",
+      "contact": "Elon M.",
+      "phone": "+1 123 456 789",
+      "note": "Orders rocket fuel every month."
+    }
+  ]
+?>
 ```
 
 This endpoint lists Organization's Clients.
@@ -350,6 +634,10 @@ spaceInvoices.clients.search(organizationId, 'Space')
   console.log(clients);
 })
 ```
+```csharp
+SpaceClientService clientService = new SpaceClientService();
+List<SpaceClient> list = clientService.Search("ORGANIZATION_ID", "Space");
+```
 
 ```php
 <?php
@@ -359,7 +647,7 @@ spaceInvoices.clients.search(organizationId, 'Space')
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -375,6 +663,45 @@ spaceInvoices.clients.search(organizationId, 'Space')
     "note": "Orders rocket fuel every month."
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 789",
+    "note": "Orders rocket fuel every month."
+  }
+]
+```
+```csharp
+List<SpaceClient>
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+      "name": "Space Exploration Technologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "email": "info@spacex.com",
+      "contact": "Elon M.",
+      "phone": "+1 123 456 789",
+      "note": "Orders rocket fuel every month."
+    }
+  ]
+?>
 ```
 
 This endpoint searches for Organization's Clients.
@@ -424,6 +751,10 @@ spaceInvoices.clients.getById(clientId)
   console.log(client);
 })
 ```
+```csharp
+SpaceClientService clientService = new SpaceClientService();
+SpaceClient client = clientService.GetById(client.Id);
+```
 
 ```php
 <?php
@@ -433,7 +764,7 @@ spaceInvoices.clients.getById(clientId)
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
@@ -447,6 +778,96 @@ spaceInvoices.clients.getById(clientId)
   "phone": "+1 123 456 789",
   "note": "Orders rocket fuel every month."
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 789",
+  "note": "Orders rocket fuel every month."
+}
+```
+```csharp
+public class SpaceClient
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("address")]
+  public string Address { get; set; }
+
+  [JsonProperty("address2")]
+  public string Address2 { get; set; }
+
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public string TaxSubject { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+
+  [JsonProperty("email")]
+  public string Email { get; set; }
+
+  [JsonProperty("contact")]
+  public string Contact { get; set; }
+
+  [JsonProperty("phone")]
+  public string Phone { get; set; }
+
+  [JsonProperty("note")]
+  public string Note { get; set; }
+
+  [JsonProperty("IBAN")]
+  public string Iban { get; set; }
+
+  [JsonProperty("bank")]
+  public string Bank { get; set; }
+
+  [JsonProperty("SWIFT")]
+  public string Swift { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 789",
+    "note": "Orders rocket fuel every month."
+  }
+?>
 ```
 
 This endpoint return a Client by ID.

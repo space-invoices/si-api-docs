@@ -16,6 +16,23 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/ite
   -d taxIds[]="5a3683ea12d5a67dd0ef2f4e"
 ```
 
+```csharp
+List<string> taxIds = new List<string>();
+taxIds.Add("TAX_ID");
+
+SpaceItemCreateOptions createOptions = new SpaceItemCreateOptions
+{
+  Name = "Space suit",
+  Description = "Best in class suit made from durable composites.",
+  Price = 100,
+  Unit = "item",
+  TaxIds = taxIds
+};
+
+SpaceItemService itemService = new SpaceItemService();
+SpaceItem item = itemService.Create("ORGANIZATION_ID", createOptions);
+```
+
 ```javascript
 spaceInvoices.items.create(organizationId, {
   name: "Space suit",
@@ -43,7 +60,7 @@ spaceInvoices.items.create(organizationId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
@@ -53,6 +70,55 @@ spaceInvoices.items.create(organizationId, {
   "price": 100,
   "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space suit",
+  "description": "Best in class suit made from durable composites.",
+  "unit": "item",
+  "price": 100,
+  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+}
+```
+```csharp
+public class SpaceItem
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("description")]
+  public string Description { get; set; }
+
+  [JsonProperty("unit")]
+  public string Unit { get; set; }
+
+  [JsonProperty("price")]
+  public decimal Price { get; set; }
+
+  [JsonProperty("taxIds")]
+  public List<string> TaxIds { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space suit",
+    "description": "Best in class suit made from durable composites.",
+    "unit": "item",
+    "price": 100,
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  }
+?>
 ```
 
 This endpoint creates a new Item.
@@ -114,6 +180,18 @@ spaceInvoices.items.edit(documentId, {
   console.log(item);
 })
 ```
+```csharp
+SpaceItemEditOptions editOptions = new SpaceItemEditOptions
+{
+  Name = "pace suit new",
+  Description = "Best in class suit made from durable composites.",
+  Price = 5000000,
+  Unit = "item"
+};
+
+SpaceItemService itemService = new SpaceItemService();
+SpaceItem item = itemService.Edit("ITEM_ID", editOptions);
+```
 
 ```php
 <?php
@@ -129,7 +207,7 @@ spaceInvoices.items.edit(documentId, {
 
 > Returns:
 
-```json
+```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
@@ -139,6 +217,55 @@ spaceInvoices.items.edit(documentId, {
   "price": 100,
   "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
 }
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space suit",
+  "description": "Best in class suit made from durable composites.",
+  "unit": "item",
+  "price": 100,
+  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+}
+```
+```csharp
+public class SpaceItem
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("description")]
+  public string Description { get; set; }
+
+  [JsonProperty("unit")]
+  public string Unit { get; set; }
+
+  [JsonProperty("price")]
+  public decimal Price { get; set; }
+
+  [JsonProperty("taxIds")]
+  public List<string> TaxIds { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space suit",
+    "description": "Best in class suit made from durable composites.",
+    "unit": "item",
+    "price": 100,
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  }
+?>
 ```
 
 This endpoint updates a Item by ID.
@@ -187,6 +314,10 @@ spaceInvoices.items.delete(itemId)
   console.log(count);
 })
 ```
+```csharp
+SpaceItemService itemService = new SpaceItemService();
+Counter counter = itemService.Delete("ITEM_ID");
+```
 
 ```php
 <?php
@@ -196,10 +327,30 @@ spaceInvoices.items.delete(itemId)
 
 > Returns:
 
-```json
+```shell
 {
   "count": 1
 }
+```
+```javascript
+{
+  "count": 1
+}
+```
+
+```csharp
+public class Counter
+{
+  [JsonProperty("count")]
+  public int Count { get; set; }
+}
+```
+```php
+<?php
+  { 
+    "count": 1
+  }
+?>
 ```
 
 This endpoint soft deletes a Item by ID.
@@ -238,6 +389,18 @@ spaceInvoices.items.list(organizationId)
   console.log(items);
 })
 ```
+```csharp
+var filter = @"{
+                filter: {
+                        where: {
+                                unit: 'item'
+                        }
+                    } 
+                  }";
+
+SpaceItemService itemService = new SpaceItemService();
+List<SpaceItem> items = itemService.List("ORGANIZATION_ID", filter);
+```
 
 ```php
 <?php
@@ -247,7 +410,7 @@ spaceInvoices.items.list(organizationId)
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -275,6 +438,67 @@ spaceInvoices.items.list(organizationId)
     ]
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space suit",
+    "description": "Best in class suit made from durable composites.",
+    "unit": "item",
+    "price": 100,
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+    "taxes": [
+      {
+        "id": "5a3683ea12d5a67dd0ef2f4e",
+        "name": "VAT 22%",
+        "_taxRates": [
+          {
+            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            "dateValidFrom": 1970-01-01,
+            "rate": 22
+          }
+        ],
+        "recoverable": true,
+        "compound": false
+      }
+    ]
+  }
+]
+```
+```csharp
+List<SpaceItem> 
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+      "name": "Space suit",
+      "description": "Best in class suit made from durable composites.",
+      "unit": "item",
+      "price": 100,
+      "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+      "taxes": [
+        {
+          "id": "5a3683ea12d5a67dd0ef2f4e",
+          "name": "VAT 22%",
+          "_taxRates": [
+            {
+              "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+              "dateValidFrom": 1970-01-01,
+              "rate": 22
+            }
+          ],
+          "recoverable": true,
+          "compound": false
+        }
+      ]
+    }
+  ]
+?>
 ```
 
 This endpoint lists Organization's Items.
@@ -326,6 +550,22 @@ spaceInvoices.items.search(organizationId, 'space')
   console.log(items);
 })
 ```
+```csharp
+
+
+var filter = @"{
+                filter: {
+                        where: {
+                                unit: 'item'
+                        }
+                    } 
+                  }";
+
+
+SpaceItemService itemService = new SpaceItemService();
+List<SpaceItem> items = itemService.Search("ORGANIZATION_ID", "space", filter);
+
+```
 
 ```php
 <?php
@@ -335,7 +575,7 @@ spaceInvoices.items.search(organizationId, 'space')
 
 > Returns:
 
-```json
+```shell
 [
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -362,6 +602,67 @@ spaceInvoices.items.search(organizationId, 'space')
     ]
   }
 ]
+```
+```javascript
+[
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space suit",
+    "description": "Best in class suit made from durable composites.",
+    "unit": "item",
+    "price": 100,
+    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+    "taxes": [
+      {
+        "id": "5a3683ea12d5a67dd0ef2f4e",
+        "name": "VAT 22%",
+        "_taxRates": [
+          {
+            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            "dateValidFrom": 1970-01-01,
+            "rate": 22
+          }
+        ],
+        "recoverable": true,
+        "compound": false
+      }
+    ]
+  }
+]
+```
+```csharp
+List<SpaceItem> 
+```
+```php
+<?php
+  [
+    {
+      "id": "5a3683ea12d5a67dd0ef2f4c",
+      "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+      "name": "Space suit",
+      "description": "Best in class suit made from durable composites.",
+      "unit": "item",
+      "price": 100,
+      "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
+      "taxes": [
+        {
+          "id": "5a3683ea12d5a67dd0ef2f4e",
+          "name": "VAT 22%",
+          "_taxRates": [
+            {
+              "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
+              "dateValidFrom": 1970-01-01,
+              "rate": 22
+            }
+          ],
+          "recoverable": true,
+          "compound": false
+        }
+      ]
+    }
+  ]
+?>
 ```
 
 This endpoint searches for Organization's Items.

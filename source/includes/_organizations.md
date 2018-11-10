@@ -351,10 +351,54 @@ curl "https://api.spaceinvoices.com/v1/organizations/:id/upload-image?type=logo"
   -H "Authorization: LAUNCH_CODE"
 ```
 
+```javascript
+
+var filePath = './mac.jpg';
+var type = 'logo' // signature
+
+spaceInvoices.organizations
+.uploadImage(organizationId, filePath, type)
+.then(function(res) {
+  console.log(res)
+})
+.catch(function(error) {
+  console.error(error);
+});
+```
+```csharp
+SpaceOrganizationService organizationService = new SpaceOrganizationService();
+
+FileInfo fi = new FileInfo("PATH_TO_FILE");
+
+if (fi.Exists)
+{
+  using (FileStream fileStream = fi.OpenRead())
+  {
+      var res = organizationService.UploadImage("ORGANIZATION_ID", "type", fileStream);
+  }
+}
+```
+```php
+<?php
+  Spaceinvoices\Organizations::uploadImage("ORGANIZATION_ID", "PATH_TO_FILE", "TYPE");
+?>
+```
+
 > Returns:
 
 ```shell
 true
+```
+```javascript
+true
+```
+```csharp
+true
+```
+```php
+<?php
+  true
+?>
 ```
 
 __This enpoint allows uploading a Logo or Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.__
@@ -393,9 +437,86 @@ NOTE: Currently to remove an organization's logo or signature we need to update 
 curl "https://api.spaceinvoices.com/v1/organizations/:organizationId" \
   -H "Authorization: LAUNCH_CODE"
 ```
+```javascript
+spaceInvoices.organizations.getById(organizationId)
+.then(function(organization) {
+  console.log(organization);
+})
+.catch(function(error) {
+  console.error(error);
+});
+```
+```csharp
+SpaceOrganizationService organizationService = new SpaceOrganizationService();
+SpaceOrganization organization = organizationService.GetById("ORGANIZATION_ID");
+```
+```php
+<?php
+  Spaceinvoices\Organizations::getById("ORGANIZATION_ID");
+?>
 
+```
 > Returns:
 
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "IBAN": "123454321 123454321",
+  "bank": "Bank Of Amerika",
+  "_defaults": [
+    {
+      "name": "image_logo",
+      "value": ""
+    }, {
+      "name": "image_signature",
+      "value": ""
+    }, {
+      "name": "invoice_note",
+      "value": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
+    }, {
+      "name": "estimate_note",
+      "value": "When paying please use reference number [document number].\n
+        Please transfer the money to bank account [IBAN] open at [bank]."
+    }, {
+      "name": "advance_note",
+      "value": "Thank you for your payment."
+    }, {
+      "name": "signature",
+      "value": "[organization name]"
+    }, {
+      "name": "footer",
+      "value": "[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"
+    }, {
+      "name": "email_reminder",
+      "value": "Dear customer,\n\nthis is a friendly reminder that the invoice [document number] is due on [document due].\n\nThank you and best regards,\n[organization name]"
+    }, {
+      "name": "email_document",
+      "value": ""
+    }, {
+      "name": "currencyId",
+      "value": "USD"
+    }, {
+      "name": "color_main",
+      "value": "0082c9"
+    }, {
+      "name": "invoice_dueDays",
+      "value": "30"
+    }, {
+      "name": "invoice_dueDays",
+      "value": "30"
+    }
+  ],
+  "locale": "en",
+  "active": true,
+  "supportPin": "12345",
+  "brand": "space-invoices"
+}
+```
 ```shell
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -455,6 +576,114 @@ curl "https://api.spaceinvoices.com/v1/organizations/:organizationId" \
   "brand": "space-invoices"
 }
 ```
+```csharp
+public class SpaceOrganization
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("address")]
+  public string Address { get; set; }
+
+  [JsonProperty("address2")]
+  public string Address2 { get; set; }
+
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("IBAN")]
+  public string Iban { get; set; }
+
+  [JsonProperty("bank")]
+  public string Bank { get; set; }
+
+  [JsonProperty("_defaults")]
+  public List<SpaceDefault> Defaults { get; set; }
+
+  [JsonProperty("locale")]
+  public string Locale { get; set; }
+
+  [JsonProperty("active")]
+  public bool Active { get; set; }
+
+  [JsonProperty("supportPin")]
+  public string SupportPin { get; set; }
+
+  [JsonProperty("brand")]
+  public string Brand { get; set; }
+
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "IBAN": "123454321 123454321",
+    "bank": "Bank Of Amerika",
+    "_defaults": [
+      {
+        "name": "image_logo",
+        "value": ""
+      }, {
+        "name": "image_signature",
+        "value": ""
+      }, {
+        "name": "invoice_note",
+        "value": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
+      }, {
+        "name": "estimate_note",
+        "value": "When paying please use reference number [document number].\n
+          Please transfer the money to bank account [IBAN] open at [bank]."
+      }, {
+        "name": "advance_note",
+        "value": "Thank you for your payment."
+      }, {
+        "name": "signature",
+        "value": "[organization name]"
+      }, {
+        "name": "footer",
+        "value": "[organization name], [address], [city] [zip], [country]. IBAN: [IBAN] open at [bank]"
+      }, {
+        "name": "email_reminder",
+        "value": "Dear customer,\n\nthis is a friendly reminder that the invoice [document number] is due on [document due].\n\nThank you and best regards,\n[organization name]"
+      }, {
+        "name": "email_document",
+        "value": ""
+      }, {
+        "name": "currencyId",
+        "value": "USD"
+      }, {
+        "name": "color_main",
+        "value": "0082c9"
+      }, {
+        "name": "invoice_dueDays",
+        "value": "30"
+      }, {
+        "name": "invoice_dueDays",
+        "value": "30"
+      }
+    ],
+    "locale": "en",
+    "active": true,
+    "supportPin": "12345",
+    "brand": "space-invoices"
+  }
+?>
+```
 
 This endpoint returns an Organization's details.
 
@@ -507,6 +736,8 @@ spaceInvoices.organizations.list(accountId)
 ```
 
 ```csharp
+SpaceOrganizationService organizationService = new SpaceOrganizationService();
+List<SpaceOrganization> organizations = organizationService.List("ACCOUNT_ID");
 ```
 
 ```php
@@ -642,6 +873,7 @@ spaceInvoices.organizations.list(accountId)
 ```
 
 ```csharp
+List<SpaceOrganization>
 ```
 
 ```php
