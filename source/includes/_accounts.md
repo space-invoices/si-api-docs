@@ -1,6 +1,6 @@
 # Accounts
 
-Accounts represent users that can login and access different organizations based on access right.
+Accounts represent users that can login and access different organizations based on the permissions allocated to them.
 
 ## Authenticate
 
@@ -82,7 +82,7 @@ public class SpaceLogIn
 
 
 
-This endpoint authenticates an account and returns a launch code (access token) that can be used in consecutive calls to the API.
+This endpoint authenticates an account and returns a launch code (access token) to be used in making consecutive calls to the API.
 
 ### HTTP Request
 
@@ -102,7 +102,7 @@ This endpoint authenticates an account and returns a launch code (access token) 
 |      |     |
 | ---: | --- |
 | id | Generated launch code (access token). |
-| userId | ID of authenticated user account. |
+| userId | ID of the authenticated user account. |
 
 
 ## Create New Account
@@ -191,7 +191,7 @@ This endpoint creates a new account.
 |      |     |
 | ---: | --- |
 | email **required** | Unique email address. |
-| password **required** | Password, 8 character minimum, at least one capital letter and one symbol. |
+| password **required** | Password, with a 8-character minimum and must include at least one capital letter and one symbol. |
 
 ### HTTP Response
 
@@ -257,7 +257,7 @@ public class Unique
 ?>
 ```
 
-This endpoint returns a boolean value if email is unique / does not exist in the system yet.
+This endpoint returns a boolean value if the email inputted is unique or if it does not yet exist in the system.
 <aside class="notice">Special characters should be url encoded, otherwise they will be stripped which may cause inaccurate results!</aside>
 
 ### HTTP Request
@@ -268,7 +268,7 @@ This endpoint returns a boolean value if email is unique / does not exist in the
 
 |      |     |
 | ---: | --- |
-| email **required** | Email to check. |
+| email **required** | Email to verify. |
 
 ### HTTP Response
 
@@ -276,7 +276,7 @@ This endpoint returns a boolean value if email is unique / does not exist in the
 
 |      |     |
 | ---: | --- |
-| isUnique | Boolean if email is unique. |
+| isUnique | Boolean if the email is unique. |
 
 
 ## Read account details
@@ -340,7 +340,7 @@ public class SpaceAccount
 ?>
 ```
 
-This endpoint returns an Account's details.
+This endpoint returns an the details of a specified Account.
 
 ### HTTP Request
 
@@ -350,7 +350,7 @@ This endpoint returns an Account's details.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Account to return. |
+| id **required** | ID of the Account to return. |
 
 ### HTTP Response
 
@@ -359,4 +359,4 @@ This endpoint returns an Account's details.
 |      |     |
 | ---: | --- |
 | id | ID of account. |
-| email | Email address of account. |
+| email | Email address of the account. |
