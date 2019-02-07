@@ -1,17 +1,16 @@
 # Companies
 
-Companies is a searchable collection of companies and organization we maintain and is available to simplify issuing documents.
+Companies is a searchable collection of companies and organizations maintained.
+This function greatly simplifies the process of issuing documents.
 
-It is recommended to use this database for user interfaces as a search while you type feature but to limit searches to specific countries based on user's origin.
+This database is recommended for user interfaces should you setup a "search while you type feature", allowing you to limit searches to specific countries based on the origin of the user.
 
-We are adding to this database slowly country by country.
-The database is updated regularly as frequently as we can query the data for each country.
+We update this database as frequently as possible to ensure usability and convenience.
 
 Current status:
-- [x] Slovenia (test API, production in 1 month)
+- [x] Slovenia
 
-Accepting votes and data sources for other countries.
-
+Have a country you would like to add to this list? Please do email us and we are happy to work with you.
 
 ## List Companies
 
@@ -139,15 +138,15 @@ This endpoint lists Companies.
 |      |     |
 | ---: | --- |
 | id | Unique ID of Company model instance. |
-| name | Name of Company. |
-| address | Address of Company. |
-| address2 | Address line two of Company. |
-| city | City of Company. |
-| zip | ZIP / post code of Company. |
-| country | Country of Company. |
-| taxNumber | Tax number of Company. |
-| taxSubject | Boolean if Company is subject to VAT / GST / sales tax or other tax. |
-| companyNumber | Company or other organization registration number. |
+| name | Name of the Company. |
+| address | Address of the Company. |
+| address2 | Address line two of the Company. |
+| city | City of the Company. |
+| zip | ZIP / post code of the Company. |
+| country | Country of the Company. |
+| taxNumber | Tax number of the Company. |
+| taxSubject | Boolean if the Company is subject to VAT / GST / sales tax or other tax. |
+| companyNumber | The Company or other organization registration number. |
 
 
 ## Search Companies
@@ -276,13 +275,13 @@ This endpoint searches for Companies.
 
 |      |     |
 | ---: | --- |
-| id | Unique ID of Company model instance. |
-| name | Name of Company. |
-| address | Address of Company. |
-| address2 | Address line two of Company. |
-| city | City of Company. |
-| zip | ZIP / post code of Company. |
-| country | Country of Company. |
-| taxNumber | Tax number of Company. |
+| id | Unique ID of the Company model instance. |
+| name | Name of the Company. |
+| address | Address of the Company. |
+| address2 | Address line two of the Company. |
+| city | City of the Company. |
+| zip | ZIP / post code of the Company. |
+| country | Country of the Company. |
+| taxNumber | Tax number of the Company. |
 | taxSubject | Boolean if Company is subject to VAT / GST / sales tax or other tax. |
-| companyNumber | Company or other organization registration number. |
+| companyNumber | The Company or other organization registration number. |
