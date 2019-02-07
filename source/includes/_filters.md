@@ -265,21 +265,21 @@ var queryParams = @"{
   );
 ?>
 ```
-Space Invoices API uses a filtering mechanism to control how data is queried.
+Space Invoices API uses a filtering mechanism to control how the data is queried.
 
 |      |     |
 | ---: | --- |
-| where | Where query filter. _Accepts operators, see [Where operators](#where-operators) section for details._ |
+| where | Where query filter. _Accepts operators, see the [Where operators](#where-operators) section for details._ |
 | include | Used to include related models. |
 | fields | Include or exclude certain fields. |
-| limit | Limit amount of data returned. |
+| limit | Limit the amount of data returned. |
 | order | Order results by property. |
-| skip | Number of results to skip. |
+| skip | The number of results to skip. |
 | deleted | Also return deleted records. _Only available on models that implement soft delete._ |
 
 ## Where operators
 
-Where operations work in a similar way as querying a database, there operations can be controleh with the following.
+Where operations work in a similar way as querying a database, there operations can be controled with the following:
 
 ```shell
 # Equal
@@ -738,9 +738,9 @@ var queryParams = @"{
 | = | Equivalence. |
 | and | Logical AND operator. |
 | or | Logical OR operator. |
-| gt, gte | Numerical greather than (>); greater than of equal (>=). Valid for numberical and date values. For Geopoint values, the units are in miles by default. |
-| lt, lte | Numerical less than (<); less than or equal (<=). Valid only for numerical and date values. For Geopoint values, the units are in miles by default. |
-| between | True if the value is between the two specified values: greater than or equal to first value and less than or equal to second value. |
+| gt, gte | Numerical greather than (>); greater than of equal (>=). Valid for the numberical and the date values. For Geopoint values, the units are in miles by default. |
+| lt, lte | Numerical less than (<); less than or equal (<=). Valid only for the numerical and the date values. For Geopoint values, the units are in miles by default. |
+| between | True if the value is between the two specified values: greater than or equal to the first value, and less than or equal to the second value. |
 | inq, nin | In / not in an array of values. |
 | near | For geolocations, return the closest points, sorted in order of distance. Use with limit to return the n closest points. _`maxDistance` and `unit` can also be passed on same level as `near` to configure the search._ |
 | neq | Not equal (!=). |
