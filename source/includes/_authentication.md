@@ -1,5 +1,7 @@
 # Authentication
 
+__Space Invoices uses launch codes to allow access to the API. A launch code can be aquired from our developer dashboard [Mission Control](http://spaceinvoices.com/signup).__
+
 > Launch codes must be used to make calls to the API:
 
 ```shell
@@ -24,8 +26,6 @@ SpaceConfiguration.SetApiKey("LAUNCH_CODE");
 
 
 > Make sure to replace `LAUNCH_CODE` with your own launch code.
-
-__Space Invoices uses launch codes to allow access to the API. A launch code can be aquired from our developer dashboard [Mission Control](http://spaceinvoices.com/signup).__
 
 The API launch code has to be included in all API requests to the server in a header like this:
 
