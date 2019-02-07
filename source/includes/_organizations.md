@@ -1,8 +1,8 @@
 # Organizations
 
-__Any given account can have multiple organizations either by creating them or by being given access to them from other account holders.__
+__Any given account can have multiple organizations either by creating them, or by being given access to them by other account holders.__
 
-This is especially useful when there is a need to manage multiple organizations as they are created for users that might signup to a certain product.
+This is especially useful when there is a need to manage multiple organizations, as they are created for users that might signup for a certain product.
 
 An organization holds a reference to most of the information that is created through the API.
 
@@ -87,7 +87,7 @@ SpaceOrganization organization = organizationService.Create("ACCOUNT_ID", create
       "value": ""
     }, {
       "name": "invoice_note",
-      "value": "When paying please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
+      "value": "When paying, please use reference number [document number].\nPlease transfer the money to bank account [IBAN] open at [bank].\n\nThank you for your business."
     }, {
       "name": "estimate_note",
       "value": "When paying please use reference number [document number].\n
@@ -309,24 +309,24 @@ This endpoint creates a new Organization.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of account. |
+| id **required** | ID of the account. |
 
 #### Arguments
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of company or other type of organization. |
+| name **required** | Name of the company or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country **required** | String name of country. _If passed as one of [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1) values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such._ |
+| country **required** | String name of country. _If passed as one of [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1) values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either the english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such._ |
 | taxSubject _default is *false*_ | Specify if the organization is subject to tax. |
 | taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | IBAN | Bank account number. |
 | website | Website address. |
-| locale _default is *en*_ | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Effects language of default texts and system messages._ |
+| locale _default is *en*_ | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Affects language of default texts and system messages._ |
 | brand _default is *space-invocies*_ | Brand source identification for internal use. |
 
 ### HTTP Response
@@ -335,13 +335,13 @@ This endpoint creates a new Organization.
 
 |      |     |
 | ---: | --- |
-| id | Unique ID of model instance |
+| id | Unique ID of the model instance |
 | _defaults | Array of objects. _Collection of organization's default settings._ _Can be used for custom settings._ [toggle definition](#expand) |
-| name | Unique (to orgnization) name of setting. |
-| value | Value of setting. |
+| name | Unique (to orgnization) name of the setting. |
+| value | Value of the setting. |
 | [](#empty) | |
-| active | Boolean indicator if organization is active (enabled). |
-| supportPin | 5 digit number used to match organization requesting support. |
+| active | Boolean indicator if the organization is active (enabled). |
+| supportPin | 5 digit number used to match the organization requesting support. |
 
 
 ## Add Logo or Signature image to Organization
@@ -401,11 +401,11 @@ true
 ?>
 ```
 
-__This enpoint allows uploading a Logo or Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.__
+__This enpoint allows the uploading of a Logo or a Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.__
 
-To check if an organization has a logo or signature image set we simply need to check an organization's nested `_defaults` object for keys containing `image_logo` or `image_signature`, the key should be set to `true`. The _defaults object can be viewed by [querying a organization's data](#read-organization-39-s-details).
+To check if an organization has a logo or signature image set, we simply need to check an organization's nested `_defaults` object for keys containing `image_logo` or `image_signature` where the key is set to `true`. The _defaults object can be viewed by [querying a organization's data](#read-organization-39-s-details).
 
-NOTE: Currently to remove an organization's logo or signature we need to update the value of the property in `_defaults` object to `false`. We will also provide an endpoint for removing images in the future `/organizations/:id/remove-image?type=logo`.
+NOTE: Currently, to remove an organization's logo or signature, the value of the property in `_defaults` object must be updated to `false`. In the future, we will also provide an endpoint for removing images `/organizations/:id/remove-image?type=logo`.
 
 ### HTTP Request
 
@@ -415,7 +415,7 @@ NOTE: Currently to remove an organization's logo or signature we need to update 
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization to set image for. |
+| id **required** | ID of the Organization to set image for. |
 | type **required** | The type of image we are uploading, _Valid options are `logo` or `signature`_. |
 
 |      |     |
@@ -428,10 +428,10 @@ NOTE: Currently to remove an organization's logo or signature we need to update 
 
 |      |     |
 | ---: | --- |
-| success | Boolean true if request was succesful. |
+| success | Boolean true if the request was succesful. |
 
 
-## Read Organization's details
+## Read the Organization's details
 
 ```shell
 curl "https://api.spaceinvoices.com/v1/organizations/:organizationId" \
@@ -695,7 +695,7 @@ This endpoint returns an Organization's details.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization to return. |
+| id **required** | ID of the Organization to return. |
 
 ### HTTP Response
 
@@ -703,7 +703,7 @@ This endpoint returns an Organization's details.
 
 |      |     |
 | ---: | --- |
-| name | Name of company or other type of organization. |
+| name | Name of the company or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
@@ -950,7 +950,7 @@ This endpoint lists all Organizations.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of account. |
+| id **required** | ID of the account. |
 
 
 ### HTTP Response
@@ -959,22 +959,22 @@ This endpoint lists all Organizations.
 
 |      |     |
 | ---: | --- |
-| name | Name of company or other type of organization. |
+| name | Name of the company or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
 | zip | Zip / post code. |
-| country | String name of country. |
+| country | String name of the country. |
 | taxSubject | Specify if the organization is subject to tax. |
 | taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | IBAN | Bank account number. |
 | website | Website address. |
-| locale | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Effects language of default texts and system messages._ |
+| locale | ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) _Affects the language of default texts and system messages._ |
 | brand | Brand source identification for internal use. |
-| _defaults | Array of objects. _Collection of organization's default settings._ _Can be used for custom settings._ [toggle definition](#expand) |
-| name | Unique (to orgnization) name of setting. |
-| value | Value of setting. |
+| _defaults | Array of objects. _Collection of the organization's default settings._ _Can be used for custom settings._ [toggle definition](#expand) |
+| name | Unique (to the orgnization) name of the setting. |
+| value | Value of the setting. |
 | [](#empty) | |
-| active | Boolean indicator if organization is active (enabled). |
-| supportPin | 5 digit number used to match organization requesting support. |
+| active | Boolean indicator if the organization is active (enabled). |
+| supportPin | 5 digit number used to match the organization requesting support. |
