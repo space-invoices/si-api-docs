@@ -306,7 +306,7 @@
                     <a href="#add-logo-or-signature-image-to-organization" class="toc-h2 toc-link" data-title="add-logo-or-signature-image-to-organization">Add Logo or Signature image to Organization</a>
                   </li>
                   <li>
-                    <a href="#read-organization-39-s-details" class="toc-h2 toc-link" data-title="read-organization-s-details">Read Organization's details</a>
+                    <a href="#read-the-organization-39-s-details" class="toc-h2 toc-link" data-title="read-the-organization-s-details">Read the Organization's details</a>
                   </li>
                   <li>
                     <a href="#list-organizations" class="toc-h2 toc-link" data-title="list-organizations">List Organizations</a>
@@ -512,16 +512,20 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1><h2 id='welcome-to-space-invoices-api'>Welcome to Space Invoices API</h2>
-<p>Space Invoices is a developer oriented invoicing API. You can use it to create and manage invoices and other types of documents, it also allows you to manage any data related to those documents.</p>
-<h3 id='visit-our-website-at-spaceinvoices-com-and-sign-up-for-a-developer-account'>Visit our website at <a href="https://spaceinvoices.com">spaceinvoices.com</a> and sign up for a developer account.</h3><h2 id='getting-help'>Getting help</h2>
-<p>We&#39;re here to help in case you get stuck or want to make a request for functionalities. We also encourage our community to help each other that&#39;s why we&#39;ve created a community Slack channel and conveniently called it Space Invaders :), hope to talk to you there!</p>
-<h3 id='join-our-slack-community-space-invaders'>Join our Slack community <a href="http://joinslack.spaceinvoices.com">Space Invaders</a>.</h3><h2 id='about'>About</h2>
-<p>We have language binding in Shell, Javascript, C-sharp and PHP for now, other languages will be added soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Space Invoices (SI) is a developer-oriented invoicing API. You can use it to create and manage invoices and various other types of documents, to save you time and money, and also help you refine your own commercial sofware. Furthermore, SI also allows to you manage data related to these documents.</p>
 
-<p>While the API is fully operational some small details of this documentation are still missing and features are added weekly so check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>.</p>
+<p>To understand the full scope of our API, please start by taking a look at our documentation. Welcome!</p>
+<h3 id='visit-our-website-at-spaceinvoices-com-and-sign-up-for-a-developer-account'>Visit our website at <a href="https://spaceinvoices.com">spaceinvoices.com</a> and sign up for a developer account.</h3><h2 id='getting-help'>Getting help</h2>
+<p>We&#39;re excited to have you on board! We&#39;re thrilled to help you elevate your software solution by being the invoicing API it needs! 
+Always looking to make SI better, let us know if you have a specific challenge you&#39;d like us to help you tackle or would like to make a request for functionalities. Find us at our community Slack channel so aptly-named as: &quot;Space Invaders :)&quot;. See you soon!</p>
+<h3 id='join-our-slack-community-space-invaders'>Join our Slack community <a href="http://joinslack.spaceinvoices.com">Space Invaders</a>.</h3><h2 id='about'>About</h2>
+<p>We are proud to make language binding in Shell, Javascript, C# and PHP available to you. To view code samples, check out the darker panel to the right. To switch the programming language of the examples, make good use of the tabs in the top right.</p>
+
+<p>While the API is fully operational, we always strive to improve its features. For this reason, we continuously work to update the finer details of this documentation. Features are added weekly, so do check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>. We&#39;re happy to have you with us, and we look forward to seeing what you cna make!</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
-<p>Launch codes must be used to make calls to the API:</p>
+<p>To make calls to the API, ensure you have inserted your launch code:
+<strong>Space Invoices uses launch codes to allow access to the API. A launch code can be aquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
@@ -538,7 +542,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 
 <p><strong>Space Invoices uses launch codes to allow access to the API. A launch code can be aquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
 
-<p>The API launch code has to be included in all API requests to the server in a header like this:</p>
+<p>The API launch code has to be included in all API requests to the server in a header like the following:</p>
 
 <p><code>Authorization: LAUNCH_CODE</code></p>
 
@@ -546,15 +550,16 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 
 <p><br></p>
 
-<p>Alternatively the launch code can be added as a query parameter of the URL but this is a less recomended way as it poses a security risk.</p>
+<p>Alternatively, the launch code can be added as a query parameter of the URL. 
+Please note before using! This implementation has considerable inherent security risks.</p>
 
 <p><code>?access_token=LAUNCH_CODE</code></p>
 
 <!-- <br>
 
-PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launch code as Space Invoices. A user can be given access to view their account and organizations by clicking a link with a launch code in the URL. You can read more about Apollo [here](#apollo-ui). -->
+PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launch code as Space Invoices. If you wish to give individual users the ability to view their account and organizations, you may provide them with a URL link with the launch code embedded. You can read more about Apollo [here](#apollo-ui). -->
 <h1 id='accounts'>Accounts</h1>
-<p>Accounts represent users that can login and access different organizations based on access right.</p>
+<p>Accounts represent users that can login and access different organizations based on the permissions allocated to them.</p>
 <h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/login"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
@@ -610,7 +615,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint authenticates an account and returns a launch code (access token) that can be used in consecutive calls to the API.</p>
+<p>This endpoint authenticates an account and returns a launch code (access token) to be used in making consecutive calls to the API.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/v1/accounts/login</code></p>
 <h4 id='attributes'>Attributes</h4>
@@ -642,7 +647,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">userId</td>
-<td>ID of authenticated user account.</td>
+<td>ID of the authenticated user account.</td>
 </tr>
 </tbody></table>
 <h2 id='create-new-account'>Create New Account</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts"</span> <span class="se">\</span>
@@ -714,7 +719,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">password <strong>required</strong></td>
-<td>Password, 8 character minimum, at least one capital letter and one symbol.</td>
+<td>Password, with a 8-character minimum and must include at least one capital letter and one symbol.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-2'>HTTP Response</h3><h4 id='attributes-4'>Attributes</h4>
@@ -765,7 +770,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint returns a boolean value if email is unique / does not exist in the system yet.
+<p>This endpoint returns a boolean value if the email inputted is unique or if it does not yet exist in the system.
 <aside class="notice">Special characters should be url encoded, otherwise they will be stripped which may cause inaccurate results!</aside></p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/accounts/is-unique?email=:email</code></p>
@@ -778,7 +783,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">email <strong>required</strong></td>
-<td>Email to check.</td>
+<td>Email to verify.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-3'>HTTP Response</h3><h4 id='attributes-5'>Attributes</h4>
@@ -790,7 +795,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">isUnique</td>
-<td>Boolean if email is unique.</td>
+<td>Boolean if the email is unique.</td>
 </tr>
 </tbody></table>
 <h2 id='read-account-details'>Read account details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/:accountId"</span> <span class="se">\</span>
@@ -832,7 +837,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint returns an Account&#39;s details.</p>
+<p>This endpoint returns an the details of a specified Account.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/accounts/:id</code></p>
 <h4 id='query-parameters-2'>Query parameters</h4>
@@ -844,7 +849,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Account to return.</td>
+<td>ID of the Account to return.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='attributes-6'>Attributes</h4>
@@ -860,13 +865,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">email</td>
-<td>Email address of account.</td>
+<td>Email address of the account.</td>
 </tr>
 </tbody></table>
 <h1 id='organizations'>Organizations</h1>
-<p><strong>Any given account can have multiple organizations either by creating them or by being given access to them from other account holders.</strong></p>
+<p><strong>Any given account can have multiple organizations either by creating them, or by being given access to them by other account holders.</strong></p>
 
-<p>This is especially useful when there is a need to manage multiple organizations as they are created for users that might signup to a certain product.</p>
+<p>This is especially useful when there is a need to manage multiple organizations, as they are created for users that might signup for a certain product.</p>
 
 <p>An organization holds a reference to most of the information that is created through the API.</p>
 <h2 id='create-new-organization'>Create New Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/:id/organizations"</span> <span class="se">\</span>
@@ -938,7 +943,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
       <span class="s2">"value"</span>: <span class="s2">""</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"invoice_note"</span>,
-      <span class="s2">"value"</span>: <span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span>
+      <span class="s2">"value"</span>: <span class="s2">"When paying, please use reference number [document number].</span><span class="se">\n</span><span class="s2">Please transfer the money to bank account [IBAN] open at [bank].</span><span class="se">\n\n</span><span class="s2">Thank you for your business."</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"estimate_note"</span>,
       <span class="s2">"value"</span>: <span class="s2">"When paying please use reference number [document number].</span><span class="se">\n</span><span class="s2">
@@ -1152,7 +1157,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of account.</td>
+<td>ID of the account.</td>
 </tr>
 </tbody></table>
 <h4 id='arguments'>Arguments</h4>
@@ -1164,7 +1169,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of company or other type of organization.</td>
+<td>Name of the company or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -1184,7 +1189,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">country <strong>required</strong></td>
-<td>String name of country. <em>If passed as one of <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a> values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such.</em></td>
+<td>String name of country. <em>If passed as one of <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a> values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either the english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
@@ -1208,7 +1213,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">locale <em>default is <em>en</em></em></td>
-<td>ISO 639-1 locale code. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> <em>Effects language of default texts and system messages.</em></td>
+<td>ISO 639-1 locale code. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> <em>Affects language of default texts and system messages.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">brand <em>default is <em>space-invocies</em></em></td>
@@ -1224,7 +1229,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique ID of model instance</td>
+<td>Unique ID of the model instance</td>
 </tr>
 <tr>
 <td style="text-align: right">_defaults</td>
@@ -1232,11 +1237,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Unique (to orgnization) name of setting.</td>
+<td>Unique (to orgnization) name of the setting.</td>
 </tr>
 <tr>
 <td style="text-align: right">value</td>
-<td>Value of setting.</td>
+<td>Value of the setting.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -1244,11 +1249,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">active</td>
-<td>Boolean indicator if organization is active (enabled).</td>
+<td>Boolean indicator if the organization is active (enabled).</td>
 </tr>
 <tr>
 <td style="text-align: right">supportPin</td>
-<td>5 digit number used to match organization requesting support.</td>
+<td>5 digit number used to match the organization requesting support.</td>
 </tr>
 </tbody></table>
 <h2 id='add-logo-or-signature-image-to-organization'>Add Logo or Signature image to Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/upload-image?type=logo"</span> <span class="se">\</span>
@@ -1290,11 +1295,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="kc">true</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p><strong>This enpoint allows uploading a Logo or Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.</strong></p>
+<p><strong>This enpoint allows the uploading of a Logo or a Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.</strong></p>
 
-<p>To check if an organization has a logo or signature image set we simply need to check an organization&#39;s nested <code>_defaults</code> object for keys containing <code>image_logo</code> or <code>image_signature</code>, the key should be set to <code>true</code>. The _defaults object can be viewed by <a href="#read-organization-39-s-details">querying a organization&#39;s data</a>.</p>
+<p>To check if an organization has a logo or signature image set, we simply need to check an organization&#39;s nested <code>_defaults</code> object for keys containing <code>image_logo</code> or <code>image_signature</code> where the key is set to <code>true</code>. The _defaults object can be viewed by <a href="#read-organization-39-s-details">querying a organization&#39;s data</a>.</p>
 
-<p>NOTE: Currently to remove an organization&#39;s logo or signature we need to update the value of the property in <code>_defaults</code> object to <code>false</code>. We will also provide an endpoint for removing images in the future <code>/organizations/:id/remove-image?type=logo</code>.</p>
+<p>NOTE: Currently, to remove an organization&#39;s logo or signature, the value of the property in <code>_defaults</code> object must be updated to <code>false</code>. In the future, we will also provide an endpoint for removing images <code>/organizations/:id/remove-image?type=logo</code>.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/v1/organizations/:organizationId/upload-image?type=type</code></p>
 <h4 id='query-parameters-2'>Query parameters</h4>
@@ -1306,7 +1311,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization to set image for.</td>
+<td>ID of the Organization to set image for.</td>
 </tr>
 <tr>
 <td style="text-align: right">type <strong>required</strong></td>
@@ -1334,10 +1339,10 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">success</td>
-<td>Boolean true if request was succesful.</td>
+<td>Boolean true if the request was succesful.</td>
 </tr>
 </tbody></table>
-<h2 id='read-organization-39-s-details'>Read Organization&#39;s details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:organizationId"</span> <span class="se">\</span>
+<h2 id='read-the-organization-39-s-details'>Read the Organization&#39;s details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:organizationId"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">organizations</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">organization</span><span class="p">)</span> <span class="p">{</span>
@@ -1587,7 +1592,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization to return.</td>
+<td>ID of the Organization to return.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-3'>HTTP Response</h3><h4 id='attributes-2'>Attributes</h4>
@@ -1599,7 +1604,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of company or other type of organization.</td>
+<td>Name of the company or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -1861,7 +1866,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of account.</td>
+<td>ID of the account.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-3'>Arguments</h4>
@@ -1873,7 +1878,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of company or other type of organization.</td>
+<td>Name of the company or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -1893,7 +1898,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>String name of country.</td>
+<td>String name of the country.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject</td>
@@ -1917,7 +1922,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">locale</td>
-<td>ISO 639-1 locale code. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> <em>Effects language of default texts and system messages.</em></td>
+<td>ISO 639-1 locale code. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia</a> <em>Affects the language of default texts and system messages.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">brand</td>
@@ -1925,15 +1930,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">_defaults</td>
-<td>Array of objects. <em>Collection of organization&#39;s default settings.</em> <em>Can be used for custom settings.</em> <a href="#expand">toggle definition</a></td>
+<td>Array of objects. <em>Collection of the organization&#39;s default settings.</em> <em>Can be used for custom settings.</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Unique (to orgnization) name of setting.</td>
+<td>Unique (to the orgnization) name of the setting.</td>
 </tr>
 <tr>
 <td style="text-align: right">value</td>
-<td>Value of setting.</td>
+<td>Value of the setting.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -1941,19 +1946,21 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">active</td>
-<td>Boolean indicator if organization is active (enabled).</td>
+<td>Boolean indicator if the organization is active (enabled).</td>
 </tr>
 <tr>
 <td style="text-align: right">supportPin</td>
-<td>5 digit number used to match organization requesting support.</td>
+<td>5 digit number used to match the organization requesting support.</td>
 </tr>
 </tbody></table>
 <h1 id='documents'>Documents</h1>
-<p>Documents are the most complex part of Space Invoices, they are the core of our service.</p>
+<p>Documents, the core of our service, are the most complex part of Space Invoices.</p>
 
-<p>We have taken a lot of care to provide developers with a wide array of options when creating different documents, most importantly we allow you to provide as much or as little data as you wish while the API takes care of the rest base on known data like organization settings, country of origin and country of destination.</p>
+<p>For this reason, we have taken a lot of care to provide developers with a wide array of options when creating different documents. Most importantly, we allow you to provide as much or as little data as you wish as the API takes care of the rest. The API can automate based on known data such as the organization settings, country of origin, and the country of destination.</p>
 
-<p>NOTE: We have improved how taxes can be loaded to document items. Normaly a tax can be added to document items by adding <code>taxId</code> property to <code>_documentItems[]._documentItemTaxes</code> array, but this places the responsibility of knowing tax ids on the user which is not very convenient. With this in mind we added the feature that allows referencing a tax by just it&#39;s rate or classification instead of the normal id. The API then attemplts to load the best match from the organiation&#39;s taxes.</p>
+<p>NOTE: We have improved how taxes can be loaded to document items. Normally, a tax can be added to document items by adding <code>taxId</code> property to the <code>_documentItems[]._documentItemTaxes</code> array, but the responsibility of knowing tax ids is placed on the user.</p>
+
+<p>To simplify, we now have a feature which allows referencing a tax by its rate or classification instead of just the normal id. The API will then smartly load the best match from the taxes paid for by the organization.</p>
 <h2 id='create-new-document'>Create New Document</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d _documentClient[name]<span class="o">=</span><span class="s2">"Rocket Man"</span> <span class="se">\</span>
@@ -2260,9 +2267,9 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint creates a new document for given organization.</p>
+<p>This endpoint creates a new document for any given organization.</p>
 
-<p><em>This example shows the process of creating an <code>invoice</code> providing minimum data.</em></p>
+<p><em>This example shows the process of creating an <code>invoice</code> providing the minimum data required.</em></p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/v1/organizations/:id/documents</code></p>
 <h4 id='query-parameters'>Query parameters</h4>
@@ -2274,7 +2281,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization.</td>
+<td>ID of the Organization.</td>
 </tr>
 </tbody></table>
 <h4 id='attributes'>Attributes</h4>
@@ -2286,19 +2293,19 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">number <em>default is <em>YYYY-0000n+1</em></em></td>
-<td>String, unique (to Document type and Organization) Document number. <em>Auto populated with next number based on document type.</em></td>
+<td>String, unique (to Document type and Organization) Document number. <em>Auto populated with the successive number based on document type.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">type <em>default is <em>invoice</em></em></td>
-<td>Type of document (<code>invoice</code>, <code>estimate</code> or <code>advance</code> ). <em>Determines type of document, note that different document types contain different properties, rules and funcionalities. For example <code>invoice</code> can have Payments logged and contains <code>dateService</code> property. Document type cannot be switched once set to instance.</em></td>
+<td>Type of document (<code>invoice</code>, <code>estimate</code> or <code>advance</code> ). <em>Determines the type of document. Please note that different document types contain different properties, rules, and thus funcionalities. For example, <code>invoice</code> can have Payments logged and contains the <code>dateService</code> property. Take care, document type cannot be switched once set to the instance.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">draft <em>default is <em>false</em></em></td>
-<td>Boolean, if invoice a draft. <em>If set to <code>true</code> the property cannot go back to <code>false</code>. Only present if <code>type</code> is <code>invoice</code>.</em></td>
+<td>Boolean, if the invoice is a draft. <em>If set to <code>true</code> the property cannot go back to <code>false</code>. Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">date <em>default is <em>today</em></em></td>
-<td>Javascript date, date of Document. <em>Represents date the Document was issued. Time is trimmed.</em></td>
+<td>Javascript date, date of the Document. <em>Represents date the Document was issued. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">dateDue <em>default is <em>today + default due days</em></em></td>
@@ -2306,23 +2313,23 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">dateService</td>
-<td>Javascript date, date service was started or conducted. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+<td>Javascript date, date the service was started or conducted. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">dateServiceTo</td>
-<td>Javascript date, date service period ends. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+<td>Javascript date, date the service period ends. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">dateValidTill <em>default is <em>today + default valid till days</em></em></td>
-<td>Javascript date, date estimale is valid till. <em>Auto populated using Organization&#39;s default days valid till (<code>estimate_validTillDays</code>) from today. Only present on <code>type</code> estimate. Time is trimmed.</em></td>
+<td>Javascript date, date the estimate is valid until. <em>Auto populated using Organization&#39;s default days valid until (<code>estimate_validTillDays</code>) from today. Only present on <code>type</code> estimate. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">datePaid <em>default is <em>today</em></em></td>
-<td>Javascript date, date advance was paid on. <em>Only present on <code>type</code> advance. Time is trimmed.</em></td>
+<td>Javascript date, date the advance was paid on. <em>Only present on <code>type</code> advance. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">currencyId</td>
-<td>ISO 4217 currency code. <a href="https://en.wikipedia.org/wiki/ISO_4217">Wikipedia</a> <em>If not provided the Organization&#39;s default currency is used.</em></td>
+<td>ISO 4217 currency code. <a href="https://en.wikipedia.org/wiki/ISO_4217">Wikipedia</a> <em>If not provided, the Organization&#39;s default currency is used.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">clientId</td>
@@ -2330,39 +2337,39 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">_documentClient</td>
-<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided.</em> <em>Any key defined in object will be used instead of loaded client data.</em> <em>If <code>clientId</code> is not provided the data in object is saved to Organization&#39;s Clients and referenced in document ie. the <code>clientId</code> is auto populated.</em> <a href="#expand">toggle definition</a></td>
+<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided.</em> <em>Any key defined in object will be used instead of the loaded client data.</em> <em>If <code>clientId</code> is not provided, the data in object is saved to Organization&#39;s Clients and referenced in document ie. the <code>clientId</code> is auto populated.</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of client. <em>Required only if <code>clientId</code> not provided on Document.</em></td>
+<td>Name of the client. <em>Required only if <code>clientId</code> not provided on Document.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
-<td>Address of Client.</td>
+<td>Address of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">address2</td>
-<td>Address line 2 of Client.</td>
+<td>Address line 2 of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">city</td>
-<td>City of Client.</td>
+<td>City of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">zip</td>
-<td>Zip / postal code of Client.</td>
+<td>Zip / postal code of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>Country of Client.</td>
+<td>Country of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
-<td>String, organization registration or similar number of Client.</td>
+<td>String, organization registration or similar number of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST / sales tax or similar tax number of Client.</td>
+<td>String, organization VAT / GST / sales tax or similar tax number of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -2374,47 +2381,47 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of issuer.</td>
+<td>Name of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
-<td>Address of issuer.</td>
+<td>Address of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">address2</td>
-<td>Address line 2 of issuer.</td>
+<td>Address line 2 of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">city</td>
-<td>City of issuer.</td>
+<td>City of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">zip</td>
-<td>Zip / postal code of issuer.</td>
+<td>Zip / postal code of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>Country of issuer.</td>
+<td>Country of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
-<td>String, organization registration or similar number of issuer.</td>
+<td>String, organization registration or similar number of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST / sales tax or similar tax number of issuer.</td>
+<td>String, organization VAT / GST / sales tax or similar tax number of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">IBAN</td>
-<td>Bank account number of issuer.</td>
+<td>Bank account number of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">bank</td>
-<td>Bank of issuer.</td>
+<td>Bank of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">website</td>
-<td>Website address of issuer.</td>
+<td>Website address of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -2426,7 +2433,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">itemId</td>
-<td>ID reference to Organization&#39;s item. <em>If provided the item properties are populated from referenced item.</em> <em>Any key that is provided will is used instead.</em></td>
+<td>ID reference to the Organization&#39;s item. <em>If provided, the item properties are populated from referenced item.</em> <em>Any key that is provided will be used instead.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
@@ -2434,15 +2441,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">description</td>
-<td>Description of item.</td>
+<td>Description of the item.</td>
 </tr>
 <tr>
 <td style="text-align: right">quantity</td>
-<td>Number, quantity of items.</td>
+<td>Number, quantity of the items.</td>
 </tr>
 <tr>
 <td style="text-align: right">unit</td>
-<td>Unit of measurement for item ie. Item / Service / Meter / etc.</td>
+<td>Unit of measurement for the item ie. Item / Service / Meter / etc.</td>
 </tr>
 <tr>
 <td style="text-align: right">price</td>
@@ -2454,27 +2461,27 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">taxId</td>
-<td>ID reference to Organization&#39;s Tax. <em>If property is provided <code>rate</code>, <code>recoverable</code> and <code>compund</code> properties are auto populated. Note that the <code>rate</code> is chosen based on <code>date</code> property of document if Tax has multiple valid rates.</em></td>
+<td>ID reference to Organization&#39;s Tax. <em>If the property is provided <code>rate</code>, <code>recoverable</code> and <code>compound</code> properties are auto populated. Note that the <code>rate</code> is chosen based on the <code>date</code> property of document if Tax has multiple valid rates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>Number, tax rate percent. <em>If only rate is provided API attempts to match tax by it from database and populate id.</em></td>
+<td>Number, tax rate percent. <em>If only the rate is provided, the API attempts to match the tax from database and populate id.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">classification</td>
-<td>String, tax classification. <em>If only classification is provided API attempts to match tax by it from database and populate id.</em></td>
+<td>String, tax classification. <em>If only the classification is provided, the API attempts to match tax by it from database and populate id.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">recoverable</td>
-<td>Boolean if tax is recoverable.</td>
+<td>Boolean if the tax is recoverable.</td>
 </tr>
 <tr>
 <td style="text-align: right">reverseCharged</td>
-<td>Boolean if tax is reverse (self) charged. <em>Reverse charged tax is not applied to totals and is added to document&#39;s revese taxes collection.</em></td>
+<td>Boolean if the tax is reverse (self) charged. <em>Reverse charged tax is not applied to totals and is added to document&#39;s revese taxes collection.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">compound</td>
-<td>Boolean if tax is compound. <em>Compund tax is added on top of all other taxes applied to item.</em></td>
+<td>Boolean if tax is compound. <em>Compound tax is added on top of all other taxes applied to item.</em></td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty-inner"></a></td>
@@ -2482,11 +2489,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">isSepatator <em>default is <em>false</em></em></td>
-<td>Boolean, indicates if item is separator. <em>Used for visually seaprating line items and naming groups of line items.</em> <em>If <code>true</code> all properties except <code>name</code> and <code>description</code> are ignored.</em></td>
+<td>Boolean, indicates if item is separator. <em>Used for visually seaprating line items and naming groups of line items.</em> <em>If <code>true</code>, all properties except <code>name</code> and <code>description</code> are ignored.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">save <em>default is <em>false</em></em></td>
-<td>Boolean if item should be saved. <em>If true the item is saved to organization&#39;s collection of items. The document item is also populated with the item&#39;s ID in the itemId field. NOTE: Ignored if itemId is also provided.</em></td>
+<td>Boolean if the item should be saved. <em>If true the item is saved to organization&#39;s collection of items. The document item is also populated with the item&#39;s ID in the itemId field. NOTE: Ignored if itemId is also provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -2498,23 +2505,23 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">signature</td>
-<td>Text signature for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+<td>Text signature for the Document. <em>Populated with the Organization default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">footer</td>
-<td>Text footer for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+<td>Text footer for the Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">decimalPlaces <em>default is <em>4</em></em></td>
-<td>Number of decimal places the Document items are trimmed and rounded to in calculations. <em>Should be 4 in most cases.</em></td>
+<td>Number of decimal places to which the Document items are trimmed and rounded in calculations. <em>Should be 4 in most cases.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_documentConversionRate</td>
-<td>Object containting currency conversion rate data. <em>Property is automatically populated with data if document currencyId is set to a currency that is not the Organization&#39;s default.</em> <em>Can be manually populated.</em> <em>Also generates a disclaimer on a generated document PDF.</em> <a href="#expand">toggle definition</a></td>
+<td>Object containing the currency conversion rate data. <em>Property is automatically populated with data if document currencyId is set to a currency that is not the Organization&#39;s default.</em> <em>Can be manually populated.</em> <em>Also generates a disclaimer on a generated document PDF.</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">date</td>
-<td>Date of conversion rate data. <em>Usually date of document except in cases when data is not available ie. holidays then the first available date going back.</em></td>
+<td>Date of conversion rate data. <em>Usually the date of document except in cases when the data is not available ie. holidays, then  the first available date following.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">from</td>
@@ -2530,7 +2537,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">source</td>
-<td>Source of conversion rate <em>ie. European Centra Bank.</em></td>
+<td>Source of conversion rate <em>ie. European Central Bank.</em></td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -2550,7 +2557,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">organizationId</td>
-<td>ID of related organization.</td>
+<td>ID of the related organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">canceled</td>
@@ -2558,27 +2565,27 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">sentEmail</td>
-<td>Boolean, has Document been ever sent by email.</td>
+<td>Boolean, has the Document been ever sent by email.</td>
 </tr>
 <tr>
 <td style="text-align: right">sentSnailMail</td>
-<td>Boolean, has Document been ever sent by regular post.</td>
+<td>Boolean, has the Document been ever sent by regular post.</td>
 </tr>
 <tr>
 <td style="text-align: right">_documentItems</td>
-<td>Array of objects containing Document items. <a href="#expand">toggle definition</a></td>
+<td>Array of objects containing the Document items. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">total</td>
-<td>Number, total price of Document item including quantity and discount. <em>Excludes taxes.</em></td>
+<td>Number, total price of the Document item including quantity and discount. <em>Excludes taxes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">totalTax</td>
-<td>Number, total value of tax on Document item including quantity, discount and taxes.</td>
+<td>Number, total value of tax on Document item including quantity, discount, and taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalWithTax</td>
-<td>Number, total price of Document item including quantity, discount and taxes.</td>
+<td>Number, total price of Document item including quantity, discount, and taxes.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalDiscount</td>
@@ -2646,11 +2653,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">paidInFull</td>
-<td>Boolean, if Document&#39;s logged payments amount to at least it&#39;s totalWithTax amount or more. <em>Only present if <code>type</code> is <code>invoice</code>.</em></td>
+<td>Boolean, if Document&#39;s logged payments amount to at least its totalWithTax amount or more. <em>Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">hasUnit</td>
-<td>Boolean, if Document contains at least one Document item with <code>unit</code> set. <em>Used internaly to more easily determine if unit column needs to be displayed when rendering Document view. Only present if <code>type</code> is <code>invoice</code>.</em></td>
+<td>Boolean, if Document contains at least one Document item with <code>unit</code> set. <em>Internally used to more easily determine if the unit column needs to be displayed when rendering the Document view. Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_comments</td>
@@ -2658,7 +2665,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">createAt</td>
-<td>Timestamp of model instance creation.</td>
+<td>Timestamp of the model instance creation.</td>
 </tr>
 </tbody></table>
 <h2 id='list-documents'>List Documents</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/documents?filter[where][type]=invoice"</span> <span class="se">\</span>
@@ -3161,7 +3168,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of document.</td>
+<td>The ID of document.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
@@ -3491,7 +3498,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Document.</td>
+<td>The ID of the Document.</td>
 </tr>
 </tbody></table>
 <h4 id='attributes-3'>Attributes</h4>
@@ -3503,31 +3510,31 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">number <em>default is <em>YYYY-0000n+1</em></em></td>
-<td>String, unique (to Document type and Organization) Document number. <em>Auto populated with next number based on document type.</em></td>
+<td>String, unique (to Document type and Organization) Document number. <em>Auto populated with the successive number based on document type.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">type <em>default is <em>invoice</em></em></td>
-<td>Type of document (<code>invoice</code>, <code>estimate</code> or <code>advance</code> ). <em>Determines type of document, note that different document types contain different properties, rules and funcionalities. For example <code>invoice</code> can have Payments logged and contains <code>dateService</code> property. Document type cannot be switched once set to instance.</em></td>
+<td>Type of document (<code>invoice</code>, <code>estimate</code> or <code>advance</code> ). <em>Determines the type of document. Please note: different document types contain different properties, rules, and funcionalities. For example, <code>invoice</code> can have Payments logged and contains the <code>dateService</code> property. Document type cannot be switched once set to instance.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">draft <em>default is <em>false</em></em></td>
-<td>Boolean, if invoice a draft. <em>If set to <code>true</code> the property cannot go back to <code>false</code>. Only present if <code>type</code> is <code>invoice</code>.</em></td>
+<td>Boolean, if the invoice is a draft. <em>If set to <code>true</code>, the property cannot go back to <code>false</code>. Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">date <em>default is <em>today</em></em></td>
-<td>Javascript date, date of Document. <em>Represents date the Document was issued. Time is trimmed.</em></td>
+<td>Javascript date, the date of Document. <em>Represents the date the Document was issued. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">dateDue <em>default is <em>today + default due days</em></em></td>
-<td>Javascript date, date invoice is due. <em>Auto populated using Organization&#39;s default due days from today. Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+<td>Javascript date, date the invoice is due. <em>Auto populated using the Organization&#39;s default due days from today. Only present on the <code>type</code> invoice. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">dateService</td>
-<td>Javascript date, date service was started or conducted. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+<td>Javascript date, date the service was started or conducted. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">dateServiceTo</td>
-<td>Javascript date, date service period ends. <em>Only present on <code>type</code> invoice. Time is trimmed.</em></td>
+<td>Javascript date, date the service period ends. <em>Only present on the <code>type</code> invoice. Time is trimmed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">currencyId</td>
@@ -3535,43 +3542,43 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">clientId</td>
-<td>ID reference to Organization&#39;s Client. <em>If provided <code>_documentClient</code> object gets populated using referenced Client.</em></td>
+<td>ID reference of the Organization&#39;s Client. <em>If provided <code>_documentClient</code>, the object gets populated using referenced Client.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_documentClient</td>
-<td>Object containting client data. <em>Property is optional if <code>clientId</code> is provided.</em> <em>Any key defined in object will be used instead of loaded client data.</em> <em>If <code>clientId</code> is not provided the data in object is saved to Organization&#39;s Clients and referenced in document ie. the <code>clientId</code> is auto populated.</em> <a href="#expand">toggle definition</a></td>
+<td>Object containting client data. <em>Property is optional if the <code>clientId</code> is provided.</em> <em>Any key defined in object will be used instead of loaded client data.</em> <em>If the <code>clientId</code> is not provided the data in object is saved to Organization&#39;s Clients and referenced in document ie. the <code>clientId</code> is auto populated.</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of client. <em>Required only if <code>clientId</code> not provided on Document.</em></td>
+<td>The Name of client. <em>Required only if <code>clientId</code> is not provided on Document.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
-<td>Address of Client.</td>
+<td>Address of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">address2</td>
-<td>Address line 2 of Client.</td>
+<td>Address line 2 of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">city</td>
-<td>City of Client.</td>
+<td>City of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">zip</td>
-<td>Zip / postal code of Client.</td>
+<td>Zip / postal code of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>Country of Client.</td>
+<td>Country of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
-<td>String, organization registration or similar number of Client.</td>
+<td>String, organization registration, or similar number of Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST / sales tax or similar tax number of Client.</td>
+<td>String, organization VAT / GST / sales tax, or similar tax number of Client.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -3579,51 +3586,51 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">_documentIssuer</td>
-<td>Object containting issuer data. <em>Property is automatically populated with Organization data.</em> <em>Any key that is provided in object is used instead.</em> <a href="#expand">toggle definition</a></td>
+<td>Object containing the issuer data. <em>Property is automatically populated with the Organization data.</em> <em>Any key that is provided in object is used instead.</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of issuer.</td>
+<td>Name of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
-<td>Address of issuer.</td>
+<td>Address of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">address2</td>
-<td>Address line 2 of issuer.</td>
+<td>Address line 2 of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">city</td>
-<td>City of issuer.</td>
+<td>City of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">zip</td>
-<td>Zip / postal code of issuer.</td>
+<td>Zip / postal code of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>Country of issuer.</td>
+<td>Country of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
-<td>String, organization registration or similar number of issuer.</td>
+<td>String, organization registration, or similar number of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>String, organization VAT / GST / sales tax or similar tax number of issuer.</td>
+<td>String, organization VAT / GST / sales tax, or similar tax number of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">IBAN</td>
-<td>Bank account number of issuer.</td>
+<td>Bank account number of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">bank</td>
-<td>Bank of issuer.</td>
+<td>Bank of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right">website</td>
-<td>Website address of issuer.</td>
+<td>Website address of the issuer.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -3635,15 +3642,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">itemId</td>
-<td>ID reference to Organization&#39;s item. <em>If provided the item properties are populated from referenced item.</em> <em>Any key that is provided will is used instead.</em></td>
+<td>ID reference to Organization&#39;s item. <em>If provided the item properties are populated from referenced item.</em> <em>Any key that is provided will be used instead.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of item. <em>Optional if <code>isSeparator</code> is set to <code>true</code>.</em></td>
+<td>Name of the item. <em>Optional if <code>isSeparator</code> is set to <code>true</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">description</td>
-<td>Description of item.</td>
+<td>Description of the item.</td>
 </tr>
 <tr>
 <td style="text-align: right">quantity</td>
@@ -3663,15 +3670,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">taxId</td>
-<td>ID reference to Organization&#39;s Tax. <em>If provided <code>rate</code>, <code>recoverable</code> and <code>compund</code> are auto populated. Note that the <code>rate</code> is chosen based on <code>date</code> property of document if Tax has multiple valid rates.</em></td>
+<td>ID reference to Organization&#39;s Tax. <em>If provided, <code>rate</code>, <code>recoverable</code> and <code>compund</code> are auto populated. Note: The <code>rate</code> is chosen based on the <code>date</code> property of document if the Tax has multiple valid rates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>Number, tax rate percent. <em>If only rate is provided API attempts to match tax by it from database and populate id.</em></td>
+<td>Number, tax rate percent. <em>If only the rate is provided, the API attempts to match tax from database and populate id.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">classification</td>
-<td>String, tax classification. <em>If only classification is provided API attempts to match tax by it from database and populate id.</em></td>
+<td>String, tax classification. <em>If only the classification is provided, the API attempts to match tax by database and populate id.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">recoverable</td>
@@ -3699,19 +3706,19 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">note</td>
-<td>Text note for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+<td>Text note for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when the <code>parseForDisplay</code> flag is provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">signature</td>
-<td>Text signature for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+<td>Text signature for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when the <code>parseForDisplay</code> flag is provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">footer</td>
-<td>Text footer for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when <code>parseForDisplay</code> flag is provided.</em></td>
+<td>Text footer for Document. <em>Populated with Organizaion default if not provided. May contain shortcode notations which get parsed to data on PDF or when the <code>parseForDisplay</code> flag is provided.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">decimalPlaces <em>default is <em>4</em></em></td>
-<td>Number of decimal places the Document items are trimmed and rounded to in calculations. <em>Should be 4 in most cases.</em></td>
+<td>Number of decimal places to which the Document items are trimmed and rounded (after calculations). <em>Should be 4 in most cases.</em></td>
 </tr>
 </tbody></table>
 <h3 id='http-response-2'>HTTP Response</h3><h4 id='attributes-4'>Attributes</h4>
@@ -3723,11 +3730,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique ID of model instance.</td>
+<td>Unique ID of the model instance.</td>
 </tr>
 <tr>
 <td style="text-align: right">organizationId</td>
-<td>ID of related organization.</td>
+<td>ID of the related organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">canceled</td>
@@ -3795,11 +3802,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">base</td>
-<td>Total value used to calculate given Tax.</td>
+<td>Total value used to calculate the given Tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">totalTax</td>
-<td>Total value of given Tax on Document.</td>
+<td>Total value of the given Tax on Document.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -3823,11 +3830,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">paidInFull</td>
-<td>Boolean, if Document&#39;s logged payments amount to at least it&#39;s totalWithTax amount or more. <em>Only present if <code>type</code> is <code>invoice</code>.</em></td>
+<td>Boolean, if the Document&#39;s logged payments amount to at least its totalWithTax amount or more. <em>Only present if <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">hasUnit</td>
-<td>Boolean, if Document contains at least one Document item with <code>unit</code> set. <em>Used internaly to more easily determine if unit column needs to be displayed when rendering Document view. Only present if <code>type</code> is <code>invoice</code>.</em></td>
+<td>Boolean, if Document contains at least one Document item with <code>unit</code> set. <em>Internally used to more easily determine if the unit column needs to be displayed when rendering Document view. Only present if the <code>type</code> is <code>invoice</code>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_comments</td>
@@ -3922,7 +3929,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </code></pre>
 <p><strong>This endpoint returns a document in PDF format.</strong></p>
 
-<p>The language of the document is determined by the <code>l</code> flag, if no flag is provided the organization&#39;s default locale is used. Currently this setting doesn&#39;t effect the user created content of the document, only the predefined data like table headers etc. In the future we are exploring options to allow users to provide content in multiple languages and switching it using this flag.</p>
+<p>The language of the document is determined by the <code>l</code> flag. If no flag is provided, the organization&#39;s default locale is used. Currently this setting doesn&#39;t affect the user-created content of the document, only the predefined data like table headers, etc. We are currently exploring options to allow users to provide content in multiple languages, for which this flag may be switched.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/documents/:id/pdf?l=:language</code></p>
 <h4 id='query-parameters-6'>Query parameters</h4>
@@ -3934,21 +3941,21 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Document.</td>
+<td>ID of the Document.</td>
 </tr>
 <tr>
 <td style="text-align: right">language</td>
-<td>Language of PDF <em>Currently we support <code>sl</code>, <code>en</code> and <code>de</code> languages. Defaults to organization&#39;s locale.</em></td>
+<td>Language of the PDF <em>Currently we support <code>sl</code>, <code>en</code> and <code>de</code> languages. Defaults to organization&#39;s locale.</em></td>
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4><h2 id='send-in-email'>Send in email</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">recipients</span><span class="o">=</span><span class="s2">"rocketman@example.com"</span> <span class="se">\</span>
-  -d <span class="nv">message</span><span class="o">=</span><span class="s2">"You can find documet PDF in attachment."</span> <span class="se">\</span>
+  -d <span class="nv">message</span><span class="o">=</span><span class="s2">"You can find the document PDF in the attachment."</span> <span class="se">\</span>
   -d <span class="nv">subject</span><span class="o">=</span><span class="s2">"Invoice"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">documents</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">documentId</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">recipients</span><span class="p">:</span> <span class="s2">"rocketman@example.com"</span><span class="p">,</span>
-  <span class="na">message</span><span class="p">:</span> <span class="s2">"You can find documet PDF in attachment."</span><span class="p">,</span>
+  <span class="na">message</span><span class="p">:</span> <span class="s2">"You can find the document PDF in the attachment."</span><span class="p">,</span>
   <span class="na">subject</span><span class="p">:</span> <span class="s2">"Invoice"</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">send</span><span class="p">)</span> <span class="p">{</span>
@@ -3957,14 +3964,14 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="n">SpaceDocumentService</span> <span class="n">documentService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceDocumentService</span><span class="p">();</span>
 <span class="n">SpaceDocumentSendOptions</span> <span class="n">documentSendOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SpaceDocumentSendOptions</span><span class="p">{</span>
     <span class="n">Recipients</span> <span class="p">=</span> <span class="s">"rocketman@example.com"</span><span class="p">,</span>
-    <span class="n">Message</span> <span class="p">=</span> <span class="s">"You can find documet PDF in attachment."</span><span class="p">,</span>
+    <span class="n">Message</span> <span class="p">=</span> <span class="s">"You can find the document PDF in the attachment."</span><span class="p">,</span>
     <span class="n">Subject</span> <span class="p">=</span> <span class="s">"Invoice"</span>
 <span class="p">};</span>
 <span class="n">Result</span> <span class="n">res</span> <span class="p">=</span> <span class="n">documentService</span><span class="p">.</span><span class="nf">Send</span><span class="p">(</span><span class="s">"DOCUMENT_ID"</span><span class="p">,</span> <span class="n">documentSendOptions</span><span class="p">);</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
   <span class="nx">Spaceinvoices\Documents</span><span class="o">::</span><span class="na">send</span><span class="p">(</span><span class="s2">"DOCUMENT_ID"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"recipients"</span> <span class="o">=&gt;</span> <span class="s2">"rocketman@example.com"</span><span class="p">,</span>
-    <span class="s2">"message"</span> <span class="o">=&gt;</span> <span class="s2">"You can find the document, number [document number], PDF in attachment."</span><span class="p">,</span>
+    <span class="s2">"message"</span> <span class="o">=&gt;</span> <span class="s2">"You can find the document, number [document number], PDF in the attachment."</span><span class="p">,</span>
     <span class="s2">"subject"</span> <span class="o">=&gt;</span> <span class="s2">"Invoice for service"</span>
   <span class="p">));</span>
 <span class="cp">?&gt;</span>
@@ -3990,9 +3997,9 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p><strong>This endpoint allows sending an email with Document PDF as attachment.</strong></p>
+<p><strong>This endpoint allows sending an email with the Document PDF as an attachment.</strong></p>
 
-<p>Emails are sent from our address in the name of the organization sending it and there are no styling options. In the future we intend to provide an option for users to also provide an html template for the email. Linking own domains for sending purposes will also be possible. For now only custom solutions are possible.</p>
+<p>Emails are sent from our address in the name of the organization sending it. While there are currently no styling options, we are developing an option for users to also provide an html template for the email. Linking one&#39;s own domain for the purposes of sending will also be possible. Please get in touch with us if you are require specific functionality to be added in this context.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/v1/documents/:id/send</code></p>
 <h4 id='query-parameters-7'>Query parameters</h4>
@@ -4020,7 +4027,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">message <strong>required</strong></td>
-<td>String, costum message sent in email. <em>May contain shortcode notations which get parsed to data.</em></td>
+<td>String, custom message sent in the email. <em>May contain shortcode notations which get parsed to data.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">subject</td>
@@ -4028,9 +4035,9 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 </tbody></table>
 <h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4><h1 id='countries'>Countries</h1>
-<p><strong>List of 250 countries. Can be queried for info related to countries ie. english name, native name, currency, taxes, etc.</strong></p>
+<p><strong>List of 250 countries for which informational queries can be conducted (ie. english name, native name, currency, taxes, etc.)</strong></p>
 
-<p>While all countries are present in the list not all have data about local taxes and currencies. We are regularly updating the list as we use it to perform matching for companies. We are accepting your requests to fill out specific country data.</p>
+<p>While all the countries are present in the list, data about local taxes and currencies for the least common countries may not be. We continually update it with country information as it is used to perform matching for companies. We are always open for suggestions on how we can make this feature better! Please get in contact with us.</p>
 <h2 id='get-all-countries'>Get all Countries</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/countries"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">countries</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
@@ -4330,35 +4337,35 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>String unique English name of country.</td>
+<td>String unique English name of the country.</td>
 </tr>
 <tr>
 <td style="text-align: right">alpha2Code</td>
-<td>String unique ISO 2 letter code of country.</td>
+<td>String unique ISO 2 letter code of the country.</td>
 </tr>
 <tr>
 <td style="text-align: right">alpha3Code</td>
-<td>String unique ISO 3 letter code of country.</td>
+<td>String unique ISO 3 letter code of the country.</td>
 </tr>
 <tr>
 <td style="text-align: right">nativeName</td>
-<td>String unique native name of country.</td>
+<td>String unique native name of the country.</td>
 </tr>
 <tr>
 <td style="text-align: right">numericCode</td>
-<td>String unique numeric code of country.</td>
+<td>String unique numeric code of the country.</td>
 </tr>
 <tr>
 <td style="text-align: right">translations</td>
-<td>Object names of country translated to other languages. <a href="#expand">toggle definition</a></td>
+<td>Object names of the country translated to other languages. <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">key</td>
-<td>String alpha2Code of country the name is translated to.</td>
+<td>String alpha2Code of the country the name is translated to.</td>
 </tr>
 <tr>
 <td style="text-align: right">value</td>
-<td>String translated name of country.</td>
+<td>String the translated name of country.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -4366,23 +4373,23 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">taxes</td>
-<td>Array of objects country taxes and rates. <em>Usualy value added tax. Not all countries have tax data at the moment.</em> <a href="#expand">toggle definition</a></td>
+<td>Array of objects country taxes and rates. <em>Usually value added tax. Tax data for least-used countries are not available at the moment.</em> <a href="#expand">toggle definition</a></td>
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>String name of tax.</td>
+<td>String name of the tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">abbreviation</td>
-<td>String abbreviation of tax.</td>
+<td>String abbreviation of the tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>String rate of tax.</td>
+<td>String rate of the tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">classification</td>
-<td>String classification of tax rate ie. <code>standard</code>, <code>reduced</code>, <code>additional</code> in EU, <code>state</code>, <code>federal</code>, <code>additional</code> in US etc.</td>
+<td>String classification of the tax rate ie. <code>standard</code>, <code>reduced</code>, <code>additional</code> in EU, <code>state</code>, <code>federal</code>, <code>additional</code> in US etc.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -4396,9 +4403,9 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 <h1 id='currencies'>Currencies</h1>
 <p>Currencies are provided and available to load from our system, we have 122 most common global currencies. Don&#39;t hesistate to write us if we&#39;re missing any.</p>
 
-<p>Besides the normal (fiat) currencies we have now also added some common cryptocurrencies, we are also accepting your requests for these.</p>
+<p>In addition to normal (fiat) currencies, we have now also added some common cryptocurrencies. Don&#39;t see your favourite cryptocurrency as an option? Let us know and we&#39;ll be happy to add support for it.</p>
 
-<p>Note: <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> unique currency codes are used as <code>id</code> fields of currencies to simlify inclusion as related IDs in documents.</p>
+<p>Note: <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> unique currency codes are used as the <code>id</code> fields of currencies to simplify inclusion in documents as related IDs.</p>
 <h2 id='get-all-currencies'>Get all Currencies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/currencies"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
@@ -4509,7 +4516,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint retrieves all Currencies.</p>
+<p>This endpoint retrieves all the Currencies.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/currencies</code></p>
 <h3 id='http-response'>HTTP Response</h3><h4 id='arguments'>Arguments</h4>
@@ -4537,7 +4544,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 </tbody></table>
 <h1 id='clients'>Clients</h1>
-<p>Clients are businesses, end persons, organizations and any other entity that can receive a document from an organization. They can be saved and later referenced using their unique ID.</p>
+<p>Clients are businesses, end users, organizations, and any other entity that can receive a document from an organization. Clients may be  saved and later referenced using their unique ID.</p>
 <h2 id='create-new-client'>Create New Client</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/clients"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
@@ -4704,7 +4711,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Orgniazation for which we are creting the Client.</td>
+<td>ID of the organization for which we create the Client.</td>
 </tr>
 </tbody></table>
 <h4 id='arguments'>Arguments</h4>
@@ -4716,7 +4723,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of company, client or other type of organization.</td>
+<td>Name of the company, client, or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -4954,7 +4961,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of company, client or other type of organization.</td>
+<td>Name of the company, client, or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -5045,9 +5052,9 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint soft deletes a Client by id.</p>
-
-<p>Soft deleted instances stay in database but are not returned on normal calls but can be added by providing <code>deleted: true</code> property in filters.</p>
+<p>This endpoint soft deletes a Client by ID.
+Soft deleted instances remain in the database but will not appear on normal API calls.
+To view soft deleted instances, add <code>deleted: true</code> property to the filter.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>DELETE https://api.spaceinvoices.com/v1/clients/:id</code></p>
 <h4 id='query-parameters-3'>Query parameters</h4>
@@ -5059,7 +5066,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Client to delete.</td>
+<td>ID of the Client to be deleted.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-3'>HTTP Response</h3><h4 id='arguments-5'>Arguments</h4>
@@ -5150,7 +5157,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization.</td>
+<td>ID of the Organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
@@ -5166,7 +5173,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of company, client or other type of organization.</td>
+<td>Name of the company, client, or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -5293,11 +5300,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization.</td>
+<td>ID of the Organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">term <strong>required</strong></td>
-<td>String term to search for in Client properties.</td>
+<td>String term to search within Client properties.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
@@ -5313,7 +5320,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of company, client or other type of organization.</td>
+<td>Name of the company, client, or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -5477,7 +5484,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint return a Client by ID.</p>
+<p>This endpoint returns a Client by their ID.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/clients/:id</code></p>
 <h4 id='query-parameters-6'>Query parameters</h4>
@@ -5489,7 +5496,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Client.</td>
+<td>ID of the Client.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-6'>HTTP Response</h3><h4 id='arguments-8'>Arguments</h4>
@@ -5501,7 +5508,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of company, client or other type of organization.</td>
+<td>Name of the company, client, or other type of organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
@@ -5553,17 +5560,17 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 </tbody></table>
 <h1 id='companies'>Companies</h1>
-<p>Companies is a searchable collection of companies and organization we maintain and is available to simplify issuing documents.</p>
+<p>Companies is a searchable collection of companies and organizations maintained.
+This function greatly simplifies the process of issuing documents.</p>
 
-<p>It is recommended to use this database for user interfaces as a search while you type feature but to limit searches to specific countries based on user&#39;s origin.</p>
+<p>This database is recommended for user interfaces should you setup a &quot;search while you type feature&quot;, allowing you to limit searches to specific countries based on the origin of the user.</p>
 
-<p>We are adding to this database slowly country by country.
-The database is updated regularly as frequently as we can query the data for each country.</p>
+<p>We update this database as frequently as possible to ensure usability and convenience.</p>
 
 <p>Current status:
-- [x] Slovenia (test API, production in 1 month)</p>
+- [x] Slovenia</p>
 
-<p>Accepting votes and data sources for other countries.</p>
+<p>Have a country you would like to add to this list? Please do email us and we are happy to work with you.</p>
 <h2 id='list-companies'>List Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">companies</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
@@ -5680,39 +5687,39 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of Company.</td>
+<td>Name of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
-<td>Address of Company.</td>
+<td>Address of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">address2</td>
-<td>Address line two of Company.</td>
+<td>Address line two of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">city</td>
-<td>City of Company.</td>
+<td>City of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">zip</td>
-<td>ZIP / post code of Company.</td>
+<td>ZIP / post code of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>Country of Company.</td>
+<td>Country of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>Tax number of Company.</td>
+<td>Tax number of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject</td>
-<td>Boolean if Company is subject to VAT / GST / sales tax or other tax.</td>
+<td>Boolean if the Company is subject to VAT / GST / sales tax or other tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
-<td>Company or other organization registration number.</td>
+<td>The Company or other organization registration number.</td>
 </tr>
 </tbody></table>
 <h2 id='search-companies'>Search Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/companies/search?term=Space"</span> <span class="se">\</span>
@@ -5831,35 +5838,35 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique ID of Company model instance.</td>
+<td>Unique ID of the Company model instance.</td>
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of Company.</td>
+<td>Name of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">address</td>
-<td>Address of Company.</td>
+<td>Address of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">address2</td>
-<td>Address line two of Company.</td>
+<td>Address line two of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">city</td>
-<td>City of Company.</td>
+<td>City of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">zip</td>
-<td>ZIP / post code of Company.</td>
+<td>ZIP / post code of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">country</td>
-<td>Country of Company.</td>
+<td>Country of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxNumber</td>
-<td>Tax number of Company.</td>
+<td>Tax number of the Company.</td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject</td>
@@ -5867,7 +5874,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">companyNumber</td>
-<td>Company or other organization registration number.</td>
+<td>The Company or other organization registration number.</td>
 </tr>
 </tbody></table>
 <h1 id='items'>Items</h1>
@@ -6653,7 +6660,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h1 id='payments'>Payments</h1>
-<p>Payments are stored for each invoice. Each invoice can have multiple payments that can also sum up to more that the invoice&#39;s total value. Payments are in the Currency of the document.</p>
+<p>Payments are stored for each invoice. Each invoice can have multiple payments that can also sum up to more than the invoice&#39;s total value. Payments are in the Currency of the document.</p>
 <h2 id='create-new-payment'>Create New Payment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nb">type</span><span class="o">=</span><span class="s2">"bank"</span> <span class="se">\</span>
@@ -6749,7 +6756,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Document for which we are creting the Payment.</td>
+<td>ID of the Document for which we are creating the Payment.</td>
 </tr>
 </tbody></table>
 <h4 id='arguments'>Arguments</h4>
@@ -6965,7 +6972,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Payment to delete.</td>
+<td>ID of the Payment to delete.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-3'>HTTP Response</h3><h4 id='arguments-5'>Arguments</h4>
@@ -7029,7 +7036,7 @@ The database is updated regularly as frequently as we can query the data for eac
   <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint lists Organization&#39;s Payments.</p>
+<p>This endpoint lists the Organization&#39;s Payments.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/payments</code></p>
 <h4 id='query-parameters-4'>Query parameters</h4>
@@ -7041,11 +7048,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization.</td>
+<td>ID of the Organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
-<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+<td>Object containing query filters. See the <a href="#filters">Filters</a> section for more details.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-6'>Arguments</h4>
@@ -7122,7 +7129,7 @@ The database is updated regularly as frequently as we can query the data for eac
   <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint lists Document&#39;s Payments.</p>
+<p>This endpoint lists the Document&#39;s Payments.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/documents/:id/payments</code></p>
 <h4 id='query-parameters-5'>Query parameters</h4>
@@ -7134,11 +7141,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Document.</td>
+<td>ID of the Document.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
-<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+<td>Object containing query filters. See the <a href="#filters">Filters</a> section for more details.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-7'>Arguments</h4>
@@ -7166,7 +7173,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 </tbody></table>
 <h1 id='recurrences'>Recurrences</h1>
-<p>Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of documents using the original document content as a base but changing the dates and number.</p>
+<p>Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of a document occurs using the original document content as a base but where the date and number of the document is changed.</p>
 <h2 id='create-new-recurrence'>Create New Recurrence</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Monthly recurrence"</span> <span class="se">\</span>
@@ -7344,31 +7351,31 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of recurrence.</td>
+<td>Name of the recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">type <strong>required</strong></td>
-<td>Type of recurrence, one of <code>week</code> / <code>month</code> / <code>year</code>.</td>
+<td>Type of the recurrence, one of <code>week</code> / <code>month</code> / <code>year</code>.</td>
 </tr>
 <tr>
 <td style="text-align: right">dateFirst <strong>required</strong></td>
-<td>Date of first recurrence.</td>
+<td>Date of the first recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">numRecurrences <strong>required</strong></td>
-<td>Number of Recurrence.</td>
+<td>Number of the Recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">autoSend</td>
-<td>Boolean if a created Document should be automaticaly sent to Client when created.</td>
+<td>Boolean if a created Document should be automatically sent to Client when created.</td>
 </tr>
 <tr>
 <td style="text-align: right">notify</td>
-<td>Boolean if Account that created the Recurrence should be notified when a Document is created.</td>
+<td>Boolean if the Account that created the Recurrence should be notified when a Document is created.</td>
 </tr>
 <tr>
 <td style="text-align: right">saveAsDraft</td>
-<td>Boolean if invoice should be created as draft.</td>
+<td>Boolean if the invoice should be created as draft.</td>
 </tr>
 <tr>
 <td style="text-align: right">recurrenceDates</td>
@@ -7376,11 +7383,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">date</td>
-<td>Date of Recurrence.</td>
+<td>Date of the Recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">iteration</td>
-<td>Number iteration index of Recurrence.</td>
+<td>Number iteration index of the Recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -7396,7 +7403,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique ID of model instance.</td>
+<td>Unique ID of the model instance.</td>
 </tr>
 </tbody></table>
 <h2 id='delete-recurrence'>Delete Recurrence</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
@@ -7443,7 +7450,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Recurrence to delete.</td>
+<td>ID of the Recurrence to be deleted.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-3'>Arguments</h4>
@@ -7507,7 +7514,7 @@ The database is updated regularly as frequently as we can query the data for eac
   <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint lists Organization&#39;s Recurrences.</p>
+<p>This endpoint lists the Organization&#39;s Recurrences.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/recurrences</code></p>
 <h4 id='query-parameters-3'>Query parameters</h4>
@@ -7519,11 +7526,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization.</td>
+<td>ID of the Organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
-<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+<td>Object containing query filters. See the <a href="#filters">Filters</a> section for more details.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-3'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4>
@@ -7539,11 +7546,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">date</td>
-<td>Number price of recurrence.</td>
+<td>Number price of the recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">amount</td>
-<td>Amount of Recurrence.</td>
+<td>Amount of the Recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">description</td>
@@ -7699,11 +7706,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Document.</td>
+<td>ID of the Document.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
-<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+<td>Object containing query filters. See the <a href="#filters">Filters</a> section for more details.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-5'>Arguments</h4>
@@ -7715,19 +7722,19 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of recurrence.</td>
+<td>Name of the recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">type</td>
-<td>Type of recurrence.</td>
+<td>Type of the recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">dateFirst</td>
-<td>Date of first recurrence.</td>
+<td>Date of the first recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">numRecurrences</td>
-<td>Number of Recurrence.</td>
+<td>Number of the Recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">autoSend</td>
@@ -7735,11 +7742,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">notify</td>
-<td>Boolean if Account that created the Recurrence should be notified when a Document is created.</td>
+<td>Boolean if the Account that created the Recurrence should be notified when a Document is created.</td>
 </tr>
 <tr>
 <td style="text-align: right">saveAsDraft</td>
-<td>Boolean if invoice should be created as draft.</td>
+<td>Boolean if the invoice should be created as draft.</td>
 </tr>
 <tr>
 <td style="text-align: right">recurrenceDates</td>
@@ -7747,11 +7754,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">date</td>
-<td>Date of Recurrence.</td>
+<td>Date of the Recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right">iteration</td>
-<td>Number iteration index of Recurrence.</td>
+<td>Number iteration index of the Recurrence.</td>
 </tr>
 <tr>
 <td style="text-align: right"><a href="#empty"></a></td>
@@ -7761,9 +7768,9 @@ The database is updated regularly as frequently as we can query the data for eac
 <h1 id='taxes'>Taxes</h1>
 <p>Taxes are stored per Organization and are then referenced on Items that need to charge it.</p>
 
-<p>Taxes have rates applied to them and the rates are chosen based on date of document when they came into force as rates might change sometimes. This ensures correct tax rates on documents based on the date of document.</p>
+<p>Taxes have rates applied to them and the rates are chosen based on the document&#39;s indicated date if the different rates are applicable on the date. This ensures the correct tax rates are applied to documents.</p>
 
-<p>NOTE: When adding taxes to document items or items, the tax can be easily referenced (in prioritised order) by it&#39;s id, rate or classification.</p>
+<p>NOTE: When adding taxes to document items or items, the tax can be easily referenced (in prioritized order) by its id, rate, or classification.</p>
 <h2 id='create-new-tax'>Create New Tax</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Value Added Tax"</span> <span class="se">\</span>
@@ -7891,7 +7898,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Orgniazation for which we are creting the Tax.</td>
+<td>ID of the Organization for which the Tax is created.</td>
 </tr>
 </tbody></table>
 <h4 id='arguments'>Arguments</h4>
@@ -7903,15 +7910,15 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of Tax.</td>
+<td>Name of the Tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">abbreviation</td>
-<td>Abbreviation of Tax name ie. VAT.</td>
+<td>Abbreviation of the Tax name ie. VAT.</td>
 </tr>
 <tr>
 <td style="text-align: right">classification</td>
-<td>String classification of tax. <em>Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates.</em></td>
+<td>String classification of the tax. <em>Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_taxRates</td>
@@ -7919,7 +7926,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>Rate of tax.</td>
+<td>Rate of the tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">dateValidFrom</td>
@@ -7931,11 +7938,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">recoverable <em>Default is <em>true</em></em></td>
-<td>Boolean if Tax is recoverable after being paid.</td>
+<td>Boolean if the ax is recoverable after being paid.</td>
 </tr>
 <tr>
 <td style="text-align: right">compound <em>Default is <em>false</em></em></td>
-<td>Boolean if Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item.</td>
+<td>Boolean if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
@@ -7947,7 +7954,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id</td>
-<td>Unique ID of model instance.</td>
+<td>Unique ID of the model instance.</td>
 </tr>
 </tbody></table>
 <h2 id='add-new-rate-to-a-tax'>Add New Rate to a Tax</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates"</span> <span class="se">\</span>
@@ -8016,7 +8023,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Tax for which we are creting the Rate.</td>
+<td>ID of the Tax for which the Rate is created.</td>
 </tr>
 </tbody></table>
 <h4 id='arguments-3'>Arguments</h4>
@@ -8165,7 +8172,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">name <strong>required</strong></td>
-<td>Name of Tax.</td>
+<td>Name of the Tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">_taxRates</td>
@@ -8173,11 +8180,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>Rate of tax.</td>
+<td>Rate of the tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">abbreviation</td>
-<td>Abbreviation of Tax name ie. VAT.</td>
+<td>Abbreviation of the Tax name ie. VAT.</td>
 </tr>
 <tr>
 <td style="text-align: right">classification</td>
@@ -8193,11 +8200,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">recoverable <em>Default is <em>true</em></em></td>
-<td>Boolean if Tax is recoverable after being paid.</td>
+<td>Boolean if the Tax is recoverable after being paid.</td>
 </tr>
 <tr>
 <td style="text-align: right">compound <em>Default is <em>false</em></em></td>
-<td>Boolean if Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item.</td>
+<td>Boolean if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-3'>HTTP Response</h3><h4 id='arguments-6'>Arguments</h4>
@@ -8242,7 +8249,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </code></pre>
 <p>This endpoint deletes a Tax by ID.</p>
 
-<p>A Tax can only be deleted if it&#39;s not used on any Document.</p>
+<p>A Tax can only be deleted if it is not used on any Document.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>DELETE https://api.spaceinvoices.com/v1/taxes/:id</code></p>
 <h4 id='query-parameters-4'>Query parameters</h4>
@@ -8254,7 +8261,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Tax to delete.</td>
+<td>ID of the Tax to delete.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-4'>HTTP Response</h3><h4 id='arguments-7'>Arguments</h4>
@@ -8356,7 +8363,7 @@ The database is updated regularly as frequently as we can query the data for eac
   <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint lists Organization&#39;s Taxes.</p>
+<p>This endpoint lists the Organization&#39;s Taxes.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/taxes</code></p>
 <h4 id='query-parameters-5'>Query parameters</h4>
@@ -8368,11 +8375,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Organization.</td>
+<td>ID of the Organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
-<td>Object containing query filters. See <a href="#filters">Filters</a> section for more details.</td>
+<td>Object containing query filters. See the <a href="#filters">Filters</a> section for more details.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-5'>HTTP Response</h3><h4 id='arguments-8'>Arguments</h4>
@@ -8384,15 +8391,15 @@ The database is updated regularly as frequently as we can query the data for eac
 </thead><tbody>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of Tax.</td>
+<td>Name of the Tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">abbreviation</td>
-<td>Abbreviation of Tax name ie. VAT.</td>
+<td>Abbreviation of the Tax name ie. VAT.</td>
 </tr>
 <tr>
 <td style="text-align: right">classification</td>
-<td>String classification of tax. <em>Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates.</em></td>
+<td>String classification of the tax. <em>Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">_taxRates</td>
@@ -8400,7 +8407,7 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">rate</td>
-<td>Rate of tax.</td>
+<td>Rate of the tax.</td>
 </tr>
 <tr>
 <td style="text-align: right">dateValidFrom</td>
@@ -8412,11 +8419,11 @@ The database is updated regularly as frequently as we can query the data for eac
 </tr>
 <tr>
 <td style="text-align: right">recoverable</td>
-<td>Boolean if Tax is recoverable after being paid.</td>
+<td>Boolean if the Tax is recoverable after being paid.</td>
 </tr>
 <tr>
 <td style="text-align: right">compound</td>
-<td>Boolean if Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item.</td>
+<td>Boolean if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item.</td>
 </tr>
 </tbody></table>
 <h1 id='filters'>Filters</h1><h2 id='filters-2'>Filters</h2><pre class="highlight shell tab-shell"><code><span class="c"># Where</span>
@@ -8672,7 +8679,7 @@ curl <span class="s2">"...?filter[deleted]=true"</span>
   <span class="p">);</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>Space Invoices API uses a filtering mechanism to control how data is queried.</p>
+<p>Space Invoices API uses a filtering mechanism to control how the data is queried.</p>
 
 <table><thead>
 <tr>
@@ -8682,7 +8689,7 @@ curl <span class="s2">"...?filter[deleted]=true"</span>
 </thead><tbody>
 <tr>
 <td style="text-align: right">where</td>
-<td>Where query filter. <em>Accepts operators, see <a href="#where-operators">Where operators</a> section for details.</em></td>
+<td>Where query filter. <em>Accepts operators, see the <a href="#where-operators">Where operators</a> section for details.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">include</td>
@@ -8694,7 +8701,7 @@ curl <span class="s2">"...?filter[deleted]=true"</span>
 </tr>
 <tr>
 <td style="text-align: right">limit</td>
-<td>Limit amount of data returned.</td>
+<td>Limit the amount of data returned.</td>
 </tr>
 <tr>
 <td style="text-align: right">order</td>
@@ -8702,7 +8709,7 @@ curl <span class="s2">"...?filter[deleted]=true"</span>
 </tr>
 <tr>
 <td style="text-align: right">skip</td>
-<td>Number of results to skip.</td>
+<td>The number of results to skip.</td>
 </tr>
 <tr>
 <td style="text-align: right">deleted</td>
@@ -8710,7 +8717,7 @@ curl <span class="s2">"...?filter[deleted]=true"</span>
 </tr>
 </tbody></table>
 <h2 id='where-operators'>Where operators</h2>
-<p>Where operations work in a similar way as querying a database, there operations can be controleh with the following.</p>
+<p>Where operations work in a similar way as querying a database, there operations can be controled with the following:</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Equal</span>
 curl <span class="s2">"...?filter[where][type]=invoice"</span>
 
@@ -9174,15 +9181,15 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 </tr>
 <tr>
 <td style="text-align: right">gt, gte</td>
-<td>Numerical greather than (&gt;); greater than of equal (&gt;=). Valid for numberical and date values. For Geopoint values, the units are in miles by default.</td>
+<td>Numerical greather than (&gt;); greater than of equal (&gt;=). Valid for the numberical and the date values. For Geopoint values, the units are in miles by default.</td>
 </tr>
 <tr>
 <td style="text-align: right">lt, lte</td>
-<td>Numerical less than (&lt;); less than or equal (&lt;=). Valid only for numerical and date values. For Geopoint values, the units are in miles by default.</td>
+<td>Numerical less than (&lt;); less than or equal (&lt;=). Valid only for the numerical and the date values. For Geopoint values, the units are in miles by default.</td>
 </tr>
 <tr>
 <td style="text-align: right">between</td>
-<td>True if the value is between the two specified values: greater than or equal to first value and less than or equal to second value.</td>
+<td>True if the value is between the two specified values: greater than or equal to the first value, and less than or equal to the second value.</td>
 </tr>
 <tr>
 <td style="text-align: right">inq, nin</td>
@@ -9220,7 +9227,7 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 </tr>
 <tr>
 <td style="text-align: right">401</td>
-<td>Unauthorized <em>Either you are not allowed to access the route or are not authorised for the resource with the given ID.</em></td>
+<td>Unauthorized <em>You do not have the permission to access the route or are not authorized for the resource with the given ID.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">404</td>
@@ -9228,7 +9235,7 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 </tr>
 <tr>
 <td style="text-align: right">422</td>
-<td>Unprecessable entity <em>The provided data is invalid, usualy that means a validation error. Details about the error are visible in the server response body.</em></td>
+<td>Unprecessable entity <em>The provided data is invalid, usually manifesting due to a validation error. Details about the error are visible in the server response body.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">500</td>
@@ -9244,13 +9251,13 @@ curl <span class="s2">"...?filter[where][number][regexp]=^2018"</span>
 <p>https://getapollo.io</p>
 </blockquote>
 
-<aside class="success"> Apollo is an online invoicing app that comes free with Space Invoices.</aside>
+<aside class="success"> Apollo is an online invoicing app powered the Space Invoices API. Featuring the "best of" features in an easy-to-use interface for users even of a beginner technical understanding, Apollo's features are constantly updated with great care and consideration for the requirements of our clients.</aside>
 
 <p><strong>Apollo (<a href="https://getapollo.io">getapollo.io</a>) allows users to view data created through the API in a user friendly visual interface.</strong></p>
 
-<p>Each account created through the API can use their credentials to login to Apollo and view all their assigned/authorised organizations.</p>
+<p>Each user with an account created through the API may login to Apollo with the same credentials in order to view the organizations for which they were allocated access permissions.</p>
 
-<p>We are planning to also provide Apollo as a whitelabel edition so parts of it can be added to apps as drop-in elements without the current branding.</p>
+<p>White label support is coming soon! Excited to elevate your brand while enjoying the invoicing prowess of SI? Apollo will soon support customized branding in an upcoming feature allowing you to add its control panels into various apps as drop-in elements sans Apollo branding.</p>
 
 <p><strong><a href="https://getapollo.io">https://getapollo.io</a></strong></p>
 <h1 id='changelog'>Changelog</h1><h2 id='4-11-2018'># 4.11.2018</h2>
