@@ -314,6 +314,7 @@ spaceInvoices.items.delete(itemId)
   console.log(count);
 })
 ```
+
 ```csharp
 SpaceItemService itemService = new SpaceItemService();
 Counter counter = itemService.Delete("ITEM_ID");
@@ -332,6 +333,7 @@ Counter counter = itemService.Delete("ITEM_ID");
   "count": 1
 }
 ```
+
 ```javascript
 {
   "count": 1
@@ -345,9 +347,10 @@ public class Counter
   public int Count { get; set; }
 }
 ```
+
 ```php
 <?php
-  { 
+  {
     "count": 1
   }
 ?>
@@ -395,7 +398,7 @@ var filter = @"{
                         where: {
                                 unit: 'item'
                         }
-                    } 
+                    }
                   }";
 
 SpaceItemService itemService = new SpaceItemService();
@@ -468,7 +471,7 @@ List<SpaceItem> items = itemService.List("ORGANIZATION_ID", filter);
 ]
 ```
 ```csharp
-List<SpaceItem> 
+List<SpaceItem>
 ```
 ```php
 <?php
@@ -558,7 +561,7 @@ var filter = @"{
                         where: {
                                 unit: 'item'
                         }
-                    } 
+                    }
                   }";
 
 
@@ -632,7 +635,7 @@ List<SpaceItem> items = itemService.Search("ORGANIZATION_ID", "space", filter);
 ]
 ```
 ```csharp
-List<SpaceItem> 
+List<SpaceItem>
 ```
 ```php
 <?php

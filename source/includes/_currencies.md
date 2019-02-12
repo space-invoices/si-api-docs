@@ -1,6 +1,6 @@
 # Currencies
 
-Currencies are provided and available to load from our system, we are accepting your requests for other currencies as the database is partial.
+Currencies are provided and available to load from our system, we have 122 most common global currencies. Don't hesistate to write us if we're missing any.
 
 Besides the normal (fiat) currencies we have now also added some common cryptocurrencies, we are also accepting your requests for these.
 
@@ -12,12 +12,14 @@ Note: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) unique currency codes a
 curl "https://api.spaceinvoices.com/v1/currencies" \
   -H "Authorization: LAUNCH_CODE"
 ```
+
 ```javascript
 spaceInvoices.currency.list()
 .then(function(currencies) {
   console.log(currencies);
 })
 ```
+
 ```csharp
 SpaceCurrencyService currencyService = new SpaceCurrencyService();
 List<SpaceCurrency> currencies = currencyService.List();
@@ -59,6 +61,7 @@ List<SpaceCurrency> currencies = currencyService.List();
   }
 ]
 ```
+
 ```javascript
 [
   {
@@ -87,6 +90,7 @@ List<SpaceCurrency> currencies = currencyService.List();
   }
 ]
 ```
+
 ```csharp
 public class SpaceCurrency
 {
@@ -103,6 +107,7 @@ public class SpaceCurrency
   public string Type { get; set; }
 }
 ```
+
 ```php
 <?php
   [
