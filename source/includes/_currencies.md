@@ -1,10 +1,10 @@
 # Currencies
 
-Currencies are provided and available to load from our system, we are accepting your requests for other currencies as the database is partial.
+The most-used currencies are provided and available to load from our system. We are always happy to accept suggestions for additional currencies to be added if you do not see the one you would like to use.
 
-Besides the normal (fiat) currencies we have now also added some common cryptocurrencies, we are also accepting your requests for these.
+In addition to normal (fiat) currencies, we have now also added some common cryptocurrencies. Don't see your favourite cryptocurrency as an option? Let us know and we'll be happy to add support for it.
 
-Note: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) unique currency codes are used as `id` fields of currencies to simlify inclusion as related IDs in documents.
+Note: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) unique currency codes are used as the `id` fields of currencies to simplify inclusion in documents as related IDs.
 
 ## Get all Currencies
 
@@ -134,7 +134,7 @@ public class SpaceCurrency
 ?>
 ```
 
-This endpoint retrieves all Currencies.
+This endpoint retrieves all the Currencies.
 
 ### HTTP Request
 

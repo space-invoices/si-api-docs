@@ -1,6 +1,6 @@
 # Clients
 
-Clients are businesses, end persons, organizations and any other entity that can receive a document from an organization. They can be saved and later referenced using their unique ID.
+Clients are businesses, end users, organizations, and any other entity that can receive a document from an organization. Clients may be  saved and later referenced using their unique ID.
 
 ## Create New Client
 
@@ -187,13 +187,13 @@ This endpoint creates a new Client.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Orgniazation for which we are creting the Client. |
+| id **required** | ID of the organization for which we create the Client. |
 
 #### Arguments
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of company, client or other type of organization. |
+| name **required** | Name of the company, client, or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
@@ -406,7 +406,7 @@ This endpoint updates a Client by id.
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of company, client or other type of organization. |
+| name **required** | Name of the company, client, or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
@@ -480,9 +480,9 @@ public class Counter
 ?>
 ```
 
-This endpoint soft deletes a Client by id.
-
-Soft deleted instances stay in database but are not returned on normal calls but can be added by providing `deleted: true` property in filters.
+This endpoint soft deletes a Client by ID.
+Soft deleted instances remain in the database but will not appear on normal API calls.
+To view soft deleted instances, add `deleted: true` property to the filter.
 
 ### HTTP Request
 
@@ -492,7 +492,7 @@ Soft deleted instances stay in database but are not returned on normal calls but
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Client to delete. |
+| id **required** | ID of the Client to be deleted. |
 
 ### HTTP Response
 
@@ -597,7 +597,7 @@ This endpoint lists Organization's Clients.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization. |
+| id **required** | ID of the Organization. |
 | filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
@@ -606,7 +606,7 @@ This endpoint lists Organization's Clients.
 
 |      |     |
 | ---: | --- |
-| name | Name of company, client or other type of organization. |
+| name | Name of the company, client, or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
@@ -714,8 +714,8 @@ This endpoint searches for Organization's Clients.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization. |
-| term **required** | String term to search for in Client properties. |
+| id **required** | ID of the Organization. |
+| term **required** | String term to search within Client properties. |
 | filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
@@ -724,7 +724,7 @@ This endpoint searches for Organization's Clients.
 
 |      |     |
 | ---: | --- |
-| name | Name of company, client or other type of organization. |
+| name | Name of the company, client, or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
@@ -870,7 +870,7 @@ public class SpaceClient
 ?>
 ```
 
-This endpoint return a Client by ID.
+This endpoint returns a Client by their ID.
 
 ### HTTP Request
 
@@ -880,7 +880,7 @@ This endpoint return a Client by ID.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Client. |
+| id **required** | ID of the Client. |
 
 
 ### HTTP Response
@@ -889,7 +889,7 @@ This endpoint return a Client by ID.
 
 |      |     |
 | ---: | --- |
-| name | Name of company, client or other type of organization. |
+| name | Name of the company, client, or other type of organization. |
 | address | Street or similar address. |
 | address2 | Address line 2. |
 | city | City name. |
