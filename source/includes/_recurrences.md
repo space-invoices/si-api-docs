@@ -1,6 +1,6 @@
 # Recurrences
 
-Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of documents using the original document content as a base but changing the dates and number.
+Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of a document occurs using the original document content as a base but where the date and number of the document is changed.
 
 ## Create New Recurrence
 
@@ -190,16 +190,16 @@ This endpoint creates a new Recurrence.
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of recurrence. |
-| type **required** | Type of recurrence, one of `week` / `month` / `year`. |
-| dateFirst **required** | Date of first recurrence. |
-| numRecurrences **required** | Number of Recurrence. |
-| autoSend | Boolean if a created Document should be automaticaly sent to Client when created. |
-| notify | Boolean if Account that created the Recurrence should be notified when a Document is created. |
-| saveAsDraft | Boolean if invoice should be created as draft. |
+| name **required** | Name of the recurrence. |
+| type **required** | Type of the recurrence, one of `week` / `month` / `year`. |
+| dateFirst **required** | Date of the first recurrence. |
+| numRecurrences **required** | Number of the Recurrence. |
+| autoSend | Boolean if a created Document should be automatically sent to Client when created. |
+| notify | Boolean if the Account that created the Recurrence should be notified when a Document is created. |
+| saveAsDraft | Boolean if the invoice should be created as draft. |
 | recurrenceDates | Array of objects containing created Recurrence dates. [toggle definition](#expand) |
-| date | Date of Recurrence. |
-| iteration | Number iteration index of Recurrence. |
+| date | Date of the Recurrence. |
+| iteration | Number iteration index of the Recurrence. |
 | [](#empty) | |
 
 ### HTTP Response
@@ -208,7 +208,7 @@ This endpoint creates a new Recurrence.
 
 |      |     |
 | ---: | --- |
-| id | Unique ID of model instance. |
+| id | Unique ID of the model instance. |
 
 
 ## Delete Recurrence
@@ -273,7 +273,7 @@ This endpoint deletes a Recurrence by ID.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Recurrence to delete. |
+| id **required** | ID of the Recurrence to be deleted. |
 
 ### HTTP Response
 
@@ -352,7 +352,7 @@ List<SpaceRecurrence>
 ?>
 ```
 
-This endpoint lists Organization's Recurrences.
+This endpoint lists the Organization's Recurrences.
 
 ### HTTP Request
 
@@ -362,8 +362,8 @@ This endpoint lists Organization's Recurrences.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+| id **required** | ID of the Organization. |
+| filter | Object containing query filters. See the [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
@@ -372,8 +372,8 @@ This endpoint lists Organization's Recurrences.
 |      |     |
 | ---: | --- |
 | type | Type of recurrence. |
-| date | Number price of recurrence. |
-| amount | Amount of Recurrence. |
+| date | Number price of the recurrence. |
+| amount | Amount of the Recurrence. |
 | description | Description of Recurrence. |
 
 
@@ -543,8 +543,8 @@ This endpoint lists Recurrences.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Document. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+| id **required** | ID of the Document. |
+| filter | Object containing query filters. See the [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
@@ -552,14 +552,14 @@ This endpoint lists Recurrences.
 
 |      |     |
 | ---: | --- |
-| name  | Name of recurrence. |
-| type  | Type of recurrence. |
-| dateFirst  | Date of first recurrence. |
-| numRecurrences | Number of Recurrence. |
+| name  | Name of the recurrence. |
+| type  | Type of the recurrence. |
+| dateFirst  | Date of the first recurrence. |
+| numRecurrences | Number of the Recurrence. |
 | autoSend | Boolean if a created Document should be automaticaly sent to Client when created. |
-| notify | Boolean if Account that created the Recurrence should be notified when a Document is created. |
-| saveAsDraft | Boolean if invoice should be created as draft. |
+| notify | Boolean if the Account that created the Recurrence should be notified when a Document is created. |
+| saveAsDraft | Boolean if the invoice should be created as draft. |
 | recurrenceDates | Array of objects containing created Recurrence dates. [toggle definition](#expand) |
-| date | Date of Recurrence. |
-| iteration | Number iteration index of Recurrence. |
+| date | Date of the Recurrence. |
+| iteration | Number iteration index of the Recurrence. |
 | [](#empty) | |
