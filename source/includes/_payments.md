@@ -1,6 +1,6 @@
 # Payments
 
-Payments are stored for each invoice. Each invoice can have multiple payments that can also sum up to more that the invoice's total value. Payments are in the Currency of the document.
+Payments are stored for each invoice. Each invoice can have multiple payments that can also sum up to more than the invoice's total value. Payments are in the Currency of the document.
 
 ## Create New Payment
 
@@ -114,7 +114,7 @@ This endpoint creates a new Payment.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Document for which we are creting the Payment. |
+| id **required** | ID of the Document for which we are creating the Payment. |
 
 #### Arguments
 
@@ -329,7 +329,7 @@ This endpoint deletes a Payment by ID.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Payment to delete. |
+| id **required** | ID of the Payment to delete. |
 
 ### HTTP Response
 
@@ -408,7 +408,7 @@ List<SpacePayment>
 ?>
 ```
 
-This endpoint lists Organization's Payments.
+This endpoint lists the Organization's Payments.
 
 ### HTTP Request
 
@@ -418,8 +418,8 @@ This endpoint lists Organization's Payments.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+| id **required** | ID of the Organization. |
+| filter | Object containing query filters. See the [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
@@ -502,7 +502,7 @@ List<SpacePayment>
 ?>
 ```
 
-This endpoint lists Document's Payments.
+This endpoint lists the Document's Payments.
 
 ### HTTP Request
 
@@ -512,8 +512,8 @@ This endpoint lists Document's Payments.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Document. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+| id **required** | ID of the Document. |
+| filter | Object containing query filters. See the [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
