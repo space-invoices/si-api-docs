@@ -1,8 +1,8 @@
 # Countries
 
-__List of 250 countries. Can be queried for info related to countries ie. english name, native name, currency, taxes, etc.__
+__List of 250 countries for which informational queries can be conducted (ie. english name, native name, currency, taxes, etc.)__
 
-While all countries are present in the list not all have data about local taxes and currencies. We are regularly updating the list as we use it to perform matching for companies. We are accepting your requests to fill out specific country data.
+While all the countries are present in the list, data about local taxes and currencies for the least common countries may not be. We continually update it with country information as it is used to perform matching for companies. We are always open for suggestions on how we can make this feature better! Please get in contact with us.
 
 ## Get all Countries
 
@@ -320,19 +320,19 @@ This endpoint retrieves all Countries.
 
 |      |     |
 | ---: | --- |
-| name | String unique English name of country. |
-| alpha2Code | String unique ISO 2 letter code of country. |
-| alpha3Code | String unique ISO 3 letter code of country. |
-| nativeName | String unique native name of country. |
-| numericCode | String unique numeric code of country. |
-| translations | Object names of country translated to other languages. [toggle definition](#expand) |
-| key | String alpha2Code of country the name is translated to. |
-| value | String translated name of country. |
+| name | String unique English name of the country. |
+| alpha2Code | String unique ISO 2 letter code of the country. |
+| alpha3Code | String unique ISO 3 letter code of the country. |
+| nativeName | String unique native name of the country. |
+| numericCode | String unique numeric code of the country. |
+| translations | Object names of the country translated to other languages. [toggle definition](#expand) |
+| key | String alpha2Code of the country the name is translated to. |
+| value | String the translated name of country. |
 | [](#empty) | |
-| taxes | Array of objects country taxes and rates. _Usualy value added tax. Not all countries have tax data at the moment._ [toggle definition](#expand) |
-| name | String name of tax. |
-| abbreviation | String abbreviation of tax. |
-| rate | String rate of tax. |
-| classification | String classification of tax rate ie. `standard`, `reduced`, `additional` in EU, `state`, `federal`, `additional` in US etc. |
+| taxes | Array of objects country taxes and rates. _Usually value added tax. Tax data for least-used countries are not available at the moment._ [toggle definition](#expand) |
+| name | String name of the tax. |
+| abbreviation | String abbreviation of the tax. |
+| rate | String rate of the tax. |
+| classification | String classification of the tax rate ie. `standard`, `reduced`, `additional` in EU, `state`, `federal`, `additional` in US etc. |
 | [](#empty) | |
 | currency | String [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) name of currency primarily used in country. |
