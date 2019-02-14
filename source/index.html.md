@@ -38,7 +38,7 @@ search: true
 
 ## Welcome to Space Invoices API
 
-Space Invoices (SI) is a developer-oriented invoicing API. You can use it to create and manage invoices and various other types of documents, to save you time and money, and also help you refine your own commercial sofware. Furthermore, SI also allows to you manage data related to these documents.
+Space Invoices (SI) is a developer-oriented invoicing API. You can use it to create and manage invoices and various other types of documents, to save you time and money, and also to help you refine your own commercial sofware. Furthermore, SI facilitates your management of the data within these documents.
 
 To understand the full scope of our API, please start by taking a look at our documentation. Welcome!
 
@@ -47,7 +47,7 @@ To understand the full scope of our API, please start by taking a look at our do
 ## Getting help
 
 We're excited to have you on board! We're thrilled to help you elevate your software solution by being your invoicing API of choice.
-Always looking to make SI better, let us know if you have a specific challenge you'd like us to help you tackle or would like to make a request for functionalities. Find us at our community Slack channel so aptly-named as: "Space Invaders :)". See you soon!
+Always looking to make SI better, let us know if you have a specific challenge you'd like us to help you tackle. Find us at our community Slack channel aptly-named: "Space Invaders :)". See you soon!
 
 ### Join our Slack community [Space Invaders](http://joinslack.spaceinvoices.com).
 
