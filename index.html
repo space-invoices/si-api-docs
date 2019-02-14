@@ -516,16 +516,16 @@
 
 <p>To understand the full scope of our API, please start by taking a look at our documentation. Welcome!</p>
 <h3 id='visit-our-website-at-spaceinvoices-com-and-sign-up-for-a-developer-account'>Visit our website at <a href="https://spaceinvoices.com">spaceinvoices.com</a> and sign up for a developer account.</h3><h2 id='getting-help'>Getting help</h2>
-<p>We&#39;re excited to have you on board! We&#39;re thrilled to help you elevate your software solution by being the invoicing API it needs! 
+<p>We&#39;re excited to have you on board! We&#39;re thrilled to help you elevate your software solution by being your invoicing API of choice.
 Always looking to make SI better, let us know if you have a specific challenge you&#39;d like us to help you tackle or would like to make a request for functionalities. Find us at our community Slack channel so aptly-named as: &quot;Space Invaders :)&quot;. See you soon!</p>
 <h3 id='join-our-slack-community-space-invaders'>Join our Slack community <a href="http://joinslack.spaceinvoices.com">Space Invaders</a>.</h3><h2 id='about'>About</h2>
 <p>We are proud to make language binding in Shell, Javascript, C# and PHP available to you. To view code samples, check out the darker panel to the right. To switch the programming language of the examples, make good use of the tabs in the top right.</p>
 
-<p>While the API is fully operational, we always strive to improve its features. For this reason, we continuously work to update the finer details of this documentation. Features are added weekly, so do check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>. We&#39;re happy to have you with us, and we look forward to seeing what you cna make!</p>
+<p>While the API is fully operational, we always strive to improve its features. For this reason, we continuously work to update the finer details of this documentation. Features are added weekly, so do check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>. We&#39;re happy to have you with us, and we look forward to seeing what you can make!</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To make calls to the API, ensure you have inserted your launch code:
-<strong>Space Invoices uses launch codes to allow access to the API. A launch code can be aquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
+<strong>Space Invoices uses launch codes to allow access to the API. A launch code can be acquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
@@ -540,7 +540,7 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <p>Make sure to replace <code>LAUNCH_CODE</code> with your own launch code.</p>
 </blockquote>
 
-<p><strong>Space Invoices uses launch codes to allow access to the API. A launch code can be aquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
+<p><strong>Space Invoices uses launch codes to allow access to the API. A launch code can be acquired from our developer dashboard <a href="http://spaceinvoices.com/signup">Mission Control</a>.</strong></p>
 
 <p>The API launch code has to be included in all API requests to the server in a header like the following:</p>
 
@@ -551,13 +551,13 @@ curl <span class="s2">"https://api.spaceinvoices.com/v1/..."</span>
 <p><br></p>
 
 <p>Alternatively, the launch code can be added as a query parameter of the URL. 
-Please note before using! This implementation has considerable inherent security risks.</p>
+Please note before using: This implementation has considerable security risks!</p>
 
 <p><code>?access_token=LAUNCH_CODE</code></p>
 
 <!-- <br>
 
-PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launch code as Space Invoices. If you wish to give individual users the ability to view their account and organizations, you may provide them with a URL link with the launch code embedded. You can read more about Apollo [here](#apollo-ui). -->
+PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launch code as Space Invoices. If you wish to give individual users the ability to view their account and organizations, you may provide them with a URL link which has the launch code embedded. You can read more about Apollo [here](#apollo-ui). -->
 <h1 id='accounts'>Accounts</h1>
 <p>Accounts represent users that can login and access different organizations based on the permissions allocated to them.</p>
 <h2 id='authenticate'>Authenticate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/login"</span> <span class="se">\</span>
@@ -719,7 +719,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">password <strong>required</strong></td>
-<td>Password, with a 8-character minimum and must include at least one capital letter and one symbol.</td>
+<td>Password, with an 8-character minimum and must include at least one capital letter and one symbol.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-2'>HTTP Response</h3><h4 id='attributes-4'>Attributes</h4>
@@ -770,8 +770,8 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint returns a boolean value if the email inputted is unique or if it does not yet exist in the system.
-<aside class="notice">Special characters should be url encoded, otherwise they will be stripped which may cause inaccurate results!</aside></p>
+<p>This endpoint returns a boolean value if the email exists in the system already or not.
+<aside class="notice">Please note: Special characters should be url encoded, otherwise they will be stripped which may cause inaccurate results!</aside></p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/accounts/is-unique?email=:email</code></p>
 <h4 id='query-parameters'>Query parameters</h4>
@@ -869,7 +869,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 </tbody></table>
 <h1 id='organizations'>Organizations</h1>
-<p><strong>Any given account can have multiple organizations either by creating them, or by being given access to them by other account holders.</strong></p>
+<p><strong>Any given account can control multiple organization. They may either create these organizations themselves or other users may assign access rights of existing organizations to these given accounts.</strong></p>
 
 <p>This is especially useful when there is a need to manage multiple organizations, as they are created for users that might signup for a certain product.</p>
 
@@ -933,7 +933,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
   <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
   <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
-  <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>,
+  <span class="s2">"bank"</span>: <span class="s2">"Bank Of America"</span>,
   <span class="s2">"_defaults"</span>: <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"image_logo"</span>,
@@ -990,7 +990,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
   <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
   <span class="s2">"IBAN"</span><span class="p">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-  <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of Amerika"</span><span class="p">,</span>
+  <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of America"</span><span class="p">,</span>
   <span class="s2">"_defaults"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"image_logo"</span><span class="p">,</span>
@@ -1094,7 +1094,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
     <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-    <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span><span class="p">,</span>
+    <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of America"</span><span class="p">,</span>
     <span class="s2">"_defaults"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"image_logo"</span><span class="p">,</span>
@@ -1189,7 +1189,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">country <strong>required</strong></td>
-<td>String name of country. <em>If passed as one of <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a> values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either the english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such.</em></td>
+<td>String name of the country. <em>If passed as one of <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a> values (English name, Native name or 2 letter code) the parameter is used to apply some smart defaults to the organization being created including country default tax rates. We recommend providing either the english language or native name of country to ensure proper taxes are applied but this is not the required form and is not validated as such.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">taxSubject <em>default is <em>false</em></em></td>
@@ -1237,7 +1237,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Unique (to orgnization) name of the setting.</td>
+<td>Unique (to organization) name of the setting.</td>
 </tr>
 <tr>
 <td style="text-align: right">value</td>
@@ -1253,7 +1253,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">supportPin</td>
-<td>5 digit number used to match the organization requesting support.</td>
+<td>5 digit number used to identify or authenticate the organization requesting support.</td>
 </tr>
 </tbody></table>
 <h2 id='add-logo-or-signature-image-to-organization'>Add Logo or Signature image to Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:id/upload-image?type=logo"</span> <span class="se">\</span>
@@ -1299,7 +1299,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 
 <p>To check if an organization has a logo or signature image set, we simply need to check an organization&#39;s nested <code>_defaults</code> object for keys containing <code>image_logo</code> or <code>image_signature</code> where the key is set to <code>true</code>. The _defaults object can be viewed by <a href="#read-organization-39-s-details">querying a organization&#39;s data</a>.</p>
 
-<p>NOTE: Currently, to remove an organization&#39;s logo or signature, the value of the property in <code>_defaults</code> object must be updated to <code>false</code>. In the future, we will also provide an endpoint for removing images <code>/organizations/:id/remove-image?type=logo</code>.</p>
+<p>Please note: Currently, to remove an organization&#39;s logo or signature, the value of the property in <code>_defaults</code> object must be updated to <code>false</code>. In the future, we will also provide an endpoint for removing images <code>/organizations/:id/remove-image?type=logo</code>.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST https://api.spaceinvoices.com/v1/organizations/:organizationId/upload-image?type=type</code></p>
 <h4 id='query-parameters-2'>Query parameters</h4>
@@ -1311,11 +1311,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of the Organization to set image for.</td>
+<td>ID of the Organization for which we are setting the image.</td>
 </tr>
 <tr>
 <td style="text-align: right">type <strong>required</strong></td>
-<td>The type of image we are uploading, <em>Valid options are <code>logo</code> or <code>signature</code></em>.</td>
+<td>The type of image uploaded, <em>Valid options are <code>logo</code> or <code>signature</code></em>.</td>
 </tr>
 </tbody></table>
 
@@ -1339,7 +1339,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">success</td>
-<td>Boolean true if the request was succesful.</td>
+<td>Boolean true if the request was successful.</td>
 </tr>
 </tbody></table>
 <h2 id='read-the-organization-39-s-details'>Read the Organization&#39;s details</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/:organizationId"</span> <span class="se">\</span>
@@ -1369,7 +1369,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
   <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
   <span class="s2">"IBAN"</span><span class="p">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-  <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of Amerika"</span><span class="p">,</span>
+  <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of America"</span><span class="p">,</span>
   <span class="s2">"_defaults"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"image_logo"</span><span class="p">,</span>
@@ -1426,7 +1426,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
   <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
   <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
-  <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>,
+  <span class="s2">"bank"</span>: <span class="s2">"Bank Of America"</span>,
   <span class="s2">"_defaults"</span>: <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"image_logo"</span>,
@@ -1529,7 +1529,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
     <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-    <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span><span class="p">,</span>
+    <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of America"</span><span class="p">,</span>
     <span class="s2">"_defaults"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"image_logo"</span><span class="p">,</span>
@@ -1682,7 +1682,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
     <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
     <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
-    <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>,
+    <span class="s2">"bank"</span>: <span class="s2">"Bank Of America"</span>,
     <span class="s2">"_defaults"</span>: <span class="o">[</span>
       <span class="o">{</span>
         <span class="s2">"name"</span>: <span class="s2">"image_logo"</span>,
@@ -1741,7 +1741,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
     <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"IBAN"</span><span class="p">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of Amerika"</span><span class="p">,</span>
+    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of America"</span><span class="p">,</span>
     <span class="s2">"_defaults"</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"image_logo"</span><span class="p">,</span>
@@ -1802,7 +1802,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
     <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-    <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span><span class="p">,</span>
+    <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of America"</span><span class="p">,</span>
     <span class="s2">"_defaults"</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"image_logo"</span><span class="p">,</span>
@@ -1934,7 +1934,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Unique (to the orgnization) name of the setting.</td>
+<td>Unique (to the organization) name of the setting.</td>
 </tr>
 <tr>
 <td style="text-align: right">value</td>
@@ -1950,7 +1950,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">supportPin</td>
-<td>5 digit number used to match the organization requesting support.</td>
+<td>5 digit number used to identify or authenticate the organization requesting support.</td>
 </tr>
 </tbody></table>
 <h1 id='documents'>Documents</h1>
@@ -2038,13 +2038,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"canceled"</span>: <span class="nb">false</span>,
   <span class="s2">"sentEmail"</span>: <span class="nb">false</span>,
   <span class="s2">"_documentIssuer"</span>: <span class="o">{</span>
-    <span class="s2">"name"</span>: <span class="s2">"Space Exploration Techologies corp"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"Space Exploration Technologies corp"</span>,
     <span class="s2">"address"</span>: <span class="s2">"Rocket Road"</span>,
     <span class="s2">"city"</span>: <span class="s2">"Hawthorne"</span>,
     <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
     <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
     <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
-    <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>
+    <span class="s2">"bank"</span>: <span class="s2">"Bank Of America"</span>
   <span class="o">}</span>,
   <span class="s2">"clientId"</span>: <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span>,
   <span class="s2">"_documentClient"</span>: <span class="o">{</span>
@@ -2089,13 +2089,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"canceled"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"sentEmail"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"_documentIssuer"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
     <span class="s2">"address"</span><span class="p">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
     <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
     <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
     <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"IBAN"</span><span class="p">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of Amerika"</span>
+    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of America"</span>
   <span class="p">},</span>
   <span class="s2">"clientId"</span><span class="p">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
   <span class="s2">"_documentClient"</span><span class="p">:</span> <span class="p">{</span>
@@ -2227,13 +2227,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"canceled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"sentEmail"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"_documentIssuer"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
       <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
       <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
       <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
       <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
       <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span>
+      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of America"</span>
     <span class="p">},</span>
     <span class="s2">"clientId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
     <span class="s2">"_documentClient"</span><span class="o">:</span> <span class="p">{</span>
@@ -2565,11 +2565,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">sentEmail</td>
-<td>Boolean, has the Document been ever sent by email.</td>
+<td>Boolean, has the Document ever been sent by email.</td>
 </tr>
 <tr>
 <td style="text-align: right">sentSnailMail</td>
-<td>Boolean, has the Document been ever sent by regular post.</td>
+<td>Boolean, has the Document ever been sent by regular post.</td>
 </tr>
 <tr>
 <td style="text-align: right">_documentItems</td>
@@ -2719,13 +2719,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"canceled"</span>: <span class="nb">false</span>,
     <span class="s2">"sentEmail"</span>: <span class="nb">false</span>,
     <span class="s2">"_documentIssuer"</span>: <span class="o">{</span>
-      <span class="s2">"name"</span>: <span class="s2">"Space Exploration Techologies corp"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Space Exploration Technologies corp"</span>,
       <span class="s2">"address"</span>: <span class="s2">"Rocket Road"</span>,
       <span class="s2">"city"</span>: <span class="s2">"Hawthorne"</span>,
       <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
       <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
       <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
-      <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>
+      <span class="s2">"bank"</span>: <span class="s2">"Bank Of America"</span>
     <span class="o">}</span>,
     <span class="s2">"clientId"</span>: <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span>,
     <span class="s2">"_documentClient"</span>: <span class="o">{</span>
@@ -2772,13 +2772,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"canceled"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"sentEmail"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"_documentIssuer"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
       <span class="s2">"address"</span><span class="p">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
       <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
       <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
       <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
       <span class="s2">"IBAN"</span><span class="p">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-      <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of Amerika"</span>
+      <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of America"</span>
     <span class="p">},</span>
     <span class="s2">"clientId"</span><span class="p">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
     <span class="s2">"_documentClient"</span><span class="p">:</span> <span class="p">{</span>
@@ -2827,13 +2827,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
       <span class="s2">"canceled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
       <span class="s2">"sentEmail"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
       <span class="s2">"_documentIssuer"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
         <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
         <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
         <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
         <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
         <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-        <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span>
+        <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of America"</span>
       <span class="p">},</span>
       <span class="s2">"clientId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
       <span class="s2">"_documentClient"</span><span class="o">:</span> <span class="p">{</span>
@@ -2868,7 +2868,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<p>This endpoint return a list of all Organization&#39;s documents optionaly filtered if latter are passed in query params.</p>
+<p>This endpoint return a list of all Organization&#39;s documents optionally filtered if latter are passed in query params.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/documents</code></p>
 <h4 id='query-parameters-2'>Query parameters</h4>
@@ -2880,7 +2880,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of organization.</td>
+<td>ID of the Organization.</td>
 </tr>
 <tr>
 <td style="text-align: right">filter</td>
@@ -2927,13 +2927,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"canceled"</span>: <span class="nb">false</span>,
   <span class="s2">"sentEmail"</span>: <span class="nb">false</span>,
   <span class="s2">"_documentIssuer"</span>: <span class="o">{</span>
-    <span class="s2">"name"</span>: <span class="s2">"Space Exploration Techologies corp"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"Space Exploration Technologies corp"</span>,
     <span class="s2">"address"</span>: <span class="s2">"Rocket Road"</span>,
     <span class="s2">"city"</span>: <span class="s2">"Hawthorne"</span>,
     <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
     <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
     <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
-    <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>
+    <span class="s2">"bank"</span>: <span class="s2">"Bank Of America"</span>
   <span class="o">}</span>,
   <span class="s2">"clientId"</span>: <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span>,
   <span class="s2">"_documentClient"</span>: <span class="o">{</span>
@@ -2978,13 +2978,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"canceled"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"sentEmail"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"_documentIssuer"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
     <span class="s2">"address"</span><span class="p">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
     <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
     <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
     <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"IBAN"</span><span class="p">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of Amerika"</span>
+    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of America"</span>
   <span class="p">},</span>
   <span class="s2">"clientId"</span><span class="p">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
   <span class="s2">"_documentClient"</span><span class="p">:</span> <span class="p">{</span>
@@ -3116,13 +3116,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"canceled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"sentEmail"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"_documentIssuer"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
       <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
       <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
       <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
       <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
       <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span>
+      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of America"</span>
     <span class="p">},</span>
     <span class="s2">"clientId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
     <span class="s2">"_documentClient"</span><span class="o">:</span> <span class="p">{</span>
@@ -3256,13 +3256,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"canceled"</span>: <span class="nb">false</span>,
   <span class="s2">"sentEmail"</span>: <span class="nb">false</span>,
   <span class="s2">"_documentIssuer"</span>: <span class="o">{</span>
-    <span class="s2">"name"</span>: <span class="s2">"Space Exploration Techologies corp"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"Space Exploration Technologies corp"</span>,
     <span class="s2">"address"</span>: <span class="s2">"Rocket Road"</span>,
     <span class="s2">"city"</span>: <span class="s2">"Hawthorne"</span>,
     <span class="s2">"zip"</span>: <span class="s2">"CA 90250"</span>,
     <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
     <span class="s2">"IBAN"</span>: <span class="s2">"123454321 123454321"</span>,
-    <span class="s2">"bank"</span>: <span class="s2">"Bank Of Amerika"</span>
+    <span class="s2">"bank"</span>: <span class="s2">"Bank Of America"</span>
   <span class="o">}</span>,
   <span class="s2">"clientId"</span>: <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span>,
   <span class="s2">"_documentClient"</span>: <span class="o">{</span>
@@ -3307,13 +3307,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"canceled"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"sentEmail"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"_documentIssuer"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
     <span class="s2">"address"</span><span class="p">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
     <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
     <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
     <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"IBAN"</span><span class="p">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of Amerika"</span>
+    <span class="s2">"bank"</span><span class="p">:</span> <span class="s2">"Bank Of America"</span>
   <span class="p">},</span>
   <span class="s2">"clientId"</span><span class="p">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
   <span class="s2">"_documentClient"</span><span class="p">:</span> <span class="p">{</span>
@@ -3446,13 +3446,13 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"canceled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"sentEmail"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"_documentIssuer"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Techologies corp"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
       <span class="s2">"address"</span><span class="o">:</span> <span class="s2">"Rocket Road"</span><span class="p">,</span>
       <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Hawthorne"</span><span class="p">,</span>
       <span class="s2">"zip"</span><span class="o">:</span> <span class="s2">"CA 90250"</span><span class="p">,</span>
       <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
       <span class="s2">"IBAN"</span><span class="o">:</span> <span class="s2">"123454321 123454321"</span><span class="p">,</span>
-      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of Amerika"</span>
+      <span class="s2">"bank"</span><span class="o">:</span> <span class="s2">"Bank Of America"</span>
     <span class="p">},</span>
     <span class="s2">"clientId"</span><span class="o">:</span> <span class="s2">"5a3683ea12d5a67dd0ef2f4d"</span><span class="p">,</span>
     <span class="s2">"_documentClient"</span><span class="o">:</span> <span class="p">{</span>
@@ -4011,7 +4011,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </thead><tbody>
 <tr>
 <td style="text-align: right">id <strong>required</strong></td>
-<td>ID of Document.</td>
+<td>ID of the Document.</td>
 </tr>
 </tbody></table>
 <h4 id='arguments-3'>Arguments</h4>
@@ -4401,11 +4401,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 </tbody></table>
 <h1 id='currencies'>Currencies</h1>
-<p>Currencies are provided and available to load from our system, we have 122 most common global currencies. Don&#39;t hesistate to write us if we&#39;re missing any.</p>
+<p>We current provide support for 122 of the most common global currencies. If there is one you&#39;d like to use but do not see in the list, please write us.</p>
 
 <p>In addition to normal (fiat) currencies, we have now also added some common cryptocurrencies. Don&#39;t see your favourite cryptocurrency as an option? Let us know and we&#39;ll be happy to add support for it.</p>
 
-<p>Note: <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> unique currency codes are used as the <code>id</code> fields of currencies to simplify inclusion in documents as related IDs.</p>
+<p>Please note: <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> unique currency codes are used as the <code>id</code> fields of currencies to simplify inclusion in documents as related IDs.</p>
 <h2 id='get-all-currencies'>Get all Currencies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/currencies"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">list</span><span class="p">()</span>
@@ -4532,11 +4532,11 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">name</td>
-<td>Name of Currency.</td>
+<td>Name of the Currency.</td>
 </tr>
 <tr>
 <td style="text-align: right">symbol</td>
-<td>Symbol of currency.</td>
+<td>Symbol of the currency.</td>
 </tr>
 <tr>
 <td style="text-align: right">type</td>
@@ -4554,7 +4554,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"info@spacex.com"</span> <span class="se">\</span>
   -d <span class="nv">contact</span><span class="o">=</span><span class="s2">"Elon M."</span> <span class="se">\</span>
-  -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 789"</span> <span class="se">\</span>
+  -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 7890"</span> <span class="se">\</span>
   -d <span class="nv">note</span><span class="o">=</span><span class="s2">"Orders rocket fuel every month."</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">organizationId</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
@@ -4564,7 +4564,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="na">country</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
   <span class="na">email</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
   <span class="na">contact</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-  <span class="na">phone</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="na">phone</span><span class="p">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
   <span class="na">note</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span><span class="p">,</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
@@ -4579,7 +4579,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="n">Country</span><span class="p">:</span> <span class="s">"USA"</span><span class="p">,</span>
   <span class="n">Email</span><span class="p">:</span> <span class="s">"info@spacex.com"</span><span class="p">,</span>
   <span class="n">Contact</span><span class="p">:</span> <span class="s">"Elon M."</span><span class="p">,</span>
-  <span class="n">Phone</span><span class="p">:</span> <span class="s">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="n">Phone</span><span class="p">:</span> <span class="s">"+1 123 456 7890"</span><span class="p">,</span>
   <span class="n">Note</span><span class="p">:</span> <span class="s">"Orders rocket fuel every month."</span>
 <span class="p">};</span>
 <span class="n">SpaceClientService</span> <span class="n">clientService</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpaceClientService</span><span class="p">();</span>
@@ -4593,7 +4593,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"country"</span> <span class="o">=&gt;</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
     <span class="s2">"contact"</span> <span class="o">=&gt;</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-    <span class="s2">"phone"</span> <span class="o">=&gt;</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
+    <span class="s2">"phone"</span> <span class="o">=&gt;</span> <span class="s2">"+1 123 456 78900"</span><span class="p">,</span>
     <span class="s2">"note"</span> <span class="o">=&gt;</span> <span class="s2">"Orders rocket fuel every month."</span>
   <span class="p">));</span>
 <span class="cp">?&gt;</span>
@@ -4611,7 +4611,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
   <span class="s2">"email"</span>: <span class="s2">"info@spacex.com"</span>,
   <span class="s2">"contact"</span>: <span class="s2">"Elon M."</span>,
-  <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 789"</span>,
+  <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 7890"</span>,
   <span class="s2">"note"</span>: <span class="s2">"Orders rocket fuel every month."</span>
 <span class="o">}</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
@@ -4624,7 +4624,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
   <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
   <span class="s2">"contact"</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
   <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span>
 <span class="p">}</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">SpaceClient</span>
@@ -4694,7 +4694,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
     <span class="s2">"contact"</span><span class="o">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
     <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"Orders rocket fuel every month."</span>
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
@@ -4763,15 +4763,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">contact</td>
-<td>Name of Client.</td>
+<td>Name of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">phone</td>
-<td>Phone number of Client.</td>
+<td>Phone number of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">note</td>
-<td>Text note about Client.</td>
+<td>Text note about the Client.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3><h4 id='arguments-2'>Arguments</h4>
@@ -4795,7 +4795,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   -d <span class="nv">country</span><span class="o">=</span><span class="s2">"USA"</span> <span class="se">\</span>
   -d <span class="nv">email</span><span class="o">=</span><span class="s2">"info@spacex.com"</span> <span class="se">\</span>
   -d <span class="nv">contact</span><span class="o">=</span><span class="s2">"Elon M."</span> <span class="se">\</span>
-  -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 789"</span> <span class="se">\</span>
+  -d <span class="nv">phone</span><span class="o">=</span><span class="s2">"+1 123 456 7890"</span> <span class="se">\</span>
   -d <span class="nv">note</span><span class="o">=</span><span class="s2">"Orders rocket fuel every month."</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">spaceInvoices</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="nx">clientId</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s2">"Space Exploration Technologies corp"</span><span class="p">,</span>
@@ -4805,7 +4805,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="na">country</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
   <span class="na">email</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
   <span class="na">contact</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-  <span class="na">phone</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="na">phone</span><span class="p">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
   <span class="na">note</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span><span class="p">,</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
@@ -4820,7 +4820,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="n">Country</span><span class="p">:</span> <span class="s">"USA"</span><span class="p">,</span>
   <span class="n">Email</span><span class="p">:</span> <span class="s">"info@spacex.com"</span><span class="p">,</span>
   <span class="n">Contact</span><span class="p">:</span> <span class="s">"Elon M."</span><span class="p">,</span>
-  <span class="n">Phone</span><span class="p">:</span> <span class="s">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="n">Phone</span><span class="p">:</span> <span class="s">"+1 123 456 7890"</span><span class="p">,</span>
   <span class="n">Note</span><span class="p">:</span> <span class="s">"Orders rocket fuel every month."</span><span class="p">,</span>
 
 <span class="p">};</span>
@@ -4835,7 +4835,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"country"</span> <span class="o">=&gt;</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
     <span class="s2">"contact"</span> <span class="o">=&gt;</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-    <span class="s2">"phone"</span> <span class="o">=&gt;</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
+    <span class="s2">"phone"</span> <span class="o">=&gt;</span> <span class="s2">"+1 123 456 78900"</span><span class="p">,</span>
     <span class="s2">"note"</span> <span class="o">=&gt;</span> <span class="s2">"Orders rocket fuel every month."</span>
   <span class="p">));</span>
 <span class="cp">?&gt;</span>
@@ -4853,7 +4853,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
   <span class="s2">"email"</span>: <span class="s2">"info@spacex.com"</span>,
   <span class="s2">"contact"</span>: <span class="s2">"Elon M."</span>,
-  <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 789"</span>,
+  <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 7890"</span>,
   <span class="s2">"note"</span>: <span class="s2">"Orders rocket fuel every month."</span>
 <span class="o">}</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
@@ -4866,7 +4866,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
   <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
   <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
   <span class="s2">"contact"</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
   <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span>
 <span class="p">}</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">SpaceClient</span>
@@ -4936,7 +4936,7 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
     <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
     <span class="s2">"contact"</span><span class="o">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
     <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"Orders rocket fuel every month."</span>
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
@@ -5001,15 +5001,15 @@ PRO TIP: [Apollo UI](https://getapollo.io) uses the same access rights and launc
 </tr>
 <tr>
 <td style="text-align: right">contact</td>
-<td>Name of Client.</td>
+<td>Name of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">phone</td>
-<td>Phone number of Client.</td>
+<td>Phone number of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">note</td>
-<td>Text note about Client.</td>
+<td>Text note about the Client.</td>
 </tr>
 </tbody></table>
 <h3 id='http-response-2'>HTTP Response</h3><h4 id='arguments-4'>Arguments</h4>
@@ -5107,7 +5107,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
     <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
     <span class="s2">"email"</span>: <span class="s2">"info@spacex.com"</span>,
     <span class="s2">"contact"</span>: <span class="s2">"Elon M."</span>,
-    <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 789"</span>,
+    <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 7890"</span>,
     <span class="s2">"note"</span>: <span class="s2">"Orders rocket fuel every month."</span>
   <span class="o">}</span>
 <span class="o">]</span>
@@ -5122,7 +5122,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
     <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
     <span class="s2">"contact"</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-    <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+    <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
     <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span>
   <span class="p">}</span>
 <span class="p">]</span>
@@ -5139,7 +5139,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
       <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
       <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
       <span class="s2">"contact"</span><span class="o">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-      <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+      <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
       <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"Orders rocket fuel every month."</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -5213,15 +5213,15 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
 </tr>
 <tr>
 <td style="text-align: right">contact</td>
-<td>Name of Client.</td>
+<td>Name of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">phone</td>
-<td>Phone number of Client.</td>
+<td>Phone number of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">note</td>
-<td>Text note about Client.</td>
+<td>Text note about the Client.</td>
 </tr>
 </tbody></table>
 <h2 id='search-clients'>Search Clients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space"</span> <span class="se">\</span>
@@ -5250,7 +5250,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
     <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
     <span class="s2">"email"</span>: <span class="s2">"info@spacex.com"</span>,
     <span class="s2">"contact"</span>: <span class="s2">"Elon M."</span>,
-    <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 789"</span>,
+    <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 7890"</span>,
     <span class="s2">"note"</span>: <span class="s2">"Orders rocket fuel every month."</span>
   <span class="o">}</span>
 <span class="o">]</span>
@@ -5265,7 +5265,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
     <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
     <span class="s2">"contact"</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-    <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+    <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
     <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span>
   <span class="p">}</span>
 <span class="p">]</span>
@@ -5282,7 +5282,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
       <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
       <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
       <span class="s2">"contact"</span><span class="o">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-      <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+      <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
       <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"Orders rocket fuel every month."</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -5360,11 +5360,11 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
 </tr>
 <tr>
 <td style="text-align: right">contact</td>
-<td>Name of Client.</td>
+<td>Name of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">phone</td>
-<td>Phone number of Client.</td>
+<td>Phone number of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">note</td>
@@ -5396,7 +5396,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
   <span class="s2">"country"</span>: <span class="s2">"USA"</span>,
   <span class="s2">"email"</span>: <span class="s2">"info@spacex.com"</span>,
   <span class="s2">"contact"</span>: <span class="s2">"Elon M."</span>,
-  <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 789"</span>,
+  <span class="s2">"phone"</span>: <span class="s2">"+1 123 456 7890"</span>,
   <span class="s2">"note"</span>: <span class="s2">"Orders rocket fuel every month."</span>
 <span class="o">}</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
@@ -5409,7 +5409,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
   <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
   <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
   <span class="s2">"contact"</span><span class="p">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
   <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"Orders rocket fuel every month."</span>
 <span class="p">}</span>
 </code></pre><pre class="highlight csharp tab-csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">SpaceClient</span>
@@ -5479,7 +5479,7 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
     <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"email"</span><span class="o">:</span> <span class="s2">"info@spacex.com"</span><span class="p">,</span>
     <span class="s2">"contact"</span><span class="o">:</span> <span class="s2">"Elon M."</span><span class="p">,</span>
-    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 789"</span><span class="p">,</span>
+    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 123 456 7890"</span><span class="p">,</span>
     <span class="s2">"note"</span><span class="o">:</span> <span class="s2">"Orders rocket fuel every month."</span>
   <span class="p">}</span>
 <span class="cp">?&gt;</span>
@@ -5544,19 +5544,19 @@ To view soft deleted instances, add <code>deleted: true</code> property to the f
 </tr>
 <tr>
 <td style="text-align: right">email</td>
-<td>Email address of Client. <em>Used as recipient when sending documents in email.</em></td>
+<td>Email address of the Client. <em>Used as recipient when sending documents in email.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">contact</td>
-<td>Name of Client.</td>
+<td>Name of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">phone</td>
-<td>Phone number of Client.</td>
+<td>Phone number of the Client.</td>
 </tr>
 <tr>
 <td style="text-align: right">note</td>
-<td>Text note about Client.</td>
+<td>Text note about the Client.</td>
 </tr>
 </tbody></table>
 <h1 id='companies'>Companies</h1>
