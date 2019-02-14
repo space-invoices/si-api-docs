@@ -46,7 +46,7 @@ To understand the full scope of our API, please start by taking a look at our do
 
 ## Getting help
 
-We're excited to have you on board! We're thrilled to help you elevate your software solution by being the invoicing API it needs! 
+We're excited to have you on board! We're thrilled to help you elevate your software solution by being your invoicing API of choice.
 Always looking to make SI better, let us know if you have a specific challenge you'd like us to help you tackle or would like to make a request for functionalities. Find us at our community Slack channel so aptly-named as: "Space Invaders :)". See you soon!
 
 ### Join our Slack community [Space Invaders](http://joinslack.spaceinvoices.com).
@@ -55,4 +55,4 @@ Always looking to make SI better, let us know if you have a specific challenge y
 
 We are proud to make language binding in Shell, Javascript, C# and PHP available to you. To view code samples, check out the darker panel to the right. To switch the programming language of the examples, make good use of the tabs in the top right.
 
-While the API is fully operational, we always strive to improve its features. For this reason, we continuously work to update the finer details of this documentation. Features are added weekly, so do check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>. We're happy to have you with us, and we look forward to seeing what you cna make!
+While the API is fully operational, we always strive to improve its features. For this reason, we continuously work to update the finer details of this documentation. Features are added weekly, so do check back regularly for updates or sign up for our newsletter on our <a href="http://spaceinvoices.com">website</a>. We're happy to have you with us, and we look forward to seeing what you can make!
