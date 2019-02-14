@@ -114,7 +114,7 @@ This endpoint creates a new Payment.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of the Document for which we are creating the Payment. |
+| id **required** | ID of the Document for which the Payment is intended. |
 
 #### Arguments
 
@@ -122,8 +122,8 @@ This endpoint creates a new Payment.
 | ---: | --- |
 | type **required** | Type of payment, one of `bank` / `online` / `paypal` / `cash` / `crypto` / `other`. |
 | date **required** | Date of payment. |
-| amount **required** | Amount of Payment. |
-| description | Description of Payment. |
+| amount **required** | Amount of the Payment. |
+| description | Description of the Payment. |
 
 ### HTTP Response
 
@@ -256,10 +256,10 @@ This endpoint updates a Payment by ID.
 |      |     |
 | ---: | --- |
 | type **required** | Type of payment, one of `bank` / `online` / `paypal` / `cash` / `crypto` / `other`. |
-| documentId **required** |	ID of Document for which we are updating the Payment. |
+| documentId **required** |	ID of Document to which the Payment is related. |
 | date **required** | Date of payment. |
-| amount **required** | Amount of Payment. |
-| description | Description of Payment. |
+| amount **required** | Amount of the Payment. |
+| description | Description of the Payment. |
 
 ### HTTP Response
 
@@ -523,5 +523,5 @@ This endpoint lists the Document's Payments.
 | ---: | --- |
 | type | Type of payment. |
 | date | Date of payment. |
-| amount | Amount of Payment. |
-| description | Description of Payment. |
+| amount | Amount of the Payment. |
+| description | Description of the Payment. |
