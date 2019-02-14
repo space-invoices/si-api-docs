@@ -14,7 +14,7 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/cli
   -d country="USA" \
   -d email="info@spacex.com" \
   -d contact="Elon M." \
-  -d phone="+1 123 456 789" \
+  -d phone="+1 123 456 7890" \
   -d note="Orders rocket fuel every month."
 ```
 
@@ -27,7 +27,7 @@ spaceInvoices.clients.create(organizationId, {
   country: "USA",
   email: "info@spacex.com",
   contact: "Elon M.",
-  phone: "+1 123 456 789",
+  phone: "+1 123 456 7890",
   note: "Orders rocket fuel every month.",
 })
 .then(function(client) {
@@ -45,7 +45,7 @@ SpaceClientCreateOptions createOptions = new SpaceClientCreateOptions
   Country: "USA",
   Email: "info@spacex.com",
   Contact: "Elon M.",
-  Phone: "+1 123 456 789",
+  Phone: "+1 123 456 7890",
   Note: "Orders rocket fuel every month."
 };
 SpaceClientService clientService = new SpaceClientService();
@@ -62,7 +62,7 @@ SpaceClient client = clientService.Create("ORGANIZATION_ID", createOptions);
     "country" => "USA",
     "email" => "info@spacex.com",
     "contact" => "Elon M.",
-    "phone" => "+1 123 456 7890",
+    "phone" => "+1 123 456 78900",
     "note" => "Orders rocket fuel every month."
   ));
 ?>
@@ -81,7 +81,7 @@ SpaceClient client = clientService.Create("ORGANIZATION_ID", createOptions);
   "country": "USA",
   "email": "info@spacex.com",
   "contact": "Elon M.",
-  "phone": "+1 123 456 789",
+  "phone": "+1 123 456 7890",
   "note": "Orders rocket fuel every month."
 }
 ```
@@ -96,7 +96,7 @@ SpaceClient client = clientService.Create("ORGANIZATION_ID", createOptions);
   "country": "USA",
   "email": "info@spacex.com",
   "contact": "Elon M.",
-  "phone": "+1 123 456 789",
+  "phone": "+1 123 456 7890",
   "note": "Orders rocket fuel every month."
 }
 ```
@@ -171,7 +171,7 @@ public class SpaceClient
     "country": "USA",
     "email": "info@spacex.com",
     "contact": "Elon M.",
-    "phone": "+1 123 456 789",
+    "phone": "+1 123 456 7890",
     "note": "Orders rocket fuel every month."
   }
 ?>
@@ -203,9 +203,9 @@ This endpoint creates a new Client.
 | taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of Client. |
-| phone | Phone number of Client. |
-| note | Text note about Client. |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
+| note | Text note about the Client. |
 
 ### HTTP Response
 
@@ -228,7 +228,7 @@ curl -X PUT "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" 
   -d country="USA" \
   -d email="info@spacex.com" \
   -d contact="Elon M." \
-  -d phone="+1 123 456 789" \
+  -d phone="+1 123 456 7890" \
   -d note="Orders rocket fuel every month."
 ```
 
@@ -241,7 +241,7 @@ spaceInvoices.clients.edit(clientId, {
   country: "USA",
   email: "info@spacex.com",
   contact: "Elon M.",
-  phone: "+1 123 456 789",
+  phone: "+1 123 456 7890",
   note: "Orders rocket fuel every month.",
 })
 .then(function(client) {
@@ -259,7 +259,7 @@ SpaceClientEditOptions editOptions = new SpaceClientEditOptions
   Country: "USA",
   Email: "info@spacex.com",
   Contact: "Elon M.",
-  Phone: "+1 123 456 789",
+  Phone: "+1 123 456 7890",
   Note: "Orders rocket fuel every month.",
 
 };
@@ -277,7 +277,7 @@ SpaceClient client = clientService.Edit("ORGANIZATION_ID", editOptions);
     "country" => "USA",
     "email" => "info@spacex.com",
     "contact" => "Elon M.",
-    "phone" => "+1 123 456 7890",
+    "phone" => "+1 123 456 78900",
     "note" => "Orders rocket fuel every month."
   ));
 ?>
@@ -296,7 +296,7 @@ SpaceClient client = clientService.Edit("ORGANIZATION_ID", editOptions);
   "country": "USA",
   "email": "info@spacex.com",
   "contact": "Elon M.",
-  "phone": "+1 123 456 789",
+  "phone": "+1 123 456 7890",
   "note": "Orders rocket fuel every month."
 }
 ```
@@ -311,7 +311,7 @@ SpaceClient client = clientService.Edit("ORGANIZATION_ID", editOptions);
   "country": "USA",
   "email": "info@spacex.com",
   "contact": "Elon M.",
-  "phone": "+1 123 456 789",
+  "phone": "+1 123 456 7890",
   "note": "Orders rocket fuel every month."
 }
 ```
@@ -385,7 +385,7 @@ public class SpaceClient
     "country": "USA",
     "email": "info@spacex.com",
     "contact": "Elon M.",
-    "phone": "+1 123 456 789",
+    "phone": "+1 123 456 7890",
     "note": "Orders rocket fuel every month."
   }
 ?>
@@ -416,9 +416,9 @@ This endpoint updates a Client by id.
 | taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of Client. |
-| phone | Phone number of Client. |
-| note | Text note about Client. |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
+| note | Text note about the Client. |
 
 ### HTTP Response
 
@@ -541,7 +541,7 @@ List<SpaceClient> list = clientService.List("ORGANIZATION_ID");
     "country": "USA",
     "email": "info@spacex.com",
     "contact": "Elon M.",
-    "phone": "+1 123 456 789",
+    "phone": "+1 123 456 7890",
     "note": "Orders rocket fuel every month."
   }
 ]
@@ -558,7 +558,7 @@ List<SpaceClient> list = clientService.List("ORGANIZATION_ID");
     "country": "USA",
     "email": "info@spacex.com",
     "contact": "Elon M.",
-    "phone": "+1 123 456 789",
+    "phone": "+1 123 456 7890",
     "note": "Orders rocket fuel every month."
   }
 ]
@@ -580,7 +580,7 @@ List<SpaceClient>
       "country": "USA",
       "email": "info@spacex.com",
       "contact": "Elon M.",
-      "phone": "+1 123 456 789",
+      "phone": "+1 123 456 7890",
       "note": "Orders rocket fuel every month."
     }
   ]
@@ -616,9 +616,9 @@ This endpoint lists Organization's Clients.
 | taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of Client. |
-| phone | Phone number of Client. |
-| note | Text note about Client. |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
+| note | Text note about the Client. |
 
 
 ## Search Clients
@@ -659,7 +659,7 @@ List<SpaceClient> list = clientService.Search("ORGANIZATION_ID", "Space");
     "country": "USA",
     "email": "info@spacex.com",
     "contact": "Elon M.",
-    "phone": "+1 123 456 789",
+    "phone": "+1 123 456 7890",
     "note": "Orders rocket fuel every month."
   }
 ]
@@ -676,7 +676,7 @@ List<SpaceClient> list = clientService.Search("ORGANIZATION_ID", "Space");
     "country": "USA",
     "email": "info@spacex.com",
     "contact": "Elon M.",
-    "phone": "+1 123 456 789",
+    "phone": "+1 123 456 7890",
     "note": "Orders rocket fuel every month."
   }
 ]
@@ -697,7 +697,7 @@ List<SpaceClient>
       "country": "USA",
       "email": "info@spacex.com",
       "contact": "Elon M.",
-      "phone": "+1 123 456 789",
+      "phone": "+1 123 456 7890",
       "note": "Orders rocket fuel every month."
     }
   ]
@@ -734,8 +734,8 @@ This endpoint searches for Organization's Clients.
 | taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
 | email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of Client. |
-| phone | Phone number of Client. |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
 | note | Text note about Client. |
 
 ## Get Client by ID
@@ -775,7 +775,7 @@ SpaceClient client = clientService.GetById(client.Id);
   "country": "USA",
   "email": "info@spacex.com",
   "contact": "Elon M.",
-  "phone": "+1 123 456 789",
+  "phone": "+1 123 456 7890",
   "note": "Orders rocket fuel every month."
 }
 ```
@@ -790,7 +790,7 @@ SpaceClient client = clientService.GetById(client.Id);
   "country": "USA",
   "email": "info@spacex.com",
   "contact": "Elon M.",
-  "phone": "+1 123 456 789",
+  "phone": "+1 123 456 7890",
   "note": "Orders rocket fuel every month."
 }
 ```
@@ -864,7 +864,7 @@ public class SpaceClient
     "country": "USA",
     "email": "info@spacex.com",
     "contact": "Elon M.",
-    "phone": "+1 123 456 789",
+    "phone": "+1 123 456 7890",
     "note": "Orders rocket fuel every month."
   }
 ?>
@@ -898,7 +898,7 @@ This endpoint returns a Client by their ID.
 | taxSubject | Specify if the Client is subject to tax. |
 | taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
 | companyNumber | String registration or similar identification number. |
-| email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of Client. |
-| phone | Phone number of Client. |
-| note | Text note about Client. |
+| email | Email address of the Client. _Used as recipient when sending documents in email._ |
+| contact | Name of the Client. |
+| phone | Phone number of the Client. |
+| note | Text note about the Client. |
