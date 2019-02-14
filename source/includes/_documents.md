@@ -426,8 +426,8 @@ _This example shows the process of creating an `invoice` providing the minimum d
 | id | Unique ID of model instance. |
 | organizationId | ID of the related organization. |
 | canceled | Boolean, is invoice canceled. _Only present if Document type is invoice._ |
-| sentEmail | Boolean, has the Document been ever sent by email. |
-| sentSnailMail | Boolean, has the Document been ever sent by regular post. |
+| sentEmail | Boolean, has the Document ever been sent by email. |
+| sentSnailMail | Boolean, has the Document ever been sent by regular post. |
 | _documentItems | Array of objects containing the Document items. [toggle definition](#expand) |
 | total | Number, total price of the Document item including quantity and discount. _Excludes taxes._ |
 | totalTax | Number, total value of tax on Document item including quantity, discount, and taxes. |
