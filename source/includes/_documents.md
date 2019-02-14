@@ -97,13 +97,13 @@ SpaceDocument document = documentService.Create("ORGANIZATION_ID", createOptions
   "canceled": false,
   "sentEmail": false,
   "_documentIssuer": {
-    "name": "Space Exploration Techologies corp",
+    "name": "Space Exploration Technologies corp",
     "address": "Rocket Road",
     "city": "Hawthorne",
     "zip": "CA 90250",
     "country": "USA",
     "IBAN": "123454321 123454321",
-    "bank": "Bank Of Amerika"
+    "bank": "Bank Of America"
   },
   "clientId": "5a3683ea12d5a67dd0ef2f4d",
   "_documentClient": {
@@ -150,13 +150,13 @@ SpaceDocument document = documentService.Create("ORGANIZATION_ID", createOptions
   "canceled": false,
   "sentEmail": false,
   "_documentIssuer": {
-    "name": "Space Exploration Techologies corp",
+    "name": "Space Exploration Technologies corp",
     "address": "Rocket Road",
     "city": "Hawthorne",
     "zip": "CA 90250",
     "country": "USA",
     "IBAN": "123454321 123454321",
-    "bank": "Bank Of Amerika"
+    "bank": "Bank Of America"
   },
   "clientId": "5a3683ea12d5a67dd0ef2f4d",
   "_documentClient": {
@@ -294,13 +294,13 @@ public class SpaceDocument
     "canceled": false,
     "sentEmail": false,
     "_documentIssuer": {
-      "name": "Space Exploration Techologies corp",
+      "name": "Space Exploration Technologies corp",
       "address": "Rocket Road",
       "city": "Hawthorne",
       "zip": "CA 90250",
       "country": "USA",
       "IBAN": "123454321 123454321",
-      "bank": "Bank Of Amerika"
+      "bank": "Bank Of America"
     },
     "clientId": "5a3683ea12d5a67dd0ef2f4d",
     "_documentClient": {
@@ -426,8 +426,8 @@ _This example shows the process of creating an `invoice` providing the minimum d
 | id | Unique ID of model instance. |
 | organizationId | ID of the related organization. |
 | canceled | Boolean, is invoice canceled. _Only present if Document type is invoice._ |
-| sentEmail | Boolean, has the Document been ever sent by email. |
-| sentSnailMail | Boolean, has the Document been ever sent by regular post. |
+| sentEmail | Boolean, has the Document ever been sent by email. |
+| sentSnailMail | Boolean, has the Document ever been sent by regular post. |
 | _documentItems | Array of objects containing the Document items. [toggle definition](#expand) |
 | total | Number, total price of the Document item including quantity and discount. _Excludes taxes._ |
 | totalTax | Number, total value of tax on Document item including quantity, discount, and taxes. |
@@ -516,13 +516,13 @@ List<SpaceDocument> documents = documentService.List("ORGANIZATION_ID", filter);
     "canceled": false,
     "sentEmail": false,
     "_documentIssuer": {
-      "name": "Space Exploration Techologies corp",
+      "name": "Space Exploration Technologies corp",
       "address": "Rocket Road",
       "city": "Hawthorne",
       "zip": "CA 90250",
       "country": "USA",
       "IBAN": "123454321 123454321",
-      "bank": "Bank Of Amerika"
+      "bank": "Bank Of America"
     },
     "clientId": "5a3683ea12d5a67dd0ef2f4d",
     "_documentClient": {
@@ -572,13 +572,13 @@ List<SpaceDocument> documents = documentService.List("ORGANIZATION_ID", filter);
     "canceled": false,
     "sentEmail": false,
     "_documentIssuer": {
-      "name": "Space Exploration Techologies corp",
+      "name": "Space Exploration Technologies corp",
       "address": "Rocket Road",
       "city": "Hawthorne",
       "zip": "CA 90250",
       "country": "USA",
       "IBAN": "123454321 123454321",
-      "bank": "Bank Of Amerika"
+      "bank": "Bank Of America"
     },
     "clientId": "5a3683ea12d5a67dd0ef2f4d",
     "_documentClient": {
@@ -633,13 +633,13 @@ List<SpaceDocument>
       "canceled": false,
       "sentEmail": false,
       "_documentIssuer": {
-        "name": "Space Exploration Techologies corp",
+        "name": "Space Exploration Technologies corp",
         "address": "Rocket Road",
         "city": "Hawthorne",
         "zip": "CA 90250",
         "country": "USA",
         "IBAN": "123454321 123454321",
-        "bank": "Bank Of Amerika"
+        "bank": "Bank Of America"
       },
       "clientId": "5a3683ea12d5a67dd0ef2f4d",
       "_documentClient": {
@@ -675,7 +675,7 @@ List<SpaceDocument>
 ?>
 ```
 
-This endpoint return a list of all Organization's documents optionaly filtered if latter are passed in query params.
+This endpoint return a list of all Organization's documents optionally filtered if latter are passed in query params.
 
 ### HTTP Request
 
@@ -685,7 +685,7 @@ This endpoint return a list of all Organization's documents optionaly filtered i
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of organization. |
+| id **required** | ID of the Organization. |
 | filter | Object containing query filters. See [Filters](#filters) section for more details. |
 | parseShortcodes _default is *true*_ | Boolean, if shortcodes in `note`, `signature` and `footer` should be parsed to their respective values. |
 
@@ -737,13 +737,13 @@ SpaceDocument document = documentService.GetById("DOCUMENT_ID", filter);
   "canceled": false,
   "sentEmail": false,
   "_documentIssuer": {
-    "name": "Space Exploration Techologies corp",
+    "name": "Space Exploration Technologies corp",
     "address": "Rocket Road",
     "city": "Hawthorne",
     "zip": "CA 90250",
     "country": "USA",
     "IBAN": "123454321 123454321",
-    "bank": "Bank Of Amerika"
+    "bank": "Bank Of America"
   },
   "clientId": "5a3683ea12d5a67dd0ef2f4d",
   "_documentClient": {
@@ -791,13 +791,13 @@ SpaceDocument document = documentService.GetById("DOCUMENT_ID", filter);
   "canceled": false,
   "sentEmail": false,
   "_documentIssuer": {
-    "name": "Space Exploration Techologies corp",
+    "name": "Space Exploration Technologies corp",
     "address": "Rocket Road",
     "city": "Hawthorne",
     "zip": "CA 90250",
     "country": "USA",
     "IBAN": "123454321 123454321",
-    "bank": "Bank Of Amerika"
+    "bank": "Bank Of America"
   },
   "clientId": "5a3683ea12d5a67dd0ef2f4d",
   "_documentClient": {
@@ -935,13 +935,13 @@ public class SpaceDocument
     "canceled": false,
     "sentEmail": false,
     "_documentIssuer": {
-      "name": "Space Exploration Techologies corp",
+      "name": "Space Exploration Technologies corp",
       "address": "Rocket Road",
       "city": "Hawthorne",
       "zip": "CA 90250",
       "country": "USA",
       "IBAN": "123454321 123454321",
-      "bank": "Bank Of Amerika"
+      "bank": "Bank Of America"
     },
     "clientId": "5a3683ea12d5a67dd0ef2f4d",
     "_documentClient": {
@@ -1078,13 +1078,13 @@ SpaceDocument editedDocument = documentService.Edit("DOCUMENT_ID", editOptions);
   "canceled": false,
   "sentEmail": false,
   "_documentIssuer": {
-    "name": "Space Exploration Techologies corp",
+    "name": "Space Exploration Technologies corp",
     "address": "Rocket Road",
     "city": "Hawthorne",
     "zip": "CA 90250",
     "country": "USA",
     "IBAN": "123454321 123454321",
-    "bank": "Bank Of Amerika"
+    "bank": "Bank Of America"
   },
   "clientId": "5a3683ea12d5a67dd0ef2f4d",
   "_documentClient": {
@@ -1131,13 +1131,13 @@ SpaceDocument editedDocument = documentService.Edit("DOCUMENT_ID", editOptions);
   "canceled": false,
   "sentEmail": false,
   "_documentIssuer": {
-    "name": "Space Exploration Techologies corp",
+    "name": "Space Exploration Technologies corp",
     "address": "Rocket Road",
     "city": "Hawthorne",
     "zip": "CA 90250",
     "country": "USA",
     "IBAN": "123454321 123454321",
-    "bank": "Bank Of Amerika"
+    "bank": "Bank Of America"
   },
   "clientId": "5a3683ea12d5a67dd0ef2f4d",
   "_documentClient": {
@@ -1276,13 +1276,13 @@ public class SpaceDocument
     "canceled": false,
     "sentEmail": false,
     "_documentIssuer": {
-      "name": "Space Exploration Techologies corp",
+      "name": "Space Exploration Technologies corp",
       "address": "Rocket Road",
       "city": "Hawthorne",
       "zip": "CA 90250",
       "country": "USA",
       "IBAN": "123454321 123454321",
-      "bank": "Bank Of Amerika"
+      "bank": "Bank Of America"
     },
     "clientId": "5a3683ea12d5a67dd0ef2f4d",
     "_documentClient": {
@@ -1638,7 +1638,7 @@ Emails are sent from our address in the name of the organization sending it. Whi
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Document. |
+| id **required** | ID of the Document. |
 
 #### Arguments
 
