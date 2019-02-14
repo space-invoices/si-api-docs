@@ -1,10 +1,10 @@
 # Currencies
 
-Currencies are provided and available to load from our system, we have 122 most common global currencies. Don't hesistate to write us if we're missing any.
+We current provide support for 122 of the most common global currencies. If there is one you'd like to use but do not see in the list, please write us.
 
 In addition to normal (fiat) currencies, we have now also added some common cryptocurrencies. Don't see your favourite cryptocurrency as an option? Let us know and we'll be happy to add support for it.
 
-Note: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) unique currency codes are used as the `id` fields of currencies to simplify inclusion in documents as related IDs.
+Please note: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) unique currency codes are used as the `id` fields of currencies to simplify inclusion in documents as related IDs.
 
 ## Get all Currencies
 
@@ -152,6 +152,6 @@ This endpoint retrieves all the Currencies.
 |      |     |
 | ---: | --- |
 | isoName | Unique [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency name. _Also used as unique ID of model instance._ |
-| name | Name of Currency. |
-| symbol | Symbol of currency. |po
+| name | Name of the Currency. |
+| symbol | Symbol of the currency. |po
 | type | Type of currency. _Either `fiat` or `crypto`_ |
