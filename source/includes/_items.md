@@ -1,59 +1,69 @@
-# Items
+# Clients
 
-Items are items, services and any other thing that a Organization can sell. They can be saved and later referenced using their unique ID.
+Clients are businesses, end users, organizations, and any other entity that can receive a document from an organization. Clients may be  saved and later referenced using their unique ID.
 
-NOTE: While taxes are added to items by adding id in `taxIds` property, they can also be referenced by their rate or classification value by providing either of the values in `_itemTaxes` array property as an object. The API will attempt to find the best match.
-
-## Create New Item
+## Create New Client
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/items" \
+curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/clients" \
   -H "Authorization: LAUNCH_CODE" \
-  -d name="Space suit" \
-  -d description="Best in class suit made from durable composites." \
-  -d unit="item" \
-  -d price=100 \
-  -d taxIds[]="5a3683ea12d5a67dd0ef2f4e"
-```
-
-```csharp
-List<string> taxIds = new List<string>();
-taxIds.Add("TAX_ID");
-
-SpaceItemCreateOptions createOptions = new SpaceItemCreateOptions
-{
-  Name = "Space suit",
-  Description = "Best in class suit made from durable composites.",
-  Price = 100,
-  Unit = "item",
-  TaxIds = taxIds
-};
-
-SpaceItemService itemService = new SpaceItemService();
-SpaceItem item = itemService.Create("ORGANIZATION_ID", createOptions);
+  -d name="Space Exploration Technologies corp" \
+  -d address="Rocket Road" \
+  -d city="Hawthorne" \
+  -d zip="CA 90250" \
+  -d country="USA" \
+  -d email="info@spacex.com" \
+  -d contact="Elon M." \
+  -d phone="+1 123 456 7890" \
+  -d note="Orders rocket fuel every month."
 ```
 
 ```javascript
-spaceInvoices.items.create(organizationId, {
-  name: "Space suit",
-  description: "Best in class suit made from durable composites.",
-  unit: "item",
-  price: 100,
-  taxIds: [taxId]
+spaceInvoices.clients.create(organizationId, {
+  name: "Space Exploration Technologies corp",
+  address: "Rocket Road",
+  city: "Hawthorne",
+  zip: "CA 90250",
+  country: "USA",
+  email: "info@spacex.com",
+  contact: "Elon M.",
+  phone: "+1 123 456 7890",
+  note: "Orders rocket fuel every month.",
 })
-.then(function(item) {
-  console.log(item);
+.then(function(client) {
+  console.log(client);
 })
+```
+
+```csharp
+SpaceClientCreateOptions createOptions = new SpaceClientCreateOptions
+{
+  Name: "Space Exploration Technologies corp",
+  Address: "Rocket Road",
+  City: "Hawthorne",
+  Zip: "CA 90250",
+  Country: "USA",
+  Email: "info@spacex.com",
+  Contact: "Elon M.",
+  Phone: "+1 123 456 7890",
+  Note: "Orders rocket fuel every month."
+};
+SpaceClientService clientService = new SpaceClientService();
+SpaceClient client = clientService.Create("ORGANIZATION_ID", createOptions);
 ```
 
 ```php
 <?php
-  Spaceinvoices\Items::create("ORGANIZATION_ID", array(
-    "name" => "Space suit",
-    "description" => "Best in class suit made from durable composites.",
-    "unit" => "item",
-    "price" => 100,
-    "taxId" => ["TAX_ID"]
+  Spaceinvoices\Clients::create("ORGANIZATION_ID", array(
+    "name" => "Space Exploration Technologies corp",
+    "address" => "Rocket Road",
+    "city" => "Hawthorne",
+    "zip" => "CA 90250",
+    "country" => "USA",
+    "email" => "info@spacex.com",
+    "contact" => "Elon M.",
+    "phone" => "+1 123 456 78900",
+    "note" => "Orders rocket fuel every month."
   ));
 ?>
 ```
@@ -64,47 +74,89 @@ spaceInvoices.items.create(organizationId, {
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "Space suit",
-  "description": "Best in class suit made from durable composites.",
-  "unit": "item",
-  "price": 100,
-  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 7890",
+  "note": "Orders rocket fuel every month."
 }
 ```
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "Space suit",
-  "description": "Best in class suit made from durable composites.",
-  "unit": "item",
-  "price": 100,
-  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 7890",
+  "note": "Orders rocket fuel every month."
 }
 ```
+
 ```csharp
-public class SpaceItem
+public class SpaceClient
 {
   [JsonProperty("id")]
   public string Id { get; set; }
 
-  [JsonProperty("organizationId")]
-  public string OrganizationId { get; set; }
-
   [JsonProperty("name")]
   public string Name { get; set; }
 
-  [JsonProperty("description")]
-  public string Description { get; set; }
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
 
-  [JsonProperty("unit")]
-  public string Unit { get; set; }
+  [JsonProperty("address")]
+  public string Address { get; set; }
 
-  [JsonProperty("price")]
-  public decimal Price { get; set; }
+  [JsonProperty("address2")]
+  public string Address2 { get; set; }
 
-  [JsonProperty("taxIds")]
-  public List<string> TaxIds { get; set; }
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public string TaxSubject { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+
+  [JsonProperty("email")]
+  public string Email { get; set; }
+
+  [JsonProperty("contact")]
+  public string Contact { get; set; }
+
+  [JsonProperty("phone")]
+  public string Phone { get; set; }
+
+  [JsonProperty("note")]
+  public string Note { get; set; }
+
+  [JsonProperty("IBAN")]
+  public string Iban { get; set; }
+
+  [JsonProperty("bank")]
+  public string Bank { get; set; }
+
+  [JsonProperty("SWIFT")]
+  public string Swift { get; set; }
 }
 ```
 ```php
@@ -112,40 +164,48 @@ public class SpaceItem
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
     "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 7890",
+    "note": "Orders rocket fuel every month."
   }
 ?>
 ```
 
-This endpoint creates a new Item.
+This endpoint creates a new Client.
 
 ### HTTP Request
 
-`POST https://api.spaceinvoices.com/v1/organizations/:id/items`
+`POST https://api.spaceinvoices.com/v1/organizations/:id/clients`
 
 #### Query parameters
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Orgniazation for which we are creting the Item. |
+| id **required** | ID of the organization for which we create the Client. |
 
 #### Arguments
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of company, item or other type of organization. |
-| description | Description of item. |
-| unit | Unit of measurement. |
-| price | Number price of item. |
-| taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
-| _itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
-| rate | Rate of tax to match. |
-| classification | Classification of tax to match. |
-| [](#empty) | |
+| name **required** | Name of the company, client, or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | String name of country. |
+| taxSubject _default is *false*_ | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
+| note | Text note about the Client. |
 
 ### HTTP Response
 
@@ -156,51 +216,69 @@ This endpoint creates a new Item.
 | id | Unique ID of model instance. |
 
 
-## Update Item
+## Update Client
 
 ```shell
-curl -X PUT "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
+curl -X PUT "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: LAUNCH_CODE" \
-  -d name="Space suit" \
-  -d description="Best in class suit made from durable composites." \
-  -d unit="item" \
-  -d price=100 \
-  -d taxIds[]="5a3683ea12d5a67dd0ef2f4e"
+  -d name="Space Exploration Technologies corp" \
+  -d address="Rocket Road" \
+  -d city="Hawthorne" \
+  -d zip="CA 90250" \
+  -d country="USA" \
+  -d email="info@spacex.com" \
+  -d contact="Elon M." \
+  -d phone="+1 123 456 7890" \
+  -d note="Orders rocket fuel every month."
 ```
 
 ```javascript
-spaceInvoices.items.edit(documentId, {
-  name: "Space suit",
-  description: "Best in class suit made from durable composites.",
-  unit: "item",
-  price: 100,
-  taxIds: [taxId]
+spaceInvoices.clients.edit(clientId, {
+  name: "Space Exploration Technologies corp",
+  address: "Rocket Road",
+  city: "Hawthorne",
+  zip: "CA 90250",
+  country: "USA",
+  email: "info@spacex.com",
+  contact: "Elon M.",
+  phone: "+1 123 456 7890",
+  note: "Orders rocket fuel every month.",
 })
-.then(function(item) {
-  console.log(item);
+.then(function(client) {
+  console.log(client);
 })
 ```
-```csharp
-SpaceItemEditOptions editOptions = new SpaceItemEditOptions
-{
-  Name = "pace suit new",
-  Description = "Best in class suit made from durable composites.",
-  Price = 5000000,
-  Unit = "item"
-};
 
-SpaceItemService itemService = new SpaceItemService();
-SpaceItem item = itemService.Edit("ITEM_ID", editOptions);
+```csharp
+SpaceClientEditOptions editOptions = new SpaceClientEditOptions
+{
+  Name: "Space Exploration Technologies corp",
+  Address: "Rocket Road",
+  City: "Hawthorne",
+  Zip: "CA 90250",
+  Country: "USA",
+  Email: "info@spacex.com",
+  Contact: "Elon M.",
+  Phone: "+1 123 456 7890",
+  Note: "Orders rocket fuel every month.",
+
+};
+SpaceClientService clientService = new SpaceClientService();
+SpaceClient client = clientService.Edit("ORGANIZATION_ID", editOptions);
 ```
 
 ```php
 <?php
-  Spaceinvoices\Items::edit("DOCUMENT_ID", array(
-    "name" => "Space suit",
-    "description" => "Best in class suit made from durable composites.",
-    "unit" => "item",
-    "price" => 100,
-    "taxes" => ["TAX_ID"]
+  Spaceinvoices\Clients::edit("CLIENT_ID", array(
+    "name" => "Space Exploration Technologies corp",
+    "address" => "Rocket Road",
+    "city" => "Hawthorne",
+    "zip" => "CA 90250",
+    "country" => "USA",
+    "email" => "info@spacex.com",
+    "contact" => "Elon M.",
+    "phone" => "+1 123 456 78900",
+    "note" => "Orders rocket fuel every month."
   ));
 ?>
 ```
@@ -211,47 +289,88 @@ SpaceItem item = itemService.Edit("ITEM_ID", editOptions);
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "Space suit",
-  "description": "Best in class suit made from durable composites.",
-  "unit": "item",
-  "price": 100,
-  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 7890",
+  "note": "Orders rocket fuel every month."
 }
 ```
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
   "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-  "name": "Space suit",
-  "description": "Best in class suit made from durable composites.",
-  "unit": "item",
-  "price": 100,
-  "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 7890",
+  "note": "Orders rocket fuel every month."
 }
 ```
 ```csharp
-public class SpaceItem
+public class SpaceClient
 {
   [JsonProperty("id")]
   public string Id { get; set; }
 
-  [JsonProperty("organizationId")]
-  public string OrganizationId { get; set; }
-
   [JsonProperty("name")]
   public string Name { get; set; }
 
-  [JsonProperty("description")]
-  public string Description { get; set; }
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
 
-  [JsonProperty("unit")]
-  public string Unit { get; set; }
+  [JsonProperty("address")]
+  public string Address { get; set; }
 
-  [JsonProperty("price")]
-  public decimal Price { get; set; }
+  [JsonProperty("address2")]
+  public string Address2 { get; set; }
 
-  [JsonProperty("taxIds")]
-  public List<string> TaxIds { get; set; }
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public string TaxSubject { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+
+  [JsonProperty("email")]
+  public string Email { get; set; }
+
+  [JsonProperty("contact")]
+  public string Contact { get; set; }
+
+  [JsonProperty("phone")]
+  public string Phone { get; set; }
+
+  [JsonProperty("note")]
+  public string Note { get; set; }
+
+  [JsonProperty("IBAN")]
+  public string Iban { get; set; }
+
+  [JsonProperty("bank")]
+  public string Bank { get; set; }
+
+  [JsonProperty("SWIFT")]
+  public string Swift { get; set; }
 }
 ```
 ```php
@@ -259,20 +378,24 @@ public class SpaceItem
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
     "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 7890",
+    "note": "Orders rocket fuel every month."
   }
 ?>
 ```
 
-This endpoint updates a Item by ID.
+This endpoint updates a Client by id.
 
 ### HTTP Request
 
-`PUT https://api.spaceinvoices.com/v1/items/:id`
+`PUT https://api.spaceinvoices.com/v1/clients/:id`
 
 #### Query parameters
 
@@ -283,15 +406,19 @@ This endpoint updates a Item by ID.
 
 |      |     |
 | ---: | --- |
-| name **required** | Name of company, item or other type of organization. |
-| description | Description of item. |
-| unit | Unit of measurement. |
-| price | Number price of item. |
-| taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
-| _itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
-| rate | Rate of tax to match. |
-| classification | Classification of tax to match. |
-| [](#empty) | |
+| name **required** | Name of the company, client, or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | String name of country. |
+| taxSubject _default is *false*_ | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
+| note | Text note about the Client. |
 
 ### HTTP Response
 
@@ -301,28 +428,28 @@ This endpoint updates a Item by ID.
 | ---: | --- |
 
 
-## Delete Item
+## Delete Client
 
 ```shell
-curl -X DELETE "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
+curl -X DELETE "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
-spaceInvoices.items.delete(itemId)
+spaceInvoices.clients.delete(clientId)
 .then(function(count) {
   console.log(count);
 })
 ```
 
 ```csharp
-SpaceItemService itemService = new SpaceItemService();
-Counter counter = itemService.Delete("ITEM_ID");
+SpaceClientService clientService = new SpaceClientService();
+Counter deleted = clientService.Delete("CLIENT_ID";
 ```
 
 ```php
 <?php
-  Spaceinvoices\Items::delete("ITEM_ID");
+  Spaceinvoices\Clients::delete("CLIENT_ID");
 ?>
 ```
 
@@ -333,13 +460,11 @@ Counter counter = itemService.Delete("ITEM_ID");
   "count": 1
 }
 ```
-
 ```javascript
 {
   "count": 1
 }
 ```
-
 ```csharp
 public class Counter
 {
@@ -347,7 +472,6 @@ public class Counter
   public int Count { get; set; }
 }
 ```
-
 ```php
 <?php
   {
@@ -356,19 +480,19 @@ public class Counter
 ?>
 ```
 
-This endpoint soft deletes a Item by ID.
-
-Soft deleted instances stay in database but are not returned on normal calls but can be added by providing `deleted: true` property in filters.
+This endpoint soft deletes a Client by ID.
+Soft deleted instances remain in the database but will not appear on normal API calls.
+To view soft deleted instances, add `deleted: true` property to the filter.
 
 ### HTTP Request
 
-`DELETE https://api.spaceinvoices.com/v1/items/:id`
+`DELETE https://api.spaceinvoices.com/v1/clients/:id`
 
 #### Query parameters
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Item to delete. |
+| id **required** | ID of the Client to be deleted. |
 
 ### HTTP Response
 
@@ -376,38 +500,30 @@ Soft deleted instances stay in database but are not returned on normal calls but
 
 |      |     |
 | ---: | --- |
-| count | Number of successfuly deleted items. |
+| count | Number of successfully deleted items. |
 
 
-## List Items
+## List Clients
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/items" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/clients" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
-spaceInvoices.items.list(organizationId)
-.then(function(items) {
-  console.log(items);
+spaceInvoices.clients.list(organizationId)
+.then(function(clients) {
+  console.log(clients);
 })
 ```
 ```csharp
-var filter = @"{
-                filter: {
-                        where: {
-                                unit: 'item'
-                        }
-                    }
-                  }";
-
-SpaceItemService itemService = new SpaceItemService();
-List<SpaceItem> items = itemService.List("ORGANIZATION_ID", filter);
+SpaceClientService clientService = new SpaceClientService();
+List<SpaceClient> list = clientService.List("ORGANIZATION_ID");
 ```
 
 ```php
 <?php
-  Spaceinvoices\Items::find("ORGANIZATION_ID");
+  Spaceinvoices\Clients::find("ORGANIZATION_ID");
 ?>
 ```
 
@@ -418,27 +534,15 @@ List<SpaceItem> items = itemService.List("ORGANIZATION_ID", filter);
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
     "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
-      {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "Value Added Tax",
-        "abbreviation": "VAT",
-        "_taxRates": [
-          {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
-        ],
-        "recoverable": true,
-        "compound": false
-      }
-    ]
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 7890",
+    "note": "Orders rocket fuel every month."
   }
 ]
 ```
@@ -447,31 +551,21 @@ List<SpaceItem> items = itemService.List("ORGANIZATION_ID", filter);
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
     "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
-      {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
-        "_taxRates": [
-          {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
-        ],
-        "recoverable": true,
-        "compound": false
-      }
-    ]
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 7890",
+    "note": "Orders rocket fuel every month."
   }
 ]
 ```
+
 ```csharp
-List<SpaceItem>
+List<SpaceClient> 
 ```
 ```php
 <?php
@@ -479,42 +573,31 @@ List<SpaceItem>
     {
       "id": "5a3683ea12d5a67dd0ef2f4c",
       "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-      "name": "Space suit",
-      "description": "Best in class suit made from durable composites.",
-      "unit": "item",
-      "price": 100,
-      "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-      "taxes": [
-        {
-          "id": "5a3683ea12d5a67dd0ef2f4e",
-          "name": "VAT 22%",
-          "_taxRates": [
-            {
-              "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-              "dateValidFrom": 1970-01-01,
-              "rate": 22
-            }
-          ],
-          "recoverable": true,
-          "compound": false
-        }
-      ]
+      "name": "Space Exploration Technologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "email": "info@spacex.com",
+      "contact": "Elon M.",
+      "phone": "+1 123 456 7890",
+      "note": "Orders rocket fuel every month."
     }
   ]
 ?>
 ```
 
-This endpoint lists Organization's Items.
+This endpoint lists Organization's Clients.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/organizations/:id/items`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/clients`
 
 #### Query parameters
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization. |
+| id **required** | ID of the Organization. |
 | filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
@@ -523,56 +606,42 @@ This endpoint lists Organization's Items.
 
 |      |     |
 | ---: | --- |
-| id | Unique ID of Item model instance. |
-| organizationId | ID of related Organization the Item belongs to. |
-| name | Name of Item. |
-| description | Description of Item. |
-| unit | Unit of measurement of Item. |
-| price | Price of Item. |
-| taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
-| name | Name of Tax. |
-| _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
-| dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
-| rate | Number rate of Tax. |
-| [](#empty-inner) | |
-| recoverable | Booleand indicator if paid Tax can be recovered by Organization. |
-| compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._ |
-| [](#empty) | |
+| name | Name of the company, client, or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | String name of country. |
+| taxSubject | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
+| note | Text note about the Client. |
 
 
-## Search Items
+## Search Clients
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-items?term=Space" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/search-clients?term=Space" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
 ```javascript
-spaceInvoices.items.search(organizationId, 'space')
-.then(function(items) {
-  console.log(items);
+spaceInvoices.clients.search(organizationId, 'Space')
+.then(function(clients) {
+  console.log(clients);
 })
 ```
 ```csharp
-
-
-var filter = @"{
-                filter: {
-                        where: {
-                                unit: 'item'
-                        }
-                    }
-                  }";
-
-
-SpaceItemService itemService = new SpaceItemService();
-List<SpaceItem> items = itemService.Search("ORGANIZATION_ID", "space", filter);
-
+SpaceClientService clientService = new SpaceClientService();
+List<SpaceClient> list = clientService.Search("ORGANIZATION_ID", "Space");
 ```
 
 ```php
 <?php
-  Spaceinvoices\Items::search("ORGANIZATION_ID", "space");
+  Spaceinvoices\Clients::search("ORGANIZATION_ID", 'Space');
 ?>
 ```
 
@@ -583,26 +652,15 @@ List<SpaceItem> items = itemService.Search("ORGANIZATION_ID", "space", filter);
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
     "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
-      {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
-        "_taxRates": [
-          {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
-        ],
-        "recoverable": true,
-        "compound": false
-      }
-    ]
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 7890",
+    "note": "Orders rocket fuel every month."
   }
 ]
 ```
@@ -611,31 +669,20 @@ List<SpaceItem> items = itemService.Search("ORGANIZATION_ID", "space", filter);
   {
     "id": "5a3683ea12d5a67dd0ef2f4c",
     "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
-      {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
-        "_taxRates": [
-          {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
-        ],
-        "recoverable": true,
-        "compound": false
-      }
-    ]
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 7890",
+    "note": "Orders rocket fuel every month."
   }
 ]
 ```
 ```csharp
-List<SpaceItem>
+List<SpaceClient>
 ```
 ```php
 <?php
@@ -643,43 +690,32 @@ List<SpaceItem>
     {
       "id": "5a3683ea12d5a67dd0ef2f4c",
       "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-      "name": "Space suit",
-      "description": "Best in class suit made from durable composites.",
-      "unit": "item",
-      "price": 100,
-      "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-      "taxes": [
-        {
-          "id": "5a3683ea12d5a67dd0ef2f4e",
-          "name": "VAT 22%",
-          "_taxRates": [
-            {
-              "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-              "dateValidFrom": 1970-01-01,
-              "rate": 22
-            }
-          ],
-          "recoverable": true,
-          "compound": false
-        }
-      ]
+      "name": "Space Exploration Technologies corp",
+      "address": "Rocket Road",
+      "city": "Hawthorne",
+      "zip": "CA 90250",
+      "country": "USA",
+      "email": "info@spacex.com",
+      "contact": "Elon M.",
+      "phone": "+1 123 456 7890",
+      "note": "Orders rocket fuel every month."
     }
   ]
 ?>
 ```
 
-This endpoint searches for Organization's Items.
+This endpoint searches for Organization's Clients.
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/organizations/:id/search-items?term=:term`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/search-clients?term=:term`
 
 #### Query parameters
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Organization. |
-| term **required** | String term to search for in Item properties. |
+| id **required** | ID of the Organization. |
+| term **required** | String term to search within Client properties. |
 | filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
@@ -688,18 +724,181 @@ This endpoint searches for Organization's Items.
 
 |      |     |
 | ---: | --- |
-| id | Unique ID of Item model instance. |
-| organizationId | ID of related Organization the Item belongs to. |
-| name | Name of Item. |
-| description | Description of Item. |
-| unit | Unit of measurement of Item. |
-| price | Price of Item. |
-| taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
-| name | Name of Tax. |
-| _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
-| dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
-| rate | Number rate of Tax. |
-| [](#empty-inner) | |
-| recoverable | Booleand indicator if paid Tax can be recovered by Organization. |
-| compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._ |
-| [](#empty) | |
+| name | Name of the company, client, or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | String name of country. |
+| taxSubject | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of Client. _Used as recipient when sending documents in email._ |
+| contact | Name of the Client. |
+| phone | Phone number of the Client.|
+| note | Text note about Client. |
+
+## Get Client by ID
+
+```shell
+curl "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.clients.getById(clientId)
+.then(function(client) {
+  console.log(client);
+})
+```
+```csharp
+SpaceClientService clientService = new SpaceClientService();
+SpaceClient client = clientService.GetById(client.Id);
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::getById("CLIENT_ID");
+?>
+```
+
+> Returns:
+
+```shell
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 7890",
+  "note": "Orders rocket fuel every month."
+}
+```
+```javascript
+{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "info@spacex.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 7890",
+  "note": "Orders rocket fuel every month."
+}
+```
+```csharp
+public class SpaceClient
+{
+  [JsonProperty("id")]
+  public string Id { get; set; }
+
+  [JsonProperty("name")]
+  public string Name { get; set; }
+
+  [JsonProperty("organizationId")]
+  public string OrganizationId { get; set; }
+
+  [JsonProperty("address")]
+  public string Address { get; set; }
+
+  [JsonProperty("address2")]
+  public string Address2 { get; set; }
+
+  [JsonProperty("city")]
+  public string City { get; set; }
+
+  [JsonProperty("zip")]
+  public string Zip { get; set; }
+
+  [JsonProperty("country")]
+  public string Country { get; set; }
+
+  [JsonProperty("taxSubject")]
+  public string TaxSubject { get; set; }
+
+  [JsonProperty("taxNumber")]
+  public string TaxNumber { get; set; }
+
+  [JsonProperty("companyNumber")]
+  public string CompanyNumber { get; set; }
+
+  [JsonProperty("email")]
+  public string Email { get; set; }
+
+  [JsonProperty("contact")]
+  public string Contact { get; set; }
+
+  [JsonProperty("phone")]
+  public string Phone { get; set; }
+
+  [JsonProperty("note")]
+  public string Note { get; set; }
+
+  [JsonProperty("IBAN")]
+  public string Iban { get; set; }
+
+  [JsonProperty("bank")]
+  public string Bank { get; set; }
+
+  [JsonProperty("SWIFT")]
+  public string Swift { get; set; }
+}
+```
+```php
+<?php
+  {
+    "id": "5a3683ea12d5a67dd0ef2f4c",
+    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+    "name": "Space Exploration Technologies corp",
+    "address": "Rocket Road",
+    "city": "Hawthorne",
+    "zip": "CA 90250",
+    "country": "USA",
+    "email": "info@spacex.com",
+    "contact": "Elon M.",
+    "phone": "+1 123 456 7890",
+    "note": "Orders rocket fuel every month."
+  }
+?>
+```
+
+This endpoint returns a Client by their ID.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/clients/:id`
+
+#### Query parameters
+
+|      |     |
+| ---: | --- |
+| id **required** | ID of the Client. |
+
+
+### HTTP Response
+
+#### Arguments
+
+|      |     |
+| ---: | --- |
+| name | Name of the company, client, or other type of organization. |
+| address | Street or similar address. |
+| address2 | Address line 2. |
+| city | City name. |
+| zip | Zip / post code. |
+| country | String name of country. |
+| taxSubject | Specify if the Client is subject to tax. |
+| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
+| companyNumber | String registration or similar identification number. |
+| email | Email address of the Client. _Used as recipient when sending documents in email._ |
+| contact | Name of the Client. |
+| phone | Phone number of the Client. |
+| note | Text note about the Client. |
