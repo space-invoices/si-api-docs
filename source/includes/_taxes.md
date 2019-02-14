@@ -1,8 +1,8 @@
 # Taxes
 
-Taxes are stored per Organization and are then referenced on Items that need to charge it.
+Taxes are stored per Organization and are then referenced on Items for which tax is chargeable.
 
-Taxes have rates applied to them and the rates are chosen based on the document's indicated date if the different rates are applicable on the date. This ensures the correct tax rates are applied to documents.
+Each tax may have different rates applied to them, and the rates may be set for a specific date range for which the rate is in effect. The actual tax rate charged for any given item are chosen based on the document's indicated date if specific rates are applicable on the date of invoice issue. This ensures the correct tax rates are applied to documents.
 
 NOTE: When adding taxes to document items or items, the tax can be easily referenced (in prioritized order) by its id, rate, or classification.
 
@@ -165,8 +165,8 @@ This endpoint creates a new Tax.
 | rate | Rate of the tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
 | [](#empty) | |
-| recoverable _Default is *true*_ | Boolean if the ax is recoverable after being paid. |
-| compound _Default is *false*_ | Boolean if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
+| recoverable _Default is *true*_ | Boolean, if the ax is recoverable after being paid. |
+| compound _Default is *false*_ | Boolean, if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
 
 ### HTTP Response
 
@@ -420,8 +420,8 @@ This endpoint updates a Tax by ID.
 | classification | String classification of tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
 | [](#empty) | |
-| recoverable _Default is *true*_ | Boolean if the Tax is recoverable after being paid. |
-| compound _Default is *false*_ | Boolean if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
+| recoverable _Default is *true*_ | Boolean, if the Tax is recoverable after being paid. |
+| compound _Default is *false*_ | Boolean, if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
 
 ### HTTP Response
 
@@ -503,7 +503,7 @@ A Tax can only be deleted if it is not used on any Document.
 
 |      |     |
 | ---: | --- |
-| count | Number of successfuly deleted taxes. |
+| count | Number of successfully deleted taxes. |
 
 
 ## List Taxes
@@ -638,5 +638,5 @@ This endpoint lists the Organization's Taxes.
 | rate | Rate of the tax. |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
 | [](#empty) | |
-| recoverable | Boolean if the Tax is recoverable after being paid. |
-| compound | Boolean if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
+| recoverable | Boolean, if the Tax is recoverable after being paid. |
+| compound | Boolean, if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
