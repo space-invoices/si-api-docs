@@ -191,7 +191,7 @@ This endpoint creates a new account.
 |      |     |
 | ---: | --- |
 | email **required** | Unique email address. |
-| password **required** | Password, with a 8-character minimum and must include at least one capital letter and one symbol. |
+| password **required** | Password, with an 8-character minimum and must include at least one capital letter and one symbol. |
 
 ### HTTP Response
 
@@ -257,8 +257,8 @@ public class Unique
 ?>
 ```
 
-This endpoint returns a boolean value if the email inputted is unique or if it does not yet exist in the system.
-<aside class="notice">Special characters should be url encoded, otherwise they will be stripped which may cause inaccurate results!</aside>
+This endpoint returns a boolean value if the email exists in the system already or not.
+<aside class="notice">Please note: Special characters should be url encoded, otherwise they will be stripped which may cause inaccurate results!</aside>
 
 ### HTTP Request
 
