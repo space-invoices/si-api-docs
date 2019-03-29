@@ -1,6 +1,6 @@
 # Recurrences
 
-Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of a document occurs using the original document content as a base but where the date and number of the document is changed.
+Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of a document occurs using the original document content as a base while changing the document's date and number.
 
 ## Create New Recurrence
 
@@ -184,7 +184,7 @@ This endpoint creates a new Recurrence.
 
 |      |     |
 | ---: | --- |
-| id **required** | ID of Document for which we are creting the Recurrence. |
+| id **required** | ID of the Document used for the recurrence. |
 
 #### Arguments
 
@@ -194,9 +194,9 @@ This endpoint creates a new Recurrence.
 | type **required** | Type of the recurrence, one of `week` / `month` / `year`. |
 | dateFirst **required** | Date of the first recurrence. |
 | numRecurrences **required** | Number of the Recurrence. |
-| autoSend | Boolean if a created Document should be automatically sent to Client when created. |
-| notify | Boolean if the Account that created the Recurrence should be notified when a Document is created. |
-| saveAsDraft | Boolean if the invoice should be created as draft. |
+| autoSend | Boolean, if a created Document should be automatically sent to Client when created. |
+| notify | Boolean, if the Account that created the Recurrence should be notified when a Document is created. |
+| saveAsDraft | Boolean, if the invoice should be created as draft. |
 | recurrenceDates | Array of objects containing created Recurrence dates. [toggle definition](#expand) |
 | date | Date of the Recurrence. |
 | iteration | Number iteration index of the Recurrence. |
@@ -281,7 +281,7 @@ This endpoint deletes a Recurrence by ID.
 
 |      |     |
 | ---: | --- |
-| count | Number of successfuly deleted recurrences. |
+| count | Number of successfully deleted recurrences. |
 
 
 ## List Recurrences
@@ -371,8 +371,8 @@ This endpoint lists the Organization's Recurrences.
 
 |      |     |
 | ---: | --- |
-| type | Type of recurrence. |
-| date | Number price of the recurrence. |
+| type | Type of Recurrence. |
+| date | Number price of the Recurrence. |
 | amount | Amount of the Recurrence. |
 | description | Description of Recurrence. |
 
