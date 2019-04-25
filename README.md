@@ -1,17 +1,13 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
-</p>
+# Space Invoices API documentation repository
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+[![Join the chat at https://gitter.im/space-invoices/space-invoices-documentation](https://badges.gitter.im/space-invoices/space-invoices-documentation.svg)](https://gitter.im/space-invoices/space-invoices-documentation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+This is the official Space Invoices API documentation repository.
+You can read the full documentation on [github pages](https://space-invoices.github.io/space-invoices-documentation).
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
+> NOTE: The documentation is a work in progress and will be updated regularly until version 1.0.0.
 
-Features
-------------
+## Deploying to github pages
 
 * **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [PayPal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
 
@@ -43,19 +39,14 @@ You're going to need:
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
 ### Getting Set Up
+```bash
+./deploy.sh
+```
 
-1. Fork this repository on GitHub.
-2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
-3. `cd slate`
-4. Initialize and start Slate. You can either do this locally, or with Vagrant:
+## Running
 
-```shell
-# either run this to run locally
-bundle install
+```bash
 bundle exec middleman server
-
-# OR run this to run with vagrant
-vagrant up
 ```
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
