@@ -396,10 +396,10 @@
             <a href="#defaults" class="toc-h1 toc-link" data-title="defaults">Defaults</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-new-client" class="toc-h2 toc-link" data-title="create-new-client">Create New Client</a>
+                    <a href="#create-new-default" class="toc-h2 toc-link" data-title="create-new-default">Create New Default</a>
                   </li>
                   <li>
-                    <a href="#update-client" class="toc-h2 toc-link" data-title="update-client">Update Client</a>
+                    <a href="#update-default" class="toc-h2 toc-link" data-title="update-default">Update Default</a>
                   </li>
               </ul>
           </li>
@@ -6118,7 +6118,7 @@ This function greatly simplifies the process of issuing documents.</p>
 <td>Default number of days from date of documetn for dateDue date.</td>
 </tr>
 </tbody></table>
-<h2 id='create-new-client'>Create New Client</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/defaults"</span> <span class="se">\</span>
+<h2 id='create-new-default'>Create New Default</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/defaults"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"invoice_dueDays"</span> <span class="se">\</span>
   -d <span class="nv">value</span><span class="o">=</span><span class="s2">"30"</span>
@@ -6188,7 +6188,7 @@ This function greatly simplifies the process of issuing documents.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='update-client'>Update Client</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/defaults/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
+<h2 id='update-default'>Update Default</h2><pre class="highlight shell tab-shell"><code>curl -X PUT <span class="s2">"https://api.spaceinvoices.com/v1/defaults/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"invoice_dueDays"</span> <span class="se">\</span>
   -d <span class="nv">value</span><span class="o">=</span><span class="s2">"30"</span>
