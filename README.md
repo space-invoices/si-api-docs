@@ -9,6 +9,8 @@ You can read the full documentation on [github pages](https://space-invoices.git
 
 ```bash
 brew install ruby
+gem install bundler
+bundle install
 ```
 
 ## Deploying to github pages
