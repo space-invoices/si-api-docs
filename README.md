@@ -5,6 +5,12 @@
 This is the official Space Invoices API documentation repository.
 You can read the full documentation on [github pages](https://space-invoices.github.io/space-invoices-documentation).
 
+## Requirements
+
+```bash
+brew install ruby
+```
+
 ## Deploying to github pages
 
 ### Getting Set Up
