@@ -1,11 +1,11 @@
 # Clients
 
-Clients are businesses, end users, organizations, and any other entity that can receive a document from an organization. Clients may be  saved and later referenced using their unique ID.
+Clients are businesses, end users, organizations, and any other entity that can receive a document from an organization. Clients may be saved and later referenced using their unique ID.
 
 ## Create New Client
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/clients" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/clients" \
   -H "Authorization: LAUNCH_CODE" \
   -d name="Space Exploration Technologies corp" \
   -d address="Rocket Road" \
@@ -19,20 +19,21 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/cli
 ```
 
 ```javascript
-spaceInvoices.clients.create(organizationId, {
-  name: "Space Exploration Technologies corp",
-  address: "Rocket Road",
-  city: "Hawthorne",
-  zip: "CA 90250",
-  country: "USA",
-  email: "info@spacex.com",
-  contact: "Elon M.",
-  phone: "+1 123 456 7890",
-  note: "Orders rocket fuel every month.",
-})
-.then(function(client) {
-  console.log(client);
-})
+spaceInvoices.clients
+  .create(organizationId, {
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    email: "info@spacex.com",
+    contact: "Elon M.",
+    phone: "+1 123 456 7890",
+    note: "Orders rocket fuel every month.",
+  })
+  .then(function (client) {
+    console.log(client);
+  });
 ```
 
 ```csharp
@@ -85,6 +86,7 @@ SpaceClient client = clientService.Create("ORGANIZATION_ID", createOptions);
   "note": "Orders rocket fuel every month."
 }
 ```
+
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -159,6 +161,7 @@ public class SpaceClient
   public string Swift { get; set; }
 }
 ```
+
 ```php
 <?php
   {
@@ -185,36 +188,35 @@ This endpoint creates a new Client.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of the organization for which we create the Client. |
+|                 |                                                       |
+| --------------: | ----------------------------------------------------- |
+| id **required** | ID of the Organization on which we create the Client. |
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name **required** | Name of the company, client, or other type of organization. |
-| address | Street or similar address. |
-| address2 | Address line 2. |
-| city | City name. |
-| zip | Zip / post code. |
-| country | String name of country. |
-| taxSubject _default is *false*_ | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
-| companyNumber | String registration or similar identification number. |
-| email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of the Client. |
-| phone | Phone number of the Client.|
-| note | Text note about the Client. |
+|                                 |                                                                               |
+| ------------------------------: | ----------------------------------------------------------------------------- |
+|               name **required** | Name of the company, client, or other type of organization.                   |
+|                         address | Street or similar address.                                                    |
+|                        address2 | Address line 2.                                                               |
+|                            city | City name.                                                                    |
+|                             zip | Zip / post code.                                                              |
+|                         country | String name of country.                                                       |
+| taxSubject _default is *false*_ | Specify if the Client is subject to tax.                                      |
+|                       taxNumber | String VAT / GST / sales tax / etc. tax identification number.                |
+|                   companyNumber | String registration or similar identification number.                         |
+|                           email | Email address of Client. _Used as recipient when sending documents in email._ |
+|                         contact | Name of the Client.                                                           |
+|                           phone | Phone number of the Client.                                                   |
+|                            note | Text note about the Client.                                                   |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| id | Unique ID of model instance. |
-
+|     |                              |
+| --: | ---------------------------- |
+|  id | Unique ID of model instance. |
 
 ## Update Client
 
@@ -233,20 +235,21 @@ curl -X PUT "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" 
 ```
 
 ```javascript
-spaceInvoices.clients.edit(clientId, {
-  name: "Space Exploration Technologies corp",
-  address: "Rocket Road",
-  city: "Hawthorne",
-  zip: "CA 90250",
-  country: "USA",
-  email: "info@spacex.com",
-  contact: "Elon M.",
-  phone: "+1 123 456 7890",
-  note: "Orders rocket fuel every month.",
-})
-.then(function(client) {
-  console.log(client);
-})
+spaceInvoices.clients
+  .edit(clientId, {
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    email: "info@spacex.com",
+    contact: "Elon M.",
+    phone: "+1 123 456 7890",
+    note: "Orders rocket fuel every month.",
+  })
+  .then(function (client) {
+    console.log(client);
+  });
 ```
 
 ```csharp
@@ -300,6 +303,7 @@ SpaceClient client = clientService.Edit("ORGANIZATION_ID", editOptions);
   "note": "Orders rocket fuel every month."
 }
 ```
+
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -315,6 +319,7 @@ SpaceClient client = clientService.Edit("ORGANIZATION_ID", editOptions);
   "note": "Orders rocket fuel every month."
 }
 ```
+
 ```csharp
 public class SpaceClient
 {
@@ -373,6 +378,7 @@ public class SpaceClient
   public string Swift { get; set; }
 }
 ```
+
 ```php
 <?php
   {
@@ -399,33 +405,34 @@ This endpoint updates a Client by id.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|     |     |
+| --: | --- |
+
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name **required** | Name of the company, client, or other type of organization. |
-| address | Street or similar address. |
-| address2 | Address line 2. |
-| city | City name. |
-| zip | Zip / post code. |
-| country | String name of country. |
-| taxSubject _default is *false*_ | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
-| companyNumber | String registration or similar identification number. |
-| email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of the Client. |
-| phone | Phone number of the Client.|
-| note | Text note about the Client. |
+|                                 |                                                                               |
+| ------------------------------: | ----------------------------------------------------------------------------- |
+|               name **required** | Name of the company, client, or other type of organization.                   |
+|                         address | Street or similar address.                                                    |
+|                        address2 | Address line 2.                                                               |
+|                            city | City name.                                                                    |
+|                             zip | Zip / post code.                                                              |
+|                         country | String name of country.                                                       |
+| taxSubject _default is *false*_ | Specify if the Client is subject to tax.                                      |
+|                       taxNumber | String VAT / GST / sales tax / etc. tax identification number.                |
+|                   companyNumber | String registration or similar identification number.                         |
+|                           email | Email address of Client. _Used as recipient when sending documents in email._ |
+|                         contact | Name of the Client.                                                           |
+|                           phone | Phone number of the Client.                                                   |
+|                            note | Text note about the Client.                                                   |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
+|     |     |
+| --: | --- |
 
 
 ## Delete Client
@@ -436,10 +443,9 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4
 ```
 
 ```javascript
-spaceInvoices.clients.delete(clientId)
-.then(function(count) {
+spaceInvoices.clients.delete(clientId).then(function (count) {
   console.log(count);
-})
+});
 ```
 
 ```csharp
@@ -460,11 +466,13 @@ Counter deleted = clientService.Delete("CLIENT_ID";
   "count": 1
 }
 ```
+
 ```javascript
 {
   "count": 1
 }
 ```
+
 ```csharp
 public class Counter
 {
@@ -472,6 +480,7 @@ public class Counter
   public int Count { get; set; }
 }
 ```
+
 ```php
 <?php
   {
@@ -490,18 +499,17 @@ To view soft deleted instances, add `deleted: true` property to the filter.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|                 |                                 |
+| --------------: | ------------------------------- |
 | id **required** | ID of the Client to be deleted. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
+|       |                                      |
+| ----: | ------------------------------------ |
 | count | Number of successfuly deleted items. |
-
 
 ## List Clients
 
@@ -511,11 +519,11 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/cl
 ```
 
 ```javascript
-spaceInvoices.clients.list(organizationId)
-.then(function(clients) {
+spaceInvoices.clients.list(organizationId).then(function (clients) {
   console.log(clients);
-})
+});
 ```
+
 ```csharp
 SpaceClientService clientService = new SpaceClientService();
 List<SpaceClient> list = clientService.List("ORGANIZATION_ID");
@@ -546,27 +554,29 @@ List<SpaceClient> list = clientService.List("ORGANIZATION_ID");
   }
 ]
 ```
+
 ```javascript
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space Exploration Technologies corp",
-    "address": "Rocket Road",
-    "city": "Hawthorne",
-    "zip": "CA 90250",
-    "country": "USA",
-    "email": "info@spacex.com",
-    "contact": "Elon M.",
-    "phone": "+1 123 456 7890",
-    "note": "Orders rocket fuel every month."
-  }
-]
+    id: "5a3683ea12d5a67dd0ef2f4c",
+    organizationId: "5a3683ea12d5a67dd0ef2f4d",
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    email: "info@spacex.com",
+    contact: "Elon M.",
+    phone: "+1 123 456 7890",
+    note: "Orders rocket fuel every month.",
+  },
+];
 ```
 
 ```csharp
-List<SpaceClient> 
+List<SpaceClient>
 ```
+
 ```php
 <?php
   [
@@ -595,31 +605,30 @@ This endpoint lists Organization's Clients.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of the Organization. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+|                 |                                                                                    |
+| --------------: | ---------------------------------------------------------------------------------- |
+| id **required** | ID of the Organization.                                                            |
+|          filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name | Name of the company, client, or other type of organization. |
-| address | Street or similar address. |
-| address2 | Address line 2. |
-| city | City name. |
-| zip | Zip / post code. |
-| country | String name of country. |
-| taxSubject | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
-| companyNumber | String registration or similar identification number. |
-| email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of the Client. |
-| phone | Phone number of the Client.|
-| note | Text note about the Client. |
-
+|               |                                                                               |
+| ------------: | ----------------------------------------------------------------------------- |
+|          name | Name of the company, client, or other type of organization.                   |
+|       address | Street or similar address.                                                    |
+|      address2 | Address line 2.                                                               |
+|          city | City name.                                                                    |
+|           zip | Zip / post code.                                                              |
+|       country | String name of country.                                                       |
+|    taxSubject | Specify if the Client is subject to tax.                                      |
+|     taxNumber | String VAT / GST / sales tax / etc. tax identification number.                |
+| companyNumber | String registration or similar identification number.                         |
+|         email | Email address of Client. _Used as recipient when sending documents in email._ |
+|       contact | Name of the Client.                                                           |
+|         phone | Phone number of the Client.                                                   |
+|          note | Text note about the Client.                                                   |
 
 ## Search Clients
 
@@ -629,11 +638,11 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/se
 ```
 
 ```javascript
-spaceInvoices.clients.search(organizationId, 'Space')
-.then(function(clients) {
+spaceInvoices.clients.search(organizationId, "Space").then(function (clients) {
   console.log(clients);
-})
+});
 ```
+
 ```csharp
 SpaceClientService clientService = new SpaceClientService();
 List<SpaceClient> list = clientService.Search("ORGANIZATION_ID", "Space");
@@ -664,26 +673,29 @@ List<SpaceClient> list = clientService.Search("ORGANIZATION_ID", "Space");
   }
 ]
 ```
+
 ```javascript
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space Exploration Technologies corp",
-    "address": "Rocket Road",
-    "city": "Hawthorne",
-    "zip": "CA 90250",
-    "country": "USA",
-    "email": "info@spacex.com",
-    "contact": "Elon M.",
-    "phone": "+1 123 456 7890",
-    "note": "Orders rocket fuel every month."
-  }
-]
+    id: "5a3683ea12d5a67dd0ef2f4c",
+    organizationId: "5a3683ea12d5a67dd0ef2f4d",
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    email: "info@spacex.com",
+    contact: "Elon M.",
+    phone: "+1 123 456 7890",
+    note: "Orders rocket fuel every month.",
+  },
+];
 ```
+
 ```csharp
 List<SpaceClient>
 ```
+
 ```php
 <?php
   [
@@ -712,31 +724,31 @@ This endpoint searches for Organization's Clients.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of the Organization. |
-| term **required** | String term to search within Client properties. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+|                   |                                                                                    |
+| ----------------: | ---------------------------------------------------------------------------------- |
+|   id **required** | ID of the Organization.                                                            |
+| term **required** | String term to search within Client properties.                                    |
+|            filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name | Name of the company, client, or other type of organization. |
-| address | Street or similar address. |
-| address2 | Address line 2. |
-| city | City name. |
-| zip | Zip / post code. |
-| country | String name of country. |
-| taxSubject | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
-| companyNumber | String registration or similar identification number. |
-| email | Email address of Client. _Used as recipient when sending documents in email._ |
-| contact | Name of the Client. |
-| phone | Phone number of the Client.|
-| note | Text note about Client. |
+|               |                                                                               |
+| ------------: | ----------------------------------------------------------------------------- |
+|          name | Name of the company, client, or other type of organization.                   |
+|       address | Street or similar address.                                                    |
+|      address2 | Address line 2.                                                               |
+|          city | City name.                                                                    |
+|           zip | Zip / post code.                                                              |
+|       country | String name of country.                                                       |
+|    taxSubject | Specify if the Client is subject to tax.                                      |
+|     taxNumber | String VAT / GST / sales tax / etc. tax identification number.                |
+| companyNumber | String registration or similar identification number.                         |
+|         email | Email address of Client. _Used as recipient when sending documents in email._ |
+|       contact | Name of the Client.                                                           |
+|         phone | Phone number of the Client.                                                   |
+|          note | Text note about Client.                                                       |
 
 ## Get Client by ID
 
@@ -746,11 +758,11 @@ curl "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
 ```
 
 ```javascript
-spaceInvoices.clients.getById(clientId)
-.then(function(client) {
+spaceInvoices.clients.getById(clientId).then(function (client) {
   console.log(client);
-})
+});
 ```
+
 ```csharp
 SpaceClientService clientService = new SpaceClientService();
 SpaceClient client = clientService.GetById(client.Id);
@@ -779,6 +791,7 @@ SpaceClient client = clientService.GetById(client.Id);
   "note": "Orders rocket fuel every month."
 }
 ```
+
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -794,6 +807,7 @@ SpaceClient client = clientService.GetById(client.Id);
   "note": "Orders rocket fuel every month."
 }
 ```
+
 ```csharp
 public class SpaceClient
 {
@@ -852,6 +866,7 @@ public class SpaceClient
   public string Swift { get; set; }
 }
 ```
+
 ```php
 <?php
   {
@@ -878,27 +893,26 @@ This endpoint returns a Client by their ID.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|                 |                   |
+| --------------: | ----------------- |
 | id **required** | ID of the Client. |
-
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name | Name of the company, client, or other type of organization. |
-| address | Street or similar address. |
-| address2 | Address line 2. |
-| city | City name. |
-| zip | Zip / post code. |
-| country | String name of country. |
-| taxSubject | Specify if the Client is subject to tax. |
-| taxNumber | String VAT / GST / sales tax / etc. tax identification number. |
-| companyNumber | String registration or similar identification number. |
-| email | Email address of the Client. _Used as recipient when sending documents in email._ |
-| contact | Name of the Client. |
-| phone | Phone number of the Client. |
-| note | Text note about the Client. |
+|               |                                                                                   |
+| ------------: | --------------------------------------------------------------------------------- |
+|          name | Name of the company, client, or other type of organization.                       |
+|       address | Street or similar address.                                                        |
+|      address2 | Address line 2.                                                                   |
+|          city | City name.                                                                        |
+|           zip | Zip / post code.                                                                  |
+|       country | String name of country.                                                           |
+|    taxSubject | Specify if the Client is subject to tax.                                          |
+|     taxNumber | String VAT / GST / sales tax / etc. tax identification number.                    |
+| companyNumber | String registration or similar identification number.                             |
+|         email | Email address of the Client. _Used as recipient when sending documents in email._ |
+|       contact | Name of the Client.                                                               |
+|         phone | Phone number of the Client.                                                       |
+|          note | Text note about the Client.                                                       |

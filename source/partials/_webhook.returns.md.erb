@@ -1,0 +1,22 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Webhook object:**
+<% end %>
+
+```json
+<% if type != 'count' %>
+<%= !list ? '' : '[' %>{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "events": [ "client/create" ]
+}<%= !list ? '' : ', {...}]' %>
+<% else %>
+{
+  "count": 1
+}
+<% end %>
+```

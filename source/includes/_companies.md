@@ -1,16 +1,16 @@
 # Companies
 
-Companies is a searchable collection of companies and organizations maintained.
-This function greatly simplifies the process of issuing documents.
+Companies is a read-only searchable collection of companies. If looking for endpont to add user companies please refer to Organizations section.
 
 This database is recommended for user interfaces should you setup a "search while you type feature", allowing you to limit searches to specific countries based on the origin of the user.
 
 We update this database as frequently as possible to ensure usability and convenience.
 
 Current status:
+
 - [x] Slovenia
 
-Have a country you would like to add to this list? Please do email us and we are happy to work with you.
+Have a country you would like to add to this list? Please do email us and we are happy to look into it.
 
 ## List Companies
 
@@ -20,11 +20,11 @@ curl "https://api.spaceinvoices.com/v1/companies" \
 ```
 
 ```javascript
-spaceInvoices.companies.list()
-.then(function(companies) {
+spaceInvoices.companies.list().then(function (companies) {
   console.log(companies);
-})
+});
 ```
+
 ```csharp
 SpaceCompanyService companyService = new SpaceCompanyService();
 List<SpaceCompany> companies = companyService.List();
@@ -53,23 +53,25 @@ List<SpaceCompany> companies = companyService.List();
   }
 ]
 ```
+
 ```javascript
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "name": "Space Exploration Technologies corp",
-    "address": "Rocket Road",
-    "city": "Hawthorne",
-    "zip": "CA 90250",
-    "country": "USA",
-    "taxNumber": "",
-    "taxSubject": true,
-    "companyNumber": "123456789"
-  }
-]
+    id: "5a3683ea12d5a67dd0ef2f4c",
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    taxNumber: "",
+    taxSubject: true,
+    companyNumber: "123456789",
+  },
+];
 ```
+
 ```csharp
-List<SpaceCompany> 
+List<SpaceCompany>
 
 public class SpaceCompany
 {
@@ -101,6 +103,7 @@ public class SpaceCompany
   public string CompanyNumber { get; set; }
 }
 ```
+
 ```php
 <?php
   [
@@ -127,27 +130,26 @@ This endpoint lists Companies.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|        |                                                                                    |
+| -----: | ---------------------------------------------------------------------------------- |
 | filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| id | Unique ID of Company model instance. |
-| name | Name of the Company. |
-| address | Address of the Company. |
-| address2 | Address line two of the Company. |
-| city | City of the Company. |
-| zip | ZIP / post code of the Company. |
-| country | Country of the Company. |
-| taxNumber | Tax number of the Company. |
-| taxSubject | Boolean if the Company is subject to VAT / GST / sales tax or other tax. |
-| companyNumber | The Company or other organization registration number. |
-
+|               |                                                                          |
+| ------------: | ------------------------------------------------------------------------ |
+|            id | Unique ID of Company model instance.                                     |
+|          name | Name of the Company.                                                     |
+|       address | Address of the Company.                                                  |
+|      address2 | Address line two of the Company.                                         |
+|          city | City of the Company.                                                     |
+|           zip | ZIP / post code of the Company.                                          |
+|       country | Country of the Company.                                                  |
+|     taxNumber | Tax number of the Company.                                               |
+|    taxSubject | Boolean if the Company is subject to VAT / GST / sales tax or other tax. |
+| companyNumber | The Company or other organization registration number.                   |
 
 ## Search Companies
 
@@ -157,11 +159,11 @@ curl "https://api.spaceinvoices.com/v1/companies/search?term=Space" \
 ```
 
 ```javascript
-spaceInvoices.companies.search('space')
-.then(function(companies) {
+spaceInvoices.companies.search("space").then(function (companies) {
   console.log(companies);
-})
+});
 ```
+
 ```csharp
 SpaceCompanyService companyService = new SpaceCompanyService();
 List<SpaceCompany> companies = companyService.Search("space");
@@ -190,23 +192,25 @@ List<SpaceCompany> companies = companyService.Search("space");
   }
 ]
 ```
+
 ```javascript
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "name": "Space Exploration Technologies corp",
-    "address": "Rocket Road",
-    "city": "Hawthorne",
-    "zip": "CA 90250",
-    "country": "USA",
-    "taxNumber": "",
-    "taxSubject": true,
-    "companyNumber": "123456789"
-  }
-]
+    id: "5a3683ea12d5a67dd0ef2f4c",
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    taxNumber: "",
+    taxSubject: true,
+    companyNumber: "123456789",
+  },
+];
 ```
+
 ```csharp
-List<SpaceCompany> 
+List<SpaceCompany>
 
 public class SpaceCompany
 {
@@ -238,6 +242,7 @@ public class SpaceCompany
   public string CompanyNumber { get; set; }
 }
 ```
+
 ```php
 <?php
   [
@@ -264,24 +269,24 @@ This endpoint searches for Companies.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| term **required** | String term to search for in Company properties. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+|                   |                                                                                    |
+| ----------------: | ---------------------------------------------------------------------------------- |
+| term **required** | String term to search for in Company properties.                                   |
+|            filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| id | Unique ID of the Company model instance. |
-| name | Name of the Company. |
-| address | Address of the Company. |
-| address2 | Address line two of the Company. |
-| city | City of the Company. |
-| zip | ZIP / post code of the Company. |
-| country | Country of the Company. |
-| taxNumber | Tax number of the Company. |
-| taxSubject | Boolean if Company is subject to VAT / GST / sales tax or other tax. |
-| companyNumber | The Company or other organization registration number. |
+|               |                                                                      |
+| ------------: | -------------------------------------------------------------------- |
+|            id | Unique ID of the Company model instance.                             |
+|          name | Name of the Company.                                                 |
+|       address | Address of the Company.                                              |
+|      address2 | Address line two of the Company.                                     |
+|          city | City of the Company.                                                 |
+|           zip | ZIP / post code of the Company.                                      |
+|       country | Country of the Company.                                              |
+|     taxNumber | Tax number of the Company.                                           |
+|    taxSubject | Boolean if Company is subject to VAT / GST / sales tax or other tax. |
+| companyNumber | The Company or other organization registration number.               |

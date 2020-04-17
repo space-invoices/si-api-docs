@@ -1,0 +1,159 @@
+# Webhooks
+
+<%= partial 'partials/endpoints', locals: { plural: 'webhooks' } %>
+
+Webhooks allow subscribing to changes on most data models in Space Invoices.
+
+When a Webhook subscription for a model event is triggered a POST request is sent to the registered URL.
+
+If the request returns a 2\*\* status the process is complete.
+
+If a non 2\*\* status is returned three additional re-tries will be made in 2 minutes, 4 minutes and finally in 8 minutes after the initial request.
+
+## The Webhook object
+
+> **The Webhook object:**
+
+<%= partial 'partials/webhook.returns', locals: { type: 'object' } %>
+<%= partial 'partials/webhook.properties' %>
+
+## Supported model events
+
+The following event types can be used when registering a Webhook subscription
+
+`create`, `update` and `delete`
+
+`*` - Indicates all subscriptions on all models, must be used without specifying a model.
+
+## Create a Webhook
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/webhooks" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d url="https://example.com" \
+  -d events[0]="client/create"
+```
+
+<%= partial 'partials/webhook.returns', locals: { type: 'add' } %>
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/organizations/:id/webhooks`
+
+#### Query parameters
+
+|                 |                                                         |
+| --------------: | ------------------------------------------------------- |
+| id **required** | ID of the Organization on which the Webhook is created. |
+
+#### Properties
+
+<%= partial 'partials/webhook.properties', locals: { type: 'add' } %>
+
+## Retrieve a Webhook
+
+```shell
+curl "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51f" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial 'partials/webhook.returns' %>
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/webhooks/:id`
+
+#### Query parameters
+
+|                 |                                    |
+| --------------: | ---------------------------------- |
+| id **required** | ID of the Webhook being retrieved. |
+
+## Update a Webhook
+
+```shell
+curl -X PATCH "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51f" \
+  -H "Authorization: LAUNCH_CODE"
+  -d events[0]="client/create"
+```
+
+<%= partial 'partials/webhook.returns' %>
+
+<%= partial 'partials/update.description' %>
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/webhooks/:id`
+
+#### Query parameters
+
+|                 |                                    |
+| --------------: | ---------------------------------- |
+| id **required** | ID of the Webhook being retrieved. |
+
+## Delete a Webhook
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51f" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial 'partials/webhook.returns', locals: { type: 'count' } %>
+
+<%= partial 'partials/delete-soft.description' %>
+
+### HTTP Request
+
+`DELETE https://api.spaceinvoices.com/v1/webhooks/:id`
+
+#### Query parameters
+
+|                 |                                  |
+| --------------: | -------------------------------- |
+| id **required** | ID of the Webhook being deleted. |
+
+## List all Webhooks
+
+```shell
+curl "https://api.spaceinvoices.com/v1/webhooks" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial 'partials/webhook.returns', locals: { type: 'list' } %>
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/webhooks`
+
+## Count Webhooks
+
+```shell
+curl "https://api.spaceinvoices.com/v1/webhooks/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial 'partials/webhook.returns', locals: { type: 'count' } %>
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/webhooks/count`
+
+## Webhook event body
+
+Data posted to the URL endpoint when subscribed Webhook event is triggered
+
+```json
+{
+  "event": "client/create",
+  "organizationId": "",
+  "data": {...},
+  "uid": "859e2ee4-a1aa-45a1-b0d3-2dfe5b86a672"
+}
+```
+
+|                |                                                                                  |
+| -------------: | -------------------------------------------------------------------------------- |
+|          event | String, name of the triggered event.                                             |
+| organizationId | String, the id of organization owner of the model where the event was triggered. |
+|           data | Object, state data of model after the event.                                     |
+|            uid | Unique identifier of the event request.                                          |

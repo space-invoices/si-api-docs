@@ -1,5 +1,15 @@
 # Changelog
 
+## # 16.4.2020
+
+- Added 'incoming' property to document
+- Added Webhooks section
+- Added Soft delete section
+
+## # 12.2.2019
+
+- Added Fiscalization (SI) section
+
 ## # 4.11.2018
 
 - Added instructions for `_documentItems[].save` property to the create document method

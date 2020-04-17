@@ -1,0 +1,11 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+
+| | |
+| --: | --- |
+<% if type == 'object' %>
+| id | String, unique identifier. |
+<% end %>
+| url <%= add ? '**required**' : '' %> | Url where information about the triggered Webhook event will be posted. |
+| events <%= add ? '**required**' : '' %> | Array, list of events to subscribe to. _Each event must be of the format "MODEL_NAME/EVENT_NAME"._ |
+| enabled | Boolean, if Webhook is enabled. _Will not be triggered if not enabled._ |

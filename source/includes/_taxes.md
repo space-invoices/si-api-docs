@@ -9,7 +9,7 @@ NOTE: When adding taxes to document items or items, the tax can be easily refere
 ## Create New Tax
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/taxes" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/taxes" \
   -H "Authorization: LAUNCH_CODE" \
   -d name="Value Added Tax" \
   -d abbreviation="VAT" \
@@ -18,17 +18,21 @@ curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/tax
 ```
 
 ```javascript
-spaceInvoices.taxes.create(organizationId, {
-  name: "Value Added Tax",
-  abbreviation: "VAT",
-  _taxRates: [{
-    rate: 15
-  }]
-})
-.then(function(tax) {
-  console.log(tax);
-})
+spaceInvoices.taxes
+  .create(organizationId, {
+    name: "Value Added Tax",
+    abbreviation: "VAT",
+    _taxRates: [
+      {
+        rate: 15,
+      },
+    ],
+  })
+  .then(function (tax) {
+    console.log(tax);
+  });
 ```
+
 ```csharp
 List<SpaceTaxRate> taxRates = new List<SpaceTaxRate>();
 taxRates.Add(new SpaceTaxRate { Rate = 22, DateValidFrom = "2018-01-01" });
@@ -55,7 +59,6 @@ SpaceTax tax = taxService.Create("ORGANIZATION_ID", createOptions);
   ));
 ?>
 ```
-
 
 > Returns:
 
@@ -92,6 +95,7 @@ SpaceTax tax = taxService.Create("ORGANIZATION_ID", createOptions);
   "compound": false,
 }
 ```
+
 ```csharp
 public class SpaceTax
 {
@@ -124,6 +128,7 @@ public class SpaceTaxRate
 
 }
 ```
+
 ```php
 <?php
   {
@@ -150,32 +155,31 @@ This endpoint creates a new Tax.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of the Organization for which the Tax is created. |
+|                 |                                                     |
+| --------------: | --------------------------------------------------- |
+| id **required** | ID of the Organization on which the Tax is created. |
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name | Name of the Tax. |
-| abbreviation | Abbreviation of the Tax name ie. VAT. |
-| classification | String classification of the tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
-| _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
-| rate | Rate of the tax. |
-| dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
-| [](#empty) | |
-| recoverable _Default is *true*_ | Boolean, if the ax is recoverable after being paid. |
-| compound _Default is *false*_ | Boolean, if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
+|                                 |                                                                                                                                                                    |
+| ------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|                            name | Name of the Tax.                                                                                                                                                   |
+|                    abbreviation | Abbreviation of the Tax name ie. VAT.                                                                                                                              |
+|                  classification | String classification of the tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
+|                      \_taxRates | Array of rates the Tax has. [toggle definition](#expand)                                                                                                           |
+|                            rate | Rate of the tax.                                                                                                                                                   |
+|                   dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._                                             |
+|                      [](#empty) |                                                                                                                                                                    |
+| recoverable _Default is *true*_ | Boolean, if the ax is recoverable after being paid.                                                                                                                |
+|   compound _Default is *false*_ | Boolean, if the Tax is compound. \_Compound Tax is calculated based on Item price and any other Tax applied to Item.                                               |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| id | Unique ID of the model instance. |
-
+|     |                                  |
+| --: | -------------------------------- |
+|  id | Unique ID of the model instance. |
 
 ## Add New Rate to a Tax
 
@@ -187,14 +191,16 @@ curl "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates" 
 ```
 
 ```javascript
-spaceInvoices.taxes.addANewRateToTax(taxId, {
-  rate: 20,
-  "dateValidFrom": "2018-01-01"
-})
-.then(function(tax) {
-  console.log(tax);
-})
+spaceInvoices.taxes
+  .addANewRateToTax(taxId, {
+    rate: 20,
+    dateValidFrom: "2018-01-01",
+  })
+  .then(function (tax) {
+    console.log(tax);
+  });
 ```
+
 ```csharp
 
 SpaceTaxService taxService = new SpaceTaxService();
@@ -224,12 +230,14 @@ SpaceTaxRate taxRate = taxService.AddRateToTax("TAX_ID", taxRate);
   "dateValidFrom": "2018-01-01"
 }
 ```
+
 ```javascript
 {
   "rate": 20,
   "dateValidFrom": "2018-01-01"
 }
 ```
+
 ```csharp
 public class SpaceTaxRate
 {
@@ -241,6 +249,7 @@ public class SpaceTaxRate
 
 }
 ```
+
 ```php
 <?php
   {
@@ -258,23 +267,23 @@ This endpoint creates a new Rate for a Tax.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|                 |                                              |
+| --------------: | -------------------------------------------- |
 | id **required** | ID of the Tax for which the Rate is created. |
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| rate | Rate of tax. |
+|               |                                                                                                                        |
+| ------------: | ---------------------------------------------------------------------------------------------------------------------- |
+|          rate | Rate of tax.                                                                                                           |
 | dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
+|     |     |
+| --: | --- |
 
 
 ## Update Tax
@@ -286,13 +295,15 @@ curl -X PUT "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
 ```
 
 ```javascript
-spaceInvoices.taxes.edit(taxId, {
-  name: "Value Added Tax 2",
-})
-.then(function(tax) {
-  console.log(tax);
-})
+spaceInvoices.taxes
+  .edit(taxId, {
+    name: "Value Added Tax 2",
+  })
+  .then(function (tax) {
+    console.log(tax);
+  });
 ```
+
 ```csharp
 SpaceTaxService taxService = new SpaceTaxService();
 
@@ -329,6 +340,7 @@ SpaceTax tax = taxService.Edit("TAX_ID", editOptions);
   "compound": false,
 }
 ```
+
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -345,6 +357,7 @@ SpaceTax tax = taxService.Edit("TAX_ID", editOptions);
   "compound": false,
 }
 ```
+
 ```csharp
 public class SpaceTax
 {
@@ -380,6 +393,7 @@ public class SpaceTaxRate
 
 }
 ```
+
 ```php
 <?php
   {
@@ -406,29 +420,30 @@ This endpoint updates a Tax by ID.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|     |     |
+| --: | --- |
+
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name **required** | Name of the Tax. |
-| _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
-| rate | Rate of the tax. |
-| abbreviation | Abbreviation of the Tax name ie. VAT. |
-| classification | String classification of tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
-| dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
-| [](#empty) | |
-| recoverable _Default is *true*_ | Boolean, if the Tax is recoverable after being paid. |
-| compound _Default is *false*_ | Boolean, if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
+|                                 |                                                                                                                                                                |
+| ------------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|               name **required** | Name of the Tax.                                                                                                                                               |
+|                      \_taxRates | Array of rates the Tax has. [toggle definition](#expand)                                                                                                       |
+|                            rate | Rate of the tax.                                                                                                                                               |
+|                    abbreviation | Abbreviation of the Tax name ie. VAT.                                                                                                                          |
+|                  classification | String classification of tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
+|                   dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._                                         |
+|                      [](#empty) |                                                                                                                                                                |
+| recoverable _Default is *true*_ | Boolean, if the Tax is recoverable after being paid.                                                                                                           |
+|   compound _Default is *false*_ | Boolean, if the Tax is compound. \_Compound Tax is calculated based on Item price and any other Tax applied to Item.                                           |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
+|     |     |
+| --: | --- |
 
 
 ## Delete Tax
@@ -439,10 +454,9 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c"
 ```
 
 ```javascript
-spaceInvoices.taxes.delete(taxId)
-.then(function(count) {
+spaceInvoices.taxes.delete(taxId).then(function (count) {
   console.log(count);
-})
+});
 ```
 
 ```csharp
@@ -463,11 +477,13 @@ Counter counter = taxService.Delete("TAX_ID");
   "count": 1
 }
 ```
+
 ```javascript
 {
   "count": 1
 }
 ```
+
 ```csharp
 public class Counter
 {
@@ -475,6 +491,7 @@ public class Counter
   public int Count { get; set; }
 }
 ```
+
 ```php
 <?php
   {
@@ -493,18 +510,17 @@ A Tax can only be deleted if it is not used on any Document.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|                 |                          |
+| --------------: | ------------------------ |
 | id **required** | ID of the Tax to delete. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
+|       |                                       |
+| ----: | ------------------------------------- |
 | count | Number of successfully deleted taxes. |
-
 
 ## List Taxes
 
@@ -514,11 +530,11 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/ta
 ```
 
 ```javascript
-spaceInvoices.taxes.list(organizationId)
-.then(function(taxes) {
+spaceInvoices.taxes.list(organizationId).then(function (taxes) {
   console.log(taxes);
-})
+});
 ```
+
 ```csharp
 SpaceTaxService taxService = new SpaceTaxService();
 List<SpaceTax> taxes = taxService.List("ORGANIZATION_ID");
@@ -550,37 +566,40 @@ List<SpaceTax> taxes = taxService.List("ORGANIZATION_ID");
   }
 ]
 ```
+
 ```javascript
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "tax",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
+    id: "5a3683ea12d5a67dd0ef2f4c",
+    organizationId: "5a3683ea12d5a67dd0ef2f4d",
+    name: "Space suit",
+    description: "Best in class suit made from durable composites.",
+    unit: "tax",
+    price: 100,
+    taxIds: ["5a3683ea12d5a67dd0ef2f4e"],
+    taxes: [
       {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
-        "_taxRates": [
+        id: "5a3683ea12d5a67dd0ef2f4e",
+        name: "VAT 22%",
+        _taxRates: [
           {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
+            id: "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            dateValidFrom: 1970 - 01 - 01,
+            rate: 22,
+          },
         ],
-        "recoverable": true,
-        "compound": false
-      }
-    ]
-  }
-]
+        recoverable: true,
+        compound: false,
+      },
+    ],
+  },
+];
 ```
+
 ```csharp
-List<SpaceTax> 
+List<SpaceTax>
 ```
+
 ```php
 <?php
   [
@@ -620,23 +639,23 @@ This endpoint lists the Organization's Taxes.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of the Organization. |
-| filter | Object containing query filters. See the [Filters](#filters) section for more details. |
+|                 |                                                                                        |
+| --------------: | -------------------------------------------------------------------------------------- |
+| id **required** | ID of the Organization.                                                                |
+|          filter | Object containing query filters. See the [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name  | Name of the Tax. |
-| abbreviation  | Abbreviation of the Tax name ie. VAT. |
+|                |                                                                                                                                                                    |
+| -------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|           name | Name of the Tax.                                                                                                                                                   |
+|   abbreviation | Abbreviation of the Tax name ie. VAT.                                                                                                                              |
 | classification | String classification of the tax. _Can be used to easily load high, low, special, etc. taxes across countries and states without the need to know specific rates._ |
-| _taxRates | Array of rates the Tax has. [toggle definition](#expand) |
-| rate | Rate of the tax. |
-| dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._ |
-| [](#empty) | |
-| recoverable | Boolean, if the Tax is recoverable after being paid. |
-| compound | Boolean, if the Tax is compound. _Compound Tax is calculated based on Item price and any other Tax applied to Item. |
+|     \_taxRates | Array of rates the Tax has. [toggle definition](#expand)                                                                                                           |
+|           rate | Rate of the tax.                                                                                                                                                   |
+|  dateValidFrom | Date when the rate came into force. _Used on Documents to determine which rate should be used based on Document date._                                             |
+|     [](#empty) |                                                                                                                                                                    |
+|    recoverable | Boolean, if the Tax is recoverable after being paid.                                                                                                               |
+|       compound | Boolean, if the Tax is compound. \_Compound Tax is calculated based on Item price and any other Tax applied to Item.                                               |

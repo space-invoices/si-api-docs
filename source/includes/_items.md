@@ -1,13 +1,13 @@
 # Items
 
-Items are items, services and any other thing that a Organization can sell. They can be saved and later referenced using their unique ID.
+Items are items, services and any other thing that an Organization can sell. They can be saved and later referenced using their unique ID.
 
 NOTE: While taxes are added to items by adding id in `taxIds` property, they can also be referenced by their rate or classification value by providing either of the values in `_itemTaxes` array property as an object. The API will attempt to find the best match.
 
 ## Create New Item
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/orgnizations/5a3683ea12d5a67dd0ef2f4d/items" \
+curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/items" \
   -H "Authorization: LAUNCH_CODE" \
   -d name="Space suit" \
   -d description="Best in class suit made from durable composites." \
@@ -34,16 +34,17 @@ SpaceItem item = itemService.Create("ORGANIZATION_ID", createOptions);
 ```
 
 ```javascript
-spaceInvoices.items.create(organizationId, {
-  name: "Space suit",
-  description: "Best in class suit made from durable composites.",
-  unit: "item",
-  price: 100,
-  taxIds: [taxId]
-})
-.then(function(item) {
-  console.log(item);
-})
+spaceInvoices.items
+  .create(organizationId, {
+    name: "Space suit",
+    description: "Best in class suit made from durable composites.",
+    unit: "item",
+    price: 100,
+    taxIds: [taxId],
+  })
+  .then(function (item) {
+    console.log(item);
+  });
 ```
 
 ```php
@@ -71,6 +72,7 @@ spaceInvoices.items.create(organizationId, {
   "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
 }
 ```
+
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -82,6 +84,7 @@ spaceInvoices.items.create(organizationId, {
   "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
 }
 ```
+
 ```csharp
 public class SpaceItem
 {
@@ -107,6 +110,7 @@ public class SpaceItem
   public List<string> TaxIds { get; set; }
 }
 ```
+
 ```php
 <?php
   {
@@ -129,32 +133,31 @@ This endpoint creates a new Item.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of Orgniazation for which we are creting the Item. |
+|                 |                                                         |
+| --------------: | ------------------------------------------------------- |
+| id **required** | ID of organiazation for which we are creating the Item. |
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name **required** | Name of company, item or other type of organization. |
-| description | Description of item. |
-| unit | Unit of measurement. |
-| price | Number price of item. |
-| taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
-| _itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
-| rate | Rate of tax to match. |
-| classification | Classification of tax to match. |
-| [](#empty) | |
+|                   |                                                                                                                                                                               |
+| ----------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name **required** | Name of company, item or another type of organization.                                                                                                                        |
+|       description | Description of item.                                                                                                                                                          |
+|              unit | Unit of measurement.                                                                                                                                                          |
+|             price | Number, price of the item.                                                                                                                                                    |
+|            taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._             |
+|       \_itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
+|              rate | Rate of tax to match.                                                                                                                                                         |
+|    classification | Classification of tax to match.                                                                                                                                               |
+|        [](#empty) |                                                                                                                                                                               |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| id | Unique ID of model instance. |
-
+|     |                                  |
+| --: | -------------------------------- |
+|  id | Unique ID of the model instance. |
 
 ## Update Item
 
@@ -169,17 +172,19 @@ curl -X PUT "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
 ```
 
 ```javascript
-spaceInvoices.items.edit(documentId, {
-  name: "Space suit",
-  description: "Best in class suit made from durable composites.",
-  unit: "item",
-  price: 100,
-  taxIds: [taxId]
-})
-.then(function(item) {
-  console.log(item);
-})
+spaceInvoices.items
+  .edit(documentId, {
+    name: "Space suit",
+    description: "Best in class suit made from durable composites.",
+    unit: "item",
+    price: 100,
+    taxIds: [taxId],
+  })
+  .then(function (item) {
+    console.log(item);
+  });
 ```
+
 ```csharp
 SpaceItemEditOptions editOptions = new SpaceItemEditOptions
 {
@@ -218,6 +223,7 @@ SpaceItem item = itemService.Edit("ITEM_ID", editOptions);
   "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
 }
 ```
+
 ```javascript
 {
   "id": "5a3683ea12d5a67dd0ef2f4c",
@@ -229,6 +235,7 @@ SpaceItem item = itemService.Edit("ITEM_ID", editOptions);
   "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ]
 }
 ```
+
 ```csharp
 public class SpaceItem
 {
@@ -254,6 +261,7 @@ public class SpaceItem
   public List<string> TaxIds { get; set; }
 }
 ```
+
 ```php
 <?php
   {
@@ -276,29 +284,30 @@ This endpoint updates a Item by ID.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|     |     |
+| --: | --- |
+
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| name **required** | Name of company, item or other type of organization. |
-| description | Description of item. |
-| unit | Unit of measurement. |
-| price | Number price of item. |
-| taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._ |
-| _itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
-| rate | Rate of tax to match. |
-| classification | Classification of tax to match. |
-| [](#empty) | |
+|                   |                                                                                                                                                                               |
+| ----------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name **required** | Name of company, item or other type of organization.                                                                                                                          |
+|       description | Description of item.                                                                                                                                                          |
+|              unit | Unit of measurement.                                                                                                                                                          |
+|             price | Number price of item.                                                                                                                                                         |
+|            taxIds | Array of related Tax IDs that the Organization has. _The provided taxes will be expanded (loaded from Taxes) and used as default when adding items to documents._             |
+|       \_itemTaxes | Array of tax rates / classifications. _Can be used in case tax id is not known and should be loaded by API based on tax rate or classification._ [toggle definition](#expand) |
+|              rate | Rate of tax to match.                                                                                                                                                         |
+|    classification | Classification of tax to match.                                                                                                                                               |
+|        [](#empty) |                                                                                                                                                                               |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
+|     |     |
+| --: | --- |
 
 
 ## Delete Item
@@ -309,10 +318,9 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c"
 ```
 
 ```javascript
-spaceInvoices.items.delete(itemId)
-.then(function(count) {
+spaceInvoices.items.delete(itemId).then(function (count) {
   console.log(count);
-})
+});
 ```
 
 ```csharp
@@ -366,18 +374,17 @@ Soft deleted instances stay in database but are not returned on normal calls but
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
+|                 |                       |
+| --------------: | --------------------- |
 | id **required** | ID of Item to delete. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
+|       |                                      |
+| ----: | ------------------------------------ |
 | count | Number of successfuly deleted items. |
-
 
 ## List Items
 
@@ -387,11 +394,11 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/it
 ```
 
 ```javascript
-spaceInvoices.items.list(organizationId)
-.then(function(items) {
+spaceInvoices.items.list(organizationId).then(function (items) {
   console.log(items);
-})
+});
 ```
+
 ```csharp
 var filter = @"{
                 filter: {
@@ -442,37 +449,40 @@ List<SpaceItem> items = itemService.List("ORGANIZATION_ID", filter);
   }
 ]
 ```
+
 ```javascript
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
+    id: "5a3683ea12d5a67dd0ef2f4c",
+    organizationId: "5a3683ea12d5a67dd0ef2f4d",
+    name: "Space suit",
+    description: "Best in class suit made from durable composites.",
+    unit: "item",
+    price: 100,
+    taxIds: ["5a3683ea12d5a67dd0ef2f4e"],
+    taxes: [
       {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
-        "_taxRates": [
+        id: "5a3683ea12d5a67dd0ef2f4e",
+        name: "VAT 22%",
+        _taxRates: [
           {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
+            id: "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            dateValidFrom: 1970 - 01 - 01,
+            rate: 22,
+          },
         ],
-        "recoverable": true,
-        "compound": false
-      }
-    ]
-  }
-]
+        recoverable: true,
+        compound: false,
+      },
+    ],
+  },
+];
 ```
+
 ```csharp
 List<SpaceItem>
 ```
+
 ```php
 <?php
   [
@@ -512,33 +522,32 @@ This endpoint lists Organization's Items.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of Organization. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+|                 |                                                                                    |
+| --------------: | ---------------------------------------------------------------------------------- |
+| id **required** | ID of Organization.                                                                |
+|          filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| id | Unique ID of Item model instance. |
-| organizationId | ID of related Organization the Item belongs to. |
-| name | Name of Item. |
-| description | Description of Item. |
-| unit | Unit of measurement of Item. |
-| price | Price of Item. |
-| taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
-| name | Name of Tax. |
-| _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
-| dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
-| rate | Number rate of Tax. |
-| [](#empty-inner) | |
-| recoverable | Booleand indicator if paid Tax can be recovered by Organization. |
-| compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._ |
-| [](#empty) | |
-
+|                  |                                                                                                                                                                                 |
+| ---------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|               id | Unique ID of Item model instance.                                                                                                                                               |
+|   organizationId | ID of related Organization the Item belongs to.                                                                                                                                 |
+|             name | Name of Item.                                                                                                                                                                   |
+|      description | Description of Item.                                                                                                                                                            |
+|             unit | Unit of measurement of Item.                                                                                                                                                    |
+|            price | Price of Item.                                                                                                                                                                  |
+|            taxes | Collection of objects containing Item taxes. [toggle definition](#expand)                                                                                                       |
+|             name | Name of Tax.                                                                                                                                                                    |
+|       \_taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner)                                                                                                 |
+|    dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
+|             rate | Number rate of Tax.                                                                                                                                                             |
+| [](#empty-inner) |                                                                                                                                                                                 |
+|      recoverable | Booleand indicator if paid Tax can be recovered by Organization.                                                                                                                |
+|         compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._                                  |
+|       [](#empty) |                                                                                                                                                                                 |
 
 ## Search Items
 
@@ -548,11 +557,11 @@ curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/se
 ```
 
 ```javascript
-spaceInvoices.items.search(organizationId, 'space')
-.then(function(items) {
+spaceInvoices.items.search(organizationId, "space").then(function (items) {
   console.log(items);
-})
+});
 ```
+
 ```csharp
 
 
@@ -606,37 +615,40 @@ List<SpaceItem> items = itemService.Search("ORGANIZATION_ID", "space", filter);
   }
 ]
 ```
+
 ```javascript
 [
   {
-    "id": "5a3683ea12d5a67dd0ef2f4c",
-    "organizationId": "5a3683ea12d5a67dd0ef2f4d",
-    "name": "Space suit",
-    "description": "Best in class suit made from durable composites.",
-    "unit": "item",
-    "price": 100,
-    "taxIds": [ "5a3683ea12d5a67dd0ef2f4e" ],
-    "taxes": [
+    id: "5a3683ea12d5a67dd0ef2f4c",
+    organizationId: "5a3683ea12d5a67dd0ef2f4d",
+    name: "Space suit",
+    description: "Best in class suit made from durable composites.",
+    unit: "item",
+    price: 100,
+    taxIds: ["5a3683ea12d5a67dd0ef2f4e"],
+    taxes: [
       {
-        "id": "5a3683ea12d5a67dd0ef2f4e",
-        "name": "VAT 22%",
-        "_taxRates": [
+        id: "5a3683ea12d5a67dd0ef2f4e",
+        name: "VAT 22%",
+        _taxRates: [
           {
-            "id": "e5be3095-4d31-4f09-9ac7-d459a8792621",
-            "dateValidFrom": 1970-01-01,
-            "rate": 22
-          }
+            id: "e5be3095-4d31-4f09-9ac7-d459a8792621",
+            dateValidFrom: 1970 - 01 - 01,
+            rate: 22,
+          },
         ],
-        "recoverable": true,
-        "compound": false
-      }
-    ]
-  }
-]
+        recoverable: true,
+        compound: false,
+      },
+    ],
+  },
+];
 ```
+
 ```csharp
 List<SpaceItem>
 ```
+
 ```php
 <?php
   [
@@ -676,30 +688,30 @@ This endpoint searches for Organization's Items.
 
 #### Query parameters
 
-|      |     |
-| ---: | --- |
-| id **required** | ID of Organization. |
-| term **required** | String term to search for in Item properties. |
-| filter | Object containing query filters. See [Filters](#filters) section for more details. |
+|                   |                                                                                    |
+| ----------------: | ---------------------------------------------------------------------------------- |
+|   id **required** | ID of Organization.                                                                |
+| term **required** | String term to search for in Item properties.                                      |
+|            filter | Object containing query filters. See [Filters](#filters) section for more details. |
 
 ### HTTP Response
 
 #### Arguments
 
-|      |     |
-| ---: | --- |
-| id | Unique ID of Item model instance. |
-| organizationId | ID of related Organization the Item belongs to. |
-| name | Name of Item. |
-| description | Description of Item. |
-| unit | Unit of measurement of Item. |
-| price | Price of Item. |
-| taxes | Collection of objects containing Item taxes. [toggle definition](#expand) |
-| name | Name of Tax. |
-| _taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner) |
-| dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
-| rate | Number rate of Tax. |
-| [](#empty-inner) | |
-| recoverable | Booleand indicator if paid Tax can be recovered by Organization. |
-| compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._ |
-| [](#empty) | |
+|                  |                                                                                                                                                                                 |
+| ---------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|               id | Unique ID of Item model instance.                                                                                                                                               |
+|   organizationId | ID of related Organization the Item belongs to.                                                                                                                                 |
+|             name | Name of Item.                                                                                                                                                                   |
+|      description | Description of Item.                                                                                                                                                            |
+|             unit | Unit of measurement of Item.                                                                                                                                                    |
+|            price | Price of Item.                                                                                                                                                                  |
+|            taxes | Collection of objects containing Item taxes. [toggle definition](#expand)                                                                                                       |
+|             name | Name of Tax.                                                                                                                                                                    |
+|       \_taxRates | Collection of objects containing item taxes. [toggle definition](#expand-inner)                                                                                                 |
+|    dateValidFrom | Date when Tax Rate is valid from. _If Item Tax has multiple Tax Rates, a Rate is selected based on date of document for each document based on the most recent valid Tax Rate._ |
+|             rate | Number rate of Tax.                                                                                                                                                             |
+| [](#empty-inner) |                                                                                                                                                                                 |
+|      recoverable | Booleand indicator if paid Tax can be recovered by Organization.                                                                                                                |
+|         compound | Booleand indicator if Tax is compound. _Compound Tax is calculated on top of Document Item total value including any other Taxes on the item._                                  |
+|       [](#empty) |                                                                                                                                                                                 |
