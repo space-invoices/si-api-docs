@@ -68,7 +68,7 @@ $(document).ready(function() {
     });
 
     // Get organizations
-    $.get(`https://api-test.spaceinvoices.com/v1/accounts/${accountId}/organizations?access_token=${token}`)
+    $.get(`https://api.spaceinvoices.com/v1/accounts/${accountId}/organizations?access_token=${token}`)
       .done(function(data) {
         if (data) {
           $('code span:contains("ORG_ID")').each(function() {
