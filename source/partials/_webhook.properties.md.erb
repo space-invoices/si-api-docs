@@ -1,11 +1,44 @@
 <% type ||='object' %>
 <% add = type == 'add'%>
+<% model = 'Webhook' %>
 
-| | |
-| --: | --- |
+#### Properties
+
 <% if type == 'object' %>
-| id | String, unique identifier. |
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+**organizationId** string _readonly_  
+ID reference to Organization the <%= model %> belongs to.
+
+---
+
 <% end %>
-| url <%= add ? '**required**' : '' %> | Url where information about the triggered Webhook event will be posted. |
-| events <%= add ? '**required**' : '' %> | Array, list of events to subscribe to. _Each event must be of the format "MODEL_NAME/EVENT_NAME"._ |
-| enabled | Boolean, if Webhook is enabled. _Will not be triggered if not enabled._ |
+**url** string <%= add ? '**required**' : '' %>  
+Url where information about the triggered Webhook event will be posted.
+
+---
+
+**events** <%= add ? '**required**' : '' %>  
+Array, list of events to subscribe to. _Each event must be of the format "MODEL_NAME/EVENT_NAME"._
+
+**enabled** boolean  
+Boolean, if Webhook is enabled. _Will not be triggered if not enabled._
+
+---
+
+<% if type == 'object' %>
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

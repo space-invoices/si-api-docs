@@ -1,0 +1,37 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Generated `launch code`.
+
+---
+
+**userId** string _readonly_  
+ID of the authenticated Account.
+
+---
+
+**user** object _readonly_  
+Related Account the instance belongs to.  
+_Can be included, see [Filters](#filters) section for details._
+
+---
+
+<% end %>
+
+**ttl** number  
+Time to live for the generated token.
+
+---
+
+<% if type == 'object' %>
+
+**created** date _readonly_  
+When the instance was created.
+
+---
+
+<% end %>

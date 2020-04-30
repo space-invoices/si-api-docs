@@ -1,0 +1,215 @@
+<% model = 'Payment' %>
+
+# Payments
+
+> **Endpoints:**
+
+```plaintext
+  POST /v1/documents/:id/payments
+   GET /v1/payments/:id
+ PATCH /v1/payments/:id
+DELETE /v1/payments/:id
+   GET /v1/organization/:id/payments
+   GET /v1/organization/:id/payments/count
+   GET /v1/documents/:id/payments
+   GET /v1/documents/:id/payments/count
+```
+
+Payments are stored for each document. Each document can have multiple payments that can also sum up to more than the invoice's total value.  
+Payments are in the Currency of the document.
+
+It's also possible to add payments in the same call as creating the document if it's already been paid at the time of creation, see the `payments` property in the [create a Document](#create-a-document) section.
+
+## The Payment object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create a Payment
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d type="bank" \
+  -d date="2020-04-18" \
+  -d amount=1000
+```
+
+```javascript
+spaceInvoices.payments
+  .create(documentId, {
+    type: "bank",
+    date: "2020-04-18",
+    amount: 1000,
+  })
+  .then(function (payment) {
+    // Use the payment
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::create("5a3683ea12d5a67dd0ef2f4d", array(
+    "type" => "bank",
+    "date" => "2020-04-18",
+    "amount" => 1000
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'created', verb: 'POST' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve a Payment
+
+```shell
+curl "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'retrieved', noFk: true, modelId: true } %>
+
+## Update a Payment
+
+```shell
+curl -X PUT "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d type="bank" \
+  -d documentId="5a3683ea12d5a67dd0ef2f4d" \
+  -d date="2020-04-18" \
+  -d amount=1000
+```
+
+```javascript
+spaceInvoices.payments
+  .edit(paymentId, {
+    type: "bank",
+    documentId: documentId,
+    date: "2020-04-18",
+    amount: 1000,
+  })
+  .then(function (payment) {
+    // Use the payment
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::edit("5a3683ea12d5a67dd0ef2f4c", array(
+    "type" => "bank",
+    "documentId" => "DOCUMENT_ID"
+    "date" => "2020-04-18",
+    "amount" => 1000,
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'update' } %>
+
+Unlike other models, the Item model performs a full replace when updating instead of a partial update requiring the full item data to be posted when updating.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'updated', verb: 'PUT', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'update' } %>
+
+## Delete a Payment
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/payments/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.payments
+  .delete("5a3683ea12d5a67dd0ef2f4c")
+  .then(function (count) {
+    // Delete count
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::delete("5a3683ea12d5a67dd0ef2f4c");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'deleted', verb: 'DELETE', modelId: true } %>
+
+## List all Payments
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/payments" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.payments.list("ORG_ID").then(function (payments) {
+  // Use the payments
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::find("ORG_ID");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', plural: true, filters: true } %>
+
+## Count all Payments
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/payments/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'counted', plural: true, modelAction: 'count', where: true } %>
+
+## List all Document's Payments
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.payments
+  .listDocumentPayments("5a3683ea12d5a67dd0ef2f4d")
+  .then(function (payments) {
+    // Use the payments
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Payments::findDocumentPayments("5a3683ea12d5a67dd0ef2f4d");
+?>
+```
+
+<%= model %> can also be included when retrieving Documents, see [filters](#filters) section for more details.
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, fk: 'Document', action: 'listed', plural: true, filters: true } %>
+
+## Count all Document's Payments
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/payments/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, fk: 'Document', action: 'counted', plural: true, modelAction: 'count', where: true } %>

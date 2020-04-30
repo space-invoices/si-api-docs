@@ -1,0 +1,367 @@
+<% model = 'Account' %>
+
+# Accounts
+
+> **Endpoints:**
+
+```plaintext
+ POST /v1/accounts
+ POST /v1/accounts/login
+ POST /v1/accounts/impersonate
+  GET /v1/accounts/:id
+  GET /v1/accounts/authorized
+PATCH /v1/accounts/:id
+ POST /v1/accounts/reset
+ POST /v1/accounts/reset-password
+ POST /v1/accounts/change-password
+  GET /v1/accounts/is-unique
+  GET /v1/accounts/:id/send-verification
+ POST /v1/accountorganizations/accept
+ POST /v1/accountorganizations/reject
+```
+
+Accounts represent users that can log in and access different organizations based on the permissions allocated to them.
+
+Space Invoices (root) Account can create new users as child Accounts, a root Account has privileges over those accounts and can manage their access for individual Organizations.
+
+Child accounts can be logged in and controlled by the root account using the [impersonate](#impersonate-an-account) feature.
+
+## The Account object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create an Account
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d email="rocketman@example.com" \
+  -d password="supersecret"
+```
+
+```javascript
+spaceInvoices.accounts
+  .create({
+    email: "rocketman@example.com",
+    password: "supersecret",
+  })
+  .then(function (account) {
+    // Use the Account
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Accounts::create(array(
+    "email" => "rocketman@example.com",
+    "password" => "supersecret"
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, verb: 'POST', noFk: true, action: 'created' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Log in an Account
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/login" \
+  -d email="rocketman@example.com" \
+  -d password="supersecret"
+```
+
+```javascript
+spaceInvoices.accounts
+  .login({
+    email: "rocketman@example.com",
+    password: "supersecret",
+  })
+  .then(function (token) {
+    // Use the Access Token
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Accounts::login(array(
+    "email" => "rocketman@example.com",
+    "password" => "supersecret"
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+This endpoint authenticates an Account and returns an Access Token object which includes the `launch code` that can be used to make authenticated calls to the API.
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/accounts/login`
+
+#### Properties
+
+**email** string **required**
+
+---
+
+**password** string **required**
+
+---
+
+**ttl** number _default *2 months*_  
+Time to live.  
+_Determines when the token will expire from time of creation._  
+_To create a non-expiring token use `ttl=-1`_
+
+---
+
+### HTTP Response
+
+Returns an Access Token object.
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'object' } %>
+
+## Impersonate an Account
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/impersonate" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d email="rocketman@example.com"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+A root Space Invoices Account can retrieve a [launch code](#authenticate) for any of their child Accounts using either the child Account's `id` or `email`. This functionality is useful for logging in related users without the need of knowing or asking for their login credentials.
+
+_Important consideration: Any Account created through the API by a root Account is considered a child of the creator. If a child Account creates another Account, that Account is considered a child of the root Account._
+
+**Requires the root Account's `launch code` in headers or query parameters.**
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/accounts/impersonate`
+
+#### Properties
+
+**email** string  
+Email of Account to impersonate.  
+_Required if `id` not provided._
+
+---
+
+**id** string  
+ID of Account to impersonate.  
+_Required if `email` not provided._
+
+---
+
+**ttl** number _default *2 months*_  
+Time to live.  
+_Determines when the token will expire from time of creation._  
+_To create a non-expiring token use `ttl=-1`_
+
+---
+
+### HTTP Response
+
+Returns an Access Token object for the Account being impersonated.
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'object' } %>
+
+## Retrieve an Account
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/5e9ab369ed6377000d23d5b5" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'retrieved', noFk: true, modelId: true } %>
+
+## Verifying if Account is authorized
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/authorized" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+Convenience endpoint for verifying a `launch code` validity or retrieving an Account based on the provided `launch code` without knowing the Account's ID.
+
+Returns `401` or the authenticated Account's data.
+
+### HTTP request
+
+`GET https://api.spaceinvoices.com/v1/accounts/authorized`
+
+## Requesting a password reset token
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/reset" \
+  -d email="rocketman@example.com"
+```
+
+> **Returns:**
+
+```plaintext
+HTTP status 204
+```
+
+The endpoint requests a password reset token which is sent to the email for which the token is requested.
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/accounts/reset`
+
+#### Properties
+
+**email** string **required**
+
+---
+
+## Resetting an Account's password
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/reset-password" \
+  -H "Authorization: LAUNCH_CODE"
+  -d password="supersecret"
+```
+
+> **Returns:**
+
+```plaintext
+HTTP status 204
+```
+
+A password reset token can be used to change an Account's password if forgotten.
+
+**The password reset token retrieved from email must be sent in the headers or query parameters of the request.**
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/accounts/reset-password`
+
+#### Properties
+
+**password** string **required**
+
+---
+
+## Change an Account's password
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/change-password" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d oldPassword="supersecret" \
+  -d newPassword="ultimatesecret"
+```
+
+> **Returns:**
+
+```plaintext
+HTTP status 204
+```
+
+### HTTP Request
+
+`POST https://api.spaceinvoices.com/v1/accounts/change-password`
+
+#### Properties
+
+**oldPassword** string **required**
+
+---
+
+**newPassword** string **required**
+
+---
+
+## Check if an email is unique
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/is-unique?email=rocketman@example.com"
+```
+
+```javascript
+spaceInvoices.accounts
+  .isUnique("rocketman@example.com")
+  .then(function (response) {
+    // Use the response
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Accounts::isUnique("rocketman@example.com");
+?>
+```
+
+> Returns:
+
+```json
+{
+  "isUnique": true
+}
+```
+
+This endpoint returns a boolean value if the email exists in the system already or not.
+
+_Please note: Special characters should be URL encoded, otherwise they will be stripped which may cause inaccurate results!_
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/accounts/is-unique?email=:email`
+
+#### Route parameters
+
+**email** string **required**  
+Email to verify.
+
+---
+
+### HTTP Response
+
+#### Properties
+
+**isUnique** boolean  
+If the email is unique.
+
+---
+
+## Accepting an invitation
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accountorganizations/5e9ab369ed6377000d23d5b5/accept" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', action: 'accepted', noFk: true, modelId: true, modelAction: 'accept' } %>
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+This endpoint allows accepting an open invitation for access to an Organization.
+
+See [Organization](#organization) for more details.
+
+## Rejecting an invitation
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accountorganizations/5e9ab369ed6377000d23d5b5/reject" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', action: 'rejected', noFk: true, modelId: true, modelAction: 'reject' } %>
+
+> **Returns:**
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+This endpoint allows rejecting an open invitation for access to an Organization.
+
+See [Organization](#organization) for more details.

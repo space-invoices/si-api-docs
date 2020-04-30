@@ -1,0 +1,43 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Tax object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Goods and Services Tax",
+  "abbreviation": "GST",
+  "classification": "standard",
+  "_taxRates": [
+    {
+      "id": "03572004-45f5-42d5-a4bb-90dc66f8f842",
+      "rate": 15,
+      "dateValidFrom": "1970-01-01",
+      "custom": {},
+      "createdAt": "2020-04-18T07:59:37.938Z",
+      "updatedAt": "2020-04-18T07:59:37.938Z",
+    }
+  ],
+  "recoverable": true,
+  "compound": false,
+  "custom": {},
+  "createdAt": "2020-04-18T07:59:37.938Z",
+  "updatedAt": "2020-04-18T07:59:37.938Z",
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

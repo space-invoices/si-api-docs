@@ -1,0 +1,177 @@
+<% model = 'Recurrence' %>
+
+# Recurrences
+
+> **Endpoints:**
+
+```plaintext
+<%= partial 'partials/endpoints', locals: { plural: 'recurrences', fk: 'documents', noCount: true } %>
+   GET /v1/organizations/:id/recurrences
+   GET /v1/organizations/:id/recurrences/count
+```
+
+Recurrences are created for Documents. A recurrence dictates when a periodic automatic creation of a document occurs using the original document content as a base while changing the document's dates and number.
+
+Recurrences are great for repetative business or subscriptions.
+
+## The Recurrence object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create New Recurrence
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Monthly recurrence" \
+  -d type="month" \
+  -d dateFirst="2020-02-01" \
+  -d numRecurrences=2
+```
+
+```javascript
+spaceInvoices.recurrences
+  .create("5a3683ea12d5a67dd0ef2f4d", {
+    name: "Monthly recurrence",
+    type: "month",
+    dateFirst: "2020-02-01",
+    numRecurrences: 2,
+  })
+  .then(function (recurrence) {
+    // Use the recurrence
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Recurrences::create("5a3683ea12d5a67dd0ef2f4d", array(
+    "name" => "Monthly recurrence",
+    "type" => "month",
+    "dateFirst" => "2020-02-01",
+    "numRecurrences" => 2
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, fk: 'Document', action: 'created', verb: 'POST' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve a Recurrence
+
+```shell
+curl "https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'retrieved', noFk: true, modelId: true } %>
+
+## Update a Recurrence
+
+```shell
+curl "https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Monthly recurrence" \
+  -d type="month" \
+  -d dateFirst="2020-02-01" \
+  -d numRecurrences=2
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+Unlike other models, the <%= model %> model performs a full replace when updating instead of a partial update requiring the full object data to be posted.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'updated', verb: 'PUT', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Delete Recurrence
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/recurrences/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.recurrences
+  .delete("5a3683ea12d5a67dd0ef2f4c")
+  .then(function (count) {
+    // Deleted count
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Recurrences::delete("5a3683ea12d5a67dd0ef2f4c");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'deleted', verb: 'DELETE', modelId: true } %>
+
+## List all Document's Recurrences
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4d/recurrence" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.recurrences
+  .listDocumentRecurrences("5a3683ea12d5a67dd0ef2f4d")
+  .then(function (recurrences) {
+    // Use the recurrences
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Recurrences::findDocumentRecurrences("5a3683ea12d5a67dd0ef2f4d");
+?>
+```
+
+<%= model %> can also be included when retrieving Documents, see [filters](#filters) section for more details.
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, fk: 'Document', action: 'listed', plural: true, filters: true } %>
+
+## List all Recurrences
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/recurrences" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.recurrences.list("ORG_ID").then(function (recurrences) {
+  // Use the recurrences
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Recurrences::find("ORG_ID");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', plural: true, filters: true } %>
+
+## Count all Recurrences
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/recurrences/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'counted', plural: true, modelAction: 'count', where: true } %>

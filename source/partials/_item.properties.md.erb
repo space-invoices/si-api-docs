@@ -1,0 +1,103 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+<% model = 'Item' %>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+**organizationId** string _readonly_  
+ID reference to Organization the <%= model %> belongs to.
+
+---
+
+<% end %>
+**name** string <%= add ? '**required**' : '' %>  
+
+---
+
+**description** string  
+
+---
+
+**unit** string  
+Unit of measurement for <%= model %>/service.
+
+---
+
+**price** number  
+Net price of Item, optional if `priceGross` is provided.
+
+---
+
+**priceGross** number  
+Gross price of Item, optional if `price` is provided.  
+_If provided takes precedence over `price`._
+
+---
+
+**taxIds** array  
+Collection of IDs referencing taxes that should be added to Item.  
+_The referenced taxes will be used by default when Item is added to document._
+
+---
+
+<% if add %>
+**_itemTaxes** array  
+Collection of objects to reference taxes.  
+_Used as convenience feature to avoid expricitly referencing taxes by their IDs, instead by `classification` or `rate`._
+
+[toggle child attributes](#expand)
+
+---
+
+**rate** number  
+Rate of tax to match by.  
+_Optional if `classification` is provided._
+
+---
+
+**classification** string  
+Classification of tax to match by.  
+_Optional if `rate` is provided._
+
+[](#empty)
+
+---
+<% end %>
+
+**SKU** string  
+Unique <%= model %> identifier used to populate Items to documents.  
+_Can't contain spaces._
+
+---
+
+**custom** object  
+Custom data.  
+_See [Model custom data](#custom-model-data) section for details._
+
+---
+
+<% if type == 'object' %>
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+**taxes** array _readonly_  
+Collection of related [Taxes](#taxes).  
+_Can be included, see [Filters](#filters) section for details._
+
+---
+
+<% end %>

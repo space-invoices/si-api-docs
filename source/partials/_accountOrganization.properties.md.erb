@@ -1,0 +1,78 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+**organizationId** string *readonly*  
+Related organization id.
+
+---
+
+<% end %>
+**accountId** string  
+<% if type == 'invite' %>
+ID of Account being invited.  
+_Required if `email` not set._
+<% else %>
+ID of Account with access.
+<% end %>
+
+---
+
+**role** string  
+Role of Account, one of `default`, `admin`, `readonly`.  
+_Currently the roles have more affect on actions in Apollo UI but will be expanded to more API actions as well._
+
+---
+
+<% if type == 'invite' %>
+**email** string  
+Email of Account being invited.  
+_Required if `accountId` not set._
+
+---
+
+**requireConfirmation** boolean _default *true*_  
+If the invited user must confirm the invitation first to activate access.
+
+---
+
+**sendEmail** boolean _default *true*_  
+If an invitation/access granted email should be sent to the invited user's email.  
+
+---
+
+<% end %>
+<% if type == 'object' %>
+**active** boolean *readonly*  
+If access is active, determined by `requireConfirmation` property of invite action and accept/reject actions.
+
+---
+
+**disabled** boolean *readonly*  
+If access is disabled, determined by enable/disable actions.
+
+---
+
+**rejected** boolean *readonly*  
+If invited user has rejected the invitation using accept/reject actions.
+
+---
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

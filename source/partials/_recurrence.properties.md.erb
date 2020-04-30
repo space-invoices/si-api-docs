@@ -1,0 +1,103 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+<% model = 'Client' %>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+**organizationId** string _readonly_  
+ID reference to Organization the <%= model %> belongs to.
+
+---
+
+**accountId** string _readonly_  
+ID reference to Account that created the <%= model %>.
+
+---
+
+**documentId** string _readonly_  
+ID reference to Document the Payment belongs to.
+
+---
+
+<% end %>
+
+**name** string <%= add ? '**required**' : '' %>  
+Name of the recurrence.
+
+---
+
+**type** string **required**  
+Type of the recurrence, one of `week` / `month` / `year`.                                          |
+
+---
+
+**dateFirst** date **required**  
+Date of the first recurrence.
+
+---
+
+**numRecurrences** number **required**  
+Number of the Recurrence.
+
+---
+
+**autoSend** boolean _default *false*_  
+If a created Document should be automatically sent to Client's email when created.
+_Requires that Client has email set, either the one in the _documentClient or the one linked with clientId._
+
+---
+
+**notify** boolean _default *true*_  
+If the Account that created the Recurrence should be notified when a Document is created
+
+---
+
+**saveAsDraft** boolean _default *false*_  
+If the invoice should be created as draft.
+
+---
+
+<% if type == 'object' %>
+
+**recurrenceDates** array  
+Collection of objects containing created Recurrence dates.
+
+[toggle child attributes](#expand)
+
+---
+
+**date** date  
+Date of the Recurrence.
+
+---
+
+**iteration** number  
+Iteration index of the Recurrence.
+
+[](#empty)  
+
+---
+
+**custom** object  
+Custom data.  
+_See [Model custom data](#custom-model-data) section for details._
+
+---
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

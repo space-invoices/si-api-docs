@@ -1,0 +1,69 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+<% end %>
+**email** string <%= add ? '**required**' : '' %>  
+
+---
+
+<% if type == 'add' || type == 'object' %>
+**password** string <%= add ? '**required**' : '' %> <%= type == 'object' ? '*writeonly*' : '' %>  
+
+---
+
+<% end %>
+
+**firstname** string  
+User's first name.
+
+---
+
+**lastname** string  
+User's last name.
+
+---
+
+**label** string  
+User's label.  
+_required if fiscally verifying documents._
+
+---
+
+**taxNumber** string  
+User's personal tax number.  
+_required if fiscally verifying documents._
+
+---
+
+**custom** object  
+Custom data.  
+_See [Model custom data](#custom-model-data) section for details._
+
+---
+
+<% if type == 'object' %>
+
+**emailVerified** boolean *readonly*  
+Indicates if email was verified.  
+
+---
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

@@ -1,6 +1,9 @@
+<% model = 'Webhook' %>
 # Webhooks
 
+```plaintext
 <%= partial 'partials/endpoints', locals: { plural: 'webhooks' } %>
+```
 
 Webhooks allow subscribing to changes on most data models in Space Invoices.
 
@@ -12,10 +15,8 @@ If a non 2\*\* status is returned three additional re-tries will be made in 2 mi
 
 ## The Webhook object
 
-> **The Webhook object:**
-
-<%= partial 'partials/webhook.returns', locals: { type: 'object' } %>
-<%= partial 'partials/webhook.properties' %>
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
 
 ## Supported model events
 
@@ -28,42 +29,40 @@ The following event types can be used when registering a Webhook subscription
 ## Create a Webhook
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/5a3683ea12d5a67dd0ef2f4d/webhooks" \
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/webhooks" \
   -H "Authorization: LAUNCH_CODE" \
   -d url="https://example.com" \
   -d events[0]="client/create"
 ```
 
-<%= partial 'partials/webhook.returns', locals: { type: 'add' } %>
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
 
 ### HTTP Request
 
 `POST https://api.spaceinvoices.com/v1/organizations/:id/webhooks`
 
-#### Query parameters
+#### Route parameters
 
 |                 |                                                         |
 | --------------: | ------------------------------------------------------- |
 | id **required** | ID of the Organization on which the Webhook is created. |
 
-#### Properties
-
-<%= partial 'partials/webhook.properties', locals: { type: 'add' } %>
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
 
 ## Retrieve a Webhook
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51f" \
+curl "https://api.spaceinvoices.com/v1/webhooks/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
-<%= partial 'partials/webhook.returns' %>
+<%= partial "partials/#{model.downcase}.returns" %>
 
 ### HTTP Request
 
 `GET https://api.spaceinvoices.com/v1/webhooks/:id`
 
-#### Query parameters
+#### Route parameters
 
 |                 |                                    |
 | --------------: | ---------------------------------- |
@@ -72,12 +71,12 @@ curl "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51f" \
 ## Update a Webhook
 
 ```shell
-curl -X PATCH "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51f" \
+curl -X PATCH "https://api.spaceinvoices.com/v1/webhooks/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: LAUNCH_CODE"
   -d events[0]="client/create"
 ```
 
-<%= partial 'partials/webhook.returns' %>
+<%= partial "partials/#{model.downcase}.returns" %>
 
 <%= partial 'partials/update.description' %>
 
@@ -85,20 +84,22 @@ curl -X PATCH "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51
 
 `GET https://api.spaceinvoices.com/v1/webhooks/:id`
 
-#### Query parameters
+#### Route parameters
 
-|                 |                                    |
-| --------------: | ---------------------------------- |
-| id **required** | ID of the Webhook being retrieved. |
+|                 |                                  |
+| --------------: | -------------------------------- |
+| id **required** | ID of the Webhook being updated. |
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'update' } %>
 
 ## Delete a Webhook
 
 ```shell
-curl -X DELETE "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d51f" \
+curl -X DELETE "https://api.spaceinvoices.com/v1/webhooks/5a3683ea12d5a67dd0ef2f4c" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
-<%= partial 'partials/webhook.returns', locals: { type: 'count' } %>
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
 
 <%= partial 'partials/delete-soft.description' %>
 
@@ -106,7 +107,7 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d5
 
 `DELETE https://api.spaceinvoices.com/v1/webhooks/:id`
 
-#### Query parameters
+#### Route parameters
 
 |                 |                                  |
 | --------------: | -------------------------------- |
@@ -115,32 +116,44 @@ curl -X DELETE "https://api.spaceinvoices.com/v1/webhooks/5e99dc0b19c851000ea6d5
 ## List all Webhooks
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/webhooks" \
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/webhooks" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
-<%= partial 'partials/webhook.returns', locals: { type: 'list' } %>
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/webhooks`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/webhooks`
 
-## Count Webhooks
+#### Route parameters
+
+|                 |                                                                |
+| --------------: | -------------------------------------------------------------- |
+| id **required** | ID of the Organization on which the Webhooks are being listed. |
+
+## Count all Webhooks
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/webhooks/count" \
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/webhooks/count" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
-<%= partial 'partials/webhook.returns', locals: { type: 'count' } %>
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
 
 ### HTTP Request
 
-`GET https://api.spaceinvoices.com/v1/webhooks/count`
+`GET https://api.spaceinvoices.com/v1/organizations/:id/webhooks/count`
+
+#### Route parameters
+
+|                 |                                                                 |
+| --------------: | --------------------------------------------------------------- |
+| id **required** | ID of the Organization on which the Webhooks are being counted. |
 
 ## Webhook event body
 
-Data posted to the URL endpoint when subscribed Webhook event is triggered
+Data posted to the registered URL endpoint when subscribed Webhook event is triggered
 
 ```json
 {
@@ -151,9 +164,9 @@ Data posted to the URL endpoint when subscribed Webhook event is triggered
 }
 ```
 
-|                |                                                                                  |
-| -------------: | -------------------------------------------------------------------------------- |
-|          event | String, name of the triggered event.                                             |
-| organizationId | String, the id of organization owner of the model where the event was triggered. |
-|           data | Object, state data of model after the event.                                     |
-|            uid | Unique identifier of the event request.                                          |
+|                |                                                                  |
+| -------------: | ---------------------------------------------------------------- |
+|          event | String, name of the triggered event.                             |
+| organizationId | String, the id of Organization on which the event was triggered. |
+|           data | Object, state data of model after the event.                     |
+|            uid | Unique identifier of the event request.                          |

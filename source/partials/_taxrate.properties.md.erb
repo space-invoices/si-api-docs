@@ -1,0 +1,44 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+<% model = 'Item' %>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+<% end %>
+
+**rate** number <%= add ? '**required**' : '' %>  
+% rate of the tax.
+
+---
+
+**dateValidFrom** date _default *epoch*_  
+When the rate came into force.  
+_Used on Documents to determine which rate should be used based on Document date._
+
+---
+
+**custom** object  
+Custom data.  
+_See [Model custom data](#custom-model-data) section for details._
+
+---
+
+<% if type == 'object' %>
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

@@ -1,0 +1,387 @@
+<% model = 'Organization' %>
+<% model2 = 'AccountOrganization' %>
+# Organizations
+
+> **Endpoints:**
+
+```plaintext
+  POST /v1/accounts/:id/organizations
+   GET /v1/organizations/:id
+ PATCH /v1/organizations/:id
+   GET /v1/accounts/:id/organizations
+   GET /v1/accounts/:id/organizations/count
+  POST /v1/organizations/image
+DELETE /v1/organizations/image
+  POST /v1/organizations/:id/deactivate
+  POST /v1/organizations/:id/activate
+   GET /v1/organizations/:id/export
+  POST /v1/organizations/:id/invite
+   GET /v1/organizations/:id/accountorganizations
+   GET /v1/organizations/:id/stats
+```
+
+**Any given Account can control multiple Organizations. They may either create these Organizations themselves or other users may assign access rights of existing organizations to these given accounts.**
+
+This is especially useful when there is a need to manage multiple organizations, as they are created for users that might signup for a certain product.
+
+Most of the models created though the API are related to an Organization instance.
+
+## The Organization object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create an Organization
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/ACCOUNT_ID/organizations" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="International Space Agency" \
+  -d address="Rocket Road 1" \
+  -d city="Brussels" \
+  -d zip="10000" \
+  -d country="Belgium" \
+  -d IBAN="GB95 REVO 1234 5678 9012 345" \
+  -d bank="Revolut Ltd"
+```
+
+```javascript
+spaceInvoices.organizations
+  .create("5a3683ea12d5a67dd0ef2f4d", {
+    name: "International Space Agency",
+    address: "Rocket Road 1",
+    city: "Brussels",
+    zip: "10000",
+    country: "Belgium",
+    IBAN: "123454321 123454321",
+    bank: "Revolut Ltd",
+  })
+  .then(function (organization) {
+    // Use the organization
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Organizations::create("5a3683ea12d5a67dd0ef2f4d", array(
+    "name" => "International Space Agency",
+    "address" => "Rocket Road 1",
+    "city" => "Brussels",
+    "zip" => "10000",
+    "country" => "Belgium",
+    "IBAN" => "123454321 123454321",
+    "bank" => "Revolut Ltd"
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, fk: 'Account', fkp: 'accounts', action: 'created', verb: 'POST', modelId: false } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve an Organization
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.organizations.getById("ORG_ID").then(function (organization) {
+  // Use the organization
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Organizations::getById("ORG_ID");
+?>
+
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'retrieved', modelId: true } %>
+
+## Update an Organization
+
+```shell
+curl -X PATCH "https://api.spaceinvoices.com/v1/organizations/ORG_ID" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="International Space Agency"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'edit' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'updated', verb: 'PATCH', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'edit' } %>
+
+## List all Organizations
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/ACCOUNT_ID/organizations" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.organizations.list("ACCOUNT_ID").then(function (organization) {
+  // Use the organizations
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Organizations::find("ACCOUNT_ID");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, fk: 'Account', fkp: 'accounts', action: 'listed', plural: true, filters: true } %>
+
+## Count all Organizations
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accounts/ACCOUNT_ID/organizations/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, fk: 'Account', fkp: 'accounts', action: 'counted', plural: true, modelAction: 'count', where: true } %>
+
+## Upload Logo or Signature image to Organization
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/image?type=logo" \
+  -H "Authorization: LAUNCH_CODE" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -F "file=@path_to_file.jpg"
+```
+
+```javascript
+spaceInvoices.organizations
+  .uploadImage("ORG_ID", "path_to_file.jpg", "logo")
+  .then(function (res) {
+    // Success
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Organizations::uploadImage("ORG_ID", "path_to_file.jpg", "logo");
+?>
+```
+
+> **Returns:**
+
+```plaintext
+true
+```
+
+**This endpoint allows the uploading of a Logo or a Signature image for a given organization. The image is then automatically used in all documents when generating a PDF.**
+
+To check if an organization has a logo or signature image set, we simply need to check an organization's `_defaults` object for keys containing `image_logo` or `image_signature` where the key is set to `true`.  
+The \_defaults object is retrieved with the organization when querying it or by separately querying the [Defaults](#defaults).
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'uploaded to', verb: 'POST', modelId: true, modelAction: 'images', query: '?type=:type' } %>
+
+**type** string **required**  
+The type of image being uploaded.  
+_Valid options are `logo` or `signature`_.
+
+---
+
+
+#### Properties
+
+**image** file  
+The image payload to upload.  
+_Must be sent as payload `Content-Type: application/x-www-form-urlencoded`._
+
+---
+
+## Remove an image
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/organizations/ORG_ID/image?type=logo" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+> **Returns:**
+
+```plaintext
+true
+```
+
+Removes an image from the Organization and sets the image setting to false in [Defaults](#defaults).
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'removed from', verb: 'DELETE', modelId: true, modelAction: 'images', query: '?type=:type' } %>
+
+**type** string **required**  
+The type of image being uploaded.  
+_Valid options are `logo` or `signature`_.
+
+---
+
+## Deactivate an Organization
+
+```shell
+curl -X POST "https://api.spaceinvoices.com/v1/organizations/ORG_ID/deactivate" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+Deactivates an active Organization. An Organization is active by default when created.
+
+**Actions on a deactivated Organization are not possible.** The organization must be re-activated to enable actions.
+
+Active organizations are counted towards the subscription total, minimum period for an Organization license is 1 month and is counted from date of activation.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'deactivated', modelId: true, verb: 'POST', modelAction: 'deactivate' } %>
+
+## Activate an Organization
+
+```shell
+curl -X POST "https://api.spaceinvoices.com/v1/organizations/ORG_ID/activate" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+Activates a deactivated Organization. An Organization is active by default when created.
+
+Deactivated organizations are not counted towards the subscription total, minimum period for an Organization license is 1 month and is counted from date of activation.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'activated', modelId: true, verb: 'POST', modelAction: 'activate' } %>
+
+## Exporting data
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/export?type=document&where[type]=invoice&where[date][between][0]=2020-01-01&where[date][between][1]=2020-01-31" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+> **Returns:**
+
+```plaintext
+FILE Buffer
+```
+
+Exports certain data models to an excel file.
+
+Where filters can be applied to limit the retrieved data by time, type, etc, see [where operators](#where-operators) in the filters section for more details.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'exported from', modelId: true, modelAction: 'export', query: '?type=:type', where: true } %>
+
+**type** string **required**  
+Type of data being exported, one of `document`, `client`, `item`.
+
+---
+
+## The access object
+
+> **Endpoints:**
+
+```plaintext
+  POST /v1/organizations/:id/invite
+   GET /v1/organizations/:id/accountorganizations
+DELETE /v1/accountorganizations/:id
+  POST /v1/accountorganizations/:id/disable
+  POST /v1/accountorganizations/:id/enable
+  POST /v1/accountorganizations/:id/change-role
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'object' } %>
+
+Determins which Accounts have access to a specific Organization. Access can be granted, revoked and disabled.
+
+<%= partial "partials/#{model2.downcase}.properties" %>
+
+## Invite user to Organization
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/invite" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d email="invited@spaceinvoices.com"
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'add' } %>
+
+This endpoint allows adding users ([Accounts](#accounts)) to Organizations, granting the user access rights to perform actions on the particular Organization.
+
+It's not required for the invited user to have an Account prior to inviting them, when inviting with email the API will link the Account of the invited user when they sign up. In this case the invitation email will direct the user to sign up.
+
+**To silently add a user to an Organization simply set both `requireConfirmation` and `sendEmail` to `false`.**  
+The added user can then be logged in or controled using the [impersonate](#impersonate-an-account) method.  
+_Note that the Account must already exist otherwise one must be signed up._
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'invited to', modelId: true, modelAction: 'invite' } %>
+
+<%= partial "partials/#{model2.downcase}.properties", locals: { type: 'invite' } %>
+
+## List Accounts with access to Organization
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/accountorganizations" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', action: 'listed', action: 'listed' } %>
+
+## Remove Account from Organization
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/accountorganizations/5e9ab369ed6377000d23d5b5" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'action' } %>
+
+Removes the user from the Organization revoking their access and rights.
+
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', noFk: true, action: 'removed', verb: 'DELETE', modelId: true } %>
+
+## Disable access to Organization
+
+```shell
+curl -X POST "https://api.spaceinvoices.com/v1/accountorganizations/5e9ab369ed6377000d23d5b5/disable" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'action' } %>
+
+Disables the access rights for a user without removing them from the Organization.
+
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', noFk: true, action: 'disabled', verb: 'POST', modelId: true, modelAction: 'disable' } %>
+
+## Enable access to Organization
+
+```shell
+curl -X POST "https://api.spaceinvoices.com/v1/accountorganizations/5e9ab369ed6377000d23d5b5/enable" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'action' } %>
+
+Enables the access rights for a user with access to the Organization.
+
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', noFk: true, action: 'enabled', verb: 'POST', modelId: true, modelAction: 'enable' } %>
+
+## Change access role
+
+```shell
+curl "https://api.spaceinvoices.com/v1/accountorganizations/5e9ab369ed6377000d23d5b5/change-role" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d role="default"
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'action' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', noFk: true, action: 'changed', verb: 'POST', modelId: true, modelAction: 'change-role' } %>

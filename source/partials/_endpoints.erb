@@ -1,0 +1,11 @@
+<% fk ||='organizations' %>
+<% put ||=false %>
+<% noAdd ||=false %>
+<% noCount ||=false %>
+  POST /v1/<%= fk %>/:id/<%= plural %><% unless noAdd %>
+   GET /v1/<%= plural %>/:id<% end %><% unless put %>
+ PATCH /v1/<%= plural %>/:id<% else %>
+   PUT /v1/<%= plural %>/:id<% end %>
+DELETE /v1/<%= plural %>/:id
+   GET /v1/<%= fk %>/:id/<%= plural %><% unless noCount %>
+   GET /v1/<%= fk %>/:id/<%= plural %>/count<% end %>

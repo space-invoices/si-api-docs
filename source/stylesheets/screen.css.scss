@@ -1,7 +1,7 @@
 @charset "utf-8";
-@import 'normalize';
-@import 'variables';
-@import 'icon-font';
+@import "normalize";
+@import "variables";
+@import "icon-font";
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -24,7 +24,8 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
-html, body {
+html,
+body {
   color: $main-text;
   padding: 0;
   margin: 0;
@@ -40,11 +41,26 @@ html, body {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
-#toc > ul > li > a > span {
-  float: right;
-  background-color: #2484FF;
-  border-radius: 40px;
-  width: 20px;
+#toc {
+  & > ul > li > a > span {
+    float: right;
+    background-color: #2484ff;
+    border-radius: 40px;
+    width: 20px;
+  }
+
+  a[href="#webhooks"],
+  a[href="#changelog"],
+  a[href="#apollo-ui"],
+  a[href="#fiscalization"],
+  a[href="#other-resources"],
+  a[href="#core-resources"] {
+    text-transform: uppercase;
+    border-bottom: 1px solid $nav-active-bg;
+    margin-top: 1em;
+    // margin: 1em 1em 0;
+    // padding: 0;
+  }
 }
 
 .toc-wrapper {
@@ -81,7 +97,7 @@ html, body {
     margin-right: auto;
   }
 
-  &>.search {
+  & > .search {
     position: relative;
 
     input {
@@ -91,7 +107,7 @@ html, body {
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - ($nav-padding*2);
+      width: $nav-width - ($nav-padding * 2);
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
@@ -136,11 +152,11 @@ html, body {
     }
   }
 
-
   // The Table of Contents is composed of multiple nested
   // unordered lists.  These styles remove the default
   // styling of an unordered list because it is ugly.
-  ul, li {
+  ul,
+  li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -182,7 +198,8 @@ html, body {
     margin-top: 1em;
     border-top: 1px dashed $nav-footer-border-color;
 
-    li,a {
+    li,
+    a {
       color: $nav-text;
       text-decoration: none;
     }
@@ -199,7 +216,8 @@ html, body {
   }
 }
 
-.toc-link, .toc-footer li {
+.toc-link,
+.toc-footer li {
   padding: 0 $nav-padding 0 $nav-padding;
   display: block;
   overflow-x: hidden;
@@ -241,10 +259,13 @@ html, body {
 
   transition: left 0.3s ease-in-out;
 
-  &:hover { opacity: 1; }
-  &.open {left: $nav-width}
+  &:hover {
+    opacity: 1;
+  }
+  &.open {
+    left: $nav-width;
+  }
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // PAGE LAYOUT AND CODE SAMPLE BACKGROUND
@@ -277,6 +298,11 @@ html, body {
     position: fixed;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;
+
+    a.login-btn {
+      position: fixed;
+      right: 0;
+    }
   }
 }
 
@@ -286,14 +312,15 @@ html, body {
   font-weight: bold;
   a {
     display: block;
-    float:left;
+    float: left;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
     line-height: 30px;
     outline: 0;
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       background-color: $lang-select-pressed-bg;
       color: $lang-select-pressed-text;
     }
@@ -305,7 +332,7 @@ html, body {
   }
 
   &:after {
-    content: '';
+    content: "";
     clear: both;
     display: block;
   }
@@ -324,12 +351,23 @@ html, body {
   z-index: 30;
 
   &:after {
-    content: '';
+    content: "";
     display: block;
     clear: both;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5,
+  & > h6,
+  & > p,
+  & > table,
+  & > ul,
+  & > ol,
+  & > aside,
+  & > dl {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
@@ -338,13 +376,16 @@ html, body {
     @extend %left-col;
   }
 
-  &>ul, &>ol {
+  & > ul,
+  & > ol {
     padding-left: $main-padding + 15px;
   }
 
   // the div is the tocify hidden div for placeholding stuff
-  &>h1, &>h2, &>div {
-    clear:both;
+  & > h1,
+  & > h2,
+  & > div {
+    clear: both;
   }
 
   h1 {
@@ -359,7 +400,8 @@ html, body {
     background-color: #fdfdfd;
   }
 
-  h1:first-child, div:first-child + h1 {
+  h1:first-child,
+  div:first-child + h1 {
     border-top-width: 0;
     margin-top: 0;
   }
@@ -372,24 +414,33 @@ html, body {
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    background-image: linear-gradient(
+      to bottom,
+      rgba(#fff, 0.2),
+      rgba(#fff, 0)
+    );
   }
 
   // h2s right after h1s should bump right up
   // against the h1s.
-  h1 + h2, h1 + div + h2 {
+  h1 + h2,
+  h1 + div + h2 {
     margin-top: $h1-margin-bottom * -1;
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3,
+  h4,
+  h5,
+  h6 {
     @extend %header-font;
     font-size: 15px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h5, h6 {
+  h5,
+  h6 {
     font-size: 10px;
   }
 
@@ -400,16 +451,66 @@ html, body {
   }
 
   hr {
-    margin: 2em 0;
-    border-top: 2px solid $examples-bg;
-    border-bottom: 2px solid $main-bg;
+    margin: 1em calc(50% + 2em) 1em 2em;
+    border-bottom: 1px solid #ddd;
+    border-top: 0 none;
+
+    &.nested {
+      margin-left: 3em;
+      margin-right: calc(50% + 3em);
+    }
+  }
+
+  p > strong {
+    & + em,
+    & + strong {
+      font-weight: normal;
+      text-transform: uppercase;
+      font-style: normal;
+      font-size: 11px;
+    }
+
+    & + strong {
+      color: orange;
+    }
+
+    & + em {
+      color: grey;
+
+      em {
+        color: #333;
+        text-transform: none;
+        font-style: normal;
+      }
+    }
+
+    & + code {
+      background: none;
+      font-size: 12px;
+      font-style: italic;
+      font-weight: normal;
+    }
+  }
+
+  a {
+    // font-size: small;
+    color: $main-text;
+  }
+
+  .nested {
+    padding-left: 3em;
+
+    &.inner {
+      padding-left: 4em;
+    }
   }
 
   table {
     margin-bottom: 1em;
     overflow: auto;
 
-    th, td {
+    th,
+    td {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
@@ -481,7 +582,7 @@ html, body {
 
           &[href^="#expand"]:before,
           &[href^="#expand-inner"]:before {
-            content: '\a';
+            content: "\a";
             display: block;
           }
 
@@ -493,51 +594,52 @@ html, body {
 
       em:before,
       strong:before {
-        content: '\a';
+        content: "\a";
         white-space: pre;
       }
 
-      td:first-child {
-        font-weight: bold;
+      // td:first-child {
+      //   font-weight: bold;
 
-        em, strong {
-          font-weight: normal;
-          text-transform: uppercase;
-          font-style: normal;
-          font-size: 11px;
-        }
+      //   em,
+      //   strong {
+      //     font-weight: normal;
+      //     text-transform: uppercase;
+      //     font-style: normal;
+      //     font-size: 11px;
+      //   }
 
-        strong {
-          color: orange;
-        }
+      //   strong {
+      //     color: orange;
+      //   }
 
-        em {
-          color: grey;
+      //   em {
+      //     color: grey;
 
-          em {
-            color: #333;
-            text-transform: none;
-          }
-        }
+      //     em {
+      //       color: #333;
+      //       text-transform: none;
+      //     }
+      //   }
 
-        code {
-          background: none;
-          font-size: 12px;
-          font-style: italic;
-          font-weight: normal;
-        }
-      }
+      //   code {
+      //     background: none;
+      //     font-size: 12px;
+      //     font-style: italic;
+      //     font-weight: normal;
+      //   }
+      // }
 
       &:last-child {
         border-bottom: 1px solid #ccc;
       }
 
-      &:nth-child(odd)>td {
-        background-color: lighten($main-bg,4.2%);
+      &:nth-child(odd) > td {
+        background-color: lighten($main-bg, 4.2%);
       }
 
-      &:nth-child(even)>td {
-        background-color: lighten($main-bg,2.4%);
+      &:nth-child(even) > td {
+        background-color: lighten($main-bg, 2.4%);
       }
     }
   }
@@ -550,7 +652,10 @@ html, body {
     margin-left: 15px;
   }
 
-  p, li, dt, dd {
+  p,
+  li,
+  dt,
+  dd {
     line-height: 1.6;
     margin-top: 0;
   }
@@ -560,7 +665,7 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     // background-color: #eee;
     // color: $main-text;
     padding: 3px;
@@ -572,7 +677,7 @@ html, body {
   pre {
     white-space: pre-wrap;
 
-    &>code {
+    & > code {
       background-color: transparent;
       padding: 0;
     }
@@ -617,8 +722,8 @@ html, body {
     padding: 2px;
     margin: -3px;
     border-radius: 4px;
-    border: 1px solid #F7E633;
-    background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
+    border: 1px solid #f7e633;
+    background: linear-gradient(to top left, #f7e633 0%, #f1d32f 100%);
   }
 }
 
@@ -628,21 +733,24 @@ html, body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
-  pre, blockquote {
+  pre,
+  blockquote {
     background-color: $code-bg;
     color: #fff;
 
     margin: 0;
     width: $examples-width;
 
-    float:right;
-    clear:right;
+    float: right;
+    clear: right;
 
     box-sizing: border-box;
 
     @extend %right-col;
 
-    &>p { margin: 0; }
+    & > p {
+      margin: 0;
+    }
 
     a {
       color: #fff;
@@ -656,10 +764,15 @@ html, body {
     padding-top: 2em;
     padding-bottom: 2em;
     padding: 2em $main-padding;
+
+    &.highlight.json {
+      max-height: calc(100vh - 6.5em);
+      overflow-y: scroll;
+    }
   }
 
   blockquote {
-    &>p {
+    & > p {
       background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;
       color: #eee;
@@ -723,10 +836,14 @@ html, body {
   }
 }
 
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
+.highlight .c,
+.highlight .cm,
+.highlight .c1,
+.highlight .cs {
   color: #909090;
 }
 
-.highlight, .highlight .w {
+.highlight,
+.highlight .w {
   background-color: $code-bg;
 }

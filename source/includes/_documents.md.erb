@@ -1,0 +1,411 @@
+<% model = 'Document' %>
+
+# Documents
+
+> **Endpoints:**
+
+```plaintext
+<%= partial 'partials/endpoints', locals: { plural: 'documents', put: true } %>
+   GET /v1/documents/:id/pdf
+  POST /v1/documents/:id/send
+  POST /v1/documents/:id/cancel
+  POST /v1/documents/:id/uncancel
+  POST /v1/documents/:id/mark-sent
+```
+
+Documents, the core of our service, are the most complex part of Space Invoices.
+
+For this reason, we have taken a lot of care to provide you with a wide array of options when creating different documents. Most importantly, we allow you to provide as much or as little data as you wish as the API takes care of the rest. The API can automate based on known data such as the organization settings, country of origin, and the country of destination.
+
+NOTE: We have improved how taxes can be loaded to document items. Normally, a tax can be added to document items by adding `taxId` property to the `_documentItems[]._documentItemTaxes` array, but the responsibility of knowing tax ids is placed on the user.  
+To simplify, we now have a feature that allows referencing a tax by its rate or classification instead of just the normal id. The API will then smartly load the best match from the taxes paid for by the organization.
+
+## The Document object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create a Document
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/documents" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d _documentClient[name]="Rocket Man" \
+  -d _documentClient[country]="United Kingdom" \
+  -d _documentItems[0][name]="Space suit" \
+  -d _documentItems[0][quantity]=2 \
+  -d _documentItems[0][unit]="Item" \
+  -d _documentItems[0][price]="1000" \
+  -d _documentItems[0][_documentItemTaxes][0][rate]=21
+```
+
+```javascript
+spaceInvoices.documents
+  .create(organization.id, {
+    _documentClient: {
+      name: "Rocket Man",
+      country: "USA",
+    },
+    _documentItems: [
+      {
+        name: "Space suit",
+        quantity: 2,
+        unit: "Item",
+        price: 1000,
+        _documentItemTaxes: [
+          {
+            rate: 21,
+          },
+        ],
+      },
+    ],
+  })
+  .then(function (document) {
+    // Use the document
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Documents::create("ORGANIZATION_ID", array(
+    "type" => "estimate",
+    "_documentClient" => array(
+      "name" => "Rocket Man",
+      "country" => "United Kingdom"
+    ),
+    "_documentItems" => [
+      array(
+        "name" => "Space suit",
+        "quantity" => 2,
+        "unit" => "Item",
+        "price" => 1000,
+        "_documentItemTaxes" => [
+          array(
+            "rate": 21
+          )
+        ]
+      )
+    ]
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+_This example demonstrates the process of creating an `invoice` providing minimal data._
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'created', verb: 'POST' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve a Document
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.documents
+  .getById(documentId, queryParams)
+  .then(function (document) {
+    // Use the document
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Documents::getById("DOCUMENT_ID", $filter);
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'retrieved', noFk: true, modelId: true } %>
+
+**parseSmartcodes** boolean _default *true*_
+If smart codes should be parsed to their respective values when retrieving the document.
+
+---
+
+## Update a Document
+
+```shell
+curl -X PUT "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d _documentClient[name]="Rocket Man" \
+  -d _documentClient[country]="United Kingdom" \
+  -d _documentItems[0][name]="Space suit" \
+  -d _documentItems[0][quantity]=2 \
+  -d _documentItems[0][unit]="Item" \
+  -d _documentItems[0][price]="1000" \
+  -d _documentItems[0][_documentItemTaxes][0][rate]=21
+```
+
+```javascript
+spaceInvoices.documents
+  .edit(document.id, {...})
+  .then(function (document) {
+    // Use the document
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Documents::edit("DOCUMENT_ID", array(...));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'edit' } %>
+
+Unlike other models, the <%= model %> model performs a full replace when updating instead of a partial update requiring the full object data to be posted.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'updated', verb: 'PUT', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'edit' } %>
+
+## Delete a Document
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.documents.delete(documentId).then(function (count) {
+  console.log(count);
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Documents::delete("DOCUMENT_ID");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'deleted', verb: 'DELETE', modelId: true } %>
+
+Not permitted to delete if `type=invoice` of if the document was fiscally verified, a [cancelation](#cancel-a-document) can be performed instead.
+
+### HTTP Request
+
+`DELETE https://api.spaceinvoices.com/v1/documents/:id`
+
+#### Route parameters
+
+**id** string **required**  
+ID of Document to delete.
+
+---
+
+## List all Documents
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/documents?filter[where][type]=invoice" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+var queryParams = {
+  filter: {
+    where: {
+      type: "invoice",
+    },
+  },
+};
+
+spaceInvoices.documents
+  .list(organizationId, queryParams)
+  .then(function (documents) {
+    // Use the array of documents
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Documents::find("ORGANIZATION_ID", array(
+    "filter" => array(
+      "where" => array(
+        "type" => "invoice"
+      )
+    )
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', filters: true } %>
+
+**parseSmartcodes** boolean _default *true*_  
+If smart codes should be parsed to their respective values when retrieving the documents.
+
+---
+
+## Count all Documents
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/documents/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'counted', plural: true, modelAction: 'count', where: true } %>
+
+## Retrieve a Document PDF
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/pdf?l=en" \
+  -H "Authorization: LAUNCH_CODE" \
+  -o document.pdf
+```
+
+```javascript
+spaceInvoices.documents.getPdf(DocumentId, "en").then(function (pdf) {
+  console.log(pdf);
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Documents::getPdf("DOCUMENT_ID", "en");
+?>
+```
+
+> Returns:
+
+```bash
+PDF Buffer
+```
+
+**This endpoint returns a document in PDF format.**
+
+The template of the document can be changed by setting the `pdf_template` in the [Defaults](#defaults).
+The language of the document is determined by the `l` flag. If no flag is provided, the organization's default locale is used. _Currently, this setting doesn't affect the user-created content of the document, only the predefined data like table headers, etc. We are working on a way to enable that as well._
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/documents/:id/pdf?l=en`
+
+#### Route parameters
+
+**id** string **required**  
+ID of the Document being retrieved as PDF.
+
+---
+
+**language** string  
+Language of the PDF  
+_Supported language flags `en`, `sl`, `de`, `it`, `es`, `fr`, `cz`._  
+_Defaults to Organization's locale._
+
+---
+
+## Send a Document in Email
+
+```shell
+curl "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/send" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d recipients="rocketman@example.com" \
+  -d message="You can find the document PDF in the attachment." \
+  -d subject="Invoice"
+```
+
+```javascript
+spaceInvoices.documents
+  .send("5a3683ea12d5a67dd0ef2f4c", {
+    recipients: "rocketman@example.com",
+    message: "You can find the document PDF in the attachment.",
+    subject: "Invoice",
+  })
+  .then(function (result) {
+    // Document send result
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Documents::send("5a3683ea12d5a67dd0ef2f4c", array(
+    "recipients" => "rocketman@example.com",
+    "message" => "You can find the document, number [document number], PDF in the attachment.",
+    "subject" => "Invoice for service"
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+**This endpoint allows sending an email with the Document PDF as an attachment.**
+
+Emails are sent from our regional addresses in the name of the organization sending it, a `reply-to` email property is set as the sender Account's email. While there are currently no styling options, we are developing an option for users to also provide an html template for the email. Linking one's domain for purposes of sending will also be possible. Please get in touch with us if you require specific functionality to be added in this context.
+
+The delivery and open status of each sent Document can be tracked in the Document's Activities property.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'sent', verb: 'POST', modelId: true, modelAction: 'send', query: '?l=en' } %>
+
+**l** string  
+Language of attached Document PDF
+
+---
+
+#### Arguments
+
+**recipients** string **required**  
+List of recipients separated with a comma.
+
+---
+
+**message** string **required**  
+Email message body.  
+_Supports smart code notations which get parsed to data._
+
+---
+
+**subject** string **required**  
+Email subject.  
+_Supports smart code notations which get parsed to data._
+
+---
+
+## Cancel a Document
+
+```shell
+curl -X POST "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/cancel" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+If the Document being canceled was fiscally verified a credit-note Document with a negative value will automatically be created in addition to this action.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'canceled', verb: 'POST', modelId: true, modelAction: 'cancel' } %>
+
+## Un-cancel a Document
+
+```shell
+curl -X POST "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/uncancel" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+It is not possible to cancel a Document that has been fiscally verified.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'un-canceled', verb: 'POST', modelId: true, modelAction: 'uncancel' } %>
+
+## Mark a Document as sent
+
+```shell
+curl -X POST "https://api.spaceinvoices.com/v1/documents/5a3683ea12d5a67dd0ef2f4c/uncancel" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'action' } %>
+
+Mark a document as sent using regular mail.  
+This action sets a Document's `sentSnailMail` property to true.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'marked as sent', verb: 'POST', modelId: true, modelAction: 'mark-sent' } %>

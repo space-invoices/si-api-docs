@@ -4,7 +4,6 @@ title: API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - javascript
-  - csharp
   - php
 
 toc_footers:
@@ -15,23 +14,31 @@ toc_footers:
 
 includes:
   - authentication
+  - errors
+  - filters
+  - custom-data
+  - soft-delete
+  - smart-codes
+  - calculations
+  - rate-limits
+  - core-resources
   - accounts
-  - organizations
-  - documents
-  - countries
-  - currencies
   - clients
-  - companies
+  - defaults
+  - documents
   - items
+  - organizations
   - payments
   - recurrences
   - taxes
+  - other-resources
+  - companies
+  - countries
+  - currencies
   - webhooks
-  - fiscalization-sl
-  - soft-delete
-  - filters
-  - errors
   - apollo
+  - fiscalization
+  - fiscalization-sl
   - changelog
 
 search: true
@@ -41,7 +48,7 @@ search: true
 
 ## Welcome to Space Invoices API
 
-Space Invoices (SI) is a developer-oriented invoicing API. You can use it to create and manage invoices and various other types of documents, to save time, money and resources, and also to help you refine your own commercial sofware. Furthermore, SI facilitates your management of the data within these documents.
+Space Invoices (SI) is a developer-oriented invoicing API. You can use it to create and manage invoices and various other types of documents, to save time, money and resources, and also to help you refine your commercial software. Furthermore, SI facilitates your management of the data within these documents.
 
 To understand the full scope of our API, please start by taking a look at our documentation. Welcome!
 

@@ -1,0 +1,43 @@
+<% noFk ||= false %>
+<% filters ||= false %>
+<% where ||= false %>
+<% fk ||= 'Organization' %>
+<% fkp ||= fk.downcase + 's' %>
+<% verb ||= 'GET' %>
+<% plural ||= false %>
+<% modelPlural ||= model.downcase + 's' %>
+<% modelAction ||= false %>
+<% modelId ||= false %>
+<% query ||= '' %>
+### HTTP Request
+
+`<%= verb %> https://api.spaceinvoices.com/v1/<%= !noFk ? fkp + '/:id/' : '' %><%= modelPlural %><%= modelId ? '/:id' : '' %><%= modelAction ? '/' + modelAction : '' %><%= query %>`
+
+<% if !noFk || modelId || filters || where %>
+#### Route parameters
+<% end %>
+
+<% if !noFk || modelId %>
+**id** string **required**  
+<% unless noFk %>
+  ID of the <%= fk %> on which the <%= !plural ? model + ' is' : modelPlural + ' are' %> being <%= action %>
+<% else %>
+  ID of the <%= model %> being <%= action %>
+<% end %>
+
+---
+<% end %>
+
+<% if filters %>
+**filter** object  
+Query filters. See [Filters](#filters) section for more details.
+
+---
+<% end %>
+
+<% if where %>
+**where** object  
+Query where. See [Where operators](#where-operators) section of filters for more details.
+
+---
+<% end %>

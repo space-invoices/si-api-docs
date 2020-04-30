@@ -5,6 +5,7 @@
 ```json
 {
   "_isDeleted": true,
+  "deletedId": "5a3683ea12d5a67dd0ef2f4c",
   "deletedAt": "2020-04-17 16:40:43.714Z"
 }
 ```

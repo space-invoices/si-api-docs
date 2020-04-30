@@ -1,0 +1,54 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Organization object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5e9e92107f186e000eda09cf",
+  "name": "International Space Agency",
+  "address": "Rocket street 1",
+  "address2": "",
+  "city": "Brussels",
+  "zip": "10000",
+  "state": "",
+  "country": "Belgium",
+  "countryAlpha2Code": "BE",
+  "taxNumber": "10489185",
+  "taxSubject": true,
+  "companyNumber": "0987654321",
+  "IBAN": "GB49 REVO 0099 6979 5754 56",
+  "bank": "Revolut ltd",
+  "SWIFT": "",
+  "website": "https://spaceinvoices.com",
+  "email": "info@spaceinvoices.com",
+  "phone": "+32 466 903 942",
+  "locale": "en",
+  "timezone": "CEDT",
+  "active": true,
+  <% if type == 'object' %>
+  "size": undefined,
+  "industry": undefined,
+  <% end %>
+  "activatedAt": "2020-04-18T07:59:37.938Z",
+  "deactivatedAt": "2020-04-18T07:59:37.938Z",
+  "custom": {},
+  "createdAt": "2020-04-18T07:59:37.938Z",
+  "updatedAt": "2020-04-18T07:59:37.938Z",
+  "_defaults": [...]
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

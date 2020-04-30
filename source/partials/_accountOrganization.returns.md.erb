@@ -1,0 +1,29 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Access object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5e9ab369ed6377000d23d5b5",
+  "accountId": "5a3683ea12d5a67dd0ef2f4d",
+  "role": "default",
+  "active": true,
+  "rejected": false,
+  "disabled": false
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

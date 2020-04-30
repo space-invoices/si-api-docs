@@ -1,0 +1,161 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Document object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5e9ab369ed6377000d23d5b5",
+  "number": "2020-00001",
+  "type": "invoice",
+  "date": "2020-04-18T07:59:37.902Z",
+  "dateDue": "2020-05-18T00:00:00.000Z",
+  "dateService": "2020-04-18T07:59:37.902Z",
+  "dateServiceTo": "2020-04-18T07:59:37.902Z",
+  "dateValidTill": "2020-05-18T00:00:00.000Z",
+  "datePaid": "2020-04-18T07:59:37.902Z",
+  "reference": "",
+  "draft": false,
+  "currencyId": "EUR",
+  "canceled": false,
+  "clientId": "5e9ab369ed6377000d23d5b4",
+  "accountId": "5e9ab369ed6377000d23d599",
+  "organizationId": "5e9ab369ed6377000d23d59b",
+  "_documentClient": {
+    "id": "422d1fd5-d8e6-4635-8b16-107679a364f8",
+    "name": "Rocket man",
+    "country": "United Kingdom",
+    <% if type == 'object' %>
+    "address": undefined,
+    "address2": undefined,
+    "city": undefined,
+    "zip": undefined,
+    "state": undefined,
+    "taxNumber": undefined,
+    <% end %>
+    "taxSubject": false,
+    <% if type == 'object' %>
+    "companyNumber": undefined,
+    "IBAN": undefined,
+    "bank": undefined,
+    "SWIFT": undefined,
+    "website": undefined,
+    "email": undefined,
+    "phone": undefined,
+    <% end %>
+    "isEndCustomer": false,
+    "custom": {}
+  },
+  "_documentIssuer": {
+    "id": "66953056-3253-41e8-9657-59bd9c254dda",
+    "name": "International Space Agency",
+    "address": "Rocket street 1",
+    "address2": "",
+    "city": "Brussels",
+    "zip": "10000",
+    "state": "",
+    "country": "Belgium",
+    "countryAlpha2Code": "BE",
+    "taxNumber": "10489185",
+    "taxSubject": true,
+    "companyNumber": "0987654321",
+    "IBAN": "GB49 REVO 0099 6979 5754 56",
+    "bank": "Revolut ltd",
+    "SWIFT": "",
+    "website": "https://spaceinvoices.com",
+    "email": "info@spaceinvoices.com",
+    "phone": "+32 466 903 942",
+    "custom": {}
+  },
+  "_documentItems": [
+    {
+      "id": "8946edb4-946e-4aed-bebd-299b74c3b663",
+      "itemId": "5e9a22366d3a80000e8797b0",
+      "name": "Space suit",
+      "description": "",
+      "price": 1000,
+      <% if type == 'object' %>
+      "priceGross": undefined,
+      <% end %>
+      "quantity": 2,
+      "discount": 0,
+      "discountIsAmount": false,
+      "unit": "Item",
+      <% if type == 'object' %>
+      "SKU": undefined,
+      <% end %>
+      "isSeparator": false,
+      "total": 2000,
+      "totalWithTax": 2420,
+      "totalDiscount": 0,
+      "totalTax": 420,
+      "_documentItemTaxes": [
+        {
+          "id": "508cae6c-2b28-4607-8a95-9a3066d6077f",
+          "taxId": "5e9ac7df1ccbec000de73263",
+          "name": "Belasting over de toegevoegde waarde",
+          "abbreviation": "BTW",
+          "rate": 21,
+          "recoverable": true
+          "reverseCharged": false,
+          "compound": false,
+        }
+      ],
+      "custom": {},
+    }
+  ],
+  "note": "Please pay to bank account GB49 REVO 0099 6979 5754 56.\nWhen paying please use reference 2020-00001.\n\nThank you for your business",
+  "signature": "International Space Agency",
+  "footer": "International Space Agency, Rocket street 1, 10000 Brussels, Belgium, tax num.: 10489185, company num.: 0987654321",
+  "documentIds": [],
+  <% if type == 'object' %>
+  "uniqueId": undefined,
+  <% end %>
+  "decimalPlaces": 4,
+  "total": 2000,
+  <% if type == 'object' %>
+  "totalConverted": undefined,
+  <% end %>
+  "totalWithTax": 2420,
+  <% if type == 'object' %>
+  "totalWithTaxConverted": undefined,
+  <% end %>
+  "totalDiscount": 0,
+  "totalPaid": 0,
+  "totalDue": 2420,
+  "paidInFull": false,
+  "hasUnit": true,
+  "sentSnailMail": false,
+  "_documentTaxes": [
+    {
+      "tax": 21,
+      "taxId": "5e9ac7df1ccbec000de73263",
+      "base": 2000,
+      "totalTax": 420
+    }
+  ],
+  "_documentReverseTaxes": [],
+  "_documentConversionRate": [],
+  <% if type == 'object' %>
+  "validateEslog": undefined,
+  <% end %>
+  "isValidEslog": false,
+  "custom": {},
+  "createdAt": "2020-04-18T07:59:37.938Z",
+  "updatedAt": "2020-04-18T07:59:37.938Z"
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

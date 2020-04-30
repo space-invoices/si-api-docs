@@ -1,0 +1,42 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+**organizationId** string _readonly_  
+ID reference to Organization the Default belongs to.
+
+---
+
+<% end %>
+**name** string <%= add ? '**required**' : '' %>  
+Unique name of Default.  
+_Must be unique for each Default in Organization._  
+_Can't be updated._
+
+---
+
+**value** any <%= add ? '**required**' : '' %>  
+Value of Default, can be any data type.
+
+---
+
+<% if type == 'object' %>
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

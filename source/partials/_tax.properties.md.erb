@@ -1,0 +1,90 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+<% model = 'Item' %>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+**organizationId** string _readonly_  
+ID reference to Organization the <%= model %> belongs to.
+
+---
+
+<% end %>
+**name** string <%= add ? '**required**' : '' %>  
+
+---
+
+**abbreviation** string  
+Abbreviation of tax, used for display.
+
+---
+
+**classification** string  
+Tax classification.  
+_If provided and `rate` not provided, the API attempts to match tax by it from the database and populate it._
+
+---
+
+**\_taxRates** array <%= add ? '**required**' : '' %>  
+Collection of rates the Tax has.  
+_Is automatically sorted by `dateValidFrom` of validity, most recent first._
+
+[toggle child attributes](#expand)
+
+---
+
+**rate** number <%= add ? '**required**' : '' %>  
+% rate of the tax.
+
+---
+
+**dateValidFrom** date _default *epoch*_  
+When the rate came into force.  
+_Used on Documents to determine which rate should be used based on Document date._
+
+[](#empty)
+
+---
+
+**recoverable** boolean  
+If the tax is recoverable.
+
+---
+
+**reverseCharged** boolean  
+If the tax is reverse (self) charged.  
+_Reverse charged tax is not applied to totals and is added to the Document's reverse taxes._
+
+---
+
+**compound** boolean  
+If tax is compound.  
+_Compound tax is calculated on top of the total with tax sum after other taxes that are applied to the Item._
+
+---
+
+**custom** object  
+Custom data.  
+_See [Model custom data](#custom-model-data) section for details._
+
+---
+
+<% if type == 'object' %>
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

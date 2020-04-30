@@ -1,0 +1,92 @@
+<% model = 'Default' %>
+
+# Defaults
+
+> **Endpoints:**
+
+```plaintext
+<%= partial 'partials/endpoints', locals: { plural: 'defaults' } %>
+```
+
+Defaults serve as system-defined and user-defined settings for an Organization.  
+Besides the predefined system values, any additional value can be added to this model as custom settings.
+
+The defaults are included with the organization model when it is retrieved for ease of use.
+
+## The Default object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create a Default
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/defaults" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="currencyId" \
+  -d value="EUR"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'created', verb: 'POST' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve a Default
+
+```shell
+curl "https://api.spaceinvoices.com/v1/defaults/5e9ab369ed6377000d23d5b5" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'retrieved', noFk: true, modelId: true } %>
+
+## Update a Default
+
+```shell
+curl "https://api.spaceinvoices.com/v1/defaults/5e9ab369ed6377000d23d5b5" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d value="EUR"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'update' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'updated', verb: 'PATCH', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'update' } %>
+
+## Delete a Default
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/defaults/5e9ab369ed6377000d23d5b5" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'deleted', verb: 'DELETE', modelId: true } %>
+
+## List all Defaults
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/defaults" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', plural: true, filters: true } %>
+
+## Count all Defaults
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/defaults/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'counted', plural: true, modelAction: 'count', where: true } %>

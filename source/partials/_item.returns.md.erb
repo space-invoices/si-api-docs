@@ -1,0 +1,40 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Item object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space suit",
+  "description": "Best in class suit made from durable composites.",
+  "unit": "item",
+  "price": 1000,
+  <% if type == 'object' %>
+  "priceGross": undefined,
+  <% end %>
+  "taxIds": ["5a3683ea12d5a67dd0ef2f4e"],
+  "SKU": null,
+  "custom": {},
+  "createdAt": "2020-04-18T07:59:37.938Z",
+  "updatedAt": "2020-04-18T07:59:37.938Z",
+  <% if type == 'object' %>
+  "taxes": [...]
+  <% end %>
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

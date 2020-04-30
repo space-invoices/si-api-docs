@@ -1,0 +1,235 @@
+<% model = 'Client' %>
+
+# Clients
+
+> **Endpoints:**
+
+```plaintext
+<%= partial 'partials/endpoints', locals: { plural: 'clients' } %>
+   GET /v1/organizations/:id/search-clients
+```
+
+Clients are businesses, end users, organizations, and any other entity that can receive a document from an organization. Clients may be saved and later referenced using their unique ID or email.
+
+## The Client object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create New Client
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/clients" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Space Exploration Technologies corp" \
+  -d address="Rocket Road" \
+  -d city="Hawthorne" \
+  -d zip="CA 90250" \
+  -d country="USA" \
+  -d email="info@spacex.com" \
+  -d contact="Elon M." \
+  -d phone="+1 123 456 7890"
+```
+
+```javascript
+spaceInvoices.clients
+  .create("ORG_ID", {
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    email: "info@spacex.com",
+    contact: "Elon M.",
+    phone: "+1 123 456 7890",
+  })
+  .then(function (client) {
+    // Use the client
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::create("ORG_ID", array(
+    "name" => "Space Exploration Technologies corp",
+    "address" => "Rocket Road",
+    "city" => "Hawthorne",
+    "zip" => "CA 90250",
+    "country" => "USA",
+    "email" => "info@spacex.com",
+    "contact" => "Elon M.",
+    "phone" => "+1 123 456 78900"
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'created', verb: 'POST' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve a Client
+
+```shell
+curl "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.clients.getById(clientId).then(function (client) {
+  // Use the client
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::getById("5a3683ea12d5a67dd0ef2f4c");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'retrieved', noFk: true, modelId: true } %>
+
+## Update a Client
+
+```shell
+curl -X PATCH "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Space Exploration Technologies corp"
+```
+
+```javascript
+spaceInvoices.clients
+  .edit("5a3683ea12d5a67dd0ef2f4c", {
+    name: "Space Exploration Technologies corp",
+    address: "Rocket Road",
+    city: "Hawthorne",
+    zip: "CA 90250",
+    country: "USA",
+    email: "info@spacex.com",
+    contact: "Elon M.",
+    phone: "+1 123 456 7890",
+  })
+  .then(function (client) {
+    // Use the client
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::edit("5a3683ea12d5a67dd0ef2f4c", array(
+    "name" => "Space Exploration Technologies corp",
+    "address" => "Rocket Road",
+    "city" => "Hawthorne",
+    "zip" => "CA 90250",
+    "country" => "USA",
+    "email" => "info@spacex.com",
+    "contact" => "Elon M.",
+    "phone" => "+1 123 456 78900"
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'update' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'updated', verb: 'PATCH', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'update' } %>
+
+## Delete a Client
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/clients/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.clients.delete("5a3683ea12d5a67dd0ef2f4c").then(function (count) {
+  // Deleted count
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::delete("5a3683ea12d5a67dd0ef2f4c");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'deleted', verb: 'DELETE', modelId: true } %>
+
+## List all Clients
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/clients" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.clients.list("ORG_ID").then(function (clients) {
+  // Use the clients
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::find("ORG_ID");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', plural: true, filters: true } %>
+
+## Count all Clients
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/clients/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'counted', plural: true, modelAction: 'count', where: true } %>
+
+## Search all Clients
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/clients/search?term=Space" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.clients.search("ORG_ID", "space").then(function (clients) {
+  // Use the clients
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Clients::search("ORG_ID", "space");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+Convenience method for searching client by multiple fields.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/organizations/:id/clients/search?term=:term`
+
+#### Route parameters
+
+**id** string **required**  
+ID of the Organization on which te clients are being searched
+
+---
+
+**term** string **required**  
+Term to search for.
+
+---

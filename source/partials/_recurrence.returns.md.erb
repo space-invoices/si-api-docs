@@ -1,0 +1,46 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Recurrence object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "documentId": "5a3683ea12d5a67dd0ef2f4d",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+  "accountId": "5a3683ea12d5a67dd0ef2f4f",
+  "name": "Monthly recurrence",
+  "type": "month",
+  "dateFirst": "2018-01-01",
+  "numRecurrences": 2,
+  "autoSend": false,
+  "notify": true,
+  "saveAsDraft": false,
+  "_recurrenceDates": [
+    {
+      "date": "2020-02-01",
+      "iteration": 1
+    }, {
+      "date": "2020-03-01",
+      "iteration": 2
+    }
+  ]
+  "custom": {},
+  "createdAt": "2020-01-18T07:59:37.938Z",
+  "updatedAt": "2020-01-18T07:59:37.938Z"
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

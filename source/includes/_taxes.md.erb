@@ -1,0 +1,224 @@
+<% model = 'Tax' %>
+<% model2 = 'TaxRate' %>
+
+# Taxes
+
+> **Endpoints:**
+
+```plaintext
+<%= partial 'partials/endpoints', locals: { plural: 'taxes', put: true } %>
+  POST /v1/taxes/:id/taxrates
+DELETE /v1/taxes/:id/taxrates/:id
+```
+
+Taxes are stored per Organization and are then referenced on Items for which tax is chargeable.
+
+Each tax may have different rates applied to them, and the rates may be set for a specific date range for which the rate is in effect. The actual tax rate charged for any given item are chosen based on the document's indicated date if specific rates are applicable on the date of invoice issue. This ensures the correct tax rates are applied to documents.
+
+NOTE: When adding taxes to document items or items, the tax can be easily referenced (in prioritized order) by its id, rate, or classification.
+
+## The Tax object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create a Tax
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/taxes" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Goods and Services Tax" \
+  -d abbreviation="GST" \
+  -d classification="standard" \
+  -d _taxRates[0][rate]=15
+```
+
+```javascript
+spaceInvoices.taxes
+  .create(organizationId, {
+    name: "Goods and Services Tax",
+    abbreviation: "GST",
+    classification: "standard",
+    _taxRates: [
+      {
+        rate: 15,
+      },
+    ],
+  })
+  .then(function (tax) {
+    // Use the tax
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Taxes::create("ORG_ID", array(
+    "name" => "Goods and Services Tax",
+    "abbreviation" => "GST",
+    "classification": "standard",
+    "_taxRates" => [array(
+      "rate" => 15
+    )]
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, modelPlural: 'taxes', action: 'created', verb: 'POST' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve a Tax
+
+```shell
+curl "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, modelPlural: 'taxes', action: 'retrieved', noFk: true, modelId: true } %>
+
+## Update a Tax
+
+```shell
+curl -X PUT "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Goods and Services Tax" \
+  -d abbreviation="GST" \
+  -d classification="standard" \
+  -d _taxRates[0][rate]=15
+```
+
+```javascript
+spaceInvoices.taxes
+  .edit("5a3683ea12d5a67dd0ef2f4c", {
+    name: "Goods and Services Tax",
+    abbreviation: "GST",
+    classification: "standard",
+    _taxRates: [
+      {
+        rate: 15,
+      },
+    ],
+  })
+  .then(function (tax) {
+    // Use the tax
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Taxes::edit("5a3683ea12d5a67dd0ef2f4c", array(
+    "name" => "Goods and Services Tax",
+    "abbreviation" => "GST",
+    "classification": "standard",
+    "_taxRates" => [array(
+      "rate" => 15
+    )]
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+Unlike other models, the <%= model %> model performs a full replace when updating instead of a partial update requiring the full object data to be posted.
+
+<%= partial 'partials/route.parameters', locals: { model: model, modelPlural: 'taxes', noFk: true, action: 'updated', verb: 'PUT', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Delete a Tax
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.taxes.delete("5a3683ea12d5a67dd0ef2f4c").then(function (count) {
+  // Deleted count
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Taxes::delete("5a3683ea12d5a67dd0ef2f4c");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+A Tax can only be deleted if it is not used on any Document.
+
+<%= partial 'partials/route.parameters', locals: { model: model, modelPlural: 'taxes', noFk: true, action: 'deleted', verb: 'DELETE', modelId: true } %>
+
+## List all Taxes
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/taxes" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.taxes.list("ORG_ID").then(function (taxes) {
+  // Use the taxes
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Taxes::find("ORG_ID");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, modelPlural: 'taxes', action: 'listed', plural: true, filters: true } %>
+
+## Add a Rate to a Tax
+
+```shell
+curl "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d rate=20 \
+  -d dateValidFrom="2018-01-01"
+```
+
+```javascript
+spaceInvoices.taxes
+  .addANewRateToTax(taxId, {
+    rate: 20,
+    dateValidFrom: "2018-01-01",
+  })
+  .then(function (tax) {
+    // Use the tax rate
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Taxes::addANewRateToTax("5a3683ea12d5a67dd0ef2f4c", array(
+    "rate" => 20,
+    "dateValidFrom" => "2018-01-01"
+  ));
+?>
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: 'Rate', modelPlural: 'taxrates', action: 'added', fk: 'Tax', fkp: 'taxes' } %>
+
+<%= partial "partials/#{model2.downcase}.properties", locals: { type: 'add' } %>
+
+## Delete a Rate from a Tax
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/taxes/5a3683ea12d5a67dd0ef2f4c/taxRates/:id" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model2.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: 'Rate', modelPlural: 'taxrates', action: 'deleted', fk: 'Tax', fkp: 'taxes' } %>

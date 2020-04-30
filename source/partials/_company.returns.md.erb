@@ -1,0 +1,32 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Company object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "taxNumber": "",
+  "taxSubject": true,
+  "companyNumber": "123456789"
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

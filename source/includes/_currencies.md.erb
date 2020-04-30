@@ -1,0 +1,67 @@
+<% model = 'Currency' %>
+# Currencies
+
+> **Endpoints:**
+
+```plaintext
+GET /v1/currencies
+```
+
+We current provide support for 122 of the most common global currencies. If there is one you'd like to use but do not see in the list, please write us.
+
+In addition to normal (fiat) currencies, we have now also added some common cryptocurrencies. Don't see your favourite cryptocurrency as an option? Let us know and we'll be happy to add support for it.
+
+Please note: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) unique currency codes are used as the `id` fields of currencies to simplify inclusion in documents as related IDs.
+
+## The Currency object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+
+#### Properties
+
+**isoName** string  
+Unique [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency name.  
+_Also used as unique ID of model instance._
+
+---
+
+**name** string  
+Name of the Currency.
+
+---
+
+**symbol** string  
+Symbol of the currency.
+
+---
+
+**type** string  
+Type of currency.  
+_One of `fiat` or `crypto`_
+
+---
+
+## List all Currencies
+
+```shell
+curl "https://api.spaceinvoices.com/v1/currencies" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.currency.list().then(function (currencies) {
+  // Use the currencies
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Currencies::find();
+?>
+```
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/currencies`
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>

@@ -1,0 +1,215 @@
+<% model = 'Item' %>
+# Items
+
+> **Endpoints:**
+
+```plaintext
+<%= partial 'partials/endpoints', locals: { plural: 'items', put: true } %>
+   GET /v1/organizations/:id/search-items
+```
+
+Items represent items, services and any other things that an Organization can sell. They can be saved and later referenced using their unique ID or SKU values.
+
+NOTE: While taxes are added to items by in `taxIds` property, they can also be referenced by their `rate` or `classification` value by providing either of the values as a property in `_itemTaxes` array which is a collection of objects, each object representing one tax reference. The API will attempt to find the best match.
+
+## The Item object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties" %>
+
+## Create an Item
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/items" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Space suit" \
+  -d description="Best in class suit made from durable composites." \
+  -d unit="item" \
+  -d price=1000 \
+  -d taxIds[]="5a3683ea12d5a67dd0ef2f4e"
+```
+
+```javascript
+spaceInvoices.items
+  .create(organizationId, {
+    name: "Space suit",
+    description: "Best in class suit made from durable composites.",
+    unit: "item",
+    price: 1000,
+    taxIds: ["5a3683ea12d5a67dd0ef2f4e"],
+  })
+  .then(function (item) {
+    // Use the item
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Items::create("ORG_ID", array(
+    "name" => "Space suit",
+    "description" => "Best in class suit made from durable composites.",
+    "unit" => "item",
+    "price" => 1000,
+    "taxId" => ["5a3683ea12d5a67dd0ef2f4e"]
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'created', verb: 'POST' } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Retrieve an Item
+
+```shell
+curl "https://api.spaceinvoices.com/v1/items/5e9ab369ed6377000d23d5b5" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'get' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'retrieved', noFk: true, modelId: true } %>
+
+## Update an Item
+
+```shell
+curl -X PUT "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE" \
+  -d name="Space suit" \
+  -d description="Best in class suit made from durable composites." \
+  -d unit="item" \
+  -d price=1000 \
+  -d taxIds[]="5a3683ea12d5a67dd0ef2f4e"
+```
+
+```javascript
+spaceInvoices.items
+  .edit("5a3683ea12d5a67dd0ef2f4c", {
+    name: "Space suit",
+    description: "Best in class suit made from durable composites.",
+    unit: "item",
+    price: 1000,
+    taxIds: [taxId],
+  })
+  .then(function (item) {
+    // Use the item
+  });
+```
+
+```php
+<?php
+  Spaceinvoices\Items::edit("5a3683ea12d5a67dd0ef2f4c", array(
+    "name" => "Space suit",
+    "description" => "Best in class suit made from durable composites.",
+    "unit" => "item",
+    "price" => 1000,
+    "taxes" => ["5a3683ea12d5a67dd0ef2f4e"]
+  ));
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+
+Unlike other models, the <%= model %> model performs a full replace when updating instead of a partial update requiring the full object data to be posted.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'updated', verb: 'PUT', modelId: true } %>
+
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'add' } %>
+
+## Delete an Item
+
+```shell
+curl -X DELETE "https://api.spaceinvoices.com/v1/items/5a3683ea12d5a67dd0ef2f4c" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.items.delete("5a3683ea12d5a67dd0ef2f4c").then(function (count) {
+  // Deleted count
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Items::delete("5a3683ea12d5a67dd0ef2f4c");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'deleted', verb: 'DELETE', modelId: true } %>
+
+## List all Items
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/items" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.items.list("ORG_ID").then(function (items) {
+  // Use the items
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Items::find("ORG_ID");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', plural: true, filters: true } %>
+
+## Count all Items
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/items/count" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'count' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'counted', plural: true, modelAction: 'count', where: true } %>
+
+## Search all Items
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/items/search?term=Space" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.items.search("ORG_ID", "space").then(function (items) {
+  // Use the items
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Items::search("ORG_ID", "space");
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+Convenience method for searching items by multiple fields.
+
+### HTTP Request
+
+`GET https://api.spaceinvoices.com/v1/organizations/:id/items/search?term=:term`
+
+#### Route parameters
+
+**id** string **required**  
+ID of the Organization on which te items are being searched
+
+---
+
+**term** string **required**  
+Term to search for.
+
+---

@@ -1,0 +1,124 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+<% model = 'Client' %>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+**organizationId** string _readonly_  
+ID reference to Organization the <%= model %> belongs to.
+
+---
+
+<% end %>
+
+**name** string <%= add ? '**required**' : '' %>  
+_Required only if `clientId` not provided on Document._
+
+---
+
+**address** string  
+Address.
+
+---
+
+**address2** string  
+Address additional.
+
+---
+
+**city** string  
+City.
+
+---
+
+**zip** string  
+Zip/postal code.
+
+---
+
+**state** string  
+State or region.
+
+---
+
+**country** string  
+Country.
+
+---
+
+**taxNumber** string  
+Organization VAT / GST / sales tax or similar tax number.
+
+---
+
+**taxSubject** boolean  
+Indicates if the Client is subject to tax.
+
+---
+
+**companyNumber** string  
+Organization registration or similar number.
+
+---
+
+**IBAN** string  
+Bank account number.
+
+---
+
+**bank** string  
+Bank name.
+
+---
+
+**SWIFT** string  
+Bank SWIFT/BIC.
+
+---
+
+**website** string  
+Website address.
+
+---
+
+**email** string  
+Contact email.  
+_If provided and `clientId` not provided will be used to find matching Client to populate `clientId`._
+
+---
+
+**phone** string  
+Contact phone.
+
+---
+
+**isEndCustomer** boolean <%= add ? '_default *false*_' : '' %>  
+Indicates if Client is end customer ie. person.
+
+---
+
+**custom** object  
+Custom data.  
+_See [Model custom data](#custom-model-data) section for details._
+
+---
+
+<% if type == 'object' %>
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+<% end %>

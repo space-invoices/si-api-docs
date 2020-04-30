@@ -1,4 +1,4 @@
-# Fiscalization
+# Slovenia
 
 **We provide a complete mechanism for fiscalization based on Slovenian financial office's (Finančna Uprava Republike Slovenije - FURS) regulatory requirements.**
 

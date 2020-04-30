@@ -1,0 +1,77 @@
+<% model = 'Company' %>
+# Companies
+
+> **Endpoints:**
+
+```plaintext
+GET /v1/companies
+GET /v1/companies/search
+```
+
+Companies is a special read-only searchable collection of companies from public directories. If looking for an endpont to add user companies please refer to the [Organizations](#organizations) section.
+
+This data model is recommended for user interfaces as a "search while you type feature", allowing you to limit searches to specific countries based on the origin of the user.
+
+We update this database as frequently as possible to ensure most recent data.
+
+Current data coverage:
+
+- [x] Slovenia
+
+Have a country you would like to add to this list? Please do email us and we are happy to look into it.
+
+## The Company object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+<%= partial "partials/#{model.downcase}.properties", locals: { type: 'object' } %>
+
+## List all Companies
+
+```shell
+curl "https://api.spaceinvoices.com/v1/companies" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.companies.list().then(function (companies) {
+  console.log(companies);
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Companies::find();
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', filters: true } %>
+
+## Search all Companies
+
+```shell
+curl "https://api.spaceinvoices.com/v1/companies/search?term=Space" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.companies.search("space").then(function (companies) {
+  // Use the companies
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Companies::search('Space');
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'searched', query: '?term=:term' } %>
+
+**term** string **required**  
+Term to search for.
+
+---

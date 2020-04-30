@@ -1,0 +1,115 @@
+<% model = 'Country' %>
+# Countries
+
+> **Endpoints:**
+
+```plaintext
+GET /v1/countries
+```
+
+**List of 250 countries for which informational queries can be conducted (ie. english name, native name, currency, taxes, etc.)**
+
+While all the countries are present in the list, data about local taxes and currencies for some less common countries may not be available. We continually update the collection with country information as it is used to perform matching for companies created through our API.  
+We are always open for suggestions on how we can make this feature better! Please get in contact with us.
+
+## The Country object
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'object' } %>
+
+**name** string  
+Unique English name of the country.
+
+---
+
+**alpha2Code** string  
+Unique ISO 2 letter code of the country.
+
+---
+
+**alpha3Code** string  
+Unique ISO 3 letter code of the country.
+
+---
+
+**nativeName** string  
+Unique native name of the country.
+
+---
+
+**numericCode** string  
+Unique numeric code of the country.
+
+---
+
+**translations** object  
+Names of the country translated to other languages.
+
+[toggle child attributes](#expand)
+
+**key** string  
+Alpha2Code of the country the name is translated to.
+
+---
+
+**value** string  
+The translated name of country.
+
+[](#empty)
+
+---
+
+**taxes** array  
+Object of country taxes and rates.  
+_Usually value added tax. Tax data for least-used countries are not available at the moment._
+
+[toggle child attributes](#expand)
+
+---
+
+**name** string  
+Name of the tax.
+
+---
+
+**abbreviation** string  
+Abbreviation of the tax.
+
+---
+
+**rate** string  
+Rate of the tax.
+
+---
+
+**classification** string  
+Classification of the tax rate ie. `standard`, `reduced`, `additional` in EU, `state`, `federal`, `additional` in US etc.
+
+[](#empty)
+
+---
+
+**currency** string  
+[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) name of currency primarily used in country.
+
+## List all Countries
+
+```shell
+curl "https://api.spaceinvoices.com/v1/countries" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+```javascript
+spaceInvoices.countries.list().then((countries) => {
+  // Use countries
+});
+```
+
+```php
+<?php
+  Spaceinvoices\Countries::find();
+?>
+```
+
+<%= partial "partials/#{model.downcase}.returns", locals: { type: 'list' } %>
+
+<%= partial 'partials/route.parameters', locals: { model: model, action: 'listed', filters: true } %>

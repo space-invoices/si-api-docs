@@ -1,0 +1,32 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Payment object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "documentId": "5a3683ea12d5a67dd0ef2f4d",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4e",
+  "type": "bank",
+  "date": "2020-04-18",
+  "amount": 1000
+  "custom": {},
+  "createdAt": "2020-04-18T07:59:37.938Z",
+  "updatedAt": "2020-04-18T07:59:37.938Z"
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```

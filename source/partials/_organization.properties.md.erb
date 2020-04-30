@@ -1,0 +1,157 @@
+<% type ||='object' %>
+<% add = type == 'add'%>
+
+#### Properties
+
+<% if type == 'object' %>
+**id** string _readonly_  
+Unique identifier.
+
+---
+
+<% end %>
+**name** string <%= add ? '**required**' : '' %>  
+
+---
+
+**address** string  
+
+---
+
+**address2** string  
+Address additional.
+
+---
+
+**city** string  
+
+---
+
+**zip** string  
+Zip / postal code.
+
+---
+
+**state** string  
+State or region.
+
+---
+
+**country** any <%= add ? '**required**' : '' %>  
+_The value is used to apply some smart defaults to the organization being created including country default tax rates, locale, timezone and country alpha 2 ISO code. We recommend providing either the english language or native name of country to ensure this function, but this is not the required form and is not validated as such._
+
+---
+
+<% if type == 'object' %>
+
+**countryAlpha2Code** string _readonly_  
+Country ISO alpha-2 code. [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+_API automatically parses Organization address details to determine the Organization's country and populates property based on the result._
+
+---
+
+<% end %>
+
+**taxNumber** string  
+Organization VAT / GST / sales tax or similar tax number.
+
+---
+
+**taxSubject** boolean  
+Indicates if the Organization is subject to tax.
+
+---
+
+**companyNumber** string  
+Organization registration or similar number.
+
+---
+
+**IBAN** string  
+Bank account number.
+
+---
+
+**bank** string  
+Bank name.
+
+---
+
+**SWIFT** string  
+Bank SWIFT/BIC.
+
+---
+
+**website** string  
+Website address.  
+_Displayed on some PDF templates._
+
+---
+
+**email** string  
+Email.  
+_Displayed on some PDF templates._
+
+---
+
+**phone** string  
+Phone.  
+_Displayed on some PDF templates._
+
+---
+
+**locale** string  
+Default locale of Organization.  
+Defaults to the country's locale or `en` as fallback.  
+ISO 639-1 locale code. [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)  
+_Affects language of default texts and system messages, PDFs and other translatable resources._
+
+---
+
+**timezone** string  
+ISO timezone of Organization.  
+_Populated with country's timezone when instance created._
+
+---
+
+**custom** object  
+Custom data.  
+_See [Model custom data](#custom-model-data) section for details._
+
+---
+
+<% if type == 'object' %>
+
+**active** boolean _readonly_  
+If Organization is activated.  
+_Actions on a deactivated Organization are not possible._
+
+---
+
+**activatedAt** date _readonly_  
+When the Organization was last activated.
+
+---
+
+**deactivatedAt** date _readonly_  
+When the Organization was last deactivated.
+
+---
+
+**createdAt** date _readonly_  
+When the instance was created.
+
+---
+
+**updatedAt** date _readonly_  
+When the instance was last updated.
+
+---
+
+**_defaults** array _readonly_  
+Collection of related [Defaults](#defaults).  
+_Automatically included._
+
+---
+
+<% end %>

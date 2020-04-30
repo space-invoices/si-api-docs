@@ -1,0 +1,42 @@
+<% type ||='add' %>
+<% list = type == 'list' %>
+
+<% if type != 'object' %>
+> **Returns:**
+<% else %>
+> **The Client object:**
+<% end %>
+
+```json
+<% if type != 'count' && type != 'action' %>
+<%= !list ? '' : '[' %>{
+  "id": "5a3683ea12d5a67dd0ef2f4c",
+  "organizationId": "5a3683ea12d5a67dd0ef2f4d",
+  "name": "Space Exploration Technologies corp",
+  "address": "Rocket Road",
+  "city": "Hawthorne",
+  "zip": "CA 90250",
+  "country": "USA",
+  "email": "elon@spaceinvoices.com",
+  "contact": "Elon M.",
+  "phone": "+1 123 456 7890",
+  "isEndCustomer": false,
+  "companyNumber": null,
+  "IBAN": null,
+  "bank": null,
+  "SWIFT": null,
+  "website": null,
+  "custom": {},
+  "createdAt": "2020-04-18T07:59:37.938Z",
+  "updatedAt": "2020-04-18T07:59:37.938Z"
+}<%= !list ? '' : ', ...]' %>
+<% elsif type == 'count' %>
+{
+  "count": 1
+}
+<% elsif type == 'action' %>
+{
+  "success": true
+}
+<% end %>
+```
