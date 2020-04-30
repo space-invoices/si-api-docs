@@ -13,6 +13,7 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - getting-started
   - authentication
   - errors
   - filters
@@ -63,6 +64,4 @@ Always looking to make SI better, let us know if you have a specific challenge y
 
 ## About
 
-We are proud to make language binding in Shell, Javascript, C# and PHP available to you. To view code samples, check out the darker panel to the right. To switch the programming language of the examples, make good use of the tabs in the top right.
-
-While the API is fully operational, we always strive to improve its features. For this reason, we continuously work to update the finer details of this documentation. Features are added regularly, so do check back for updates or sign up for our product update email on our <a href="http://spaceinvoices.com">website</a>. We're happy to have you with us, and we look forward to seeing what you can make!
+While the API is fully operational and used in production by thousands of organizations every month, we always strive to improve its features. For this reason, we continuously work to update the finer details of this documentation. Features are added regularly, so do check back for updates or sign up for our product update email on our <a href="http://spaceinvoices.com">website</a>. We're happy to have you with us, and we look forward to seeing what you can make!
