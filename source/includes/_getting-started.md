@@ -40,7 +40,7 @@ _Space Invoices supports multi-tenant management, meaning an account can have mu
 
 ---
 
-#### 3. Try creating your first [invoice](#the-document-object)
+#### 3. Create your first [invoice](#the-document-object)
 
 On the right is an API call to create a simple invoice, take it for a spin.
 
@@ -48,7 +48,7 @@ _If you're logged into Space Invoices your launch code and organization's ID sho
 
 ---
 
-#### 4. Fetch the PDF version of the invoice you just created
+#### 4. Fetch a PDF of the invoice you just created
 
 Now let's use the next command to fetch a PDF the invoice, this time you'll need to replace the `DOCUMENT_ID` in the URL with the actual ID of the created invoice.
 
