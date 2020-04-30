@@ -57,9 +57,15 @@ $(document).ready(function() {
   /**
    * Populate logged in user's data
    */
-  var token = readCookie('$LoopBackSDK$id');
-  var accountId = readCookie('$LoopBackSDK$userId');
+  var token;
+  var accountId;
   var langSelector = $('.lang-selector');
+
+  try {
+    var cookie = JSON.parse(readCookie('token'));
+    token = cookie.id;
+    accountId = cookie.userId;
+  } catch (e) {}
 
   if (token) {
     $('code span:contains("LAUNCH_CODE")').each(function() {
