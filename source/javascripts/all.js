@@ -67,8 +67,8 @@ $(document).ready(function() {
       $(this).text(text.replace('LAUNCH_CODE', token));
     });
 
-  //   // Get organizations
-    $.get(`https://api.spaceinvoices.com/v1/accounts/${accountId}/organizations?access_token=${token}`)
+    // Get organizations
+    $.get('https://api.spaceinvoices.com/v1/accounts/' + accountId + '/organizations?access_token=' + token)
       .done(function(data) {
         if (data) {
           $('code span:contains("ORG_ID")').each(function() {
