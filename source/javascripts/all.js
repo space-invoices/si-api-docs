@@ -57,22 +57,22 @@ $(document).ready(function() {
   /**
    * Populate logged in user's data
    */
-  const token = readCookie('$LoopBackSDK$id');
-  const accountId = readCookie('$LoopBackSDK$userId');
-  const langSelector = $('.lang-selector');
+  var token = readCookie('$LoopBackSDK$id');
+  var accountId = readCookie('$LoopBackSDK$userId');
+  var langSelector = $('.lang-selector');
 
   if (token) {
     $('code span:contains("LAUNCH_CODE")').each(function() {
-      let text = $(this).text();
+      var text = $(this).text();
       $(this).text(text.replace('LAUNCH_CODE', token));
     });
 
-    // Get organizations
+  //   // Get organizations
     $.get(`https://api.spaceinvoices.com/v1/accounts/${accountId}/organizations?access_token=${token}`)
       .done(function(data) {
         if (data) {
           $('code span:contains("ORG_ID")').each(function() {
-            let text = $(this).text();
+            var text = $(this).text();
             $(this).text(text.replace('ORG_ID', data[0].id));
           });
         }
