@@ -21,11 +21,13 @@ Url where information about the triggered Webhook event will be posted.
 
 ---
 
-**events** <%= add ? '**required**' : '' %>  
-Array, list of events to subscribe to. _Each event must be of the format "MODEL_NAME/EVENT_NAME"._
+**events** array <%= add ? '**required**' : '' %>  
+Collection of events to subscribe to.  
+_Each event must be of the format `MODEL_NAME/EVENT_NAME`._
 
 **enabled** boolean  
-Boolean, if Webhook is enabled. _Will not be triggered if not enabled._
+If Webhook is enabled.  
+_Will not be triggered if not enabled._
 
 ---
 
