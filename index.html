@@ -389,7 +389,7 @@
                     <a href="#the-client-object" class="toc-h2 toc-link" data-title="The Client object">The Client object</a>
                   </li>
                   <li>
-                    <a href="#create-new-client" class="toc-h2 toc-link" data-title="Create New Client">Create New Client</a>
+                    <a href="#create-a-client" class="toc-h2 toc-link" data-title="Create a Client">Create a Client</a>
                   </li>
                   <li>
                     <a href="#retrieve-a-client" class="toc-h2 toc-link" data-title="Retrieve a Client">Retrieve a Client</a>
@@ -702,9 +702,6 @@
                     <a href="#the-webhook-object" class="toc-h2 toc-link" data-title="The Webhook object">The Webhook object</a>
                   </li>
                   <li>
-                    <a href="#supported-model-events" class="toc-h2 toc-link" data-title="Supported model events">Supported model events</a>
-                  </li>
-                  <li>
                     <a href="#create-a-webhook" class="toc-h2 toc-link" data-title="Create a Webhook">Create a Webhook</a>
                   </li>
                   <li>
@@ -721,6 +718,9 @@
                   </li>
                   <li>
                     <a href="#count-all-webhooks" class="toc-h2 toc-link" data-title="Count all Webhooks">Count all Webhooks</a>
+                  </li>
+                  <li>
+                    <a href="#supported-model-events" class="toc-h2 toc-link" data-title="Supported model events">Supported model events</a>
                   </li>
                   <li>
                     <a href="#webhook-event-body" class="toc-h2 toc-link" data-title="Webhook event body">Webhook event body</a>
@@ -2351,7 +2351,7 @@ When the instance was created.</p>
 When the instance was last updated.</p>
 
 <p><hr></p>
-<h2 id='create-new-client'>Create New Client</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/clients"</span> <span class="se">\</span>
+<h2 id='create-a-client'>Create a Client</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/clients"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Space Exploration Technologies corp"</span> <span class="se">\</span>
   -d <span class="nv">address</span><span class="o">=</span><span class="s2">"Rocket Road"</span> <span class="se">\</span>
@@ -9514,7 +9514,11 @@ Type of currency.<br>
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiat"</span><span class="w">
 </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
 </span></code></pre>
-<h1 id='webhooks'>Webhooks</h1><pre class="highlight plaintext tab-plaintext"><code>  POST /v1/organizations/:id/webhooks
+<h1 id='webhooks'>Webhooks</h1>
+<blockquote>
+<p><strong>Endpoints:</strong></p>
+</blockquote>
+<pre class="highlight plaintext tab-plaintext"><code>  POST /v1/organizations/:id/webhooks
    GET /v1/webhooks/:id
  PATCH /v1/webhooks/:id
 DELETE /v1/webhooks/:id
@@ -9557,11 +9561,13 @@ Url where information about the triggered Webhook event will be posted.</p>
 
 <p><hr></p>
 
-<p><strong>events</strong><br>
-Array, list of events to subscribe to. <em>Each event must be of the format &quot;MODEL_NAME/EVENT_NAME&quot;.</em></p>
+<p><strong>events</strong> array<br>
+Collection of events to subscribe to.<br>
+<em>Each event must be of the format <code>MODEL_NAME/EVENT_NAME</code>.</em></p>
 
 <p><strong>enabled</strong> boolean<br>
-Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></p>
+If Webhook is enabled.<br>
+<em>Will not be triggered if not enabled.</em></p>
 
 <p><hr></p>
 
@@ -9574,12 +9580,6 @@ When the instance was created.</p>
 When the instance was last updated.</p>
 
 <p><hr></p>
-<h2 id='supported-model-events'>Supported model events</h2>
-<p>The following event types can be used when registering a Webhook subscription</p>
-
-<p><code>create</code>, <code>update</code> and <code>delete</code></p>
-
-<p><code>*</code> - Indicates all subscriptions on all models, must be used without specifying a model.</p>
 <h2 id='create-a-webhook'>Create a Webhook</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/webhooks"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -d <span class="nv">url</span><span class="o">=</span><span class="s2">"https://example.com"</span> <span class="se">\</span>
@@ -9595,20 +9595,17 @@ When the instance was last updated.</p>
   </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"client/create"</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
 <h3 id='http-request'>HTTP Request</h3>
+
 <p><code>POST https://api.spaceinvoices.com/v1/organizations/:id/webhooks</code></p>
+
 <h4 id='route-parameters'>Route parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id <strong>required</strong></td>
-<td>ID of the Organization on which the Webhook is created.</td>
-</tr>
-</tbody></table>
+
+<p><strong>id</strong> string <strong>required</strong><br>
+  ID of the Organization on which the Webhook is being created</p>
+
+<p><hr></p>
 
 <h4 id='properties'>Properties</h4>
 
@@ -9617,11 +9614,13 @@ Url where information about the triggered Webhook event will be posted.</p>
 
 <p><hr></p>
 
-<p><strong>events</strong> <strong>required</strong><br>
-Array, list of events to subscribe to. <em>Each event must be of the format &quot;MODEL_NAME/EVENT_NAME&quot;.</em></p>
+<p><strong>events</strong> array <strong>required</strong><br>
+Collection of events to subscribe to.<br>
+<em>Each event must be of the format <code>MODEL_NAME/EVENT_NAME</code>.</em></p>
 
 <p><strong>enabled</strong> boolean<br>
-Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></p>
+If Webhook is enabled.<br>
+<em>Will not be triggered if not enabled.</em></p>
 
 <p><hr></p>
 <h2 id='retrieve-a-webhook'>Retrieve a Webhook</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/webhooks/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
@@ -9637,20 +9636,17 @@ Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></
   </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"client/create"</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id='http-request-2'>HTTP Request</h3>
+
+<h3 id='http-request'>HTTP Request</h3>
+
 <p><code>GET https://api.spaceinvoices.com/v1/webhooks/:id</code></p>
-<h4 id='route-parameters-2'>Route parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id <strong>required</strong></td>
-<td>ID of the Webhook being retrieved.</td>
-</tr>
-</tbody></table>
+
+<h4 id='route-parameters'>Route parameters</h4>
+
+<p><strong>id</strong> string <strong>required</strong><br>
+  ID of the Webhook being retrieved</p>
+
+<p><hr></p>
 <h2 id='update-a-webhook'>Update a Webhook</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="s2">"https://api.spaceinvoices.com/v1/webhooks/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
   -d events[0]<span class="o">=</span><span class="s2">"client/create"</span>
@@ -9667,20 +9663,6 @@ Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></
 </span></code></pre>
 
 <p>Updates the given model instance, any parameters not passed will be left untouched.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://api.spaceinvoices.com/v1/webhooks/:id</code></p>
-<h4 id='route-parameters-3'>Route parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id <strong>required</strong></td>
-<td>ID of the Webhook being updated.</td>
-</tr>
-</tbody></table>
 
 <h4 id='properties'>Properties</h4>
 
@@ -9689,11 +9671,13 @@ Url where information about the triggered Webhook event will be posted.</p>
 
 <p><hr></p>
 
-<p><strong>events</strong><br>
-Array, list of events to subscribe to. <em>Each event must be of the format &quot;MODEL_NAME/EVENT_NAME&quot;.</em></p>
+<p><strong>events</strong> array<br>
+Collection of events to subscribe to.<br>
+<em>Each event must be of the format <code>MODEL_NAME/EVENT_NAME</code>.</em></p>
 
 <p><strong>enabled</strong> boolean<br>
-Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></p>
+If Webhook is enabled.<br>
+<em>Will not be triggered if not enabled.</em></p>
 
 <p><hr></p>
 <h2 id='delete-a-webhook'>Delete a Webhook</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/webhooks/5a3683ea12d5a67dd0ef2f4c"</span> <span class="se">\</span>
@@ -9709,20 +9693,17 @@ Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></
 </span></code></pre>
 
 <p>Performs a soft delete, see the <a href="#soft-delete">Soft delete</a> section for details.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+
+<h3 id='http-request'>HTTP Request</h3>
+
 <p><code>DELETE https://api.spaceinvoices.com/v1/webhooks/:id</code></p>
-<h4 id='route-parameters-4'>Route parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id <strong>required</strong></td>
-<td>ID of the Webhook being deleted.</td>
-</tr>
-</tbody></table>
+
+<h4 id='route-parameters'>Route parameters</h4>
+
+<p><strong>id</strong> string <strong>required</strong><br>
+  ID of the Webhook being deleted</p>
+
+<p><hr></p>
 <h2 id='list-all-webhooks'>List all Webhooks</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/webhooks"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre>
@@ -9736,20 +9717,22 @@ Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></
   </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"client/create"</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
 </span></code></pre>
-<h3 id='http-request-5'>HTTP Request</h3>
+
+<h3 id='http-request'>HTTP Request</h3>
+
 <p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/webhooks</code></p>
-<h4 id='route-parameters-5'>Route parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id <strong>required</strong></td>
-<td>ID of the Organization on which the Webhooks are being listed.</td>
-</tr>
-</tbody></table>
+
+<h4 id='route-parameters'>Route parameters</h4>
+
+<p><strong>id</strong> string <strong>required</strong><br>
+  ID of the Organization on which the webhooks are being listed</p>
+
+<p><hr></p>
+
+<p><strong>filter</strong> object<br>
+Query filters. See <a href="#filters">Filters</a> section for more details.</p>
+
+<p><hr></p>
 <h2 id='count-all-webhooks'>Count all Webhooks</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/webhooks/count"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre>
@@ -9761,22 +9744,32 @@ Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id='http-request-6'>HTTP Request</h3>
+
+<h3 id='http-request'>HTTP Request</h3>
+
 <p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/webhooks/count</code></p>
-<h4 id='route-parameters-6'>Route parameters</h4>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">id <strong>required</strong></td>
-<td>ID of the Organization on which the Webhooks are being counted.</td>
-</tr>
-</tbody></table>
+
+<h4 id='route-parameters'>Route parameters</h4>
+
+<p><strong>id</strong> string <strong>required</strong><br>
+  ID of the Organization on which the webhooks are being counted</p>
+
+<p><hr></p>
+
+<p><strong>where</strong> object<br>
+Query where. See <a href="#where-operators">Where operators</a> section of filters for more details.</p>
+
+<p><hr></p>
+<h2 id='supported-model-events'>Supported model events</h2>
+<p>The following event types can be used when registering a Webhook subscription</p>
+
+<p><code>create</code>, <code>update</code> and <code>delete</code></p>
+
+<p><code>*</code> - Indicates all subscriptions on all models, must be used without specifying a model.</p>
 <h2 id='webhook-event-body'>Webhook event body</h2>
-<p>Data posted to the registered URL endpoint when subscribed Webhook event is triggered</p>
+<blockquote>
+<p><strong>Posts:</strong></p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client/create"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -9784,29 +9777,27 @@ Boolean, if Webhook is enabled. <em>Will not be triggered if not enabled.</em></
   </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"859e2ee4-a1aa-45a1-b0d3-2dfe5b86a672"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<table><thead>
-<tr>
-<th style="text-align: right"></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">event</td>
-<td>String, name of the triggered event.</td>
-</tr>
-<tr>
-<td style="text-align: right">organizationId</td>
-<td>String, the id of Organization on which the event was triggered.</td>
-</tr>
-<tr>
-<td style="text-align: right">data</td>
-<td>Object, state data of model after the event.</td>
-</tr>
-<tr>
-<td style="text-align: right">uid</td>
-<td>Unique identifier of the event request.</td>
-</tr>
-</tbody></table>
+<p>Data posted to the registered URL endpoint when subscribed Webhook event is triggered</p>
+<h4 id='properties'>Properties</h4>
+<p><strong>event</strong> string<br>
+Name of the triggered event.</p>
+
+<hr>
+
+<p><strong>organizationId</strong> string<br>
+The ID of the Organization on which the event was triggered.</p>
+
+<hr>
+
+<p><strong>data</strong> object<br>
+State data of model after the event.</p>
+
+<hr>
+
+<p><strong>uid</strong><br>
+Unique identifier of the current triggered event request.</p>
+
+<hr>
 <h1 id='apollo-ui'>Apollo UI</h1>
 <blockquote>
 <p>https://app.getapollo.io</p>
