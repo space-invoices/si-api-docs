@@ -10,8 +10,9 @@
  PATCH /v1/organizations/:id
    GET /v1/accounts/:id/organizations
    GET /v1/accounts/:id/organizations/count
-  POST /v1/organizations/image
-DELETE /v1/organizations/image
+  POST /v1/organizations/images
+DELETE /v1/organizations/images
+   GET /v1/organizations/images
   POST /v1/organizations/:id/deactivate
   POST /v1/organizations/:id/activate
    GET /v1/organizations/:id/export
@@ -156,7 +157,7 @@ curl "https://api.spaceinvoices.com/v1/accounts/ACCOUNT_ID/organizations/count" 
 ## Upload Logo or Signature image to Organization
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/image?type=logo" \
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/images?type=logo" \
   -H "Authorization: LAUNCH_CODE" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -F "file=@path_to_file.jpg"
@@ -207,7 +208,7 @@ _Must be sent as payload `Content-Type: application/x-www-form-urlencoded`._
 ## Remove an image
 
 ```shell
-curl -X DELETE "https://api.spaceinvoices.com/v1/organizations/ORG_ID/image?type=logo" \
+curl -X DELETE "https://api.spaceinvoices.com/v1/organizations/ORG_ID/images?type=logo" \
   -H "Authorization: LAUNCH_CODE"
 ```
 
@@ -220,6 +221,29 @@ true
 Removes an image from the Organization and sets the image setting to false in [Defaults](#defaults).
 
 <%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'removed from', verb: 'DELETE', modelId: true, modelAction: 'images', query: '?type=:type' } %>
+
+**type** string **required**  
+The type of image being uploaded.  
+_Valid options are `logo` or `signature`_.
+
+---
+
+## Download an image
+
+```shell
+curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/images?type=logo" \
+  -H "Authorization: LAUNCH_CODE"
+```
+
+> **Returns:**
+
+```plaintext
+File Buffer
+```
+
+Downloads an image of the Organization.
+
+<%= partial 'partials/route.parameters', locals: { model: model, noFk: true, action: 'downloaded from', verb: 'GET', modelId: true, modelAction: 'images', query: '?type=:type' } %>
 
 **type** string **required**  
 The type of image being uploaded.  
