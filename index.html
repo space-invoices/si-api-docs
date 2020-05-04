@@ -535,6 +535,9 @@
                     <a href="#remove-an-image" class="toc-h2 toc-link" data-title="Remove an image">Remove an image</a>
                   </li>
                   <li>
+                    <a href="#download-an-image" class="toc-h2 toc-link" data-title="Download an image">Download an image</a>
+                  </li>
+                  <li>
                     <a href="#deactivate-an-organization" class="toc-h2 toc-link" data-title="Deactivate an Organization">Deactivate an Organization</a>
                   </li>
                   <li>
@@ -6322,8 +6325,9 @@ Term to search for.</p>
  PATCH /v1/organizations/:id
    GET /v1/accounts/:id/organizations
    GET /v1/accounts/:id/organizations/count
-  POST /v1/organizations/image
-DELETE /v1/organizations/image
+  POST /v1/organizations/images
+DELETE /v1/organizations/images
+   GET /v1/organizations/images
   POST /v1/organizations/:id/deactivate
   POST /v1/organizations/:id/activate
    GET /v1/organizations/:id/export
@@ -6991,7 +6995,7 @@ Query filters. See <a href="#filters">Filters</a> section for more details.</p>
 Query where. See <a href="#where-operators">Where operators</a> section of filters for more details.</p>
 
 <p><hr></p>
-<h2 id='upload-logo-or-signature-image-to-organization'>Upload Logo or Signature image to Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/image?type=logo"</span> <span class="se">\</span>
+<h2 id='upload-logo-or-signature-image-to-organization'>Upload Logo or Signature image to Organization</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/images?type=logo"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span> <span class="se">\</span>
   -F <span class="s2">"file=@path_to_file.jpg"</span>
@@ -7036,7 +7040,7 @@ The image payload to upload.<br>
 <em>Must be sent as payload <code>Content-Type: application/x-www-form-urlencoded</code>.</em></p>
 
 <hr>
-<h2 id='remove-an-image'>Remove an image</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/image?type=logo"</span> <span class="se">\</span>
+<h2 id='remove-an-image'>Remove an image</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/images?type=logo"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
 </code></pre>
 <blockquote>
@@ -7054,6 +7058,32 @@ The image payload to upload.<br>
 
 <p><strong>id</strong> string <strong>required</strong><br>
   ID of the Organization being removed from</p>
+
+<p><hr></p>
+
+<p><strong>type</strong> string <strong>required</strong><br>
+The type of image being uploaded.<br>
+<em>Valid options are <code>logo</code> or <code>signature</code></em>.</p>
+
+<hr>
+<h2 id='download-an-image'>Download an image</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/organizations/ORG_ID/images?type=logo"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: LAUNCH_CODE"</span>
+</code></pre>
+<blockquote>
+<p><strong>Returns:</strong></p>
+</blockquote>
+<pre class="highlight plaintext tab-plaintext"><code>File Buffer
+</code></pre>
+<p>Downloads an image of the Organization.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>GET https://api.spaceinvoices.com/v1/organizations/:id/images?type=:type</code></p>
+
+<h4 id='route-parameters'>Route parameters</h4>
+
+<p><strong>id</strong> string <strong>required</strong><br>
+  ID of the Organization being downloaded from</p>
 
 <p><hr></p>
 
