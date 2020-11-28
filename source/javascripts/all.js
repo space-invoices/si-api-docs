@@ -133,6 +133,7 @@ $.fn.followTo = function() {
   var padd = 50;
   var topO = $this.position().top;
   var height = $this.height();
+  var width = $window.width();
 
   var $h1N = $('~ h1:nth(0)', $this);
   var $h2N = $('~ h2:nth(0)', $this);
@@ -145,7 +146,7 @@ $.fn.followTo = function() {
   var max = bottom - height;
   var sectionHeight = bottom - topO;
 
-  if (height < sectionHeight) {
+  if (width > 700 && height < sectionHeight) {
     $window.scroll(function() {
       var top = $window.scrollTop();
       var topP = top + padd;
@@ -177,6 +178,7 @@ $.fn.followTo = function() {
 
   $window.resize(function() {
     height = $this.height();
+    width = $window.width();
     max = bottom - height;
   });
 }
