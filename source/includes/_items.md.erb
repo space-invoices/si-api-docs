@@ -213,3 +213,31 @@ ID of the Organization on which te items are being searched
 Term to search for.
 
 ---
+
+## Localizing item content
+
+> **Example localized item content**
+
+```json
+{
+  {
+    "name": "Default english name",
+    "description": "Default english description",
+    "l10n": {
+      "name_de": "German name content",
+      "description_de": "German description content",
+    }
+  }
+}
+```
+
+In addition to the content passed to the item an additional object with localized content can be sent when creating or updating the item. 
+
+Item content that can be translated: `name`, `description` and `unit`.
+
+When content is auto populated to document from items the localized content will also be copied if available on the item being used.
+See [Localizing document content](#localizing-document-content) for more details.
+
+Localization property and it's nested data can also be filtered when querying a model endpoint, see [filters](#filters) section for details.
+
+---

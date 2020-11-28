@@ -1,5 +1,10 @@
 # Changelog
 
+## # 28.11.2020
+
+- Added example of PDF to Getting started and Retrieve a Document PDF sections
+- Added information about adding translated document content
+
 ## # 29.4.2020
 
 - Updated sidebar with sections

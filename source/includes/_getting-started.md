@@ -52,6 +52,8 @@ _If you're logged into Space Invoices your launch code and organization's ID sho
 
 Now let's use the next command to fetch a PDF the invoice, this time you'll need to replace the `DOCUMENT_ID` in the URL with the actual ID of the created invoice.
 
+- Here's an <a target="_blank" href="http://app.getapollo.io/assets/img/invoice-template-2013-en-thumbnail.jpg">example</a> of how a fully customized invoice PDF might look like.
+
 ---
 
 #### 5. That's it

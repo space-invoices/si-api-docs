@@ -283,8 +283,11 @@ PDF Buffer
 
 **This endpoint returns a document in PDF format.**
 
-The template of the document can be changed by setting the `pdf_template` in the [Defaults](#defaults).
-The language of the document is determined by the `l` flag. If no flag is provided, the organization's default locale is used. _Currently, this setting doesn't affect the user-created content of the document, only the predefined data like table headers, etc. We are working on a way to enable that as well._
+**Here's an <a target="_blank" href="http://app.getapollo.io/assets/img/invoice-template-2013-en-thumbnail.jpg">example</a> of how a fully customized invoice PDF might look like.**
+The template of the document can be changed by setting the `pdf_template` in the [Defaults](#defaults). Options are `classic` (default), `modern` and `minimal`.
+
+The language of the document is determined by the `l` flag. If no flag is provided, the organization's default locale is used.
+While this translates the static PDF content, it is also possible to pass translations of document content as well.
 
 ### HTTP Request
 
@@ -367,6 +370,45 @@ _Supports smart code notations which get parsed to data._
 **subject** string **required**  
 Email subject.  
 _Supports smart code notations which get parsed to data._
+
+---
+
+## Localizing document content
+
+> **Example localized document content**
+
+```json
+{
+  ...
+  "_documentItems": [
+    {
+      "name": "Default english name",
+      "description": "Default english description",
+      "l10n": {
+        "name_de": "German name content",
+        "description_de": "German description content",
+      }
+    }
+  ],
+  "note": "Default english note content",
+  "signature": "Default english signature content",
+  "footer": "Default english footer content",
+  "l10n": {
+    "note_de": "German note content",
+    "signature_de": "German signature content",
+    "footer_de": "German footer content"
+  }
+}
+```
+
+In addition to the content passed to the document an additional object with localized content can be sent when creating or updating the document. The localized content is used when downloading a PDF in a chosen language. If a specific localization is not available the API defaults to the default value.
+
+Document content that can be translated: `note`, `signature`, `footer`.
+Document item content that can be translated: `name`, `description` and `unit`.
+
+When content is auto populated to document from defaults or items, localized content will also be copied if available on the default or item being used.
+
+Localization property and it's nested data can also be filtered when querying a model endpoint, see [filters](#filters) section for details.
 
 ---
 
