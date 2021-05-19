@@ -94,7 +94,7 @@ spaceInvoices.accounts
 ?>
 ```
 
-<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+<%= partial "partials/access-token.returns", locals: { type: 'add' } %>
 
 This endpoint authenticates an Account and returns an Access Token object which includes the `launch code` that can be used to make authenticated calls to the API.
 
@@ -133,7 +133,7 @@ curl "https://api.spaceinvoices.com/v1/accounts/impersonate" \
   -d email="rocketman@example.com"
 ```
 
-<%= partial "partials/#{model.downcase}.returns", locals: { type: 'add' } %>
+<%= partial "partials/access-token.returns", locals: { type: 'add' } %>
 
 A root Space Invoices Account can retrieve a [launch code](#authenticate) for any of their child Accounts using either the child Account's `id` or `email`. This functionality is useful for logging in related users without the need of knowing or asking for their login credentials.
 

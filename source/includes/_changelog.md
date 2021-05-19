@@ -1,5 +1,9 @@
 # Changelog
 
+## # 19.5.2021
+
+- Added correct login and impersonate example responses
+
 ## # 28.11.2020
 
 - Added example of PDF to Getting started and Retrieve a Document PDF sections

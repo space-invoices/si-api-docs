@@ -313,9 +313,9 @@ body {
   font-weight: bold;
   overflow-x: auto;
   a {
-    display: block;
+    // display: block;
     float: left;
-    // display: inline;
+    display: inline;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
@@ -736,12 +736,12 @@ body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
+  & > div.highlight {
+    clear: none;
+  }
+
   pre,
   blockquote {
-    & > div.highlight {
-      clear: none;
-    }
-
     background-color: $code-bg;
     color: #fff;
 

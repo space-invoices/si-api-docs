@@ -47,7 +47,7 @@ $(document).ready(function() {
   /**
    * Make right side code preview scroll with page
    */
-  var code_block = $('pre.highlight.json');
+  var code_block = $('.highlight pre.highlight.json');
   code_block.each(function() { $(this).followTo(); });
 
   /**
@@ -129,14 +129,15 @@ function deleteCookie(name) {
 
 $.fn.followTo = function() {
   var $this = this;
+  var $container = this.parent();
   var $window = $(window);
-  var padd = 50;
+  var padd = 40;
   var topO = $this.position().top;
   var height = $this.height();
-  var width = $window.width();
+  var windowWidth = $window.width();
 
-  var $h1N = $('~ h1:nth(0)', $this);
-  var $h2N = $('~ h2:nth(0)', $this);
+  var $h1N = $('~ h1:nth(0)', $container);
+  var $h2N = $('~ h2:nth(0)', $container);
   var bottom1 = $h1N.position().top;
   var bottom2 = $h2N.position().top;
   var bottom = bottom1;
@@ -146,31 +147,55 @@ $.fn.followTo = function() {
   var max = bottom - height;
   var sectionHeight = bottom - topO;
 
-  if (width > 700 && height < sectionHeight) {
+  if (windowWidth > 700 && height < sectionHeight) {
     $window.scroll(function() {
       var top = $window.scrollTop();
       var topP = top + padd;
 
       if (topP > topO) {
         if (topP > max) {
-          $this.css({
+          // Reached bottom (near next sliding element)
+          // Stop scrolling
+          $container.css({
             position: 'fixed',
             top: max,
-            right: 0
+            right: 0,
+            width: '50%',
+          });
+
+          $this.css({
+            position: 'absolute',
+            right: '0',
+            width: '100%',
           });
         } else {
-          $this.css({
+          // Normal scrolling with view
+          $container.css({
             position: '-webkit-sticky',
             position: 'sticky',
             top: padd,
-            right: 0
+            right: 0,
+            width: '',
+          });
+
+          $this.css({
+            position: 'absolute',
+            right: '0',
+            width: '',
           });
         }
       } else {
-        $this.css({
+        $container.css({
           position: 'inherit',
           top: 'inherit',
-          right: 'inheirt'
+          right: 'inheirt',
+          width: '',
+        });
+
+        $this.css({
+          position: '',
+          right: '',
+          width: '',
         });
       }
     });
@@ -178,7 +203,7 @@ $.fn.followTo = function() {
 
   $window.resize(function() {
     height = $this.height();
-    width = $window.width();
+    windowWidth = $window.width();
     max = bottom - height;
   });
 }
