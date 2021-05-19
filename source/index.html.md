@@ -43,6 +43,8 @@ includes:
   - changelog
 
 search: true
+
+code_clipboard: true
 ---
 
 # Introduction
@@ -60,7 +62,7 @@ To understand the full scope of our API, please start by taking a look at our do
 We're excited to have you on board and we're here to help you elevate your software solution by being your invoicing API of choice.
 Always looking to make SI better, let us know if you have a specific challenge you'd like us to help you tackle. Find us at our community Gitter channel: See you soon!
 
-### Join our Gitter [here](https://gitter.im/space-invoices).
+### Join our community Discord [here](https://discord.gg/GcU436pVEn).
 
 ## About
 

@@ -307,12 +307,15 @@ body {
 }
 
 .lang-selector {
+  display: flex;
   background-color: $lang-select-bg;
   width: 100%;
   font-weight: bold;
+  overflow-x: auto;
   a {
     display: block;
     float: left;
+    // display: inline;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
@@ -735,6 +738,10 @@ body {
 .content {
   pre,
   blockquote {
+    & > div.highlight {
+      clear: none;
+    }
+
     background-color: $code-bg;
     color: #fff;
 
@@ -846,4 +853,17 @@ body {
 .highlight,
 .highlight .w {
   background-color: $code-bg;
+}
+
+.copy-clipboard {
+  float: right;
+  fill: #9daab6;
+  cursor: pointer;
+  opacity: 0.4;
+  height: 18px;
+  width: 18px;
+}
+
+.copy-clipboard:hover {
+  opacity: 0.8;
 }
