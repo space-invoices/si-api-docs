@@ -1940,58 +1940,28 @@ Time to live.<br>
 <h4 id='properties'>Properties</h4>
 
 <p><strong>id</strong> string <em>readonly</em><br>
-Unique identifier.</p>
+Generated <code>launch code</code>.</p>
 
 <p><hr></p>
 
-<p><strong>email</strong> string   </p>
+<p><strong>userId</strong> string <em>readonly</em><br>
+ID of the authenticated Account.</p>
 
 <p><hr></p>
 
-<p><strong>password</strong> string  <em>writeonly</em>  </p>
+<p><strong>user</strong> object <em>readonly</em><br>
+Related Account the instance belongs to.<br>
+<em>Can be included, see <a href="#filters">Filters</a> section for details.</em></p>
 
 <p><hr></p>
 
-<p><strong>firstname</strong> string<br>
-User&#39;s first name.</p>
+<p><strong>ttl</strong> number<br>
+Time to live for the generated token.</p>
 
 <p><hr></p>
 
-<p><strong>lastname</strong> string<br>
-User&#39;s last name.</p>
-
-<p><hr></p>
-
-<p><strong>label</strong> string<br>
-User&#39;s label.<br>
-<em>required if fiscally verifying documents.</em></p>
-
-<p><hr></p>
-
-<p><strong>taxNumber</strong> string<br>
-User&#39;s personal tax number.<br>
-<em>required if fiscally verifying documents.</em></p>
-
-<p><hr></p>
-
-<p><strong>custom</strong> object<br>
-Custom data.<br>
-<em>See <a href="#custom-model-data">Model custom data</a> section for details.</em></p>
-
-<p><hr></p>
-
-<p><strong>emailVerified</strong> boolean <em>readonly</em><br>
-Indicates if email was verified.  </p>
-
-<p><hr></p>
-
-<p><strong>createdAt</strong> date <em>readonly</em><br>
+<p><strong>created</strong> date <em>readonly</em><br>
 When the instance was created.</p>
-
-<p><hr></p>
-
-<p><strong>updatedAt</strong> date <em>readonly</em><br>
-When the instance was last updated.</p>
 
 <p><hr></p>
 <h2 id='impersonate-an-account'>Impersonate an Account</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/impersonate"</span> <span class="se">\</span>
@@ -2042,58 +2012,28 @@ Time to live.<br>
 <h4 id='properties'>Properties</h4>
 
 <p><strong>id</strong> string <em>readonly</em><br>
-Unique identifier.</p>
+Generated <code>launch code</code>.</p>
 
 <p><hr></p>
 
-<p><strong>email</strong> string   </p>
+<p><strong>userId</strong> string <em>readonly</em><br>
+ID of the authenticated Account.</p>
 
 <p><hr></p>
 
-<p><strong>password</strong> string  <em>writeonly</em>  </p>
+<p><strong>user</strong> object <em>readonly</em><br>
+Related Account the instance belongs to.<br>
+<em>Can be included, see <a href="#filters">Filters</a> section for details.</em></p>
 
 <p><hr></p>
 
-<p><strong>firstname</strong> string<br>
-User&#39;s first name.</p>
+<p><strong>ttl</strong> number<br>
+Time to live for the generated token.</p>
 
 <p><hr></p>
 
-<p><strong>lastname</strong> string<br>
-User&#39;s last name.</p>
-
-<p><hr></p>
-
-<p><strong>label</strong> string<br>
-User&#39;s label.<br>
-<em>required if fiscally verifying documents.</em></p>
-
-<p><hr></p>
-
-<p><strong>taxNumber</strong> string<br>
-User&#39;s personal tax number.<br>
-<em>required if fiscally verifying documents.</em></p>
-
-<p><hr></p>
-
-<p><strong>custom</strong> object<br>
-Custom data.<br>
-<em>See <a href="#custom-model-data">Model custom data</a> section for details.</em></p>
-
-<p><hr></p>
-
-<p><strong>emailVerified</strong> boolean <em>readonly</em><br>
-Indicates if email was verified.  </p>
-
-<p><hr></p>
-
-<p><strong>createdAt</strong> date <em>readonly</em><br>
+<p><strong>created</strong> date <em>readonly</em><br>
 When the instance was created.</p>
-
-<p><hr></p>
-
-<p><strong>updatedAt</strong> date <em>readonly</em><br>
-When the instance was last updated.</p>
 
 <p><hr></p>
 <h2 id='retrieve-an-account'>Retrieve an Account</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.spaceinvoices.com/v1/accounts/5e9ab369ed6377000d23d5b5"</span> <span class="se">\</span>
