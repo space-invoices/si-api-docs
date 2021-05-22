@@ -123,7 +123,7 @@ _To create a non-expiring token use `ttl=-1`_
 
 Returns an Access Token object.
 
-<%= partial "partials/#{model.downcase}.properties", locals: { type: 'object' } %>
+<%= partial "partials/access-token.properties", locals: { type: 'object' } %>
 
 ## Impersonate an Account
 
@@ -170,7 +170,7 @@ _To create a non-expiring token use `ttl=-1`_
 
 Returns an Access Token object for the Account being impersonated.
 
-<%= partial "partials/#{model.downcase}.properties", locals: { type: 'object' } %>
+<%= partial "partials/access-token.properties", locals: { type: 'object' } %>
 
 ## Retrieve an Account
 
