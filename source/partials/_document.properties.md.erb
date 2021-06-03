@@ -774,5 +774,33 @@ When the instance was last updated.
 
 ---
 
+**\_bPay** object  
+Bpay payment provider data  
+_Property is optional_  
+_Property can be automatically populated with data if organization `BPay_billerCode` default is set._  
+_Can be manually populated._  
+_Also adds BPay payment information to the generated document PDF._  
+
+[toggle child attributes](#expand)
+
+**billerCode** string  
+The biller code  
+_Can be automatically provided from the Organization `BPay_billerCode` default._  
+_Can be manually populated_
+
+---
+
+**reference** string  
+Reference to the invoice  
+_Is automatically populated with the document Id._  
+_Can be manually populated_  
+
+---
+
+**hide** boolean _default false_  
+Hide BPay information from the PDF.
+
+---
+
 <% end %>
 

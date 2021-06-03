@@ -357,7 +357,7 @@ curl "https://api.spaceinvoices.com/v1/organizations/ORG_ID/accountorganizations
 
 <%= partial "partials/#{model2.downcase}.returns", locals: { type: 'list' } %>
 
-<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', action: 'listed', action: 'listed' } %>
+<%= partial 'partials/route.parameters', locals: { model: 'Access', modelPlural: 'accountorganizations', action: 'listed' } %>
 
 ## Remove Account from Organization
 
