@@ -49,7 +49,7 @@ The certificate's password is symmetrically encrypted with our own strong secret
 
 NOTE: A test certificate can also be uploaded, take care to set the right (`test`) environment for the fiscalization configuration based on the type of uploaded certificate.
 
-## Adding business premisses
+## Adding business premises
 
 Business premieses must have unique identifier (name) set for `businessPremiseId` value.
 
@@ -67,7 +67,7 @@ curl "https://api.spaceinvoices.com/v1/organizations/:id/businesspremises" \
 An electronic device belongs to a business premise and must have a unique identifier (name) set for `electronicDeviceId` value. The value only has to be unique in the givven business premise the device is related to.
 
 ```shell
-curl "https://api.spaceinvoices.com/v1/businesspremisses/:id/electronicdevices" \
+curl "https://api.spaceinvoices.com/v1/businesspremises/:id/electronicdevices" \
   -H "Authorization: LAUNCH_CODE" \
   -d electronicDeviceId="D1" \
 ```
